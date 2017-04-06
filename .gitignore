@@ -3,3 +3,6 @@
 ################################################################################
 
 /Business.Lib/bin
+/Business.Lib/obj
+*.nupkg
+/Business.Lib/Business.Lib.nupkg
