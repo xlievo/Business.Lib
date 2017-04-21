@@ -79,6 +79,6 @@ namespace Business
 
         readonly static System.Collections.Specialized.HybridDictionary marks = new System.Collections.Specialized.HybridDictionary(20) { { MarkItem.Exp_UndefinedException, "Undefined Exception" }, { MarkItem.Exp_ArgumentsIllegal, "Arguments Illegal" }, { MarkItem.Exp_SessionIllegal, "Session Illegal" }, { MarkItem.Exp_SessionOut, "Session Out" }, { MarkItem.Exp_CompetenceIllegal, "Competence Illegal" }, { MarkItem.Exp_UserError, "User Error" }, { MarkItem.Exp_PasswordError, "Password Error" }, { MarkItem.Exp_UserFrozen, "User Frozen" }, { MarkItem.Login_Error, "Login Error" }, { MarkItem.Login_ErrorCount, 3 }, { MarkItem.Login_ErrorRange, 2 }, { MarkItem.Login_ErrorFreeze, 3 } };
 
-        public static Type Get<Type>(this MarkItem mark) { return Extensions.Help2.ChangeType<Type>(marks[mark]); }
+        public static Type Get<Type>(this MarkItem mark) { return Utils.Help2.ChangeType<Type>(marks[mark]); }
     }
 }

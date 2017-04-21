@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Business.Extensions
+namespace Business.Utils
 {
     #region Paging Object
 

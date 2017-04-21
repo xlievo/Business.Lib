@@ -15,7 +15,7 @@
           ##############
 ==================================*/
 
-using Business.Extensions;
+using Business.Utils;
 using System.Linq;
 
 namespace Business.Data
@@ -130,7 +130,7 @@ namespace Business.Data
 
         public static int ExecuteNonQuery(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.Execute(() =>
+            return connection.ExecutePack(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
@@ -141,7 +141,7 @@ namespace Business.Data
 
         public static T ExecuteScalar<T>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.Execute<T>(() =>
+            return connection.ExecutePack<T>(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
@@ -150,18 +150,33 @@ namespace Business.Data
             }, minusOneExcep: false);
         }
 
-        public static System.Collections.Generic.List<System.Collections.Generic.List<dynamic>> Execute(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public static System.Collections.Generic.IEnumerable<TEntity> Execute<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.Execute<System.Collections.Generic.List<System.Collections.Generic.List<dynamic>>>(() =>
+            return connection.ExecutePack<System.Collections.Generic.IEnumerable<TEntity>>(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
-                    return cmd.ExecuteReader().ReaderFillDynamicList();
+                    var reader = cmd.ExecuteReader();
+
+                    return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadCollection(reader);
                 }
             }, minusOneExcep: false);
         }
 
-        public static Result Execute<Result>(this IConnection connection, System.Func<Result> func, bool minusOneExcep = true)
+        public static TEntity ExecuteSingle<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        {
+            return connection.ExecutePack<TEntity>(() =>
+            {
+                using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
+                {
+                    var reader = cmd.ExecuteReader();
+
+                    return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadSingle(reader);
+                }
+            }, minusOneExcep: false);
+        }
+
+        internal static Result ExecutePack<Result>(this IConnection connection, System.Func<Result> func, bool minusOneExcep = true)
         {
             bool isCreateTransaction = false;
             if (null == connection.Transaction) { connection.BeginTransaction(); isCreateTransaction = !isCreateTransaction; }
@@ -223,40 +238,6 @@ namespace Business.Data
                 query = query.Skip(Help2.Random(query.Count()));
             }
             return query;
-        }
-
-        static dynamic ReaderFillDynamic(this System.Data.IDataReader reader)
-        {
-            var dy = new System.Dynamic.ExpandoObject() as System.Collections.Generic.IDictionary<string, object>;
-            for (int i = 0; i < reader.FieldCount; i++)
-            {
-                dy.Add(reader.GetName(i), reader.GetValue(i));
-            }
-            return dy;
-        }
-
-        static System.Collections.Generic.List<System.Collections.Generic.List<dynamic>> ReaderFillDynamicList(this System.Data.IDataReader reader)
-        {
-            var list = new System.Collections.Generic.List<System.Collections.Generic.List<dynamic>>();
-
-            if (null != reader && !reader.IsClosed)
-            {
-                do
-                {
-                    var list2 = new System.Collections.Generic.List<dynamic>();
-
-                    while (reader.Read())
-                    {
-                        list2.Add(ReaderFillDynamic(reader));
-                    }
-
-                    list.Add(list2);
-                } while (!reader.IsClosed && reader.NextResult());
-
-                reader.Close();
-            }
-
-            return list;
         }
     }
 
