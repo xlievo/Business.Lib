@@ -5,4 +5,5 @@
 /Business.Lib/bin
 /Business.Lib/obj
 *.nupkg
+*.suo
 /Business.Lib/Business.Lib.nupkg

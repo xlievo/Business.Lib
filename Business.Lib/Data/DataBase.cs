@@ -150,15 +150,16 @@ namespace Business.Data
             }, minusOneExcep: false);
         }
 
-        public static System.Collections.Generic.IEnumerable<TEntity> Execute<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public static System.Collections.Generic.IList<TEntity> Execute<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.ExecutePack<System.Collections.Generic.IEnumerable<TEntity>>(() =>
+            return connection.ExecutePack<System.Collections.Generic.IList<TEntity>>(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
-                    var reader = cmd.ExecuteReader();
-
-                    return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadCollection(reader);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadCollection(reader).ToList();
+                    }
                 }
             }, minusOneExcep: false);
         }
@@ -169,9 +170,10 @@ namespace Business.Data
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
-                    var reader = cmd.ExecuteReader();
-
-                    return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadSingle(reader);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadSingle(reader);
+                    }
                 }
             }, minusOneExcep: false);
         }

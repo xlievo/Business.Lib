@@ -503,6 +503,26 @@
             See Object.ToString()
             </summary>
         </member>
+        <member name="T:StackExchange.Redis.CommandStatus">
+            <summary>
+            track status of a command while communicating with Redis
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.CommandStatus.Unknown">
+            <summary>
+            command status unknown
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.CommandStatus.WaitingToBeSent">
+            <summary>
+            ConnectionMultiplexer has not yet started writing this command to redis 
+            </summary>
+        </member>
+        <member name="F:StackExchange.Redis.CommandStatus.Sent">
+            <summary>
+            command has been sent to Redis
+            </summary>
+        </member>
         <member name="T:StackExchange.Redis.CommandTrace">
             <summary>
             Represents the information known about long-running commands
@@ -533,6 +553,21 @@
             <summary>
             Deduces a link to the redis documentation about the specified command
             </summary>
+        </member>
+        <member name="T:StackExchange.Redis.ConvertHelper">
+            <summary>
+            Helper for Array.ConvertAll() as it's missing on .Net Core.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.ConvertHelper.ConvertAll``2(``0[],System.Func{``0,``1})">
+            <summary>
+            Converts array of one type to an array of another type.
+            </summary>
+            <typeparam name="TInput">Input type</typeparam>
+            <typeparam name="TOutput">Output type</typeparam>
+            <param name="source">source</param>
+            <param name="selector">selector</param>
+            <returns></returns>
         </member>
         <member name="T:StackExchange.Redis.ProfiledCommandEnumerable">
             <summary>
@@ -829,6 +864,11 @@
             Indicates whether the connection should be encrypted
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.ConfigurationOptions.SslProtocols">
+            <summary>
+            Configures which Ssl/TLS protocols should be allowed.  If not set, defaults are chosen by the .NET framework.
+            </summary>
+        </member>
         <member name="P:StackExchange.Redis.ConfigurationOptions.ChannelPrefix">
             <summary>
             Automatically encodes and decodes channels
@@ -857,6 +897,11 @@
         <member name="P:StackExchange.Redis.ConfigurationOptions.ConnectTimeout">
             <summary>
             Specifies the time in milliseconds that should be allowed for connection (defaults to 5 seconds unless SyncTimeout is higher)
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.ConfigurationOptions.ReconnectRetryPolicy">
+            <summary>
+            The retry policy to be used for connection reconnects
             </summary>
         </member>
         <member name="P:StackExchange.Redis.ConfigurationOptions.DefaultVersion">
@@ -1356,6 +1401,11 @@
             Should exceptions include identifiable details? (key names, additional .Data annotations)
             </summary>
         </member>
+        <member name="P:StackExchange.Redis.ConnectionMultiplexer.IncludePerformanceCountersInExceptions">
+            <summary>
+            Should exceptions include performance counter details? (CPU usage, etc - note that this can be problematic on some platforms)
+            </summary>
+        </member>
         <member name="P:StackExchange.Redis.ConnectionMultiplexer.StormLogThreshold">
             <summary>
             Limit at which to start recording unusual busy patterns (only one log will be retained at a time;
@@ -1537,6 +1587,31 @@
             <summary>
             Both start and stop are exclusive
             </summary>
+        </member>
+        <member name="T:StackExchange.Redis.ExponentialRetry">
+            <summary>
+            Represents a retry policy that performs retries, using a randomized exponential back off scheme to determine the interval between retries. 
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.ExponentialRetry.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance using the specified back off interval with default maxDeltaBackOffMilliseconds of 10 seconds
+            </summary>
+            <param name="deltaBackOffMilliseconds">time in milliseconds for the back-off interval between retries</param>
+        </member>
+        <member name="M:StackExchange.Redis.ExponentialRetry.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance using the specified back off interval.
+            </summary>
+            <param name="deltaBackOffMilliseconds">time in milliseconds for the back-off interval between retries</param>
+            <param name="maxDeltaBackOffMilliseconds">time in milliseconds for the maximum value that the back-off interval can exponentailly grow upto</param>
+        </member>
+        <member name="M:StackExchange.Redis.ExponentialRetry.ShouldRetry(System.Int64,System.Int32)">
+            <summary>
+            This method is called by the ConnectionMultiplexer to determine if a reconnect operation can be retried now.
+            </summary>
+            <param name="currentRetryCount">The number of times reconnect retries have already been made by the ConnectionMultiplexer while it was in the connecting state</param>
+            <param name="timeElapsedMillisecondsSinceLastRetry">Total elapsed time in milliseconds since the last reconnect retry was made</param>
         </member>
         <member name="T:StackExchange.Redis.ExportOptions">
             <summary>
@@ -4336,6 +4411,18 @@
             You may return `null` to prevent any tracking of commands.
             </summary>
         </member>
+        <member name="T:StackExchange.Redis.IReconnectRetryPolicy">
+            <summary>
+            Describes retry policy functionality that can be provided to the multiplexer to be used for connection reconnects
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.IReconnectRetryPolicy.ShouldRetry(System.Int64,System.Int32)">
+            <summary>
+            This method is called by the multiplexer to determine if a reconnect operation can be retried now.
+            </summary>
+            <param name="currentRetryCount">The number of times reconnect retries have already been made by the multiplexer while it was in connecting state</param>
+            <param name="timeElapsedMillisecondsSinceLastRetry">Total time elapsed in milliseconds since the last reconnect retry was made</param>
+        </member>
         <member name="T:StackExchange.Redis.IRedis">
             <summary>
             Common operations available to all redis connections
@@ -5042,6 +5129,61 @@
             Execute the batch operation, sending all queued commands to the server.
             </summary>
         </member>
+        <member name="T:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions">
+            <summary>
+                Provides the <see cref="M:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions.WithKeyPrefix(StackExchange.Redis.IDatabase,StackExchange.Redis.RedisKey)"/> extension method to <see cref="T:StackExchange.Redis.IDatabase"/>.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions.WithKeyPrefix(StackExchange.Redis.IDatabase,StackExchange.Redis.RedisKey)">
+            <summary>
+                Creates a new <see cref="T:StackExchange.Redis.IDatabase"/> instance that provides an isolated key space
+                of the specified underyling database instance.
+            </summary>
+            <param name="database">
+                The underlying database instance that the returned instance shall use.
+            </param>
+            <param name="keyPrefix">
+                The prefix that defines a key space isolation for the returned database instance.
+            </param>
+            <returns>
+                A new <see cref="T:StackExchange.Redis.IDatabase"/> instance that invokes the specified underlying
+                <paramref name="database"/> but prepends the specified <paramref name="keyPrefix"/>
+                to all key paramters and thus forms a logical key space isolation.
+            </returns>
+            <remarks>
+            <para>
+                The following methods are not supported in a key space isolated database and
+                will throw an <see cref="T:System.NotSupportedException"/> when invoked:
+            </para>    
+            <list type="bullet">
+                <item><see cref="M:StackExchange.Redis.IDatabaseAsync.KeyRandomAsync(StackExchange.Redis.CommandFlags)"/></item>
+                <item><see cref="M:StackExchange.Redis.IDatabase.KeyRandom(StackExchange.Redis.CommandFlags)"/></item>
+            </list>
+            <para>
+                Please notice that keys passed to a script are prefixed (as normal) but care must
+                be taken when a script returns the name of a key as that will (currently) not be
+                "unprefixed".
+            </para>
+            </remarks>
+        </member>
+        <member name="T:StackExchange.Redis.LinearRetry">
+            <summary>
+            Represents a retry policy that performs retries at a fixed interval. The retries are performed upto a maximum allowed time.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.LinearRetry.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance using the specified maximum retry elapsed time allowed.
+            </summary>
+            <param name="maxRetryElapsedTimeAllowedMilliseconds">maximum elapsed time in milliseconds to be allowed for it to perform retries</param>
+        </member>
+        <member name="M:StackExchange.Redis.LinearRetry.ShouldRetry(System.Int64,System.Int32)">
+            <summary>
+            This method is called by the ConnectionMultiplexer to determine if a reconnect operation can be retried now.
+            </summary>
+            <param name="currentRetryCount">The number of times reconnect retries have already been made by the ConnectionMultiplexer while it was in the connecting state</param>
+            <param name="timeElapsedMillisecondsSinceLastRetry">Total elapsed time in milliseconds since the last reconnect retry was made</param>
+        </member>
         <member name="T:StackExchange.Redis.LuaScript">
             <summary>
             Represents a Lua script that can be executed on Redis.
@@ -5173,6 +5315,21 @@
             Indicates that a command was illegal and was not sent to the server
             </summary>
         </member>
+        <member name="T:StackExchange.Redis.RedisTimeoutException">
+            <summary>
+            Indicates the time allotted for a command or operation has expired.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.RedisTimeoutException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization implementation; not intended for general usage
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.RedisTimeoutException.Commandstatus">
+            <summary>
+            status of the command while communicating with Redis
+            </summary>
+        </member>
         <member name="T:StackExchange.Redis.RedisConnectionException">
             <summary>
             Indicates a connection fault when communicating with redis
@@ -5186,6 +5343,11 @@
         <member name="P:StackExchange.Redis.RedisConnectionException.FailureType">
             <summary>
             The type of connection failure
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.RedisConnectionException.CommandStatus">
+            <summary>
+            status of the command while communicating with Redis
             </summary>
         </member>
         <member name="T:StackExchange.Redis.RedisException">
@@ -6456,58 +6618,6 @@
             <summary>
             The operation should only occur when there is not an existing value 
             </summary>
-        </member>
-        <member name="T:StackExchange.Redis.ConvertHelper">
-            <summary>
-            Helper for Array.ConvertAll() as it's missing on .Net Core.
-            </summary>
-        </member>
-        <member name="M:StackExchange.Redis.ConvertHelper.ConvertAll``2(``0[],System.Func{``0,``1})">
-            <summary>
-            Converts array of one type to an array of another type.
-            </summary>
-            <typeparam name="TInput">Input type</typeparam>
-            <typeparam name="TOutput">Output type</typeparam>
-            <param name="source">source</param>
-            <param name="selector">selector</param>
-            <returns></returns>
-        </member>
-        <member name="T:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions">
-            <summary>
-                Provides the <see cref="M:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions.WithKeyPrefix(StackExchange.Redis.IDatabase,StackExchange.Redis.RedisKey)"/> extension method to <see cref="T:StackExchange.Redis.IDatabase"/>.
-            </summary>
-        </member>
-        <member name="M:StackExchange.Redis.KeyspaceIsolation.DatabaseExtensions.WithKeyPrefix(StackExchange.Redis.IDatabase,StackExchange.Redis.RedisKey)">
-            <summary>
-                Creates a new <see cref="T:StackExchange.Redis.IDatabase"/> instance that provides an isolated key space
-                of the specified underyling database instance.
-            </summary>
-            <param name="database">
-                The underlying database instance that the returned instance shall use.
-            </param>
-            <param name="keyPrefix">
-                The prefix that defines a key space isolation for the returned database instance.
-            </param>
-            <returns>
-                A new <see cref="T:StackExchange.Redis.IDatabase"/> instance that invokes the specified underlying
-                <paramref name="database"/> but prepends the specified <paramref name="keyPrefix"/>
-                to all key paramters and thus forms a logical key space isolation.
-            </returns>
-            <remarks>
-            <para>
-                The following methods are not supported in a key space isolated database and
-                will throw an <see cref="T:System.NotSupportedException"/> when invoked:
-            </para>    
-            <list type="bullet">
-                <item><see cref="M:StackExchange.Redis.IDatabaseAsync.KeyRandomAsync(StackExchange.Redis.CommandFlags)"/></item>
-                <item><see cref="M:StackExchange.Redis.IDatabase.KeyRandom(StackExchange.Redis.CommandFlags)"/></item>
-            </list>
-            <para>
-                Please notice that keys passed to a script are prefixed (as normal) but care must
-                be taken when a script returns the name of a key as that will (currently) not be
-                "unprefixed".
-            </para>
-            </remarks>
         </member>
     </members>
 </doc>

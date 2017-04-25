@@ -9,11 +9,11 @@ namespace Business.Utils
     {
         public static implicit operator Paging<T>(string value)
         {
-            return Help2.JsonDeserialize<Paging<T>>(value);
+            return Help2.TryJsonDeserialize<Paging<T>>(value);
         }
         public static implicit operator Paging<T>(byte[] value)
         {
-            return Help2.ProtoBufDeserialize<Paging<T>>(value);
+            return Help2.TryProtoBufDeserialize<Paging<T>>(value);
         }
 
         [ProtoBuf.ProtoMember(1)]
@@ -96,13 +96,13 @@ namespace Business.Utils
 
         #region Json
 
-        internal static Type JsonDeserialize<Type>(this string value)
+        public static Type TryJsonDeserialize<Type>(this string value)
         {
             try { return Newtonsoft.Json.JsonConvert.DeserializeObject<Type>(value); }
             catch { return default(Type); }
         }
 
-        internal static Type JsonDeserialize<Type>(this string value, out string error)
+        public static Type TryJsonDeserialize<Type>(this string value, out string error)
         {
             error = null;
 
@@ -116,7 +116,7 @@ namespace Business.Utils
                 return default(Type);
             }
         }
-        internal static object JsonDeserialize(this string value, System.Type type, out string error)
+        public static object TryJsonDeserialize(this string value, System.Type type, out string error)
         {
             error = null;
 
@@ -130,7 +130,7 @@ namespace Business.Utils
                 return null;
             }
         }
-        internal static string JsonSerialize<Type>(this Type value)
+        public static string JsonSerialize<Type>(this Type value)
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(value);
         }
@@ -138,7 +138,7 @@ namespace Business.Utils
         #endregion
 
         #region ProtoBuf Serialize
-        internal static Type ProtoBufDeserialize<Type>(this System.Byte[] source)
+        public static Type TryProtoBufDeserialize<Type>(this System.Byte[] source)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace Business.Utils
             }
             catch { return default(Type); }
         }
-        internal static System.Byte[] ProtoBufSerialize<Type>(this Type instance)
+        public static System.Byte[] ProtoBufSerialize<Type>(this Type instance)
         {
             using (var stream = new System.IO.MemoryStream())
             {
@@ -157,7 +157,7 @@ namespace Business.Utils
                 return stream.ToArray();
             }
         }
-        internal static object ProtoBufDeserialize(this byte[] source, System.Type type)
+        public static object ProtoBufDeserialize(this byte[] source, System.Type type)
         {
             using (var stream = new System.IO.MemoryStream(source))
             {
