@@ -64,7 +64,7 @@ namespace Business.Data
         where IEntity : class, Data.IEntity
     {
         IMongoClient server;
-        string dbName;
+        readonly string dbName;
 
         static IMongoCollection<T> GetCollection<T>(IMongoClient server, string dbName, string name = null)
         {
@@ -135,6 +135,16 @@ namespace Business.Data
             collection.InsertOne(obj);
 
             return 1;
+        }
+
+        public int SaveWithInt32Identity<T>(T obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long SaveWithInt64Identity<T>(T obj)
+        {
+            throw new NotImplementedException();
         }
 
         public int SaveOrUpdate<T>(IEnumerable<T> obj)

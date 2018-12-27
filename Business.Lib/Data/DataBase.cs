@@ -63,16 +63,67 @@ namespace Business.Data
     }
     */
 
+    #region Paging Object
+
+    public interface IPaging
+    {
+        dynamic Data { get; set; }
+
+        int Length { get; set; }
+
+        int CurrentPage { get; set; }
+
+        int Count { get; set; }
+
+        int CountPage { get; set; }
+    }
+
+    public struct Paging<T> : IPaging
+    {
+        public static implicit operator Paging<T>(string value) => Help2.TryJsonDeserialize<Paging<T>>(value);
+
+        public static implicit operator Paging<T>(byte[] value) => Help2.TryBinaryDeserialize<Paging<T>>(value);
+
+        public System.Collections.Generic.List<T> Data { get; set; }
+
+        public int Length { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int Count { get; set; }
+
+        public int CountPage { get; set; }
+
+        dynamic IPaging.Data { get => Data; set => Data = value; }
+
+        public override string ToString() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
+
+        public byte[] ToBytes() => Help2.BinarySerialize(this);
+    }
+
+    public struct PagingInfo
+    {
+        public int Skip;
+        public int Take;
+        public int CurrentPage;
+        public int CountPage;
+    }
+
+    public enum Order
+    {
+        Ascending = 1,
+        Descending = 2
+    }
+
+    #endregion
+
     public struct DataParameter
     {
-        public DataParameter(string name, object value) { this.name = name; this.value = value; }
+        public DataParameter(string name, object value) { this.Name = name; this.Value = value; }
 
-        readonly string name;
-        readonly object value;
+        public string Name { get; private set; }
 
-        public string Name { get { return name; } }
-
-        public object Value { get { return value; } }
+        public object Value { get; private set; }
     }
 
     //[ProtoBuf.ProtoContract(SkipConstructor = true)]
@@ -117,13 +168,19 @@ namespace Business.Data
             var cmd = connection.CreateCommand();
             cmd.CommandType = commandType;
             cmd.CommandText = commandText;
-            foreach (var item in parameter)
+
+            if (null != parameter)
             {
-                var p = cmd.CreateParameter();
-                p.ParameterName = item.Name;
-                p.Value = System.DateTime.MinValue.Equals(item.Value) ? System.DBNull.Value : item.Value ?? System.DBNull.Value;
-                cmd.Parameters.Add(p);
+                foreach (var item in parameter)
+                {
+                    var p = cmd.CreateParameter();
+                    p.ParameterName = item.Name;
+                    //p.Value = System.DateTime.MinValue.Equals(item.Value) ? System.DBNull.Value : item.Value ?? System.DBNull.Value;
+                    p.Value = item.Value ?? System.DBNull.Value;
+                    cmd.Parameters.Add(p);
+                }
             }
+
             cmd.Transaction = t;
             return cmd;
         }
@@ -139,17 +196,17 @@ namespace Business.Data
             });
         }
 
-        public static T ExecuteScalar<T>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public static Result ExecuteScalar<Result>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.ExecutePack<T>(() =>
+            return connection.ExecutePack(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
-                    return (T)cmd.ExecuteScalar();
+                    return (Result)cmd.ExecuteScalar();
                 }
             }, minusOneExcep: false);
         }
-
+        /*
         public static System.Collections.Generic.IList<TEntity> Execute<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
             return connection.ExecutePack<System.Collections.Generic.IList<TEntity>>(() =>
@@ -164,19 +221,40 @@ namespace Business.Data
             }, minusOneExcep: false);
         }
 
-        public static TEntity ExecuteSingle<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+       public static TEntity ExecuteSingle<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+       {
+           return connection.ExecutePack<TEntity>(() =>
+           {
+               using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
+               {
+                   using (var reader = cmd.ExecuteReader())
+                   {
+                       return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadSingle(reader);
+                   }
+               }
+           }, minusOneExcep: false);
+       }
+        */
+
+        public static System.Collections.Generic.IList<TEntity> Execute<TEntity>(this IConnection connection, string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return connection.ExecutePack<TEntity>(() =>
+            return connection.ExecutePack(() =>
             {
                 using (var cmd = connection.GetCommand(commandText, connection.Transaction, commandType, parameter))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        return new Utils.LightDataAccess.DataReaderToObjectMapper<TEntity>().ReadSingle(reader);
+                        return reader.ToEntity<TEntity>();
                     }
                 }
             }, minusOneExcep: false);
         }
+
+        public static System.Collections.Generic.IList<TEntity> ToEntity<TEntity>(this System.Data.IDataReader reader) => new AutoMapper.MapperConfiguration(cfg =>
+        {
+            AutoMapper.Data.ConfigurationExtensions.AddDataReaderMapping(cfg);
+            cfg.CreateMap<System.Data.IDataReader, TEntity>();
+        }).CreateMapper().Map<System.Collections.Generic.IList<TEntity>>(reader);
 
         internal static Result ExecutePack<Result>(this IConnection connection, System.Func<Result> func, bool minusOneExcep = true)
         {
@@ -185,12 +263,12 @@ namespace Business.Data
 
             try
             {
-                var result = func.Invoke();
+                var result = func();
 
-                if (minusOneExcep && typeof(Result).Equals(typeof(System.Int32)))
+                if (minusOneExcep && (typeof(Result).Equals(typeof(int)) || typeof(Result).Equals(typeof(long))))
                 {
-                    var count = System.Convert.ToInt32(result);
-                    if (-1 == count)
+                    //var count = System.Convert.ToInt32(result);
+                    if (object.Equals(-1, result))
                     {
                         connection.Rollback();
                         throw new System.Exception("Affected the number of records -1");
@@ -241,77 +319,198 @@ namespace Business.Data
             }
             return query;
         }
+
+        public static int InsertOrUpdate<T>(this IQueryable<T> target, System.Linq.Expressions.Expression<System.Func<T>> insertSetter, System.Linq.Expressions.Expression<System.Func<T, T>> onDuplicateKeyUpdateSetter, System.Linq.Expressions.Expression<System.Func<T>> keySelector) where T : class => LinqToDB.LinqExtensions.InsertOrUpdate(target as LinqToDB.ITable<T>, insertSetter, onDuplicateKeyUpdateSetter, keySelector);
+
+        public static int InsertOrUpdate<T>(this IQueryable<T> target, System.Linq.Expressions.Expression<System.Func<T>> insertSetter, System.Linq.Expressions.Expression<System.Func<T>> keySelector) where T : class, new() => InsertOrUpdate(target as LinqToDB.ITable<T>, insertSetter, c => new T { }, keySelector);
+
+        public static LinqToDB.ITable<T> AsTable<T>(this IQueryable<T> queryable) => queryable as LinqToDB.ITable<T>;
+
+        #region Paging
+
+        public static PagingInfo GetPaging(int count, int currentPage, int pageSize, int pageSizeMax = 50)
+        {
+            if (0 == count) { return default; }
+
+            var _pageSize = System.Math.Min(pageSize, pageSizeMax);
+            var _countPage = System.Convert.ToDouble(count) / System.Convert.ToDouble(_pageSize);
+            var countPage = (double.IsNaN(_countPage) || double.IsPositiveInfinity(_countPage) || double.IsNegativeInfinity(_countPage)) ? 1 : System.Convert.ToInt32(System.Math.Ceiling(_countPage));
+
+            currentPage = currentPage < 0 ? 0 : currentPage > countPage ? countPage : currentPage;
+            if (currentPage <= 0 && countPage > 0) { currentPage = 1; }
+
+            return new PagingInfo { Skip = _pageSize * (currentPage - 1), Take = _pageSize, CurrentPage = currentPage, CountPage = countPage };
+        }
+
+        public static Paging<T> GetPaging<T>(this IQueryable<T> query, int currentPage, int pageSize, int pageSizeMax = 50)
+        {
+            if (null == query) { throw new System.ArgumentNullException(nameof(query)); }
+
+            var count = query.Count();
+            if (0 == count) { return new Paging<T> { Data = new System.Collections.Generic.List<T>() }; }
+
+            var p = GetPaging(count, currentPage, pageSize, pageSizeMax);
+
+            var data = query.Skip(p.Skip).Take(p.Take).ToList();
+
+            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = p.CurrentPage, Count = count, CountPage = p.CountPage };
+        }
+
+        public static Paging<T> GetPagingOrderBy<T, TKey>(this IQueryable<T> query, int currentPage, int pageSize, System.Linq.Expressions.Expression<System.Func<T, TKey>> keySelector, Order order = Order.Ascending, int pageSizeMax = 50)
+        {
+            if (null == query) { throw new System.ArgumentNullException(nameof(query)); }
+
+            var count = query.Count();
+            if (0 == count) { return new Paging<T> { Data = new System.Collections.Generic.List<T>() }; }
+
+            var p = GetPaging(count, currentPage, pageSize, pageSizeMax);
+
+            System.Collections.Generic.List<T> data = null;
+
+            switch (order)
+            {
+                case Order.Ascending:
+                    data = query.Skip(p.Skip).Take(p.Take).OrderBy(keySelector).ToList();
+                    break;
+                case Order.Descending:
+                    data = query.Skip(p.Skip).Take(p.Take).OrderByDescending(keySelector).ToList();
+                    break;
+            }
+
+            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = p.CurrentPage, Count = count, CountPage = p.CountPage };
+        }
+
+        public static Paging<T> ToPaging<T>(this System.Collections.Generic.List<T> data, int currentPage = 0, int count = 0, int countPage = 0)
+        {
+            if (null == data) { throw new System.ArgumentNullException(nameof(data)); }
+
+            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = currentPage, Count = count, CountPage = countPage };
+        }
+
+        public static Paging<T> ToPaging<T>(this System.Collections.Generic.List<T> data, IPaging pagingObj)
+        {
+            if (null == data) { throw new System.ArgumentNullException(nameof(data)); }
+
+            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = pagingObj.CurrentPage, Count = pagingObj.Count, CountPage = pagingObj.CountPage };
+        }
+
+        public static Paging<T> ToPaging<T>(this System.Collections.Generic.IEnumerable<T> data, int currentPage = 0, int count = 0, int countPage = 0)
+        {
+            if (null == data) { throw new System.ArgumentNullException(nameof(data)); }
+
+            var data2 = data.ToList();
+            return new Paging<T> { Data = data2, Length = data2.Count, CurrentPage = currentPage, Count = count, CountPage = countPage };
+        }
+
+        public static Paging<T> ToPaging<T>(this System.Collections.Generic.IEnumerable<T> data, IPaging pagingObj)
+        {
+            if (null == data) { throw new System.ArgumentNullException(nameof(data)); }
+
+            var data2 = data.ToList();
+            return new Paging<T> { Data = data2.ToList(), Length = data2.Count, CurrentPage = pagingObj.CurrentPage, Count = pagingObj.Count, CountPage = pagingObj.CountPage };
+        }
+
+        #endregion
     }
 
     public abstract class DataBase<IConnection> : IData
         where IConnection : class, Data.IConnection
     {
+        static DataBase() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+
         public abstract IConnection GetConnection();
 
-        Data.IConnection IData.GetConnection()
-        {
-            return GetConnection();
-        }
+        Data.IConnection IData.GetConnection() => GetConnection();
 
-        static T UseConnection<T>(System.Func<Data.IConnection> getConnection, System.Func<Data.IConnection, T> func)
+        static Result UseConnection<Result>(System.Func<Data.IConnection> getConnection, System.Func<Data.IConnection, Result> func)
         {
-            using (var con = getConnection.Invoke()) { return func.Invoke(con); }
+            using (var con = getConnection()) { return func(con); }
         }
 
         public int Save<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Save(obj); });
+            if (obj == null)
+            {
+                throw new System.ArgumentNullException(nameof(obj));
+            }
+
+            return UseConnection(GetConnection, con => con.Save(obj));
         }
 
         public int Save<T>(T obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Save(obj); });
+            return UseConnection(GetConnection, con => con.Save(obj));
+        }
+
+        public int SaveWithInt32Identity<T>(T obj)
+        {
+            return UseConnection(GetConnection, con => con.SaveWithInt32Identity(obj));
+        }
+
+        public long SaveWithInt64Identity<T>(T obj)
+        {
+            return UseConnection(GetConnection, con => con.SaveWithInt64Identity(obj));
         }
 
         public int SaveOrUpdate<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.SaveOrUpdate(obj); });
+            if (obj == null)
+            {
+                throw new System.ArgumentNullException(nameof(obj));
+            }
+
+            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); });
         }
 
         public int SaveOrUpdate<T>(T obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.SaveOrUpdate(obj); });
+            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); });
         }
 
         public int Update<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Update(obj); });
+            if (obj == null)
+            {
+                throw new System.ArgumentNullException(nameof(obj));
+            }
+
+            return UseConnection(GetConnection, con => con.Update(obj));
         }
 
         public int Update<T>(T obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Update(obj); });
+            return UseConnection(GetConnection, con => con.Update(obj));
         }
 
         public int Delete<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Delete(obj); });
+            if (obj == null)
+            {
+                throw new System.ArgumentNullException(nameof(obj));
+            }
+
+            return UseConnection(GetConnection, con => con.Delete(obj));
         }
 
         public int Delete<T>(T obj)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.Delete(obj); });
+            return UseConnection(GetConnection, con => con.Delete(obj));
         }
 
         public int ExecuteNonQuery(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return UseConnection<int>(GetConnection, (con) => { return con.ExecuteNonQuery(commandText, commandType, parameter); });
+            return UseConnection(GetConnection, con => con.ExecuteNonQuery(commandText, commandType, parameter));
         }
 
-        public T ExecuteScalar<T>(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public Result ExecuteScalar<Result>(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
         {
-            return UseConnection<T>(GetConnection, (con) => { return con.ExecuteScalar<T>(commandText, commandType, parameter); });
+            return UseConnection(GetConnection, con => con.ExecuteScalar<Result>(commandText, commandType, parameter));
         }
     }
 
     public abstract class Entitys : System.MarshalByRefObject, IEntity
     {
-        public abstract System.Linq.IQueryable<T> Get<T>()
+        public abstract IQueryable<T> Get<T>()
             where T : class, new();
     }
 }

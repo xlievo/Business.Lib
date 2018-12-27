@@ -1,9 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Lib", "Business.Lib\Business.Lib.csproj", "{44B02FB6-24D3-49B6-87DD-DB48257F5376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Lib.Standard", "Business.Lib.Standard\Business.Lib.Standard.csproj", "{D41A0504-0906-4253-B1E9-915FC454B394}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business.Lib", "Business.Lib", "{5BC0DB86-9D15-4D5B-AC0F-C8B8B917F1F6}"
+	ProjectSection(SolutionItems) = preProject
+		Business.Lib\Business.Lib.nupkg = Business.Lib\Business.Lib.nupkg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{035F4FFB-631B-47E1-97C4-EDA6A2B6D859}"
+	ProjectSection(SolutionItems) = preProject
+		Business.Lib\Cache\Redis.cs = Business.Lib\Cache\Redis.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{282B60D4-3ED3-4FF6-AAA9-40E9E935D0D7}"
+	ProjectSection(SolutionItems) = preProject
+		Business.Lib\Data\DataBase.cs = Business.Lib\Data\DataBase.cs
+		Business.Lib\Data\IData.cs = Business.Lib\Data\IData.cs
+		Business.Lib\Data\LinqToDBConnection.cs = Business.Lib\Data\LinqToDBConnection.cs
+		Business.Lib\Data\MongoDBConnection.cs = Business.Lib\Data\MongoDBConnection.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logger", "Logger", "{4AD82F94-E8B5-4469-87A2-7F494735B2C3}"
+	ProjectSection(SolutionItems) = preProject
+		Business.Lib\Logger\ILogger.cs = Business.Lib\Logger\ILogger.cs
+		Business.Lib\Logger\log4netAdapter.cs = Business.Lib\Logger\log4netAdapter.cs
+		Business.Lib\Logger\NLogAdapter.cs = Business.Lib\Logger\NLogAdapter.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{4388249B-3072-4F92-A197-ABC9FB622531}"
+	ProjectSection(SolutionItems) = preProject
+		Business.Lib\Utils\Help.cs = Business.Lib\Utils\Help.cs
+		Business.Lib\Utils\VerifyCode.cs = Business.Lib\Utils\VerifyCode.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Lib.Net", "Business.Lib.Net\Business.Lib.Net.csproj", "{9ED16441-C817-4572-BA30-C78101EF4F89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +44,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44B02FB6-24D3-49B6-87DD-DB48257F5376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44B02FB6-24D3-49B6-87DD-DB48257F5376}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44B02FB6-24D3-49B6-87DD-DB48257F5376}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44B02FB6-24D3-49B6-87DD-DB48257F5376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41A0504-0906-4253-B1E9-915FC454B394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41A0504-0906-4253-B1E9-915FC454B394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41A0504-0906-4253-B1E9-915FC454B394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41A0504-0906-4253-B1E9-915FC454B394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ED16441-C817-4572-BA30-C78101EF4F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED16441-C817-4572-BA30-C78101EF4F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED16441-C817-4572-BA30-C78101EF4F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED16441-C817-4572-BA30-C78101EF4F89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{035F4FFB-631B-47E1-97C4-EDA6A2B6D859} = {5BC0DB86-9D15-4D5B-AC0F-C8B8B917F1F6}
+		{282B60D4-3ED3-4FF6-AAA9-40E9E935D0D7} = {5BC0DB86-9D15-4D5B-AC0F-C8B8B917F1F6}
+		{4AD82F94-E8B5-4469-87A2-7F494735B2C3} = {5BC0DB86-9D15-4D5B-AC0F-C8B8B917F1F6}
+		{4388249B-3072-4F92-A197-ABC9FB622531} = {5BC0DB86-9D15-4D5B-AC0F-C8B8B917F1F6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C2F3A47-1A9A-4E87-B3B9-7E51B76B3625}
 	EndGlobalSection
 EndGlobal

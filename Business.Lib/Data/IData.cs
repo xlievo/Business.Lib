@@ -46,6 +46,10 @@ namespace Business.Data
 
         int Save<T>(T obj);
 
+        int SaveWithInt32Identity<T>(T obj);
+
+        long SaveWithInt64Identity<T>(T obj);
+
         int SaveOrUpdate<T>(System.Collections.Generic.IEnumerable<T> obj);
 
         int SaveOrUpdate<T>(T obj);

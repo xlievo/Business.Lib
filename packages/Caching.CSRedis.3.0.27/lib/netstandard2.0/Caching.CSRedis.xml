@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Caching.CSRedis</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.GetObject(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String)">
+            <summary>
+            获取缓存，反序列化成对象返回
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.GetObject``1(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String)">
+            <summary>
+            获取缓存，反序列化成对象返回
+            </summary>
+            <typeparam name="T">反序列化类型</typeparam>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.GetObjectAsync(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String)">
+            <summary>
+            获取缓存，反序列化成对象
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.GetObjectAsync``1(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String)">
+            <summary>
+            获取缓存，反序列化成对象
+            </summary>
+            <typeparam name="T">反序列化类型</typeparam>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.SetObject(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String,System.Object)">
+            <summary>
+            序列化对象后，设置缓存
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <param name="value">对象</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.SetObject(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String,System.Object,Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions)">
+            <summary>
+            序列化对象后，设置缓存
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <param name="value">对象</param>
+            <param name="options">策略</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.SetObjectAsync(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String,System.Object)">
+            <summary>
+            序列化对象后，设置缓存
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <param name="value">对象</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.Distributed.IDistributedCacheExtensions.SetObjectAsync(Microsoft.Extensions.Caching.Distributed.IDistributedCache,System.String,System.Object,Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions)">
+            <summary>
+            序列化对象后，设置缓存
+            </summary>
+            <param name="cache"></param>
+            <param name="key">key</param>
+            <param name="value">对象</param>
+            <param name="options">策略</param>
+        </member>
+    </members>
+</doc>

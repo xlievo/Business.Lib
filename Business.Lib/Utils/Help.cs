@@ -1,110 +1,54 @@
-﻿using System.Linq;
-
+﻿
 namespace Business.Utils
 {
-    #region Paging Object
-
-    [ProtoBuf.ProtoContract(SkipConstructor = true)]
-    public struct Paging<T>
-    {
-        public static implicit operator Paging<T>(string value)
-        {
-            return Help2.TryJsonDeserialize<Paging<T>>(value);
-        }
-        public static implicit operator Paging<T>(byte[] value)
-        {
-            return Help2.TryProtoBufDeserialize<Paging<T>>(value);
-        }
-
-        [ProtoBuf.ProtoMember(1)]
-        public System.Collections.Generic.List<T> Data { get; set; }
-
-        [ProtoBuf.ProtoMember(2)]
-        public int Length { get; set; }
-
-        [ProtoBuf.ProtoMember(3)]
-        public int CurrentPage { get; set; }
-
-        [ProtoBuf.ProtoMember(4)]
-        public int Count { get; set; }
-
-        [ProtoBuf.ProtoMember(5)]
-        public int CountPage { get; set; }
-
-        public override string ToString()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public byte[] ToBytes()
-        {
-            return Help2.ProtoBufSerialize(this);
-        }
-    }
-
-    public struct PagingInfo
-    {
-        public int Skip;
-        public int Take;
-        public int CurrentPage;
-        public int CountPage;
-    }
-
-    #endregion
-
     public static class Help2
     {
-        #region Paging
-
-        public static PagingInfo GetPaging(int count, int currentPage, int pageSize, int pageSizeMax = 50)
-        {
-            if (0 == count) { return default(PagingInfo); }
-
-            var _pageSize = System.Math.Min(pageSize, pageSizeMax);
-            var _countPage = System.Convert.ToDouble(count) / System.Convert.ToDouble(_pageSize);
-            var countPage = (double.IsNaN(_countPage) || double.IsPositiveInfinity(_countPage) || double.IsNegativeInfinity(_countPage)) ? 1 : System.Convert.ToInt32(System.Math.Ceiling(_countPage));
-
-            currentPage = currentPage < 0 ? 0 : currentPage > countPage ? countPage : currentPage;
-            if (currentPage <= 0 && countPage > 0) { currentPage = 1; }
-
-            return new PagingInfo { Skip = _pageSize * (currentPage - 1), Take = _pageSize, CurrentPage = currentPage, CountPage = countPage };
-        }
-
-        public static Paging<T> GetPaging<T>(this IQueryable<T> query, int currentPage, int pageSize, int pageSizeMax = 50)
-        {
-            var count = query.Count();
-            if (0 == count) { return new Paging<T> { Data = new System.Collections.Generic.List<T>() }; }
-
-            var p = GetPaging(count, currentPage, pageSize, pageSizeMax);
-
-            var data = query.Skip(p.Skip).Take(p.Take).ToList();
-
-            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = p.CurrentPage, Count = count, CountPage = p.CountPage };
-        }
-
-        public static Paging<T> ToPaging<T>(this System.Collections.Generic.List<T> data, int currentPage = 0, int count = 0, int countPage = 0)
-        {
-            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = currentPage, Count = count, CountPage = countPage };
-        }
-
-        public static Paging<T> ToPaging<T>(this System.Collections.Generic.List<T> data, dynamic pagingObj)
-        {
-            return new Paging<T> { Data = data, Length = data.Count, CurrentPage = pagingObj.CurrentPage, Count = pagingObj.Count, CountPage = pagingObj.CountPage };
-        }
-
-        #endregion
+        public static int GetValue(int? value, int defaultValue = default) => null == value || !value.HasValue ? defaultValue : value.Value;
+        public static double GetValue(double? value, double defaultValue = default) => null == value || !value.HasValue ? defaultValue : value.Value;
 
         #region Json
 
-        public static Type TryJsonDeserialize<Type>(this string value)
+        public static Type TryJsonDeserialize<Type>(string value, Newtonsoft.Json.JsonSerializerSettings settings)
         {
-            try { return Newtonsoft.Json.JsonConvert.DeserializeObject<Type>(value); }
-            catch { return default(Type); }
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return default;
+            }
+
+            try
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<Type>(value, settings);
+            }
+            catch (System.Exception)
+            {
+                return default;
+            }
+        }
+        public static Type TryJsonDeserialize<Type>(string value, params Newtonsoft.Json.JsonConverter[] converters)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return default;
+            }
+
+            try
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<Type>(value, converters);
+            }
+            catch
+            {
+                return default;
+            }
         }
 
-        public static Type TryJsonDeserialize<Type>(this string value, out string error)
+        public static Type TryJsonDeserialize<Type>(string value, out string error)
         {
             error = null;
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return default;
+            }
 
             try
             {
@@ -113,12 +57,43 @@ namespace Business.Utils
             catch (System.Exception ex)
             {
                 error = System.Convert.ToString(ex);
-                return default(Type);
+                return default;
             }
         }
-        public static object TryJsonDeserialize(this string value, System.Type type, out string error)
+        public static bool TryJsonDeserialize<Type>(string value, System.Type type, out Type result)
+        {
+            try
+            {
+                result = (Type)Newtonsoft.Json.JsonConvert.DeserializeObject(value, type);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+        public static bool TryJsonDeserialize<Type>(string value, out Type result)
+        {
+            try
+            {
+                result = Newtonsoft.Json.JsonConvert.DeserializeObject<Type>(value);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+        public static object TryJsonDeserialize(string value, System.Type type, out string error)
         {
             error = null;
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return null;
+            }
 
             try
             {
@@ -130,49 +105,92 @@ namespace Business.Utils
                 return null;
             }
         }
-        public static string JsonSerialize<Type>(this Type value)
+        public static string JsonSerialize<Type>(Type value, params Newtonsoft.Json.JsonConverter[] converters)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(value);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(value, converters);
+        }
+        public static string JsonSerialize<Type>(Type value, Newtonsoft.Json.JsonSerializerSettings settings)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(value, settings);
         }
 
         #endregion
 
-        #region ProtoBuf Serialize
-        public static Type TryProtoBufDeserialize<Type>(this System.Byte[] source)
+        #region Binary Serialize
+
+        public static Type TryBinaryDeserialize<Type>(this byte[] source)
+        {
+            if (source == null)
+            {
+                return default;
+            }
+
+            try
+            {
+                return MessagePack.MessagePackSerializer.Deserialize<Type>(source);
+            }
+            catch { return default; }
+        }
+        //public static bool TryProtoBufDeserialize<Type>(System.Byte[] source, System.Type type, out Type result)
+        //{
+        //    try
+        //    {
+        //        using (var stream = new System.IO.MemoryStream(source))
+        //        {
+        //            result = MessagePack.MessagePackSerializer.Deserialize<Type>(source);
+        //            //result = (Type)ProtoBuf.Serializer.Deserialize(type, stream);
+        //            return true;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        result = default(Type);
+        //        return false;
+        //    }
+        //}
+        public static bool TryBinaryDeserialize<Type>(this byte[] source, out Type result)
         {
             try
             {
-                using (var stream = new System.IO.MemoryStream(source))
-                {
-                    return ProtoBuf.Serializer.Deserialize<Type>(stream);
-                }
+                result = MessagePack.MessagePackSerializer.Deserialize<Type>(source);
+                return true;
             }
-            catch { return default(Type); }
-        }
-        public static System.Byte[] ProtoBufSerialize<Type>(this Type instance)
-        {
-            using (var stream = new System.IO.MemoryStream())
+            catch
             {
-                ProtoBuf.Serializer.Serialize(stream, instance);
-                return stream.ToArray();
+                result = default;
+                return false;
             }
         }
-        public static object ProtoBufDeserialize(this byte[] source, System.Type type)
-        {
-            using (var stream = new System.IO.MemoryStream(source))
-            {
-                return ProtoBuf.Meta.RuntimeTypeModel.Default.Deserialize(stream, null, type);
-            }
-        }
+
+        public static byte[] BinarySerialize<Type>(this Type source) => MessagePack.MessagePackSerializer.Serialize(source);
+
+        //public static object ProtoBufDeserialize(byte[] source, System.Type type)
+        //{
+        //    using (var stream = new System.IO.MemoryStream(source))
+        //    {
+        //        return ProtoBuf.Meta.RuntimeTypeModel.Default.Deserialize(stream, null, type);
+        //    }
+        //}
+        //public static object TryProtoBufDeserialize(System.Byte[] source, System.Type type)
+        //{
+        //    try
+        //    {
+        //        using (var stream = new System.IO.MemoryStream(source))
+        //        {
+        //            return ProtoBuf.Meta.RuntimeTypeModel.Default.Deserialize(stream, null, type);
+        //        }
+        //    }
+        //    catch { return null; }
+        //}
 
         #endregion
 
-        internal static Type ChangeType<Type>(this object value)
+        internal static Type ChangeType<Type>(object value)
         {
             return (Type)ChangeType(value, typeof(Type));
         }
 
-        internal static object ChangeType(this object value, System.Type type)
+        internal static object ChangeType(object value, System.Type type)
         {
             if (null == value) { return System.Activator.CreateInstance(type); }
 
@@ -192,7 +210,7 @@ namespace Business.Utils
                 return new System.Random(System.BitConverter.ToInt32(bytes, 0)).Next(minValue, maxValue);
             }
         }
-        internal static int Random(this int maxValue)
+        internal static int Random(int maxValue)
         {
             using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider())
             {
@@ -211,6 +229,62 @@ namespace Business.Utils
             }
         }
 
+        /*
+        #region Encrypt
+
+        public struct AESValue { public string value; public string salt; }
+
+        public static AESValue AESEncrypt(string data, string password, AESKeySize keySize = AESKeySize.AES_256)
+        {
+            var random = new Org.BouncyCastle.Security.SecureRandom();
+            var salt = new byte[Org.AlbertSchmitt.Crypto.AESService.SALT_SIZE];
+            random.NextBytes(salt);
+
+            return new AESValue { value = AESEncrypt(data, password, salt, keySize), salt = System.Convert.ToBase64String(salt) };
+        }
+
+        public enum AESKeySize
+        {
+            AES_128 = 128,
+            AES_256 = 256
+        }
+
+        public static string AESEncrypt(string data, string password, string salt, AESKeySize keySize = AESKeySize.AES_256) => AESEncrypt(data, password, System.Convert.FromBase64String(salt), keySize);
+        public static string AESEncrypt(string data, string password, byte[] salt, AESKeySize keySize = AESKeySize.AES_256)
+        {
+            var aes = new Org.AlbertSchmitt.Crypto.AESService();
+
+            // Create the AES Key using password and salt.
+            aes.GenerateKey(password, salt, (int)keySize);
+
+            // Encode and Decode a string then compare to verify they are the same.
+            var enc_bytes = aes.Encode(data);
+
+            return Org.AlbertSchmitt.Crypto.Hex.Encode(enc_bytes);
+        }
+
+        public static string AESDecrypt(string data, string key, string salt, AESKeySize keySize = AESKeySize.AES_256)
+        {
+            var aes = new Org.AlbertSchmitt.Crypto.AESService();
+            aes.GenerateKey(key, System.Convert.FromBase64String(salt), (int)keySize);
+            return System.Text.UTF8Encoding.UTF8.GetString(aes.Decode(data));
+        }
+
+        #endregion
+
+        public static void WriteKey(string privateKeyfile, string publicKeyfile)
+        {
+            var rsa = new Org.AlbertSchmitt.Crypto.RSAService(Org.AlbertSchmitt.Crypto.RSAService.KEYSIZE.RSA_4K);
+
+            using (var privateKey = new System.IO.FileStream(privateKeyfile, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite))
+            {
+                using (var publicKey = new System.IO.FileStream(publicKeyfile, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite))
+                {
+                    rsa.GenerateKey(privateKey, publicKey);
+                }
+            }
+        }
+        */
         /*
         public static long ConvertTime(this System.DateTime time)
         {

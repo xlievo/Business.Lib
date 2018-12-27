@@ -15,11 +15,10 @@
           ##############
 ==================================*/
 
-using System.Linq;
-using LinqToDB;
-
 namespace Business.Data
 {
+    using LinqToDB;
+
     /// <summary>
     /// the a LinqToDBConnection
     /// </summary>
@@ -79,49 +78,56 @@ namespace Business.Data
             base.RollbackTransaction();
         }
 
-        public int Save<T>(System.Collections.Generic.IEnumerable<T> obj)
-        {
-            return this.ExecutePack(() => { return ForEach(obj, (item) => { return DataExtensions.Insert(this, item); }); });
-        }
+        public int Save<T>(System.Collections.Generic.IEnumerable<T> obj) => this.ExecutePack(() => ForEach(obj, item => DataExtensions.Insert(this, item)));
 
         public int Save<T>(T obj)
         {
-            return this.ExecutePack(() => { return DataExtensions.Insert(this, obj); });
+            return this.ExecutePack(() => DataExtensions.Insert(this, obj));
+        }
+
+        public int SaveWithInt32Identity<T>(T obj)
+        {
+            return this.ExecutePack(() => DataExtensions.InsertWithInt32Identity(this, obj));
+        }
+
+        public long SaveWithInt64Identity<T>(T obj)
+        {
+            return this.ExecutePack(() => DataExtensions.InsertWithInt64Identity(this, obj));
         }
 
         public int SaveOrUpdate<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return this.ExecutePack(() => { return ForEach(obj, (item) => { return DataExtensions.InsertOrReplace(this, item); }); });
+            return this.ExecutePack(() => ForEach(obj, item => DataExtensions.InsertOrReplace(this, item)));
         }
 
         public int SaveOrUpdate<T>(T obj)
         {
-            return this.ExecutePack(() => { return DataExtensions.InsertOrReplace(this, obj); });
+            return this.ExecutePack(() => DataExtensions.InsertOrReplace(this, obj));
         }
 
         public int Update<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return this.ExecutePack(() => { return ForEach(obj, (item) => { return DataExtensions.Update(this, item); }); });
+            return this.ExecutePack(() => ForEach(obj, item => DataExtensions.Update(this, item)));
         }
 
         public int Update<T>(T obj)
         {
-            return this.ExecutePack(() => { return DataExtensions.Update(this, obj); });
+            return this.ExecutePack(() => DataExtensions.Update(this, obj));
         }
 
         public int Delete<T>(System.Collections.Generic.IEnumerable<T> obj)
         {
-            return this.ExecutePack(() => { return ForEach(obj, (item) => { return DataExtensions.Delete(this, item); }); });
+            return this.ExecutePack(() => ForEach(obj, item => DataExtensions.Delete(this, item)));
         }
 
         public int Delete<T>(T obj)
         {
-            return this.ExecutePack(() => { return DataExtensions.Delete(this, obj); });
+            return this.ExecutePack(() => DataExtensions.Delete(this, obj));
         }
 
         public void BulkCopy<T>(System.Collections.Generic.IEnumerable<T> source)
         {
-            LinqToDB.Data.DataConnectionExtensions.BulkCopy<T>(this, source);
+            LinqToDB.Data.DataConnectionExtensions.BulkCopy(this, source);
         }
 
         public new void Dispose()

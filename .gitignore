@@ -4,6 +4,14 @@
 
 /Business.Lib/bin
 /Business.Lib/obj
-*.nupkg
+*.user
 *.suo
+*.nupkg
+/.vs
+bin
+obj
 /Business.Lib/Business.Lib.nupkg
+/Business.Lib.Standard/bin
+/Business.Lib.Net/bin
+/Business.Lib.Net/obj
+/Business.Lib.Standard/obj

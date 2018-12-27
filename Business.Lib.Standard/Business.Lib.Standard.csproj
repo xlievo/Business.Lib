@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Business.Lib</AssemblyName>
+    <RootNamespace>Business.Lib</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.1.2</Version>
+    <AssemblyVersion>1.1.2</AssemblyVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>https://github.com/xlievo/Business.Lib</Description>
+    <Copyright>Copyright ©  2014~2018 Business Project - http://www.tmopen.com</Copyright>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/xlievo/Business.Lib</PackageProjectUrl>
+    <PackageIconUrl>https://secure.gravatar.com/userimage/107958241/f5a911b60f47bbf64630f824232c9a24?size=250</PackageIconUrl>
+    <FileVersion>1.1.2</FileVersion>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Business.Lib.xml</DocumentationFile>
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD2_0;Standard</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;Standard</DefineConstants>
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Utils\cryptography\**" />
+    <EmbeddedResource Remove="Utils\cryptography\**" />
+    <None Remove="Utils\cryptography\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Business.Lib\Cache\Redis.cs" Link="Cache\Redis.cs" />
+    <Compile Include="..\Business.Lib\Data\DataBase.cs" Link="Data\DataBase.cs" />
+    <Compile Include="..\Business.Lib\Data\IData.cs" Link="Data\IData.cs" />
+    <Compile Include="..\Business.Lib\Data\LinqToDBConnection.cs" Link="Data\LinqToDBConnection.cs" />
+    <Compile Include="..\Business.Lib\Data\MongoDBConnection.cs" Link="Data\MongoDBConnection.cs" />
+    <Compile Include="..\Business.Lib\Logger\ILogger.cs" Link="Logger\ILogger.cs" />
+    <Compile Include="..\Business.Lib\Logger\NLogAdapter.cs" Link="Logger\NLogAdapter.cs" />
+    <Compile Include="..\Business.Lib\Utils\Help.cs" Link="Utils\Help.cs" />
+    <Compile Include="..\Business.Lib\Utils\VerifyCode.cs" Link="Utils\VerifyCode.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cache\" />
+    <Folder Include="Data\" />
+    <Folder Include="Logger\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Data" Version="3.0.0" />
+    <PackageReference Include="Caching.CSRedis" Version="3.0.27" />
+    <PackageReference Include="linq2db" Version="2.6.1" />
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="Npgsql" Version="4.0.4" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>
