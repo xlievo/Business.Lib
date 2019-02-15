@@ -125,7 +125,7 @@ namespace Business.Data
             return this.ExecutePack(() => DataExtensions.Delete(this, obj));
         }
 
-        public void BulkCopy<T>(System.Collections.Generic.IEnumerable<T> source)
+        public void BulkCopy<T>(System.Collections.Generic.IEnumerable<T> source) where T : class
         {
             LinqToDB.Data.DataConnectionExtensions.BulkCopy(this, source);
         }

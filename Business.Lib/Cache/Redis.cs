@@ -19,6 +19,7 @@ using System.Linq;
 
 namespace Business.Cache
 {
+    /*
     public class StackExchangeEx
     {
         #region Init
@@ -62,7 +63,7 @@ namespace Business.Cache
             return new StackExchange.Redis.HashEntry(name, RedisValue(value));
         }
     }
-
+    */
     //public class CSRedisEx
     //{
     //    /// <summary>
