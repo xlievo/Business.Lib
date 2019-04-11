@@ -48,8 +48,13 @@ namespace Business.Data
             return count;
         }
 
-        public LinqToDBConnection(LinqToDB.DataProvider.IDataProvider provider, string conString)
-            : base(provider, conString) { }
+        public LinqToDBConnection() { }
+
+        public LinqToDBConnection(string configuration) : base(configuration) { }
+
+        public LinqToDBConnection(string providerName, string connectionString) : base(providerName, connectionString) { }
+
+        public LinqToDBConnection(LinqToDB.DataProvider.IDataProvider provider, string conString) : base(provider, conString) { }
 
         public abstract IEntity Entity { get; }
 
@@ -138,4 +143,90 @@ namespace Business.Data
             if (null != base.Connection) { base.Connection.Dispose(); }
         }
     }
+}
+
+namespace LinqToDB
+{
+    using System.Linq;
+
+    public abstract class Entitys : LinqToDB.Data.DataConnection, Business.Data.IEntity
+    {
+        public Entitys() { }
+
+        public Entitys(string configuration) : base(configuration) { }
+
+        public Entitys(string providerName, string connectionString) : base(providerName, connectionString) { }
+
+        public Entitys(DataProvider.IDataProvider dataProvider, string connectionString) : base(dataProvider, connectionString) { }
+
+        public virtual System.Linq.IQueryable<T> Get<T>() where T : class, new() => this.GetTable<T>();
+    }
+
+    public class ConnectionStringSettings : LinqToDB.Configuration.IConnectionStringSettings
+    {
+        public string ConnectionString { get; set; }
+        /// <summary>
+        /// Key
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// LinqToDB.ProviderName
+        /// </summary>
+        public string ProviderName { get; set; }
+        public bool IsGlobal => false;
+    }
+
+    /// <summary>
+    /// T4: NamespaceName = "DataModels"; DataContextName = "Model"; BaseDataContextClass = "LinqToDB.Entitys"; PluralizeDataContextPropertyNames = false;
+    /// </summary>
+    public class LinqToDBSection : LinqToDB.Configuration.ILinqToDBSettings
+    {
+        readonly System.Collections.Generic.IEnumerable<ConnectionStringSettings> connectionStringSettings;
+
+        /// <summary>
+        /// NamespaceName = "DataModels"; DataContextName = "Model"; BaseDataContextClass = "LinqToDB.Entitys"; PluralizeDataContextPropertyNames = false;
+        /// </summary>
+        /// <param name="connectionStringSettings"></param>
+        /// <param name="defaultConfiguration"></param>
+        public LinqToDBSection(System.Collections.Generic.IEnumerable<ConnectionStringSettings> connectionStringSettings, string defaultConfiguration = null)
+        {
+            this.connectionStringSettings = connectionStringSettings;
+            var first = connectionStringSettings?.FirstOrDefault();
+            DefaultConfiguration = defaultConfiguration ?? first?.Name;
+            DefaultDataProvider = first?.ProviderName;
+        }
+
+        public System.Collections.Generic.IEnumerable<LinqToDB.Configuration.IDataProviderSettings> DataProviders => System.Linq.Enumerable.Empty<LinqToDB.Configuration.IDataProviderSettings>();
+        /// <summary>
+        /// Key
+        /// </summary>
+        public string DefaultConfiguration { get; private set; }
+        /// <summary>
+        /// LinqToDB.ProviderName
+        /// </summary>
+        public string DefaultDataProvider { get; private set; }
+
+        public System.Collections.Generic.IEnumerable<LinqToDB.Configuration.IConnectionStringSettings> ConnectionStrings
+        {
+            get { foreach (var item in connectionStringSettings) { yield return item; } }
+        }
+    }
+
+    //public class Data2<IConnection> : Business.Data.DataBase<Business.Data.IConnection>
+    //    where IConnection : class, Business.Data.IConnection
+    //{
+    //    readonly System.Func<Business.Data.IConnection> creat;
+
+    //    public Data2(System.Func<Business.Data.IConnection> creat) => this.creat = creat;
+
+    //    static Data2() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+
+    //    public override Business.Data.IConnection GetConnection() => creat();
+    //}
+
+    //public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>
+    //{
+    //    public DataConnection(string configuration) : base(configuration) { }
+    //    public override DataModels.Model Entity { get => new DataModels.Model(this.ConfigurationString); }
+    //}
 }

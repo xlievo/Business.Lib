@@ -508,9 +508,20 @@ namespace Business.Data
         }
     }
 
-    public abstract class Entitys : System.MarshalByRefObject, IEntity
+    public class DB<IConnection> : DataBase<IConnection>
+        where IConnection : class, Data.IConnection
     {
-        public abstract IQueryable<T> Get<T>()
-            where T : class, new();
+        readonly System.Func<IConnection> creat;
+
+        public DB(System.Func<IConnection> creat) => this.creat = creat;
+
+        public override IConnection GetConnection() => creat();
+
+        public static DB<IConnection> Creat(System.Func<IConnection> creat) => new DB<IConnection>(creat);
     }
+
+    //public abstract class EntitysBase : System.MarshalByRefObject, IEntity
+    //{
+    //    public abstract IQueryable<T> Get<T>() where T : class, new();
+    //}
 }
