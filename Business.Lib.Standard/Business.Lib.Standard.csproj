@@ -41,7 +41,6 @@
     <Compile Include="..\Business.Lib\Logger\ILogger.cs" Link="Logger\ILogger.cs" />
     <Compile Include="..\Business.Lib\Logger\NLogAdapter.cs" Link="Logger\NLogAdapter.cs" />
     <Compile Include="..\Business.Lib\Utils\Help.cs" Link="Utils\Help.cs" />
-    <Compile Include="..\Business.Lib\Utils\VerifyCode.cs" Link="Utils\VerifyCode.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,15 +51,15 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Data" Version="3.0.0" />
-    <PackageReference Include="Caching.CSRedis" Version="3.0.48" />
-    <PackageReference Include="linq2db" Version="2.6.4" />
+    <PackageReference Include="Caching.CSRedis" Version="3.0.51" />
+    <PackageReference Include="linq2db" Version="2.7.0" />
     <PackageReference Include="MessagePack" Version="1.7.3.4" />
     <PackageReference Include="NEST.JsonNetSerializer" Version="6.6.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="NLog" Version="4.6.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NLog" Version="4.6.3" />
     <PackageReference Include="Npgsql" Version="4.0.6" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 
 </Project>

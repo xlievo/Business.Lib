@@ -36,10 +36,11 @@
 		5. See more at https://github.com/linq2db/t4models
 	*/
 
-	NamespaceName = "DataModels";
-	DataContextName = "Model";
-	BaseDataContextClass = "LinqToDB.Entitys";
+	NamespaceName = "DataModel";
+	DataContextName = "Connection";
+	BaseDataContextClass = "LinqToDB.LinqToDBConnection";
 	PluralizeDataContextPropertyNames = false;
+	NormalizeNames = false;
 
 	LoadPostgreSQLMetadata("192.168.1.121", "5920", "dd", "root", "123456");
 //	LoadPostgreSQLMetadata(string connectionString);

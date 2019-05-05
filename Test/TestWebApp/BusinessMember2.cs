@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 using static Args;
 using static Startup;
 using Business.Data;
+using LinqToDB;
+using LinqToDB.Linq;
+using LinqToDB.Extensions;
+using LinqToDB.Expressions;
+using LinqToDB.Mapping;
 
 [JsonArg]
 [Logger]
@@ -51,18 +56,26 @@ public class BusinessMember2 : BusinessBase
         };
     }
 
-    public virtual async Task<dynamic> Test001(Business.Auth.Token token, Arg<Test001> arg, [Ignore(IgnoreMode.BusinessArg)][Test2]decimal mm = 0.0234m)
+    public virtual async Task<dynamic> Test001(Business.Auth.Token token, Arg<Test001> arg, [Ignore(IgnoreMode.BusinessArg)][Test2]decimal mm = 0.0234m, Context context = default)
     {
-        using (var con = DB.GetConnection())
+        System.Threading.Tasks.Parallel.For(0, 5000, new ParallelOptions { MaxDegreeOfParallelism = 2000 }, x =>
         {
-            con.BeginTransaction();
+            using (var con = context.DB.GetConnection())
+            {
+                con.BeginTransaction();
 
-            var data2 = con.Execute<DataModels.Dd>("SELECT * FROM dd c_1");
+                var data2 = con.Execute<DataModel.dd>("SELECT * FROM dd");
 
-            var data = con.Entity.Dd.Where(c => c.Dd2 == "ddd2").ToList();
+                var query = con.dd.Where(c => c.dd2 == "eee2");
+                var data = query.ToList();
 
-            con.Commit();
-        }
+                var query2 = con.dd.Where(c => c.dd2 == "eee2").Set(c => c.dd2, "333");
+                query2.Update();
+
+                con.Commit();
+            }
+        });
+
 
         dynamic args = new System.Dynamic.ExpandoObject();
         args.token = token;
@@ -109,7 +122,7 @@ public class TestAttribute : ArgumentAttribute
 {
     public TestAttribute(int state = 111, string message = null) : base(state, message) { }
 
-    public override async Task<IResult> Proces(dynamic value)
+    public override async ValueTask<IResult> Proces(dynamic value)
     {
         var exit = await RedisHelper.HExistsAsync("Role", "value2");
 
@@ -133,7 +146,7 @@ public class Test2Attribute : ArgumentAttribute
 {
     public Test2Attribute(int state = 112, string message = null) : base(state, message) { }
 
-    public override async Task<IResult> Proces(dynamic value)
+    public override async ValueTask<IResult> Proces(dynamic value)
     {
         return this.ResultCreate(value + 0.1m);
     }

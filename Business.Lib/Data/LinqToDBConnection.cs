@@ -15,53 +15,69 @@
           ##############
 ==================================*/
 
-namespace Business.Data
+namespace LinqToDB
 {
-    using LinqToDB;
+    using System.Linq;
+    using Business.Data;
+    using LinqToDB.DataProvider;
 
     /// <summary>
     /// the a LinqToDBConnection
     /// </summary>
-    /// <typeparam name="IEntity"></typeparam>
-    public abstract class LinqToDBConnection<IEntity> : LinqToDB.Data.DataConnection, IConnection
-        where IEntity : class, Data.IEntity
+    public class LinqToDBConnection : Data.DataConnection, IConnection//, IEntitys
+                                                                      //where IEntity : class, Business.Data.IEntity
     {
         static int ForEach<T>(System.Collections.Generic.IEnumerable<T> obj, System.Func<T, int> func)
         {
-            var count = 0;
+            int count = 0, ex = 0;
 
-            foreach (var item in obj)
+            System.Threading.Tasks.Parallel.ForEach(obj, (item, loop) =>
             {
                 var result = func(item);
 
-                if (-1 == result)
+                if (-1 == result && result != ex)
                 {
-                    count = result;
-                    break;
+                    ex = result;
+                    if (!loop.IsStopped) { loop.Stop(); }
                 }
                 else
                 {
                     count += result;
                 }
-            }
+            });
+            //foreach (var item in obj)
+            //{
+            //    var result = func(item);
 
-            return count;
+            //    if (-1 == result)
+            //    {
+            //        count = result;
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        count += result;
+            //    }
+            //}
+
+            return ex == 0 ? count : ex;
         }
 
-        public LinqToDBConnection() { }
+        public LinqToDBConnection() : base() { }
 
         public LinqToDBConnection(string configuration) : base(configuration) { }
 
         public LinqToDBConnection(string providerName, string connectionString) : base(providerName, connectionString) { }
 
-        public LinqToDBConnection(LinqToDB.DataProvider.IDataProvider provider, string conString) : base(provider, conString) { }
+        public LinqToDBConnection(IDataProvider provider, string conString) : base(provider, conString) { }
 
-        public abstract IEntity Entity { get; }
+        public string TraceMethod { get; set; }
 
-        Data.IEntity IConnection.Entity
-        {
-            get { return Entity; }
-        }
+        public string TraceId { get; } = System.Guid.NewGuid().ToString("N");
+
+        //public abstract IEntity Entity { get; }
+
+        //Business.Data.IEntity IEntitys.Entity { get => Entity; }
 
         public new void BeginTransaction()
         {
@@ -139,28 +155,44 @@ namespace Business.Data
         {
             base.DisposeCommand();
             base.Dispose();
-            if (null != base.Transaction) { base.Transaction.Dispose(); }
-            if (null != base.Connection) { base.Connection.Dispose(); }
+            base.Transaction?.Dispose();
+            base.Connection?.Dispose();
         }
     }
-}
 
-namespace LinqToDB
-{
-    using System.Linq;
-
-    public abstract class Entitys : LinqToDB.Data.DataConnection, Business.Data.IEntity
+    /*
+    public partial class LinqToDBConnection : LinqToDBConnectionBase<Entitys>
     {
-        public Entitys() { }
+        static LinqToDBConnection()
+        {
+            LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
+            LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+        }
 
-        public Entitys(string configuration) : base(configuration) { }
+        readonly Entitys entitys;
 
-        public Entitys(string providerName, string connectionString) : base(providerName, connectionString) { }
+        public LinqToDBConnection() => this.entitys = new Entitys(this);
 
-        public Entitys(DataProvider.IDataProvider dataProvider, string connectionString) : base(dataProvider, connectionString) { }
+        public LinqToDBConnection(string configuration) : base(configuration) => this.entitys = new Entitys(this);
 
-        public virtual System.Linq.IQueryable<T> Get<T>() where T : class, new() => this.GetTable<T>();
+        public LinqToDBConnection(string providerName, string connectionString) : base(providerName, connectionString) => this.entitys = new Entitys(this);
+
+        public LinqToDBConnection(IDataProvider provider, string conString) : base(provider, conString) => this.entitys = new Entitys(this);
+
+        public override Entitys Entity => entitys;
     }
+
+    public partial class Entitys : IEntity
+    {
+        readonly LinqToDB.Data.DataConnection con;
+
+        public Entitys(LinqToDB.Data.DataConnection con) { this.con = con; }
+
+        public virtual System.Linq.IQueryable<T> Get<T>() where T : class, new() => this.con.GetTable<T>();
+    }
+    */
+
+    #region Settings
 
     public class ConnectionStringSettings : LinqToDB.Configuration.IConnectionStringSettings
     {
@@ -211,6 +243,12 @@ namespace LinqToDB
             get { foreach (var item in connectionStringSettings) { yield return item; } }
         }
     }
+
+    #endregion
+}
+
+namespace LinqToDB
+{
 
     //public class Data2<IConnection> : Business.Data.DataBase<Business.Data.IConnection>
     //    where IConnection : class, Business.Data.IConnection

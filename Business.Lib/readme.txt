@@ -1,33 +1,43 @@
 Thanks for downloading this Business.Lib package.
 
-	=====================lin2db.T4=====================
+	a:=====================lin2db.T4.tt=====================
 	
-	NamespaceName = "DataModels";
-	DataContextName = "Model";
-	BaseDataContextClass = "LinqToDB.Entitys";
+	NamespaceName = "DataModel";
+	DataContextName = "Connection";
+	BaseDataContextClass = "LinqToDB.LinqToDBConnection";
 	PluralizeDataContextPropertyNames = false;
+	NormalizeNames = false;
 	
-	=====================config=====================
+	b:=====================appsettings.json=====================
 	
 	"AppSettings": {
 		"ConnectionStrings": {
 			"PostgreSQL": {
-				"ConnectionString": "Server=192.168.1.121;Database=dd;User Id=root;Password=123456;port=5920;",
+				"ConnectionString": "Server=MyServer;Database=MyDatabase;User Id=postgres;Password=TestPassword;port=5432;",
 				"providerName": "PostgreSQL"
 				}
 		}
 	}	
 	
-	=====================code=====================
+	c:=====================Startup(IConfiguration configuration)=====================
 	
 	LinqToDB.Data.DataConnection.DefaultSettings = new LinqToDB.LinqToDBSection(Configuration.GetSection("AppSettings").GetSection("ConnectionStrings").GetChildren().Select(c => new LinqToDB.ConnectionStringSettings { Name = c.Key, ConnectionString = c.GetValue<string>("ConnectionString"), ProviderName = c.GetValue<string>("ProviderName") }));
 	
-	public static Business.Data.DB<DataConnection> DB = new Business.Data.DB<DataConnection>(() => new DataConnection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration));
-	
-	public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>
+	d:=====================Definition=====================
+
+	public class DataBase : Business.Data.DataBase<DataModel.Connection>
     {
-        static DataConnection() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
-        public DataConnection(string configuration) : base(configuration) { }
-        public override DataModels.Model Entity { get => new DataModels.Model(this.ConfigurationString); }
+        static DataBase()
+        {
+            LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+            LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
+            LinqToDB.Data.DataConnection.OnTrace = c => { };
+        }
+
+        readonly string traceMethod;
+
+        public DataBase(string traceMethod = null) => this.traceMethod = traceMethod;
+
+        public override Connection GetConnection() => new DataModel.Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = traceMethod };
     }
 	

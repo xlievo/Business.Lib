@@ -22,16 +22,16 @@ using LinqToDB.Mapping;
 
 using NpgsqlTypes;
 
-namespace DataModels
+namespace DataModel
 {
 	/// <summary>
 	/// Database       : dd
 	/// Data Source    : tcp://192.168.1.121:5920
 	/// Server Version : 10.7
 	/// </summary>
-	public partial class Model : LinqToDB.Entitys
+	public partial class Connection : LinqToDB.LinqToDBConnection
 	{
-		public ITable<Dd> Dd { get { return this.GetTable<Dd>(); } }
+		public ITable<dd> dd { get { return this.GetTable<dd>(); } }
 
 		partial void InitMappingSchema()
 		{
@@ -53,13 +53,13 @@ namespace DataModels
 			MappingSchema.SetConvertExpression<object[], pg_walfile_name_offsetResult>(tuple => new pg_walfile_name_offsetResult() { file_name = (string)tuple[0], file_offset = (int?)tuple[1] });
 		}
 
-		public Model()
+		public Connection()
 		{
 			InitDataContext();
 			InitMappingSchema();
 		}
 
-		public Model(string configuration)
+		public Connection(string configuration)
 			: base(configuration)
 		{
 			InitDataContext();
@@ -71,16 +71,16 @@ namespace DataModels
 
 		#region Table Functions
 
-		#region Aclexplode
+		#region aclexplode
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="aclexplode")]
-		public ITable<AclexplodeResult> Aclexplode(object acl)
+		public ITable<aclexplodeResult> aclexplode(object acl)
 		{
-			return this.GetTable<AclexplodeResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<aclexplodeResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				acl);
 		}
 
-		public partial class AclexplodeResult
+		public partial class aclexplodeResult
 		{
 			public int?   grantor        { get; set; }
 			public int?   grantee        { get; set; }
@@ -90,115 +90,115 @@ namespace DataModels
 
 		#endregion
 
-		#region GenerateSeries
+		#region generate_series
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="generate_series")]
-		public ITable<GenerateSeriesResult> GenerateSeries(DateTimeOffset? par1887, DateTimeOffset? par1888, NpgsqlTimeSpan? par1889)
+		public ITable<generate_seriesResult> generate_series(DateTimeOffset? par1887, DateTimeOffset? par1888, NpgsqlTimeSpan? par1889)
 		{
-			return this.GetTable<GenerateSeriesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<generate_seriesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par1887,
 				par1888,
 				par1889);
 		}
 
-		public partial class GenerateSeriesResult
+		public partial class generate_seriesResult
 		{
 			public DateTimeOffset? generate_series { get; set; }
 		}
 
 		#endregion
 
-		#region GenerateSubscripts
+		#region generate_subscripts
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="generate_subscripts")]
-		public ITable<GenerateSubscriptsResult> GenerateSubscripts(object par1893, int? par1894)
+		public ITable<generate_subscriptsResult> generate_subscripts(object par1893, int? par1894)
 		{
-			return this.GetTable<GenerateSubscriptsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<generate_subscriptsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par1893,
 				par1894);
 		}
 
-		public partial class GenerateSubscriptsResult
+		public partial class generate_subscriptsResult
 		{
 			public int? generate_subscripts { get; set; }
 		}
 
 		#endregion
 
-		#region JsonArrayElements
+		#region json_array_elements
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_array_elements")]
-		public ITable<JsonArrayElementsResult> JsonArrayElements(string from_json)
+		public ITable<json_array_elementsResult> json_array_elements(string from_json)
 		{
-			return this.GetTable<JsonArrayElementsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_array_elementsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonArrayElementsResult
+		public partial class json_array_elementsResult
 		{
 			public string value { get; set; }
 		}
 
 		#endregion
 
-		#region JsonArrayElementsText
+		#region json_array_elements_text
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_array_elements_text")]
-		public ITable<JsonArrayElementsTextResult> JsonArrayElementsText(string from_json)
+		public ITable<json_array_elements_textResult> json_array_elements_text(string from_json)
 		{
-			return this.GetTable<JsonArrayElementsTextResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_array_elements_textResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonArrayElementsTextResult
+		public partial class json_array_elements_textResult
 		{
 			public string value { get; set; }
 		}
 
 		#endregion
 
-		#region JsonbArrayElements
+		#region jsonb_array_elements
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_array_elements")]
-		public ITable<JsonbArrayElementsResult> JsonbArrayElements(string from_json)
+		public ITable<jsonb_array_elementsResult> jsonb_array_elements(string from_json)
 		{
-			return this.GetTable<JsonbArrayElementsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_array_elementsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonbArrayElementsResult
+		public partial class jsonb_array_elementsResult
 		{
 			public string value { get; set; }
 		}
 
 		#endregion
 
-		#region JsonbArrayElementsText
+		#region jsonb_array_elements_text
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_array_elements_text")]
-		public ITable<JsonbArrayElementsTextResult> JsonbArrayElementsText(string from_json)
+		public ITable<jsonb_array_elements_textResult> jsonb_array_elements_text(string from_json)
 		{
-			return this.GetTable<JsonbArrayElementsTextResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_array_elements_textResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonbArrayElementsTextResult
+		public partial class jsonb_array_elements_textResult
 		{
 			public string value { get; set; }
 		}
 
 		#endregion
 
-		#region JsonbEach
+		#region jsonb_each
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_each")]
-		public ITable<JsonbEachResult> JsonbEach(string from_json)
+		public ITable<jsonb_eachResult> jsonb_each(string from_json)
 		{
-			return this.GetTable<JsonbEachResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_eachResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonbEachResult
+		public partial class jsonb_eachResult
 		{
 			public string key   { get; set; }
 			public string value { get; set; }
@@ -206,16 +206,16 @@ namespace DataModels
 
 		#endregion
 
-		#region JsonbEachText
+		#region jsonb_each_text
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_each_text")]
-		public ITable<JsonbEachTextResult> JsonbEachText(string from_json)
+		public ITable<jsonb_each_textResult> jsonb_each_text(string from_json)
 		{
-			return this.GetTable<JsonbEachTextResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_each_textResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonbEachTextResult
+		public partial class jsonb_each_textResult
 		{
 			public string key   { get; set; }
 			public string value { get; set; }
@@ -223,49 +223,49 @@ namespace DataModels
 
 		#endregion
 
-		#region JsonbObjectKeys
+		#region jsonb_object_keys
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_object_keys")]
-		public ITable<JsonbObjectKeysResult> JsonbObjectKeys(string par3518)
+		public ITable<jsonb_object_keysResult> jsonb_object_keys(string par3518)
 		{
-			return this.GetTable<JsonbObjectKeysResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_object_keysResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par3518);
 		}
 
-		public partial class JsonbObjectKeysResult
+		public partial class jsonb_object_keysResult
 		{
 			public string jsonb_object_keys { get; set; }
 		}
 
 		#endregion
 
-		#region JsonbPopulateRecordset
+		#region jsonb_populate_recordset
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="jsonb_populate_recordset")]
-		public ITable<JsonbPopulateRecordsetResult> JsonbPopulateRecordset(object par3524, string par3525)
+		public ITable<jsonb_populate_recordsetResult> jsonb_populate_recordset(object par3524, string par3525)
 		{
-			return this.GetTable<JsonbPopulateRecordsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<jsonb_populate_recordsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par3524,
 				par3525);
 		}
 
-		public partial class JsonbPopulateRecordsetResult
+		public partial class jsonb_populate_recordsetResult
 		{
 			public int? jsonb_populate_recordset { get; set; }
 		}
 
 		#endregion
 
-		#region JsonEach
+		#region json_each
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_each")]
-		public ITable<JsonEachResult> JsonEach(string from_json)
+		public ITable<json_eachResult> json_each(string from_json)
 		{
-			return this.GetTable<JsonEachResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_eachResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonEachResult
+		public partial class json_eachResult
 		{
 			public string key   { get; set; }
 			public string value { get; set; }
@@ -273,16 +273,16 @@ namespace DataModels
 
 		#endregion
 
-		#region JsonEachText
+		#region json_each_text
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_each_text")]
-		public ITable<JsonEachTextResult> JsonEachText(string from_json)
+		public ITable<json_each_textResult> json_each_text(string from_json)
 		{
-			return this.GetTable<JsonEachTextResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_each_textResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				from_json);
 		}
 
-		public partial class JsonEachTextResult
+		public partial class json_each_textResult
 		{
 			public string key   { get; set; }
 			public string value { get; set; }
@@ -290,49 +290,49 @@ namespace DataModels
 
 		#endregion
 
-		#region JsonObjectKeys
+		#region json_object_keys
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_object_keys")]
-		public ITable<JsonObjectKeysResult> JsonObjectKeys(string par3565)
+		public ITable<json_object_keysResult> json_object_keys(string par3565)
 		{
-			return this.GetTable<JsonObjectKeysResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_object_keysResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par3565);
 		}
 
-		public partial class JsonObjectKeysResult
+		public partial class json_object_keysResult
 		{
 			public string json_object_keys { get; set; }
 		}
 
 		#endregion
 
-		#region JsonPopulateRecordset
+		#region json_populate_recordset
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="json_populate_recordset")]
-		public ITable<JsonPopulateRecordsetResult> JsonPopulateRecordset(object @base, string from_json, bool? use_json_as_text)
+		public ITable<json_populate_recordsetResult> json_populate_recordset(object @base, string from_json, bool? use_json_as_text)
 		{
-			return this.GetTable<JsonPopulateRecordsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<json_populate_recordsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				@base,
 				from_json,
 				use_json_as_text);
 		}
 
-		public partial class JsonPopulateRecordsetResult
+		public partial class json_populate_recordsetResult
 		{
 			public int? json_populate_recordset { get; set; }
 		}
 
 		#endregion
 
-		#region PgAvailableExtensions
+		#region pg_available_extensions
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_available_extensions")]
-		public ITable<PgAvailableExtensionsResult> PgAvailableExtensions()
+		public ITable<pg_available_extensionsResult> pg_available_extensions()
 		{
-			return this.GetTable<PgAvailableExtensionsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_available_extensionsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgAvailableExtensionsResult
+		public partial class pg_available_extensionsResult
 		{
 			public string name            { get; set; }
 			public string default_version { get; set; }
@@ -341,15 +341,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgAvailableExtensionVersions
+		#region pg_available_extension_versions
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_available_extension_versions")]
-		public ITable<PgAvailableExtensionVersionsResult> PgAvailableExtensionVersions()
+		public ITable<pg_available_extension_versionsResult> pg_available_extension_versions()
 		{
-			return this.GetTable<PgAvailableExtensionVersionsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_available_extension_versionsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgAvailableExtensionVersionsResult
+		public partial class pg_available_extension_versionsResult
 		{
 			public string name        { get; set; }
 			public string version     { get; set; }
@@ -362,15 +362,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgConfig
+		#region pg_config
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_config")]
-		public ITable<PgConfigResult> PgConfig()
+		public ITable<pg_configResult> pg_config()
 		{
-			return this.GetTable<PgConfigResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_configResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgConfigResult
+		public partial class pg_configResult
 		{
 			public string name    { get; set; }
 			public string setting { get; set; }
@@ -378,15 +378,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgCursor
+		#region pg_cursor
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_cursor")]
-		public ITable<PgCursorResult> PgCursor()
+		public ITable<pg_cursorResult> pg_cursor()
 		{
-			return this.GetTable<PgCursorResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_cursorResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgCursorResult
+		public partial class pg_cursorResult
 		{
 			public string          name          { get; set; }
 			public string          statement     { get; set; }
@@ -398,15 +398,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgEventTriggerDdlCommands
+		#region pg_event_trigger_ddl_commands
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_event_trigger_ddl_commands")]
-		public ITable<PgEventTriggerDdlCommandsResult> PgEventTriggerDdlCommands()
+		public ITable<pg_event_trigger_ddl_commandsResult> pg_event_trigger_ddl_commands()
 		{
-			return this.GetTable<PgEventTriggerDdlCommandsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_event_trigger_ddl_commandsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgEventTriggerDdlCommandsResult
+		public partial class pg_event_trigger_ddl_commandsResult
 		{
 			public int?   classid         { get; set; }
 			public int?   objid           { get; set; }
@@ -421,15 +421,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgEventTriggerDroppedObjects
+		#region pg_event_trigger_dropped_objects
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_event_trigger_dropped_objects")]
-		public ITable<PgEventTriggerDroppedObjectsResult> PgEventTriggerDroppedObjects()
+		public ITable<pg_event_trigger_dropped_objectsResult> pg_event_trigger_dropped_objects()
 		{
-			return this.GetTable<PgEventTriggerDroppedObjectsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_event_trigger_dropped_objectsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgEventTriggerDroppedObjectsResult
+		public partial class pg_event_trigger_dropped_objectsResult
 		{
 			public int?   classid         { get; set; }
 			public int?   objid           { get; set; }
@@ -447,16 +447,16 @@ namespace DataModels
 
 		#endregion
 
-		#region PgExpandarray
+		#region _pg_expandarray
 
 		[Sql.TableFunction(Schema="information_schema", Name="_pg_expandarray")]
-		public ITable<PgExpandarrayResult> PgExpandarray(object par4891)
+		public ITable<_pg_expandarrayResult> _pg_expandarray(object par4891)
 		{
-			return this.GetTable<PgExpandarrayResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<_pg_expandarrayResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par4891);
 		}
 
-		public partial class PgExpandarrayResult
+		public partial class _pg_expandarrayResult
 		{
 			public int? x { get; set; }
 			public int? n { get; set; }
@@ -464,16 +464,16 @@ namespace DataModels
 
 		#endregion
 
-		#region PgExtensionUpdatePaths
+		#region pg_extension_update_paths
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_extension_update_paths")]
-		public ITable<PgExtensionUpdatePathsResult> PgExtensionUpdatePaths(string name)
+		public ITable<pg_extension_update_pathsResult> pg_extension_update_paths(string name)
 		{
-			return this.GetTable<PgExtensionUpdatePathsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_extension_update_pathsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				name);
 		}
 
-		public partial class PgExtensionUpdatePathsResult
+		public partial class pg_extension_update_pathsResult
 		{
 			public string source { get; set; }
 			public string target { get; set; }
@@ -482,15 +482,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgGetKeywords
+		#region pg_get_keywords
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_get_keywords")]
-		public ITable<PgGetKeywordsResult> PgGetKeywords()
+		public ITable<pg_get_keywordsResult> pg_get_keywords()
 		{
-			return this.GetTable<PgGetKeywordsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_get_keywordsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgGetKeywordsResult
+		public partial class pg_get_keywordsResult
 		{
 			public string word    { get; set; }
 			public char?  catcode { get; set; }
@@ -499,16 +499,16 @@ namespace DataModels
 
 		#endregion
 
-		#region PgGetMultixactMembers
+		#region pg_get_multixact_members
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_get_multixact_members")]
-		public ITable<PgGetMultixactMembersResult> PgGetMultixactMembers(int? multixid)
+		public ITable<pg_get_multixact_membersResult> pg_get_multixact_members(int? multixid)
 		{
-			return this.GetTable<PgGetMultixactMembersResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_get_multixact_membersResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				multixid);
 		}
 
-		public partial class PgGetMultixactMembersResult
+		public partial class pg_get_multixact_membersResult
 		{
 			public int?   xid  { get; set; }
 			public string mode { get; set; }
@@ -516,31 +516,31 @@ namespace DataModels
 
 		#endregion
 
-		#region PgGetPublicationTables
+		#region pg_get_publication_tables
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_get_publication_tables")]
-		public ITable<PgGetPublicationTablesResult> PgGetPublicationTables(string pubname)
+		public ITable<pg_get_publication_tablesResult> pg_get_publication_tables(string pubname)
 		{
-			return this.GetTable<PgGetPublicationTablesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_get_publication_tablesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				pubname);
 		}
 
-		public partial class PgGetPublicationTablesResult
+		public partial class pg_get_publication_tablesResult
 		{
 			public int? relid { get; set; }
 		}
 
 		#endregion
 
-		#region PgGetReplicationSlots
+		#region pg_get_replication_slots
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_get_replication_slots")]
-		public ITable<PgGetReplicationSlotsResult> PgGetReplicationSlots()
+		public ITable<pg_get_replication_slotsResult> pg_get_replication_slots()
 		{
-			return this.GetTable<PgGetReplicationSlotsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_get_replication_slotsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgGetReplicationSlotsResult
+		public partial class pg_get_replication_slotsResult
 		{
 			public string slot_name           { get; set; }
 			public string plugin              { get; set; }
@@ -557,15 +557,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgHbaFileRules
+		#region pg_hba_file_rules
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_hba_file_rules")]
-		public ITable<PgHbaFileRulesResult> PgHbaFileRules()
+		public ITable<pg_hba_file_rulesResult> pg_hba_file_rules()
 		{
-			return this.GetTable<PgHbaFileRulesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_hba_file_rulesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgHbaFileRulesResult
+		public partial class pg_hba_file_rulesResult
 		{
 			public int?   line_number { get; set; }
 			public string type        { get; set; }
@@ -580,30 +580,30 @@ namespace DataModels
 
 		#endregion
 
-		#region PgListeningChannels
+		#region pg_listening_channels
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_listening_channels")]
-		public ITable<PgListeningChannelsResult> PgListeningChannels()
+		public ITable<pg_listening_channelsResult> pg_listening_channels()
 		{
-			return this.GetTable<PgListeningChannelsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_listening_channelsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgListeningChannelsResult
+		public partial class pg_listening_channelsResult
 		{
 			public string pg_listening_channels { get; set; }
 		}
 
 		#endregion
 
-		#region PgLockStatus
+		#region pg_lock_status
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_lock_status")]
-		public ITable<PgLockStatusResult> PgLockStatus()
+		public ITable<pg_lock_statusResult> pg_lock_status()
 		{
-			return this.GetTable<PgLockStatusResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_lock_statusResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgLockStatusResult
+		public partial class pg_lock_statusResult
 		{
 			public string locktype           { get; set; }
 			public int?   database           { get; set; }
@@ -624,19 +624,19 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLogicalSlotGetBinaryChanges
+		#region pg_logical_slot_get_binary_changes
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_logical_slot_get_binary_changes")]
-		public ITable<PgLogicalSlotGetBinaryChangesResult> PgLogicalSlotGetBinaryChanges(string slot_name, object upto_lsn, int? upto_nchanges, object options)
+		public ITable<pg_logical_slot_get_binary_changesResult> pg_logical_slot_get_binary_changes(string slot_name, object upto_lsn, int? upto_nchanges, object options)
 		{
-			return this.GetTable<PgLogicalSlotGetBinaryChangesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_logical_slot_get_binary_changesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				slot_name,
 				upto_lsn,
 				upto_nchanges,
 				options);
 		}
 
-		public partial class PgLogicalSlotGetBinaryChangesResult
+		public partial class pg_logical_slot_get_binary_changesResult
 		{
 			public string lsn  { get; set; }
 			public int?   xid  { get; set; }
@@ -645,19 +645,19 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLogicalSlotGetChanges
+		#region pg_logical_slot_get_changes
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_logical_slot_get_changes")]
-		public ITable<PgLogicalSlotGetChangesResult> PgLogicalSlotGetChanges(string slot_name, object upto_lsn, int? upto_nchanges, object options)
+		public ITable<pg_logical_slot_get_changesResult> pg_logical_slot_get_changes(string slot_name, object upto_lsn, int? upto_nchanges, object options)
 		{
-			return this.GetTable<PgLogicalSlotGetChangesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_logical_slot_get_changesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				slot_name,
 				upto_lsn,
 				upto_nchanges,
 				options);
 		}
 
-		public partial class PgLogicalSlotGetChangesResult
+		public partial class pg_logical_slot_get_changesResult
 		{
 			public string lsn  { get; set; }
 			public int?   xid  { get; set; }
@@ -666,19 +666,19 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLogicalSlotPeekBinaryChanges
+		#region pg_logical_slot_peek_binary_changes
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_logical_slot_peek_binary_changes")]
-		public ITable<PgLogicalSlotPeekBinaryChangesResult> PgLogicalSlotPeekBinaryChanges(string slot_name, object upto_lsn, int? upto_nchanges, object options)
+		public ITable<pg_logical_slot_peek_binary_changesResult> pg_logical_slot_peek_binary_changes(string slot_name, object upto_lsn, int? upto_nchanges, object options)
 		{
-			return this.GetTable<PgLogicalSlotPeekBinaryChangesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_logical_slot_peek_binary_changesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				slot_name,
 				upto_lsn,
 				upto_nchanges,
 				options);
 		}
 
-		public partial class PgLogicalSlotPeekBinaryChangesResult
+		public partial class pg_logical_slot_peek_binary_changesResult
 		{
 			public string lsn  { get; set; }
 			public int?   xid  { get; set; }
@@ -687,19 +687,19 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLogicalSlotPeekChanges
+		#region pg_logical_slot_peek_changes
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_logical_slot_peek_changes")]
-		public ITable<PgLogicalSlotPeekChangesResult> PgLogicalSlotPeekChanges(string slot_name, object upto_lsn, int? upto_nchanges, object options)
+		public ITable<pg_logical_slot_peek_changesResult> pg_logical_slot_peek_changes(string slot_name, object upto_lsn, int? upto_nchanges, object options)
 		{
-			return this.GetTable<PgLogicalSlotPeekChangesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_logical_slot_peek_changesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				slot_name,
 				upto_lsn,
 				upto_nchanges,
 				options);
 		}
 
-		public partial class PgLogicalSlotPeekChangesResult
+		public partial class pg_logical_slot_peek_changesResult
 		{
 			public string lsn  { get; set; }
 			public int?   xid  { get; set; }
@@ -708,33 +708,33 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLsDir
+		#region pg_ls_dir
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_ls_dir")]
-		public ITable<PgLsDirResult> PgLsDir(string par5028, bool? par5029, bool? par5030)
+		public ITable<pg_ls_dirResult> pg_ls_dir(string par5028, bool? par5029, bool? par5030)
 		{
-			return this.GetTable<PgLsDirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_ls_dirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par5028,
 				par5029,
 				par5030);
 		}
 
-		public partial class PgLsDirResult
+		public partial class pg_ls_dirResult
 		{
 			public string pg_ls_dir { get; set; }
 		}
 
 		#endregion
 
-		#region PgLsLogdir
+		#region pg_ls_logdir
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_ls_logdir")]
-		public ITable<PgLsLogdirResult> PgLsLogdir()
+		public ITable<pg_ls_logdirResult> pg_ls_logdir()
 		{
-			return this.GetTable<PgLsLogdirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_ls_logdirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgLsLogdirResult
+		public partial class pg_ls_logdirResult
 		{
 			public string          name         { get; set; }
 			public long?           size         { get; set; }
@@ -743,15 +743,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgLsWaldir
+		#region pg_ls_waldir
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_ls_waldir")]
-		public ITable<PgLsWaldirResult> PgLsWaldir()
+		public ITable<pg_ls_waldirResult> pg_ls_waldir()
 		{
-			return this.GetTable<PgLsWaldirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_ls_waldirResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgLsWaldirResult
+		public partial class pg_ls_waldirResult
 		{
 			public string          name         { get; set; }
 			public long?           size         { get; set; }
@@ -760,16 +760,16 @@ namespace DataModels
 
 		#endregion
 
-		#region PgOptionsToTable
+		#region pg_options_to_table
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_options_to_table")]
-		public ITable<PgOptionsToTableResult> PgOptionsToTable(object options_array)
+		public ITable<pg_options_to_tableResult> pg_options_to_table(object options_array)
 		{
-			return this.GetTable<PgOptionsToTableResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_options_to_tableResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				options_array);
 		}
 
-		public partial class PgOptionsToTableResult
+		public partial class pg_options_to_tableResult
 		{
 			public string option_name  { get; set; }
 			public string option_value { get; set; }
@@ -777,15 +777,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgPreparedStatement
+		#region pg_prepared_statement
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_prepared_statement")]
-		public ITable<PgPreparedStatementResult> PgPreparedStatement()
+		public ITable<pg_prepared_statementResult> pg_prepared_statement()
 		{
-			return this.GetTable<PgPreparedStatementResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_prepared_statementResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgPreparedStatementResult
+		public partial class pg_prepared_statementResult
 		{
 			public string          name            { get; set; }
 			public string          statement       { get; set; }
@@ -796,15 +796,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgPreparedXact
+		#region pg_prepared_xact
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_prepared_xact")]
-		public ITable<PgPreparedXactResult> PgPreparedXact()
+		public ITable<pg_prepared_xactResult> pg_prepared_xact()
 		{
-			return this.GetTable<PgPreparedXactResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_prepared_xactResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgPreparedXactResult
+		public partial class pg_prepared_xactResult
 		{
 			public int?            transaction { get; set; }
 			public string          gid         { get; set; }
@@ -815,15 +815,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgShowAllFileSettings
+		#region pg_show_all_file_settings
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_show_all_file_settings")]
-		public ITable<PgShowAllFileSettingsResult> PgShowAllFileSettings()
+		public ITable<pg_show_all_file_settingsResult> pg_show_all_file_settings()
 		{
-			return this.GetTable<PgShowAllFileSettingsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_show_all_file_settingsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgShowAllFileSettingsResult
+		public partial class pg_show_all_file_settingsResult
 		{
 			public string sourcefile { get; set; }
 			public int?   sourceline { get; set; }
@@ -836,15 +836,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgShowAllSettings
+		#region pg_show_all_settings
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_show_all_settings")]
-		public ITable<PgShowAllSettingsResult> PgShowAllSettings()
+		public ITable<pg_show_all_settingsResult> pg_show_all_settings()
 		{
-			return this.GetTable<PgShowAllSettingsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_show_all_settingsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgShowAllSettingsResult
+		public partial class pg_show_all_settingsResult
 		{
 			public string name            { get; set; }
 			public string setting         { get; set; }
@@ -867,15 +867,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgShowReplicationOriginStatus
+		#region pg_show_replication_origin_status
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_show_replication_origin_status")]
-		public ITable<PgShowReplicationOriginStatusResult> PgShowReplicationOriginStatus()
+		public ITable<pg_show_replication_origin_statusResult> pg_show_replication_origin_status()
 		{
-			return this.GetTable<PgShowReplicationOriginStatusResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_show_replication_origin_statusResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgShowReplicationOriginStatusResult
+		public partial class pg_show_replication_origin_statusResult
 		{
 			public int?   local_id    { get; set; }
 			public string external_id { get; set; }
@@ -885,16 +885,16 @@ namespace DataModels
 
 		#endregion
 
-		#region PgStatGetActivity
+		#region pg_stat_get_activity
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_stat_get_activity")]
-		public ITable<PgStatGetActivityResult> PgStatGetActivity(int? pid)
+		public ITable<pg_stat_get_activityResult> pg_stat_get_activity(int? pid)
 		{
-			return this.GetTable<PgStatGetActivityResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_stat_get_activityResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				pid);
 		}
 
-		public partial class PgStatGetActivityResult
+		public partial class pg_stat_get_activityResult
 		{
 			public int?            datid            { get; set; }
 			public int?            pid              { get; set; }
@@ -924,31 +924,31 @@ namespace DataModels
 
 		#endregion
 
-		#region PgStatGetBackendIdset
+		#region pg_stat_get_backend_idset
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_stat_get_backend_idset")]
-		public ITable<PgStatGetBackendIdsetResult> PgStatGetBackendIdset()
+		public ITable<pg_stat_get_backend_idsetResult> pg_stat_get_backend_idset()
 		{
-			return this.GetTable<PgStatGetBackendIdsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_stat_get_backend_idsetResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgStatGetBackendIdsetResult
+		public partial class pg_stat_get_backend_idsetResult
 		{
 			public int? pg_stat_get_backend_idset { get; set; }
 		}
 
 		#endregion
 
-		#region PgStatGetProgressInfo
+		#region pg_stat_get_progress_info
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_stat_get_progress_info")]
-		public ITable<PgStatGetProgressInfoResult> PgStatGetProgressInfo(string cmdtype)
+		public ITable<pg_stat_get_progress_infoResult> pg_stat_get_progress_info(string cmdtype)
 		{
-			return this.GetTable<PgStatGetProgressInfoResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_stat_get_progress_infoResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				cmdtype);
 		}
 
-		public partial class PgStatGetProgressInfoResult
+		public partial class pg_stat_get_progress_infoResult
 		{
 			public int?  pid     { get; set; }
 			public int?  datid   { get; set; }
@@ -967,15 +967,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgStatGetWalSenders
+		#region pg_stat_get_wal_senders
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_stat_get_wal_senders")]
-		public ITable<PgStatGetWalSendersResult> PgStatGetWalSenders()
+		public ITable<pg_stat_get_wal_sendersResult> pg_stat_get_wal_senders()
 		{
-			return this.GetTable<PgStatGetWalSendersResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_stat_get_wal_sendersResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgStatGetWalSendersResult
+		public partial class pg_stat_get_wal_sendersResult
 		{
 			public int?            pid           { get; set; }
 			public string          state         { get; set; }
@@ -992,17 +992,17 @@ namespace DataModels
 
 		#endregion
 
-		#region PgStopBackup
+		#region pg_stop_backup
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_stop_backup")]
-		public ITable<PgStopBackupResult> PgStopBackup(bool? exclusive, bool? wait_for_archive)
+		public ITable<pg_stop_backupResult> pg_stop_backup(bool? exclusive, bool? wait_for_archive)
 		{
-			return this.GetTable<PgStopBackupResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_stop_backupResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				exclusive,
 				wait_for_archive);
 		}
 
-		public partial class PgStopBackupResult
+		public partial class pg_stop_backupResult
 		{
 			public string lsn        { get; set; }
 			public string labelfile  { get; set; }
@@ -1011,31 +1011,31 @@ namespace DataModels
 
 		#endregion
 
-		#region PgTablespaceDatabases
+		#region pg_tablespace_databases
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_tablespace_databases")]
-		public ITable<PgTablespaceDatabasesResult> PgTablespaceDatabases(int? par5322)
+		public ITable<pg_tablespace_databasesResult> pg_tablespace_databases(int? par5322)
 		{
-			return this.GetTable<PgTablespaceDatabasesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<pg_tablespace_databasesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par5322);
 		}
 
-		public partial class PgTablespaceDatabasesResult
+		public partial class pg_tablespace_databasesResult
 		{
 			public int? pg_tablespace_databases { get; set; }
 		}
 
 		#endregion
 
-		#region PgTimezoneAbbrevs
+		#region pg_timezone_abbrevs
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_timezone_abbrevs")]
-		public ITable<PgTimezoneAbbrevsResult> PgTimezoneAbbrevs()
+		public ITable<pg_timezone_abbrevsResult> pg_timezone_abbrevs()
 		{
-			return this.GetTable<PgTimezoneAbbrevsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_timezone_abbrevsResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgTimezoneAbbrevsResult
+		public partial class pg_timezone_abbrevsResult
 		{
 			public string          abbrev     { get; set; }
 			public NpgsqlTimeSpan? utc_offset { get; set; }
@@ -1044,15 +1044,15 @@ namespace DataModels
 
 		#endregion
 
-		#region PgTimezoneNames
+		#region pg_timezone_names
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="pg_timezone_names")]
-		public ITable<PgTimezoneNamesResult> PgTimezoneNames()
+		public ITable<pg_timezone_namesResult> pg_timezone_names()
 		{
-			return this.GetTable<PgTimezoneNamesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
+			return this.GetTable<pg_timezone_namesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod());
 		}
 
-		public partial class PgTimezoneNamesResult
+		public partial class pg_timezone_namesResult
 		{
 			public string          name       { get; set; }
 			public string          abbrev     { get; set; }
@@ -1062,52 +1062,52 @@ namespace DataModels
 
 		#endregion
 
-		#region RegexpMatches
+		#region regexp_matches
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="regexp_matches")]
-		public ITable<RegexpMatchesResult> RegexpMatches(string par5807, string par5808, string par5809)
+		public ITable<regexp_matchesResult> regexp_matches(string par5807, string par5808, string par5809)
 		{
-			return this.GetTable<RegexpMatchesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<regexp_matchesResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par5807,
 				par5808,
 				par5809);
 		}
 
-		public partial class RegexpMatchesResult
+		public partial class regexp_matchesResult
 		{
 			public Array regexp_matches { get; set; }
 		}
 
 		#endregion
 
-		#region RegexpSplitToTable
+		#region regexp_split_to_table
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="regexp_split_to_table")]
-		public ITable<RegexpSplitToTableResult> RegexpSplitToTable(string par5828, string par5829, string par5830)
+		public ITable<regexp_split_to_tableResult> regexp_split_to_table(string par5828, string par5829, string par5830)
 		{
-			return this.GetTable<RegexpSplitToTableResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<regexp_split_to_tableResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par5828,
 				par5829,
 				par5830);
 		}
 
-		public partial class RegexpSplitToTableResult
+		public partial class regexp_split_to_tableResult
 		{
 			public string regexp_split_to_table { get; set; }
 		}
 
 		#endregion
 
-		#region TsDebug
+		#region ts_debug
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="ts_debug")]
-		public ITable<TsDebugResult> TsDebug(string document)
+		public ITable<ts_debugResult> ts_debug(string document)
 		{
-			return this.GetTable<TsDebugResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<ts_debugResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				document);
 		}
 
-		public partial class TsDebugResult
+		public partial class ts_debugResult
 		{
 			public string alias        { get; set; }
 			public string description  { get; set; }
@@ -1119,17 +1119,17 @@ namespace DataModels
 
 		#endregion
 
-		#region TsParse
+		#region ts_parse
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="ts_parse")]
-		public ITable<TsParseResult> TsParse(string parser_name, string txt)
+		public ITable<ts_parseResult> ts_parse(string parser_name, string txt)
 		{
-			return this.GetTable<TsParseResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<ts_parseResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				parser_name,
 				txt);
 		}
 
-		public partial class TsParseResult
+		public partial class ts_parseResult
 		{
 			public int?   tokid { get; set; }
 			public string token { get; set; }
@@ -1137,17 +1137,17 @@ namespace DataModels
 
 		#endregion
 
-		#region TsStat
+		#region ts_stat
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="ts_stat")]
-		public ITable<TsStatResult> TsStat(string query, string weights)
+		public ITable<ts_statResult> ts_stat(string query, string weights)
 		{
-			return this.GetTable<TsStatResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<ts_statResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				query,
 				weights);
 		}
 
-		public partial class TsStatResult
+		public partial class ts_statResult
 		{
 			public string word   { get; set; }
 			public int?   ndoc   { get; set; }
@@ -1156,16 +1156,16 @@ namespace DataModels
 
 		#endregion
 
-		#region TsTokenType
+		#region ts_token_type
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="ts_token_type")]
-		public ITable<TsTokenTypeResult> TsTokenType(string parser_name)
+		public ITable<ts_token_typeResult> ts_token_type(string parser_name)
 		{
-			return this.GetTable<TsTokenTypeResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<ts_token_typeResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				parser_name);
 		}
 
-		public partial class TsTokenTypeResult
+		public partial class ts_token_typeResult
 		{
 			public int?   tokid       { get; set; }
 			public string alias       { get; set; }
@@ -1174,32 +1174,32 @@ namespace DataModels
 
 		#endregion
 
-		#region TxidSnapshotXip
+		#region txid_snapshot_xip
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="txid_snapshot_xip")]
-		public ITable<TxidSnapshotXipResult> TxidSnapshotXip(object par7231)
+		public ITable<txid_snapshot_xipResult> txid_snapshot_xip(object par7231)
 		{
-			return this.GetTable<TxidSnapshotXipResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<txid_snapshot_xipResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				par7231);
 		}
 
-		public partial class TxidSnapshotXipResult
+		public partial class txid_snapshot_xipResult
 		{
 			public long? txid_snapshot_xip { get; set; }
 		}
 
 		#endregion
 
-		#region Unnest
+		#region unnest
 
 		[Sql.TableFunction(Schema="pg_catalog", Name="unnest")]
-		public ITable<UnnestResult> Unnest(object tsvector)
+		public ITable<unnestResult> unnest(object tsvector)
 		{
-			return this.GetTable<UnnestResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
+			return this.GetTable<unnestResult>(this, (MethodInfo)MethodBase.GetCurrentMethod(),
 				tsvector);
 		}
 
-		public partial class UnnestResult
+		public partial class unnestResult
 		{
 			public string lexeme    { get; set; }
 			public Array  positions { get; set; }
@@ -1456,23267 +1456,23269 @@ namespace DataModels
 	}
 
 	[Table(Schema="public", Name="dd")]
-	public partial class Dd
+	public partial class dd
 	{
-		[Column("dd2"), Nullable] public string Dd2 { get; set; } // character varying(255)
+		[Column("dd"), Nullable] public string dd_Column { get; set; } // character varying(255)
+		[Column(),     Nullable] public string dd2       { get; set; } // character varying(255)
 	}
 
 	public static partial class SqlFunctions
 	{
-		#region Abbrev
+		#region abbrev
 
 		[Sql.Function(Name="pg_catalog.abbrev", ServerSideOnly=true)]
-		public static string Abbrev(NpgsqlInet? par4)
+		public static string abbrev(NpgsqlInet? par4)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abs
+		#region abs
 
 		[Sql.Function(Name="pg_catalog.abs", ServerSideOnly=true)]
-		public static decimal? Abs(decimal? par16)
+		public static decimal? abs(decimal? par16)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstime
+		#region abstime
 
 		[Sql.Function(Name="pg_catalog.abstime", ServerSideOnly=true)]
-		public static object Abstime(DateTime? par20)
+		public static object abstime(DateTime? par20)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimeeq
+		#region abstimeeq
 
 		[Sql.Function(Name="pg_catalog.abstimeeq", ServerSideOnly=true)]
-		public static bool? Abstimeeq(object par22, object par23)
+		public static bool? abstimeeq(object par22, object par23)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimege
+		#region abstimege
 
 		[Sql.Function(Name="pg_catalog.abstimege", ServerSideOnly=true)]
-		public static bool? Abstimege(object par25, object par26)
+		public static bool? abstimege(object par25, object par26)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimegt
+		#region abstimegt
 
 		[Sql.Function(Name="pg_catalog.abstimegt", ServerSideOnly=true)]
-		public static bool? Abstimegt(object par28, object par29)
+		public static bool? abstimegt(object par28, object par29)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimein
+		#region abstimein
 
 		[Sql.Function(Name="pg_catalog.abstimein", ServerSideOnly=true)]
-		public static object Abstimein(object par31)
+		public static object abstimein(object par31)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimele
+		#region abstimele
 
 		[Sql.Function(Name="pg_catalog.abstimele", ServerSideOnly=true)]
-		public static bool? Abstimele(object par33, object par34)
+		public static bool? abstimele(object par33, object par34)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimelt
+		#region abstimelt
 
 		[Sql.Function(Name="pg_catalog.abstimelt", ServerSideOnly=true)]
-		public static bool? Abstimelt(object par36, object par37)
+		public static bool? abstimelt(object par36, object par37)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimene
+		#region abstimene
 
 		[Sql.Function(Name="pg_catalog.abstimene", ServerSideOnly=true)]
-		public static bool? Abstimene(object par39, object par40)
+		public static bool? abstimene(object par39, object par40)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimeout
+		#region abstimeout
 
 		[Sql.Function(Name="pg_catalog.abstimeout", ServerSideOnly=true)]
-		public static object Abstimeout(object par42)
+		public static object abstimeout(object par42)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimerecv
+		#region abstimerecv
 
 		[Sql.Function(Name="pg_catalog.abstimerecv", ServerSideOnly=true)]
-		public static object Abstimerecv(object par44)
+		public static object abstimerecv(object par44)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Abstimesend
+		#region abstimesend
 
 		[Sql.Function(Name="pg_catalog.abstimesend", ServerSideOnly=true)]
-		public static byte[] Abstimesend(object par46)
+		public static byte[] abstimesend(object par46)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclcontains
+		#region aclcontains
 
 		[Sql.Function(Name="pg_catalog.aclcontains", ServerSideOnly=true)]
-		public static bool? Aclcontains(object par48, object par49)
+		public static bool? aclcontains(object par48, object par49)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Acldefault
+		#region acldefault
 
 		[Sql.Function(Name="pg_catalog.acldefault", ServerSideOnly=true)]
-		public static object Acldefault(object par51, int? par52)
+		public static object acldefault(object par51, int? par52)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclinsert
+		#region aclinsert
 
 		[Sql.Function(Name="pg_catalog.aclinsert", ServerSideOnly=true)]
-		public static object Aclinsert(object par54, object par55)
+		public static object aclinsert(object par54, object par55)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclitemeq
+		#region aclitemeq
 
 		[Sql.Function(Name="pg_catalog.aclitemeq", ServerSideOnly=true)]
-		public static bool? Aclitemeq(object par57, object par58)
+		public static bool? aclitemeq(object par57, object par58)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclitemin
+		#region aclitemin
 
 		[Sql.Function(Name="pg_catalog.aclitemin", ServerSideOnly=true)]
-		public static object Aclitemin(object par60)
+		public static object aclitemin(object par60)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclitemout
+		#region aclitemout
 
 		[Sql.Function(Name="pg_catalog.aclitemout", ServerSideOnly=true)]
-		public static object Aclitemout(object par62)
+		public static object aclitemout(object par62)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Aclremove
+		#region aclremove
 
 		[Sql.Function(Name="pg_catalog.aclremove", ServerSideOnly=true)]
-		public static object Aclremove(object par64, object par65)
+		public static object aclremove(object par64, object par65)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Acos
+		#region acos
 
 		[Sql.Function(Name="pg_catalog.acos", ServerSideOnly=true)]
-		public static double? Acos(double? par67)
+		public static double? acos(double? par67)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Acosd
+		#region acosd
 
 		[Sql.Function(Name="pg_catalog.acosd", ServerSideOnly=true)]
-		public static double? Acosd(double? par69)
+		public static double? acosd(double? par69)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Age
+		#region age
 
 		[Sql.Function(Name="pg_catalog.age", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? Age(DateTime? par81)
+		public static NpgsqlTimeSpan? age(DateTime? par81)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Amvalidate
+		#region amvalidate
 
 		[Sql.Function(Name="pg_catalog.amvalidate", ServerSideOnly=true)]
-		public static bool? Amvalidate(int? par83)
+		public static bool? amvalidate(int? par83)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyarrayIn
+		#region anyarray_in
 
 		[Sql.Function(Name="pg_catalog.anyarray_in", ServerSideOnly=true)]
-		public static object AnyarrayIn(object par85)
+		public static object anyarray_in(object par85)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyarrayOut
+		#region anyarray_out
 
 		[Sql.Function(Name="pg_catalog.anyarray_out", ServerSideOnly=true)]
-		public static object AnyarrayOut(object par87)
+		public static object anyarray_out(object par87)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyarrayRecv
+		#region anyarray_recv
 
 		[Sql.Function(Name="pg_catalog.anyarray_recv", ServerSideOnly=true)]
-		public static object AnyarrayRecv(object par89)
+		public static object anyarray_recv(object par89)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyarraySend
+		#region anyarray_send
 
 		[Sql.Function(Name="pg_catalog.anyarray_send", ServerSideOnly=true)]
-		public static byte[] AnyarraySend(object par91)
+		public static byte[] anyarray_send(object par91)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyelementIn
+		#region anyelement_in
 
 		[Sql.Function(Name="pg_catalog.anyelement_in", ServerSideOnly=true)]
-		public static object AnyelementIn(object par93)
+		public static object anyelement_in(object par93)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyelementOut
+		#region anyelement_out
 
 		[Sql.Function(Name="pg_catalog.anyelement_out", ServerSideOnly=true)]
-		public static object AnyelementOut(object par95)
+		public static object anyelement_out(object par95)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyenumIn
+		#region anyenum_in
 
 		[Sql.Function(Name="pg_catalog.anyenum_in", ServerSideOnly=true)]
-		public static object AnyenumIn(object par97)
+		public static object anyenum_in(object par97)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyenumOut
+		#region anyenum_out
 
 		[Sql.Function(Name="pg_catalog.anyenum_out", ServerSideOnly=true)]
-		public static object AnyenumOut(object par99)
+		public static object anyenum_out(object par99)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyIn
+		#region any_in
 
 		[Sql.Function(Name="pg_catalog.any_in", ServerSideOnly=true)]
-		public static object AnyIn(object par101)
+		public static object any_in(object par101)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnynonarrayIn
+		#region anynonarray_in
 
 		[Sql.Function(Name="pg_catalog.anynonarray_in", ServerSideOnly=true)]
-		public static object AnynonarrayIn(object par103)
+		public static object anynonarray_in(object par103)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnynonarrayOut
+		#region anynonarray_out
 
 		[Sql.Function(Name="pg_catalog.anynonarray_out", ServerSideOnly=true)]
-		public static object AnynonarrayOut(object par105)
+		public static object anynonarray_out(object par105)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyOut
+		#region any_out
 
 		[Sql.Function(Name="pg_catalog.any_out", ServerSideOnly=true)]
-		public static object AnyOut(object par107)
+		public static object any_out(object par107)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyrangeIn
+		#region anyrange_in
 
 		[Sql.Function(Name="pg_catalog.anyrange_in", ServerSideOnly=true)]
-		public static object AnyrangeIn(object par109, int? par110, int? par111)
+		public static object anyrange_in(object par109, int? par110, int? par111)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AnyrangeOut
+		#region anyrange_out
 
 		[Sql.Function(Name="pg_catalog.anyrange_out", ServerSideOnly=true)]
-		public static object AnyrangeOut(object par113)
+		public static object anyrange_out(object par113)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Anytextcat
+		#region anytextcat
 
 		[Sql.Function(Name="pg_catalog.anytextcat", ServerSideOnly=true)]
-		public static string Anytextcat(object par115, string par116)
+		public static string anytextcat(object par115, string par116)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Area
+		#region area
 
 		[Sql.Function(Name="pg_catalog.area", ServerSideOnly=true)]
-		public static double? Area(NpgsqlPath? par122)
+		public static double? area(NpgsqlPath? par122)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Areajoinsel
+		#region areajoinsel
 
 		[Sql.Function(Name="pg_catalog.areajoinsel", ServerSideOnly=true)]
-		public static double? Areajoinsel(object par124, int? par125, object par126, short? par127, object par128)
+		public static double? areajoinsel(object par124, int? par125, object par126, short? par127, object par128)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Areasel
+		#region areasel
 
 		[Sql.Function(Name="pg_catalog.areasel", ServerSideOnly=true)]
-		public static double? Areasel(object par130, int? par131, object par132, int? par133)
+		public static double? areasel(object par130, int? par131, object par132, int? par133)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAgg
+		#region array_agg
 
 		[Sql.Function(Name="pg_catalog.array_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static object ArrayAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par137)
+		public static object array_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par137)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAggArrayFinalfn
+		#region array_agg_array_finalfn
 
 		[Sql.Function(Name="pg_catalog.array_agg_array_finalfn", ServerSideOnly=true)]
-		public static object ArrayAggArrayFinalfn(object par139, object par140)
+		public static object array_agg_array_finalfn(object par139, object par140)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAggArrayTransfn
+		#region array_agg_array_transfn
 
 		[Sql.Function(Name="pg_catalog.array_agg_array_transfn", ServerSideOnly=true)]
-		public static object ArrayAggArrayTransfn(object par142, object par143)
+		public static object array_agg_array_transfn(object par142, object par143)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAggFinalfn
+		#region array_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.array_agg_finalfn", ServerSideOnly=true)]
-		public static object ArrayAggFinalfn(object par145, object par146)
+		public static object array_agg_finalfn(object par145, object par146)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAggTransfn
+		#region array_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.array_agg_transfn", ServerSideOnly=true)]
-		public static object ArrayAggTransfn(object par148, object par149)
+		public static object array_agg_transfn(object par148, object par149)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayAppend
+		#region array_append
 
 		[Sql.Function(Name="pg_catalog.array_append", ServerSideOnly=true)]
-		public static object ArrayAppend(object par151, object par152)
+		public static object array_append(object par151, object par152)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayCat
+		#region array_cat
 
 		[Sql.Function(Name="pg_catalog.array_cat", ServerSideOnly=true)]
-		public static object ArrayCat(object par154, object par155)
+		public static object array_cat(object par154, object par155)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Arraycontained
+		#region arraycontained
 
 		[Sql.Function(Name="pg_catalog.arraycontained", ServerSideOnly=true)]
-		public static bool? Arraycontained(object par157, object par158)
+		public static bool? arraycontained(object par157, object par158)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Arraycontains
+		#region arraycontains
 
 		[Sql.Function(Name="pg_catalog.arraycontains", ServerSideOnly=true)]
-		public static bool? Arraycontains(object par160, object par161)
+		public static bool? arraycontains(object par160, object par161)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Arraycontjoinsel
+		#region arraycontjoinsel
 
 		[Sql.Function(Name="pg_catalog.arraycontjoinsel", ServerSideOnly=true)]
-		public static double? Arraycontjoinsel(object par163, int? par164, object par165, short? par166, object par167)
+		public static double? arraycontjoinsel(object par163, int? par164, object par165, short? par166, object par167)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Arraycontsel
+		#region arraycontsel
 
 		[Sql.Function(Name="pg_catalog.arraycontsel", ServerSideOnly=true)]
-		public static double? Arraycontsel(object par169, int? par170, object par171, int? par172)
+		public static double? arraycontsel(object par169, int? par170, object par171, int? par172)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayDims
+		#region array_dims
 
 		[Sql.Function(Name="pg_catalog.array_dims", ServerSideOnly=true)]
-		public static string ArrayDims(object par174)
+		public static string array_dims(object par174)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayEq
+		#region array_eq
 
 		[Sql.Function(Name="pg_catalog.array_eq", ServerSideOnly=true)]
-		public static bool? ArrayEq(object par176, object par177)
+		public static bool? array_eq(object par176, object par177)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayFill
+		#region array_fill
 
 		[Sql.Function(Name="pg_catalog.array_fill", ServerSideOnly=true)]
-		public static object ArrayFill(object par182, object par183, object par184)
+		public static object array_fill(object par182, object par183, object par184)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayGe
+		#region array_ge
 
 		[Sql.Function(Name="pg_catalog.array_ge", ServerSideOnly=true)]
-		public static bool? ArrayGe(object par186, object par187)
+		public static bool? array_ge(object par186, object par187)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayGt
+		#region array_gt
 
 		[Sql.Function(Name="pg_catalog.array_gt", ServerSideOnly=true)]
-		public static bool? ArrayGt(object par189, object par190)
+		public static bool? array_gt(object par189, object par190)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayIn
+		#region array_in
 
 		[Sql.Function(Name="pg_catalog.array_in", ServerSideOnly=true)]
-		public static object ArrayIn(object par192, int? par193, int? par194)
+		public static object array_in(object par192, int? par193, int? par194)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayLarger
+		#region array_larger
 
 		[Sql.Function(Name="pg_catalog.array_larger", ServerSideOnly=true)]
-		public static object ArrayLarger(object par196, object par197)
+		public static object array_larger(object par196, object par197)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayLe
+		#region array_le
 
 		[Sql.Function(Name="pg_catalog.array_le", ServerSideOnly=true)]
-		public static bool? ArrayLe(object par199, object par200)
+		public static bool? array_le(object par199, object par200)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayLength
+		#region array_length
 
 		[Sql.Function(Name="pg_catalog.array_length", ServerSideOnly=true)]
-		public static int? ArrayLength(object par202, int? par203)
+		public static int? array_length(object par202, int? par203)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayLower
+		#region array_lower
 
 		[Sql.Function(Name="pg_catalog.array_lower", ServerSideOnly=true)]
-		public static int? ArrayLower(object par205, int? par206)
+		public static int? array_lower(object par205, int? par206)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayLt
+		#region array_lt
 
 		[Sql.Function(Name="pg_catalog.array_lt", ServerSideOnly=true)]
-		public static bool? ArrayLt(object par208, object par209)
+		public static bool? array_lt(object par208, object par209)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayNdims
+		#region array_ndims
 
 		[Sql.Function(Name="pg_catalog.array_ndims", ServerSideOnly=true)]
-		public static int? ArrayNdims(object par211)
+		public static int? array_ndims(object par211)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayNe
+		#region array_ne
 
 		[Sql.Function(Name="pg_catalog.array_ne", ServerSideOnly=true)]
-		public static bool? ArrayNe(object par213, object par214)
+		public static bool? array_ne(object par213, object par214)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayOut
+		#region array_out
 
 		[Sql.Function(Name="pg_catalog.array_out", ServerSideOnly=true)]
-		public static object ArrayOut(object par216)
+		public static object array_out(object par216)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Arrayoverlap
+		#region arrayoverlap
 
 		[Sql.Function(Name="pg_catalog.arrayoverlap", ServerSideOnly=true)]
-		public static bool? Arrayoverlap(object par218, object par219)
+		public static bool? arrayoverlap(object par218, object par219)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayPosition
+		#region array_position
 
 		[Sql.Function(Name="pg_catalog.array_position", ServerSideOnly=true)]
-		public static int? ArrayPosition(object par224, object par225, int? par226)
+		public static int? array_position(object par224, object par225, int? par226)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayPositions
+		#region array_positions
 
 		[Sql.Function(Name="pg_catalog.array_positions", ServerSideOnly=true)]
-		public static object ArrayPositions(object par228, object par229)
+		public static object array_positions(object par228, object par229)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayPrepend
+		#region array_prepend
 
 		[Sql.Function(Name="pg_catalog.array_prepend", ServerSideOnly=true)]
-		public static object ArrayPrepend(object par231, object par232)
+		public static object array_prepend(object par231, object par232)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayRecv
+		#region array_recv
 
 		[Sql.Function(Name="pg_catalog.array_recv", ServerSideOnly=true)]
-		public static object ArrayRecv(object par234, int? par235, int? par236)
+		public static object array_recv(object par234, int? par235, int? par236)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayRemove
+		#region array_remove
 
 		[Sql.Function(Name="pg_catalog.array_remove", ServerSideOnly=true)]
-		public static object ArrayRemove(object par238, object par239)
+		public static object array_remove(object par238, object par239)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayReplace
+		#region array_replace
 
 		[Sql.Function(Name="pg_catalog.array_replace", ServerSideOnly=true)]
-		public static object ArrayReplace(object par241, object par242, object par243)
+		public static object array_replace(object par241, object par242, object par243)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArraySend
+		#region array_send
 
 		[Sql.Function(Name="pg_catalog.array_send", ServerSideOnly=true)]
-		public static byte[] ArraySend(object par245)
+		public static byte[] array_send(object par245)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArraySmaller
+		#region array_smaller
 
 		[Sql.Function(Name="pg_catalog.array_smaller", ServerSideOnly=true)]
-		public static object ArraySmaller(object par247, object par248)
+		public static object array_smaller(object par247, object par248)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayToJson
+		#region array_to_json
 
 		[Sql.Function(Name="pg_catalog.array_to_json", ServerSideOnly=true)]
-		public static string ArrayToJson(object par252, bool? par253)
+		public static string array_to_json(object par252, bool? par253)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayToString
+		#region array_to_string
 
 		[Sql.Function(Name="pg_catalog.array_to_string", ServerSideOnly=true)]
-		public static string ArrayToString(object par259, string par260)
+		public static string array_to_string(object par259, string par260)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayToTsvector
+		#region array_to_tsvector
 
 		[Sql.Function(Name="pg_catalog.array_to_tsvector", ServerSideOnly=true)]
-		public static object ArrayToTsvector(object par262)
+		public static object array_to_tsvector(object par262)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayTypanalyze
+		#region array_typanalyze
 
 		[Sql.Function(Name="pg_catalog.array_typanalyze", ServerSideOnly=true)]
-		public static bool? ArrayTypanalyze(object par264)
+		public static bool? array_typanalyze(object par264)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ArrayUpper
+		#region array_upper
 
 		[Sql.Function(Name="pg_catalog.array_upper", ServerSideOnly=true)]
-		public static int? ArrayUpper(object par266, int? par267)
+		public static int? array_upper(object par266, int? par267)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ascii
+		#region ascii
 
 		[Sql.Function(Name="pg_catalog.ascii", ServerSideOnly=true)]
-		public static int? Ascii(string par269)
+		public static int? ascii(string par269)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AsciiToMic
+		#region ascii_to_mic
 
 		[Sql.Function(Name="pg_catalog.ascii_to_mic", ServerSideOnly=true)]
-		public static object AsciiToMic(int? par270, int? par271, object par272, object par273, int? par274)
+		public static object ascii_to_mic(int? par270, int? par271, object par272, object par273, int? par274)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region AsciiToUtf8
+		#region ascii_to_utf8
 
 		[Sql.Function(Name="pg_catalog.ascii_to_utf8", ServerSideOnly=true)]
-		public static object AsciiToUtf8(int? par275, int? par276, object par277, object par278, int? par279)
+		public static object ascii_to_utf8(int? par275, int? par276, object par277, object par278, int? par279)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Asin
+		#region asin
 
 		[Sql.Function(Name="pg_catalog.asin", ServerSideOnly=true)]
-		public static double? Asin(double? par281)
+		public static double? asin(double? par281)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Asind
+		#region asind
 
 		[Sql.Function(Name="pg_catalog.asind", ServerSideOnly=true)]
-		public static double? Asind(double? par283)
+		public static double? asind(double? par283)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Atan
+		#region atan
 
 		[Sql.Function(Name="pg_catalog.atan", ServerSideOnly=true)]
-		public static double? Atan(double? par285)
+		public static double? atan(double? par285)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Atan2
+		#region atan2
 
 		[Sql.Function(Name="pg_catalog.atan2", ServerSideOnly=true)]
-		public static double? Atan2(double? par287, double? par288)
+		public static double? atan2(double? par287, double? par288)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Atan2d
+		#region atan2d
 
 		[Sql.Function(Name="pg_catalog.atan2d", ServerSideOnly=true)]
-		public static double? Atan2d(double? par290, double? par291)
+		public static double? atan2d(double? par290, double? par291)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Atand
+		#region atand
 
 		[Sql.Function(Name="pg_catalog.atand", ServerSideOnly=true)]
-		public static double? Atand(double? par293)
+		public static double? atand(double? par293)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Avg
+		#region avg
 
 		[Sql.Function(Name="pg_catalog.avg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static NpgsqlTimeSpan? Avg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlTimeSpan?>> par307)
+		public static NpgsqlTimeSpan? avg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlTimeSpan?>> par307)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bernoulli
+		#region bernoulli
 
 		[Sql.Function(Name="pg_catalog.bernoulli", ServerSideOnly=true)]
-		public static object Bernoulli(object par309)
+		public static object bernoulli(object par309)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Big5ToEucTw
+		#region big5_to_euc_tw
 
 		[Sql.Function(Name="pg_catalog.big5_to_euc_tw", ServerSideOnly=true)]
-		public static object Big5ToEucTw(int? par310, int? par311, object par312, object par313, int? par314)
+		public static object big5_to_euc_tw(int? par310, int? par311, object par312, object par313, int? par314)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Big5ToMic
+		#region big5_to_mic
 
 		[Sql.Function(Name="pg_catalog.big5_to_mic", ServerSideOnly=true)]
-		public static object Big5ToMic(int? par315, int? par316, object par317, object par318, int? par319)
+		public static object big5_to_mic(int? par315, int? par316, object par317, object par318, int? par319)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Big5ToUtf8
+		#region big5_to_utf8
 
 		[Sql.Function(Name="pg_catalog.big5_to_utf8", ServerSideOnly=true)]
-		public static object Big5ToUtf8(int? par320, int? par321, object par322, object par323, int? par324)
+		public static object big5_to_utf8(int? par320, int? par321, object par322, object par323, int? par324)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeCreateEmptyExtension
+		#region binary_upgrade_create_empty_extension
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_create_empty_extension", ServerSideOnly=true)]
-		public static object BinaryUpgradeCreateEmptyExtension(string par325, string par326, bool? par327, string par328, object par329, object par330, object par331)
+		public static object binary_upgrade_create_empty_extension(string par325, string par326, bool? par327, string par328, object par329, object par330, object par331)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextArrayPgTypeOid
+		#region binary_upgrade_set_next_array_pg_type_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_array_pg_type_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextArrayPgTypeOid(int? par332)
+		public static object binary_upgrade_set_next_array_pg_type_oid(int? par332)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextHeapPgClassOid
+		#region binary_upgrade_set_next_heap_pg_class_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_heap_pg_class_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextHeapPgClassOid(int? par333)
+		public static object binary_upgrade_set_next_heap_pg_class_oid(int? par333)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextIndexPgClassOid
+		#region binary_upgrade_set_next_index_pg_class_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_index_pg_class_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextIndexPgClassOid(int? par334)
+		public static object binary_upgrade_set_next_index_pg_class_oid(int? par334)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextPgAuthidOid
+		#region binary_upgrade_set_next_pg_authid_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_pg_authid_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextPgAuthidOid(int? par335)
+		public static object binary_upgrade_set_next_pg_authid_oid(int? par335)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextPgEnumOid
+		#region binary_upgrade_set_next_pg_enum_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_pg_enum_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextPgEnumOid(int? par336)
+		public static object binary_upgrade_set_next_pg_enum_oid(int? par336)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextPgTypeOid
+		#region binary_upgrade_set_next_pg_type_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_pg_type_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextPgTypeOid(int? par337)
+		public static object binary_upgrade_set_next_pg_type_oid(int? par337)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextToastPgClassOid
+		#region binary_upgrade_set_next_toast_pg_class_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_toast_pg_class_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextToastPgClassOid(int? par338)
+		public static object binary_upgrade_set_next_toast_pg_class_oid(int? par338)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetNextToastPgTypeOid
+		#region binary_upgrade_set_next_toast_pg_type_oid
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_next_toast_pg_type_oid", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetNextToastPgTypeOid(int? par339)
+		public static object binary_upgrade_set_next_toast_pg_type_oid(int? par339)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BinaryUpgradeSetRecordInitPrivs
+		#region binary_upgrade_set_record_init_privs
 
 		[Sql.Function(Name="pg_catalog.binary_upgrade_set_record_init_privs", ServerSideOnly=true)]
-		public static object BinaryUpgradeSetRecordInitPrivs(bool? par340)
+		public static object binary_upgrade_set_record_init_privs(bool? par340)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bit
+		#region bit
 
 		[Sql.Function(Name="pg_catalog.bit", ServerSideOnly=true)]
-		public static BitArray Bit(long? par349, int? par350)
+		public static BitArray bit(long? par349, int? par350)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitand
+		#region bitand
 
 		[Sql.Function(Name="pg_catalog.bitand", ServerSideOnly=true)]
-		public static BitArray Bitand(BitArray par352, BitArray par353)
+		public static BitArray bitand(BitArray par352, BitArray par353)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitAnd
+		#region bit_and
 
 		[Sql.Function(Name="pg_catalog.bit_and", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static BitArray BitAnd<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, BitArray>> par361)
+		public static BitArray bit_and<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, BitArray>> par361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitcat
+		#region bitcat
 
 		[Sql.Function(Name="pg_catalog.bitcat", ServerSideOnly=true)]
-		public static BitArray Bitcat(BitArray par363, BitArray par364)
+		public static BitArray bitcat(BitArray par363, BitArray par364)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitcmp
+		#region bitcmp
 
 		[Sql.Function(Name="pg_catalog.bitcmp", ServerSideOnly=true)]
-		public static int? Bitcmp(BitArray par366, BitArray par367)
+		public static int? bitcmp(BitArray par366, BitArray par367)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Biteq
+		#region biteq
 
 		[Sql.Function(Name="pg_catalog.biteq", ServerSideOnly=true)]
-		public static bool? Biteq(BitArray par369, BitArray par370)
+		public static bool? biteq(BitArray par369, BitArray par370)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitge
+		#region bitge
 
 		[Sql.Function(Name="pg_catalog.bitge", ServerSideOnly=true)]
-		public static bool? Bitge(BitArray par372, BitArray par373)
+		public static bool? bitge(BitArray par372, BitArray par373)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitgt
+		#region bitgt
 
 		[Sql.Function(Name="pg_catalog.bitgt", ServerSideOnly=true)]
-		public static bool? Bitgt(BitArray par375, BitArray par376)
+		public static bool? bitgt(BitArray par375, BitArray par376)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitIn
+		#region bit_in
 
 		[Sql.Function(Name="pg_catalog.bit_in", ServerSideOnly=true)]
-		public static BitArray BitIn(object par378, int? par379, int? par380)
+		public static BitArray bit_in(object par378, int? par379, int? par380)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitle
+		#region bitle
 
 		[Sql.Function(Name="pg_catalog.bitle", ServerSideOnly=true)]
-		public static bool? Bitle(BitArray par382, BitArray par383)
+		public static bool? bitle(BitArray par382, BitArray par383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitLength
+		#region bit_length
 
 		[Sql.Function(Name="pg_catalog.bit_length", ServerSideOnly=true)]
-		public static int? BitLength(BitArray par389)
+		public static int? bit_length(BitArray par389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitlt
+		#region bitlt
 
 		[Sql.Function(Name="pg_catalog.bitlt", ServerSideOnly=true)]
-		public static bool? Bitlt(BitArray par391, BitArray par392)
+		public static bool? bitlt(BitArray par391, BitArray par392)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitne
+		#region bitne
 
 		[Sql.Function(Name="pg_catalog.bitne", ServerSideOnly=true)]
-		public static bool? Bitne(BitArray par394, BitArray par395)
+		public static bool? bitne(BitArray par394, BitArray par395)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitnot
+		#region bitnot
 
 		[Sql.Function(Name="pg_catalog.bitnot", ServerSideOnly=true)]
-		public static BitArray Bitnot(BitArray par397)
+		public static BitArray bitnot(BitArray par397)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitor
+		#region bitor
 
 		[Sql.Function(Name="pg_catalog.bitor", ServerSideOnly=true)]
-		public static BitArray Bitor(BitArray par399, BitArray par400)
+		public static BitArray bitor(BitArray par399, BitArray par400)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitOr
+		#region bit_or
 
 		[Sql.Function(Name="pg_catalog.bit_or", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static BitArray BitOr<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, BitArray>> par408)
+		public static BitArray bit_or<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, BitArray>> par408)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitOut
+		#region bit_out
 
 		[Sql.Function(Name="pg_catalog.bit_out", ServerSideOnly=true)]
-		public static object BitOut(BitArray par410)
+		public static object bit_out(BitArray par410)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitRecv
+		#region bit_recv
 
 		[Sql.Function(Name="pg_catalog.bit_recv", ServerSideOnly=true)]
-		public static BitArray BitRecv(object par412, int? par413, int? par414)
+		public static BitArray bit_recv(object par412, int? par413, int? par414)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BitSend
+		#region bit_send
 
 		[Sql.Function(Name="pg_catalog.bit_send", ServerSideOnly=true)]
-		public static byte[] BitSend(BitArray par416)
+		public static byte[] bit_send(BitArray par416)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitshiftleft
+		#region bitshiftleft
 
 		[Sql.Function(Name="pg_catalog.bitshiftleft", ServerSideOnly=true)]
-		public static BitArray Bitshiftleft(BitArray par418, int? par419)
+		public static BitArray bitshiftleft(BitArray par418, int? par419)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitshiftright
+		#region bitshiftright
 
 		[Sql.Function(Name="pg_catalog.bitshiftright", ServerSideOnly=true)]
-		public static BitArray Bitshiftright(BitArray par421, int? par422)
+		public static BitArray bitshiftright(BitArray par421, int? par422)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bittypmodin
+		#region bittypmodin
 
 		[Sql.Function(Name="pg_catalog.bittypmodin", ServerSideOnly=true)]
-		public static int? Bittypmodin(object par424)
+		public static int? bittypmodin(object par424)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bittypmodout
+		#region bittypmodout
 
 		[Sql.Function(Name="pg_catalog.bittypmodout", ServerSideOnly=true)]
-		public static object Bittypmodout(int? par426)
+		public static object bittypmodout(int? par426)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bitxor
+		#region bitxor
 
 		[Sql.Function(Name="pg_catalog.bitxor", ServerSideOnly=true)]
-		public static BitArray Bitxor(BitArray par428, BitArray par429)
+		public static BitArray bitxor(BitArray par428, BitArray par429)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bool
+		#region @bool
 
 		[Sql.Function(Name="pg_catalog.bool", ServerSideOnly=true)]
-		public static bool? Bool(int? par431)
+		public static bool? @bool(int? par431)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolAccum
+		#region bool_accum
 
 		[Sql.Function(Name="pg_catalog.bool_accum", ServerSideOnly=true)]
-		public static object BoolAccum(object par433, bool? par434)
+		public static object bool_accum(object par433, bool? par434)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolAccumInv
+		#region bool_accum_inv
 
 		[Sql.Function(Name="pg_catalog.bool_accum_inv", ServerSideOnly=true)]
-		public static object BoolAccumInv(object par436, bool? par437)
+		public static object bool_accum_inv(object par436, bool? par437)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolAlltrue
+		#region bool_alltrue
 
 		[Sql.Function(Name="pg_catalog.bool_alltrue", ServerSideOnly=true)]
-		public static bool? BoolAlltrue(object par439)
+		public static bool? bool_alltrue(object par439)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolAnd
+		#region bool_and
 
 		[Sql.Function(Name="pg_catalog.bool_and", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static bool? BoolAnd<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par441)
+		public static bool? bool_and<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par441)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolandStatefunc
+		#region booland_statefunc
 
 		[Sql.Function(Name="pg_catalog.booland_statefunc", ServerSideOnly=true)]
-		public static bool? BoolandStatefunc(bool? par443, bool? par444)
+		public static bool? booland_statefunc(bool? par443, bool? par444)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolAnytrue
+		#region bool_anytrue
 
 		[Sql.Function(Name="pg_catalog.bool_anytrue", ServerSideOnly=true)]
-		public static bool? BoolAnytrue(object par446)
+		public static bool? bool_anytrue(object par446)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Booleq
+		#region booleq
 
 		[Sql.Function(Name="pg_catalog.booleq", ServerSideOnly=true)]
-		public static bool? Booleq(bool? par448, bool? par449)
+		public static bool? booleq(bool? par448, bool? par449)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolge
+		#region boolge
 
 		[Sql.Function(Name="pg_catalog.boolge", ServerSideOnly=true)]
-		public static bool? Boolge(bool? par451, bool? par452)
+		public static bool? boolge(bool? par451, bool? par452)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolgt
+		#region boolgt
 
 		[Sql.Function(Name="pg_catalog.boolgt", ServerSideOnly=true)]
-		public static bool? Boolgt(bool? par454, bool? par455)
+		public static bool? boolgt(bool? par454, bool? par455)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolin
+		#region boolin
 
 		[Sql.Function(Name="pg_catalog.boolin", ServerSideOnly=true)]
-		public static bool? Boolin(object par457)
+		public static bool? boolin(object par457)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolle
+		#region boolle
 
 		[Sql.Function(Name="pg_catalog.boolle", ServerSideOnly=true)]
-		public static bool? Boolle(bool? par459, bool? par460)
+		public static bool? boolle(bool? par459, bool? par460)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boollt
+		#region boollt
 
 		[Sql.Function(Name="pg_catalog.boollt", ServerSideOnly=true)]
-		public static bool? Boollt(bool? par462, bool? par463)
+		public static bool? boollt(bool? par462, bool? par463)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolne
+		#region boolne
 
 		[Sql.Function(Name="pg_catalog.boolne", ServerSideOnly=true)]
-		public static bool? Boolne(bool? par465, bool? par466)
+		public static bool? boolne(bool? par465, bool? par466)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolOr
+		#region bool_or
 
 		[Sql.Function(Name="pg_catalog.bool_or", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static bool? BoolOr<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par468)
+		public static bool? bool_or<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par468)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoolorStatefunc
+		#region boolor_statefunc
 
 		[Sql.Function(Name="pg_catalog.boolor_statefunc", ServerSideOnly=true)]
-		public static bool? BoolorStatefunc(bool? par470, bool? par471)
+		public static bool? boolor_statefunc(bool? par470, bool? par471)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolout
+		#region boolout
 
 		[Sql.Function(Name="pg_catalog.boolout", ServerSideOnly=true)]
-		public static object Boolout(bool? par473)
+		public static object boolout(bool? par473)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolrecv
+		#region boolrecv
 
 		[Sql.Function(Name="pg_catalog.boolrecv", ServerSideOnly=true)]
-		public static bool? Boolrecv(object par475)
+		public static bool? boolrecv(object par475)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Boolsend
+		#region boolsend
 
 		[Sql.Function(Name="pg_catalog.boolsend", ServerSideOnly=true)]
-		public static byte[] Boolsend(bool? par477)
+		public static byte[] boolsend(bool? par477)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoundBox
+		#region bound_box
 
 		[Sql.Function(Name="pg_catalog.bound_box", ServerSideOnly=true)]
-		public static NpgsqlBox? BoundBox(NpgsqlBox? par479, NpgsqlBox? par480)
+		public static NpgsqlBox? bound_box(NpgsqlBox? par479, NpgsqlBox? par480)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Box
+		#region box
 
 		[Sql.Function(Name="pg_catalog.box", ServerSideOnly=true)]
-		public static NpgsqlBox? Box(NpgsqlPoint? par489)
+		public static NpgsqlBox? box(NpgsqlPoint? par489)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxAbove
+		#region box_above
 
 		[Sql.Function(Name="pg_catalog.box_above", ServerSideOnly=true)]
-		public static bool? BoxAbove(NpgsqlBox? par491, NpgsqlBox? par492)
+		public static bool? box_above(NpgsqlBox? par491, NpgsqlBox? par492)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxAboveEq
+		#region box_above_eq
 
 		[Sql.Function(Name="pg_catalog.box_above_eq", ServerSideOnly=true)]
-		public static bool? BoxAboveEq(NpgsqlBox? par494, NpgsqlBox? par495)
+		public static bool? box_above_eq(NpgsqlBox? par494, NpgsqlBox? par495)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxAdd
+		#region box_add
 
 		[Sql.Function(Name="pg_catalog.box_add", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxAdd(NpgsqlBox? par497, NpgsqlPoint? par498)
+		public static NpgsqlBox? box_add(NpgsqlBox? par497, NpgsqlPoint? par498)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxBelow
+		#region box_below
 
 		[Sql.Function(Name="pg_catalog.box_below", ServerSideOnly=true)]
-		public static bool? BoxBelow(NpgsqlBox? par500, NpgsqlBox? par501)
+		public static bool? box_below(NpgsqlBox? par500, NpgsqlBox? par501)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxBelowEq
+		#region box_below_eq
 
 		[Sql.Function(Name="pg_catalog.box_below_eq", ServerSideOnly=true)]
-		public static bool? BoxBelowEq(NpgsqlBox? par503, NpgsqlBox? par504)
+		public static bool? box_below_eq(NpgsqlBox? par503, NpgsqlBox? par504)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxCenter
+		#region box_center
 
 		[Sql.Function(Name="pg_catalog.box_center", ServerSideOnly=true)]
-		public static NpgsqlPoint? BoxCenter(NpgsqlBox? par506)
+		public static NpgsqlPoint? box_center(NpgsqlBox? par506)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxContain
+		#region box_contain
 
 		[Sql.Function(Name="pg_catalog.box_contain", ServerSideOnly=true)]
-		public static bool? BoxContain(NpgsqlBox? par508, NpgsqlBox? par509)
+		public static bool? box_contain(NpgsqlBox? par508, NpgsqlBox? par509)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxContained
+		#region box_contained
 
 		[Sql.Function(Name="pg_catalog.box_contained", ServerSideOnly=true)]
-		public static bool? BoxContained(NpgsqlBox? par511, NpgsqlBox? par512)
+		public static bool? box_contained(NpgsqlBox? par511, NpgsqlBox? par512)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxContainPt
+		#region box_contain_pt
 
 		[Sql.Function(Name="pg_catalog.box_contain_pt", ServerSideOnly=true)]
-		public static bool? BoxContainPt(NpgsqlBox? par514, NpgsqlPoint? par515)
+		public static bool? box_contain_pt(NpgsqlBox? par514, NpgsqlPoint? par515)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxDistance
+		#region box_distance
 
 		[Sql.Function(Name="pg_catalog.box_distance", ServerSideOnly=true)]
-		public static double? BoxDistance(NpgsqlBox? par517, NpgsqlBox? par518)
+		public static double? box_distance(NpgsqlBox? par517, NpgsqlBox? par518)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxDiv
+		#region box_div
 
 		[Sql.Function(Name="pg_catalog.box_div", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxDiv(NpgsqlBox? par520, NpgsqlPoint? par521)
+		public static NpgsqlBox? box_div(NpgsqlBox? par520, NpgsqlPoint? par521)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxEq
+		#region box_eq
 
 		[Sql.Function(Name="pg_catalog.box_eq", ServerSideOnly=true)]
-		public static bool? BoxEq(NpgsqlBox? par523, NpgsqlBox? par524)
+		public static bool? box_eq(NpgsqlBox? par523, NpgsqlBox? par524)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxGe
+		#region box_ge
 
 		[Sql.Function(Name="pg_catalog.box_ge", ServerSideOnly=true)]
-		public static bool? BoxGe(NpgsqlBox? par526, NpgsqlBox? par527)
+		public static bool? box_ge(NpgsqlBox? par526, NpgsqlBox? par527)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxGt
+		#region box_gt
 
 		[Sql.Function(Name="pg_catalog.box_gt", ServerSideOnly=true)]
-		public static bool? BoxGt(NpgsqlBox? par529, NpgsqlBox? par530)
+		public static bool? box_gt(NpgsqlBox? par529, NpgsqlBox? par530)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxIn
+		#region box_in
 
 		[Sql.Function(Name="pg_catalog.box_in", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxIn(object par532)
+		public static NpgsqlBox? box_in(object par532)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxIntersect
+		#region box_intersect
 
 		[Sql.Function(Name="pg_catalog.box_intersect", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxIntersect(NpgsqlBox? par534, NpgsqlBox? par535)
+		public static NpgsqlBox? box_intersect(NpgsqlBox? par534, NpgsqlBox? par535)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxLe
+		#region box_le
 
 		[Sql.Function(Name="pg_catalog.box_le", ServerSideOnly=true)]
-		public static bool? BoxLe(NpgsqlBox? par537, NpgsqlBox? par538)
+		public static bool? box_le(NpgsqlBox? par537, NpgsqlBox? par538)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxLeft
+		#region box_left
 
 		[Sql.Function(Name="pg_catalog.box_left", ServerSideOnly=true)]
-		public static bool? BoxLeft(NpgsqlBox? par540, NpgsqlBox? par541)
+		public static bool? box_left(NpgsqlBox? par540, NpgsqlBox? par541)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxLt
+		#region box_lt
 
 		[Sql.Function(Name="pg_catalog.box_lt", ServerSideOnly=true)]
-		public static bool? BoxLt(NpgsqlBox? par543, NpgsqlBox? par544)
+		public static bool? box_lt(NpgsqlBox? par543, NpgsqlBox? par544)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxMul
+		#region box_mul
 
 		[Sql.Function(Name="pg_catalog.box_mul", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxMul(NpgsqlBox? par546, NpgsqlPoint? par547)
+		public static NpgsqlBox? box_mul(NpgsqlBox? par546, NpgsqlPoint? par547)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOut
+		#region box_out
 
 		[Sql.Function(Name="pg_catalog.box_out", ServerSideOnly=true)]
-		public static object BoxOut(NpgsqlBox? par549)
+		public static object box_out(NpgsqlBox? par549)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOverabove
+		#region box_overabove
 
 		[Sql.Function(Name="pg_catalog.box_overabove", ServerSideOnly=true)]
-		public static bool? BoxOverabove(NpgsqlBox? par551, NpgsqlBox? par552)
+		public static bool? box_overabove(NpgsqlBox? par551, NpgsqlBox? par552)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOverbelow
+		#region box_overbelow
 
 		[Sql.Function(Name="pg_catalog.box_overbelow", ServerSideOnly=true)]
-		public static bool? BoxOverbelow(NpgsqlBox? par554, NpgsqlBox? par555)
+		public static bool? box_overbelow(NpgsqlBox? par554, NpgsqlBox? par555)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOverlap
+		#region box_overlap
 
 		[Sql.Function(Name="pg_catalog.box_overlap", ServerSideOnly=true)]
-		public static bool? BoxOverlap(NpgsqlBox? par557, NpgsqlBox? par558)
+		public static bool? box_overlap(NpgsqlBox? par557, NpgsqlBox? par558)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOverleft
+		#region box_overleft
 
 		[Sql.Function(Name="pg_catalog.box_overleft", ServerSideOnly=true)]
-		public static bool? BoxOverleft(NpgsqlBox? par560, NpgsqlBox? par561)
+		public static bool? box_overleft(NpgsqlBox? par560, NpgsqlBox? par561)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxOverright
+		#region box_overright
 
 		[Sql.Function(Name="pg_catalog.box_overright", ServerSideOnly=true)]
-		public static bool? BoxOverright(NpgsqlBox? par563, NpgsqlBox? par564)
+		public static bool? box_overright(NpgsqlBox? par563, NpgsqlBox? par564)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxRecv
+		#region box_recv
 
 		[Sql.Function(Name="pg_catalog.box_recv", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxRecv(object par566)
+		public static NpgsqlBox? box_recv(object par566)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxRight
+		#region box_right
 
 		[Sql.Function(Name="pg_catalog.box_right", ServerSideOnly=true)]
-		public static bool? BoxRight(NpgsqlBox? par568, NpgsqlBox? par569)
+		public static bool? box_right(NpgsqlBox? par568, NpgsqlBox? par569)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxSame
+		#region box_same
 
 		[Sql.Function(Name="pg_catalog.box_same", ServerSideOnly=true)]
-		public static bool? BoxSame(NpgsqlBox? par571, NpgsqlBox? par572)
+		public static bool? box_same(NpgsqlBox? par571, NpgsqlBox? par572)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxSend
+		#region box_send
 
 		[Sql.Function(Name="pg_catalog.box_send", ServerSideOnly=true)]
-		public static byte[] BoxSend(NpgsqlBox? par574)
+		public static byte[] box_send(NpgsqlBox? par574)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BoxSub
+		#region box_sub
 
 		[Sql.Function(Name="pg_catalog.box_sub", ServerSideOnly=true)]
-		public static NpgsqlBox? BoxSub(NpgsqlBox? par576, NpgsqlPoint? par577)
+		public static NpgsqlBox? box_sub(NpgsqlBox? par576, NpgsqlPoint? par577)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchar
+		#region bpchar
 
 		[Sql.Function(Name="pg_catalog.bpchar", ServerSideOnly=true)]
-		public static string Bpchar(object par585)
+		public static string bpchar(object par585)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharcmp
+		#region bpcharcmp
 
 		[Sql.Function(Name="pg_catalog.bpcharcmp", ServerSideOnly=true)]
-		public static int? Bpcharcmp(string par587, string par588)
+		public static int? bpcharcmp(string par587, string par588)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchareq
+		#region bpchareq
 
 		[Sql.Function(Name="pg_catalog.bpchareq", ServerSideOnly=true)]
-		public static bool? Bpchareq(string par590, string par591)
+		public static bool? bpchareq(string par590, string par591)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharge
+		#region bpcharge
 
 		[Sql.Function(Name="pg_catalog.bpcharge", ServerSideOnly=true)]
-		public static bool? Bpcharge(string par593, string par594)
+		public static bool? bpcharge(string par593, string par594)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchargt
+		#region bpchargt
 
 		[Sql.Function(Name="pg_catalog.bpchargt", ServerSideOnly=true)]
-		public static bool? Bpchargt(string par596, string par597)
+		public static bool? bpchargt(string par596, string par597)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchariclike
+		#region bpchariclike
 
 		[Sql.Function(Name="pg_catalog.bpchariclike", ServerSideOnly=true)]
-		public static bool? Bpchariclike(string par599, string par600)
+		public static bool? bpchariclike(string par599, string par600)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharicnlike
+		#region bpcharicnlike
 
 		[Sql.Function(Name="pg_catalog.bpcharicnlike", ServerSideOnly=true)]
-		public static bool? Bpcharicnlike(string par602, string par603)
+		public static bool? bpcharicnlike(string par602, string par603)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharicregexeq
+		#region bpcharicregexeq
 
 		[Sql.Function(Name="pg_catalog.bpcharicregexeq", ServerSideOnly=true)]
-		public static bool? Bpcharicregexeq(string par605, string par606)
+		public static bool? bpcharicregexeq(string par605, string par606)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharicregexne
+		#region bpcharicregexne
 
 		[Sql.Function(Name="pg_catalog.bpcharicregexne", ServerSideOnly=true)]
-		public static bool? Bpcharicregexne(string par608, string par609)
+		public static bool? bpcharicregexne(string par608, string par609)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharin
+		#region bpcharin
 
 		[Sql.Function(Name="pg_catalog.bpcharin", ServerSideOnly=true)]
-		public static string Bpcharin(object par611, int? par612, int? par613)
+		public static string bpcharin(object par611, int? par612, int? par613)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharLarger
+		#region bpchar_larger
 
 		[Sql.Function(Name="pg_catalog.bpchar_larger", ServerSideOnly=true)]
-		public static string BpcharLarger(string par615, string par616)
+		public static string bpchar_larger(string par615, string par616)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharle
+		#region bpcharle
 
 		[Sql.Function(Name="pg_catalog.bpcharle", ServerSideOnly=true)]
-		public static bool? Bpcharle(string par618, string par619)
+		public static bool? bpcharle(string par618, string par619)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharlike
+		#region bpcharlike
 
 		[Sql.Function(Name="pg_catalog.bpcharlike", ServerSideOnly=true)]
-		public static bool? Bpcharlike(string par621, string par622)
+		public static bool? bpcharlike(string par621, string par622)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharlt
+		#region bpcharlt
 
 		[Sql.Function(Name="pg_catalog.bpcharlt", ServerSideOnly=true)]
-		public static bool? Bpcharlt(string par624, string par625)
+		public static bool? bpcharlt(string par624, string par625)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharne
+		#region bpcharne
 
 		[Sql.Function(Name="pg_catalog.bpcharne", ServerSideOnly=true)]
-		public static bool? Bpcharne(string par627, string par628)
+		public static bool? bpcharne(string par627, string par628)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharnlike
+		#region bpcharnlike
 
 		[Sql.Function(Name="pg_catalog.bpcharnlike", ServerSideOnly=true)]
-		public static bool? Bpcharnlike(string par630, string par631)
+		public static bool? bpcharnlike(string par630, string par631)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharout
+		#region bpcharout
 
 		[Sql.Function(Name="pg_catalog.bpcharout", ServerSideOnly=true)]
-		public static object Bpcharout(string par633)
+		public static object bpcharout(string par633)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharPatternGe
+		#region bpchar_pattern_ge
 
 		[Sql.Function(Name="pg_catalog.bpchar_pattern_ge", ServerSideOnly=true)]
-		public static bool? BpcharPatternGe(string par635, string par636)
+		public static bool? bpchar_pattern_ge(string par635, string par636)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharPatternGt
+		#region bpchar_pattern_gt
 
 		[Sql.Function(Name="pg_catalog.bpchar_pattern_gt", ServerSideOnly=true)]
-		public static bool? BpcharPatternGt(string par638, string par639)
+		public static bool? bpchar_pattern_gt(string par638, string par639)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharPatternLe
+		#region bpchar_pattern_le
 
 		[Sql.Function(Name="pg_catalog.bpchar_pattern_le", ServerSideOnly=true)]
-		public static bool? BpcharPatternLe(string par641, string par642)
+		public static bool? bpchar_pattern_le(string par641, string par642)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharPatternLt
+		#region bpchar_pattern_lt
 
 		[Sql.Function(Name="pg_catalog.bpchar_pattern_lt", ServerSideOnly=true)]
-		public static bool? BpcharPatternLt(string par644, string par645)
+		public static bool? bpchar_pattern_lt(string par644, string par645)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharrecv
+		#region bpcharrecv
 
 		[Sql.Function(Name="pg_catalog.bpcharrecv", ServerSideOnly=true)]
-		public static string Bpcharrecv(object par647, int? par648, int? par649)
+		public static string bpcharrecv(object par647, int? par648, int? par649)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharregexeq
+		#region bpcharregexeq
 
 		[Sql.Function(Name="pg_catalog.bpcharregexeq", ServerSideOnly=true)]
-		public static bool? Bpcharregexeq(string par651, string par652)
+		public static bool? bpcharregexeq(string par651, string par652)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharregexne
+		#region bpcharregexne
 
 		[Sql.Function(Name="pg_catalog.bpcharregexne", ServerSideOnly=true)]
-		public static bool? Bpcharregexne(string par654, string par655)
+		public static bool? bpcharregexne(string par654, string par655)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpcharsend
+		#region bpcharsend
 
 		[Sql.Function(Name="pg_catalog.bpcharsend", ServerSideOnly=true)]
-		public static byte[] Bpcharsend(string par657)
+		public static byte[] bpcharsend(string par657)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharSmaller
+		#region bpchar_smaller
 
 		[Sql.Function(Name="pg_catalog.bpchar_smaller", ServerSideOnly=true)]
-		public static string BpcharSmaller(string par659, string par660)
+		public static string bpchar_smaller(string par659, string par660)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BpcharSortsupport
+		#region bpchar_sortsupport
 
 		[Sql.Function(Name="pg_catalog.bpchar_sortsupport", ServerSideOnly=true)]
-		public static object BpcharSortsupport(object par661)
+		public static object bpchar_sortsupport(object par661)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchartypmodin
+		#region bpchartypmodin
 
 		[Sql.Function(Name="pg_catalog.bpchartypmodin", ServerSideOnly=true)]
-		public static int? Bpchartypmodin(object par663)
+		public static int? bpchartypmodin(object par663)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bpchartypmodout
+		#region bpchartypmodout
 
 		[Sql.Function(Name="pg_catalog.bpchartypmodout", ServerSideOnly=true)]
-		public static object Bpchartypmodout(int? par665)
+		public static object bpchartypmodout(int? par665)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinDesummarizeRange
+		#region brin_desummarize_range
 
 		[Sql.Function(Name="pg_catalog.brin_desummarize_range", ServerSideOnly=true)]
-		public static object BrinDesummarizeRange(object par666, long? par667)
+		public static object brin_desummarize_range(object par666, long? par667)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Brinhandler
+		#region brinhandler
 
 		[Sql.Function(Name="pg_catalog.brinhandler", ServerSideOnly=true)]
-		public static object Brinhandler(object par669)
+		public static object brinhandler(object par669)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinInclusionAddValue
+		#region brin_inclusion_add_value
 
 		[Sql.Function(Name="pg_catalog.brin_inclusion_add_value", ServerSideOnly=true)]
-		public static bool? BrinInclusionAddValue(object par671, object par672, object par673, object par674)
+		public static bool? brin_inclusion_add_value(object par671, object par672, object par673, object par674)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinInclusionConsistent
+		#region brin_inclusion_consistent
 
 		[Sql.Function(Name="pg_catalog.brin_inclusion_consistent", ServerSideOnly=true)]
-		public static bool? BrinInclusionConsistent(object par676, object par677, object par678)
+		public static bool? brin_inclusion_consistent(object par676, object par677, object par678)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinInclusionOpcinfo
+		#region brin_inclusion_opcinfo
 
 		[Sql.Function(Name="pg_catalog.brin_inclusion_opcinfo", ServerSideOnly=true)]
-		public static object BrinInclusionOpcinfo(object par680)
+		public static object brin_inclusion_opcinfo(object par680)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinInclusionUnion
+		#region brin_inclusion_union
 
 		[Sql.Function(Name="pg_catalog.brin_inclusion_union", ServerSideOnly=true)]
-		public static bool? BrinInclusionUnion(object par682, object par683, object par684)
+		public static bool? brin_inclusion_union(object par682, object par683, object par684)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinMinmaxAddValue
+		#region brin_minmax_add_value
 
 		[Sql.Function(Name="pg_catalog.brin_minmax_add_value", ServerSideOnly=true)]
-		public static bool? BrinMinmaxAddValue(object par686, object par687, object par688, object par689)
+		public static bool? brin_minmax_add_value(object par686, object par687, object par688, object par689)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinMinmaxConsistent
+		#region brin_minmax_consistent
 
 		[Sql.Function(Name="pg_catalog.brin_minmax_consistent", ServerSideOnly=true)]
-		public static bool? BrinMinmaxConsistent(object par691, object par692, object par693)
+		public static bool? brin_minmax_consistent(object par691, object par692, object par693)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinMinmaxOpcinfo
+		#region brin_minmax_opcinfo
 
 		[Sql.Function(Name="pg_catalog.brin_minmax_opcinfo", ServerSideOnly=true)]
-		public static object BrinMinmaxOpcinfo(object par695)
+		public static object brin_minmax_opcinfo(object par695)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinMinmaxUnion
+		#region brin_minmax_union
 
 		[Sql.Function(Name="pg_catalog.brin_minmax_union", ServerSideOnly=true)]
-		public static bool? BrinMinmaxUnion(object par697, object par698, object par699)
+		public static bool? brin_minmax_union(object par697, object par698, object par699)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinSummarizeNewValues
+		#region brin_summarize_new_values
 
 		[Sql.Function(Name="pg_catalog.brin_summarize_new_values", ServerSideOnly=true)]
-		public static int? BrinSummarizeNewValues(object par701)
+		public static int? brin_summarize_new_values(object par701)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BrinSummarizeRange
+		#region brin_summarize_range
 
 		[Sql.Function(Name="pg_catalog.brin_summarize_range", ServerSideOnly=true)]
-		public static int? BrinSummarizeRange(object par703, long? par704)
+		public static int? brin_summarize_range(object par703, long? par704)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Broadcast
+		#region broadcast
 
 		[Sql.Function(Name="pg_catalog.broadcast", ServerSideOnly=true)]
-		public static NpgsqlInet? Broadcast(NpgsqlInet? par706)
+		public static NpgsqlInet? broadcast(NpgsqlInet? par706)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btabstimecmp
+		#region btabstimecmp
 
 		[Sql.Function(Name="pg_catalog.btabstimecmp", ServerSideOnly=true)]
-		public static int? Btabstimecmp(object par708, object par709)
+		public static int? btabstimecmp(object par708, object par709)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btarraycmp
+		#region btarraycmp
 
 		[Sql.Function(Name="pg_catalog.btarraycmp", ServerSideOnly=true)]
-		public static int? Btarraycmp(object par711, object par712)
+		public static int? btarraycmp(object par711, object par712)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btboolcmp
+		#region btboolcmp
 
 		[Sql.Function(Name="pg_catalog.btboolcmp", ServerSideOnly=true)]
-		public static int? Btboolcmp(bool? par714, bool? par715)
+		public static int? btboolcmp(bool? par714, bool? par715)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BtbpcharPatternCmp
+		#region btbpchar_pattern_cmp
 
 		[Sql.Function(Name="pg_catalog.btbpchar_pattern_cmp", ServerSideOnly=true)]
-		public static int? BtbpcharPatternCmp(string par717, string par718)
+		public static int? btbpchar_pattern_cmp(string par717, string par718)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BtbpcharPatternSortsupport
+		#region btbpchar_pattern_sortsupport
 
 		[Sql.Function(Name="pg_catalog.btbpchar_pattern_sortsupport", ServerSideOnly=true)]
-		public static object BtbpcharPatternSortsupport(object par719)
+		public static object btbpchar_pattern_sortsupport(object par719)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btcharcmp
+		#region btcharcmp
 
 		[Sql.Function(Name="pg_catalog.btcharcmp", ServerSideOnly=true)]
-		public static int? Btcharcmp(object par721, object par722)
+		public static int? btcharcmp(object par721, object par722)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat48cmp
+		#region btfloat48cmp
 
 		[Sql.Function(Name="pg_catalog.btfloat48cmp", ServerSideOnly=true)]
-		public static int? Btfloat48cmp(float? par724, double? par725)
+		public static int? btfloat48cmp(float? par724, double? par725)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat4cmp
+		#region btfloat4cmp
 
 		[Sql.Function(Name="pg_catalog.btfloat4cmp", ServerSideOnly=true)]
-		public static int? Btfloat4cmp(float? par727, float? par728)
+		public static int? btfloat4cmp(float? par727, float? par728)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat4sortsupport
+		#region btfloat4sortsupport
 
 		[Sql.Function(Name="pg_catalog.btfloat4sortsupport", ServerSideOnly=true)]
-		public static object Btfloat4sortsupport(object par729)
+		public static object btfloat4sortsupport(object par729)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat84cmp
+		#region btfloat84cmp
 
 		[Sql.Function(Name="pg_catalog.btfloat84cmp", ServerSideOnly=true)]
-		public static int? Btfloat84cmp(double? par731, float? par732)
+		public static int? btfloat84cmp(double? par731, float? par732)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat8cmp
+		#region btfloat8cmp
 
 		[Sql.Function(Name="pg_catalog.btfloat8cmp", ServerSideOnly=true)]
-		public static int? Btfloat8cmp(double? par734, double? par735)
+		public static int? btfloat8cmp(double? par734, double? par735)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btfloat8sortsupport
+		#region btfloat8sortsupport
 
 		[Sql.Function(Name="pg_catalog.btfloat8sortsupport", ServerSideOnly=true)]
-		public static object Btfloat8sortsupport(object par736)
+		public static object btfloat8sortsupport(object par736)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bthandler
+		#region bthandler
 
 		[Sql.Function(Name="pg_catalog.bthandler", ServerSideOnly=true)]
-		public static object Bthandler(object par738)
+		public static object bthandler(object par738)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint24cmp
+		#region btint24cmp
 
 		[Sql.Function(Name="pg_catalog.btint24cmp", ServerSideOnly=true)]
-		public static int? Btint24cmp(short? par740, int? par741)
+		public static int? btint24cmp(short? par740, int? par741)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint28cmp
+		#region btint28cmp
 
 		[Sql.Function(Name="pg_catalog.btint28cmp", ServerSideOnly=true)]
-		public static int? Btint28cmp(short? par743, long? par744)
+		public static int? btint28cmp(short? par743, long? par744)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint2cmp
+		#region btint2cmp
 
 		[Sql.Function(Name="pg_catalog.btint2cmp", ServerSideOnly=true)]
-		public static int? Btint2cmp(short? par746, short? par747)
+		public static int? btint2cmp(short? par746, short? par747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint2sortsupport
+		#region btint2sortsupport
 
 		[Sql.Function(Name="pg_catalog.btint2sortsupport", ServerSideOnly=true)]
-		public static object Btint2sortsupport(object par748)
+		public static object btint2sortsupport(object par748)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint42cmp
+		#region btint42cmp
 
 		[Sql.Function(Name="pg_catalog.btint42cmp", ServerSideOnly=true)]
-		public static int? Btint42cmp(int? par750, short? par751)
+		public static int? btint42cmp(int? par750, short? par751)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint48cmp
+		#region btint48cmp
 
 		[Sql.Function(Name="pg_catalog.btint48cmp", ServerSideOnly=true)]
-		public static int? Btint48cmp(int? par753, long? par754)
+		public static int? btint48cmp(int? par753, long? par754)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint4cmp
+		#region btint4cmp
 
 		[Sql.Function(Name="pg_catalog.btint4cmp", ServerSideOnly=true)]
-		public static int? Btint4cmp(int? par756, int? par757)
+		public static int? btint4cmp(int? par756, int? par757)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint4sortsupport
+		#region btint4sortsupport
 
 		[Sql.Function(Name="pg_catalog.btint4sortsupport", ServerSideOnly=true)]
-		public static object Btint4sortsupport(object par758)
+		public static object btint4sortsupport(object par758)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint82cmp
+		#region btint82cmp
 
 		[Sql.Function(Name="pg_catalog.btint82cmp", ServerSideOnly=true)]
-		public static int? Btint82cmp(long? par760, short? par761)
+		public static int? btint82cmp(long? par760, short? par761)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint84cmp
+		#region btint84cmp
 
 		[Sql.Function(Name="pg_catalog.btint84cmp", ServerSideOnly=true)]
-		public static int? Btint84cmp(long? par763, int? par764)
+		public static int? btint84cmp(long? par763, int? par764)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint8cmp
+		#region btint8cmp
 
 		[Sql.Function(Name="pg_catalog.btint8cmp", ServerSideOnly=true)]
-		public static int? Btint8cmp(long? par766, long? par767)
+		public static int? btint8cmp(long? par766, long? par767)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btint8sortsupport
+		#region btint8sortsupport
 
 		[Sql.Function(Name="pg_catalog.btint8sortsupport", ServerSideOnly=true)]
-		public static object Btint8sortsupport(object par768)
+		public static object btint8sortsupport(object par768)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btnamecmp
+		#region btnamecmp
 
 		[Sql.Function(Name="pg_catalog.btnamecmp", ServerSideOnly=true)]
-		public static int? Btnamecmp(string par770, string par771)
+		public static int? btnamecmp(string par770, string par771)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btnamesortsupport
+		#region btnamesortsupport
 
 		[Sql.Function(Name="pg_catalog.btnamesortsupport", ServerSideOnly=true)]
-		public static object Btnamesortsupport(object par772)
+		public static object btnamesortsupport(object par772)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btoidcmp
+		#region btoidcmp
 
 		[Sql.Function(Name="pg_catalog.btoidcmp", ServerSideOnly=true)]
-		public static int? Btoidcmp(int? par774, int? par775)
+		public static int? btoidcmp(int? par774, int? par775)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btoidsortsupport
+		#region btoidsortsupport
 
 		[Sql.Function(Name="pg_catalog.btoidsortsupport", ServerSideOnly=true)]
-		public static object Btoidsortsupport(object par776)
+		public static object btoidsortsupport(object par776)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btoidvectorcmp
+		#region btoidvectorcmp
 
 		[Sql.Function(Name="pg_catalog.btoidvectorcmp", ServerSideOnly=true)]
-		public static int? Btoidvectorcmp(object par778, object par779)
+		public static int? btoidvectorcmp(object par778, object par779)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btrecordcmp
+		#region btrecordcmp
 
 		[Sql.Function(Name="pg_catalog.btrecordcmp", ServerSideOnly=true)]
-		public static int? Btrecordcmp(object par781, object par782)
+		public static int? btrecordcmp(object par781, object par782)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btrecordimagecmp
+		#region btrecordimagecmp
 
 		[Sql.Function(Name="pg_catalog.btrecordimagecmp", ServerSideOnly=true)]
-		public static int? Btrecordimagecmp(object par784, object par785)
+		public static int? btrecordimagecmp(object par784, object par785)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btreltimecmp
+		#region btreltimecmp
 
 		[Sql.Function(Name="pg_catalog.btreltimecmp", ServerSideOnly=true)]
-		public static int? Btreltimecmp(object par787, object par788)
+		public static int? btreltimecmp(object par787, object par788)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Btrim
+		#region btrim
 
 		[Sql.Function(Name="pg_catalog.btrim", ServerSideOnly=true)]
-		public static string Btrim(string par796)
+		public static string btrim(string par796)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bttextcmp
+		#region bttextcmp
 
 		[Sql.Function(Name="pg_catalog.bttextcmp", ServerSideOnly=true)]
-		public static int? Bttextcmp(string par798, string par799)
+		public static int? bttextcmp(string par798, string par799)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BttextPatternCmp
+		#region bttext_pattern_cmp
 
 		[Sql.Function(Name="pg_catalog.bttext_pattern_cmp", ServerSideOnly=true)]
-		public static int? BttextPatternCmp(string par801, string par802)
+		public static int? bttext_pattern_cmp(string par801, string par802)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region BttextPatternSortsupport
+		#region bttext_pattern_sortsupport
 
 		[Sql.Function(Name="pg_catalog.bttext_pattern_sortsupport", ServerSideOnly=true)]
-		public static object BttextPatternSortsupport(object par803)
+		public static object bttext_pattern_sortsupport(object par803)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bttextsortsupport
+		#region bttextsortsupport
 
 		[Sql.Function(Name="pg_catalog.bttextsortsupport", ServerSideOnly=true)]
-		public static object Bttextsortsupport(object par804)
+		public static object bttextsortsupport(object par804)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bttidcmp
+		#region bttidcmp
 
 		[Sql.Function(Name="pg_catalog.bttidcmp", ServerSideOnly=true)]
-		public static int? Bttidcmp(object par806, object par807)
+		public static int? bttidcmp(object par806, object par807)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bttintervalcmp
+		#region bttintervalcmp
 
 		[Sql.Function(Name="pg_catalog.bttintervalcmp", ServerSideOnly=true)]
-		public static int? Bttintervalcmp(object par809, object par810)
+		public static int? bttintervalcmp(object par809, object par810)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteacat
+		#region byteacat
 
 		[Sql.Function(Name="pg_catalog.byteacat", ServerSideOnly=true)]
-		public static byte[] Byteacat(byte[] par812, byte[] par813)
+		public static byte[] byteacat(byte[] par812, byte[] par813)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteacmp
+		#region byteacmp
 
 		[Sql.Function(Name="pg_catalog.byteacmp", ServerSideOnly=true)]
-		public static int? Byteacmp(byte[] par815, byte[] par816)
+		public static int? byteacmp(byte[] par815, byte[] par816)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteaeq
+		#region byteaeq
 
 		[Sql.Function(Name="pg_catalog.byteaeq", ServerSideOnly=true)]
-		public static bool? Byteaeq(byte[] par818, byte[] par819)
+		public static bool? byteaeq(byte[] par818, byte[] par819)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteage
+		#region byteage
 
 		[Sql.Function(Name="pg_catalog.byteage", ServerSideOnly=true)]
-		public static bool? Byteage(byte[] par821, byte[] par822)
+		public static bool? byteage(byte[] par821, byte[] par822)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteagt
+		#region byteagt
 
 		[Sql.Function(Name="pg_catalog.byteagt", ServerSideOnly=true)]
-		public static bool? Byteagt(byte[] par824, byte[] par825)
+		public static bool? byteagt(byte[] par824, byte[] par825)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteain
+		#region byteain
 
 		[Sql.Function(Name="pg_catalog.byteain", ServerSideOnly=true)]
-		public static byte[] Byteain(object par827)
+		public static byte[] byteain(object par827)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteale
+		#region byteale
 
 		[Sql.Function(Name="pg_catalog.byteale", ServerSideOnly=true)]
-		public static bool? Byteale(byte[] par829, byte[] par830)
+		public static bool? byteale(byte[] par829, byte[] par830)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bytealike
+		#region bytealike
 
 		[Sql.Function(Name="pg_catalog.bytealike", ServerSideOnly=true)]
-		public static bool? Bytealike(byte[] par832, byte[] par833)
+		public static bool? bytealike(byte[] par832, byte[] par833)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bytealt
+		#region bytealt
 
 		[Sql.Function(Name="pg_catalog.bytealt", ServerSideOnly=true)]
-		public static bool? Bytealt(byte[] par835, byte[] par836)
+		public static bool? bytealt(byte[] par835, byte[] par836)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteane
+		#region byteane
 
 		[Sql.Function(Name="pg_catalog.byteane", ServerSideOnly=true)]
-		public static bool? Byteane(byte[] par838, byte[] par839)
+		public static bool? byteane(byte[] par838, byte[] par839)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteanlike
+		#region byteanlike
 
 		[Sql.Function(Name="pg_catalog.byteanlike", ServerSideOnly=true)]
-		public static bool? Byteanlike(byte[] par841, byte[] par842)
+		public static bool? byteanlike(byte[] par841, byte[] par842)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteaout
+		#region byteaout
 
 		[Sql.Function(Name="pg_catalog.byteaout", ServerSideOnly=true)]
-		public static object Byteaout(byte[] par844)
+		public static object byteaout(byte[] par844)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Bytearecv
+		#region bytearecv
 
 		[Sql.Function(Name="pg_catalog.bytearecv", ServerSideOnly=true)]
-		public static byte[] Bytearecv(object par846)
+		public static byte[] bytearecv(object par846)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Byteasend
+		#region byteasend
 
 		[Sql.Function(Name="pg_catalog.byteasend", ServerSideOnly=true)]
-		public static byte[] Byteasend(byte[] par848)
+		public static byte[] byteasend(byte[] par848)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ByteaSortsupport
+		#region bytea_sortsupport
 
 		[Sql.Function(Name="pg_catalog.bytea_sortsupport", ServerSideOnly=true)]
-		public static object ByteaSortsupport(object par849)
+		public static object bytea_sortsupport(object par849)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ByteaStringAggFinalfn
+		#region bytea_string_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.bytea_string_agg_finalfn", ServerSideOnly=true)]
-		public static byte[] ByteaStringAggFinalfn(object par851)
+		public static byte[] bytea_string_agg_finalfn(object par851)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ByteaStringAggTransfn
+		#region bytea_string_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.bytea_string_agg_transfn", ServerSideOnly=true)]
-		public static object ByteaStringAggTransfn(object par853, byte[] par854, byte[] par855)
+		public static object bytea_string_agg_transfn(object par853, byte[] par854, byte[] par855)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cardinality
+		#region cardinality
 
 		[Sql.Function(Name="pg_catalog.cardinality", ServerSideOnly=true)]
-		public static int? Cardinality(object par857)
+		public static int? cardinality(object par857)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashCmp
+		#region cash_cmp
 
 		[Sql.Function(Name="pg_catalog.cash_cmp", ServerSideOnly=true)]
-		public static int? CashCmp(decimal? par859, decimal? par860)
+		public static int? cash_cmp(decimal? par859, decimal? par860)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivCash
+		#region cash_div_cash
 
 		[Sql.Function(Name="pg_catalog.cash_div_cash", ServerSideOnly=true)]
-		public static double? CashDivCash(decimal? par862, decimal? par863)
+		public static double? cash_div_cash(decimal? par862, decimal? par863)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivFlt4
+		#region cash_div_flt4
 
 		[Sql.Function(Name="pg_catalog.cash_div_flt4", ServerSideOnly=true)]
-		public static decimal? CashDivFlt4(decimal? par865, float? par866)
+		public static decimal? cash_div_flt4(decimal? par865, float? par866)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivFlt8
+		#region cash_div_flt8
 
 		[Sql.Function(Name="pg_catalog.cash_div_flt8", ServerSideOnly=true)]
-		public static decimal? CashDivFlt8(decimal? par868, double? par869)
+		public static decimal? cash_div_flt8(decimal? par868, double? par869)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivInt2
+		#region cash_div_int2
 
 		[Sql.Function(Name="pg_catalog.cash_div_int2", ServerSideOnly=true)]
-		public static decimal? CashDivInt2(decimal? par871, short? par872)
+		public static decimal? cash_div_int2(decimal? par871, short? par872)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivInt4
+		#region cash_div_int4
 
 		[Sql.Function(Name="pg_catalog.cash_div_int4", ServerSideOnly=true)]
-		public static decimal? CashDivInt4(decimal? par874, int? par875)
+		public static decimal? cash_div_int4(decimal? par874, int? par875)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashDivInt8
+		#region cash_div_int8
 
 		[Sql.Function(Name="pg_catalog.cash_div_int8", ServerSideOnly=true)]
-		public static decimal? CashDivInt8(decimal? par877, long? par878)
+		public static decimal? cash_div_int8(decimal? par877, long? par878)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashEq
+		#region cash_eq
 
 		[Sql.Function(Name="pg_catalog.cash_eq", ServerSideOnly=true)]
-		public static bool? CashEq(decimal? par880, decimal? par881)
+		public static bool? cash_eq(decimal? par880, decimal? par881)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashGe
+		#region cash_ge
 
 		[Sql.Function(Name="pg_catalog.cash_ge", ServerSideOnly=true)]
-		public static bool? CashGe(decimal? par883, decimal? par884)
+		public static bool? cash_ge(decimal? par883, decimal? par884)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashGt
+		#region cash_gt
 
 		[Sql.Function(Name="pg_catalog.cash_gt", ServerSideOnly=true)]
-		public static bool? CashGt(decimal? par886, decimal? par887)
+		public static bool? cash_gt(decimal? par886, decimal? par887)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashIn
+		#region cash_in
 
 		[Sql.Function(Name="pg_catalog.cash_in", ServerSideOnly=true)]
-		public static decimal? CashIn(object par889)
+		public static decimal? cash_in(object par889)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cashlarger
+		#region cashlarger
 
 		[Sql.Function(Name="pg_catalog.cashlarger", ServerSideOnly=true)]
-		public static decimal? Cashlarger(decimal? par891, decimal? par892)
+		public static decimal? cashlarger(decimal? par891, decimal? par892)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashLe
+		#region cash_le
 
 		[Sql.Function(Name="pg_catalog.cash_le", ServerSideOnly=true)]
-		public static bool? CashLe(decimal? par894, decimal? par895)
+		public static bool? cash_le(decimal? par894, decimal? par895)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashLt
+		#region cash_lt
 
 		[Sql.Function(Name="pg_catalog.cash_lt", ServerSideOnly=true)]
-		public static bool? CashLt(decimal? par897, decimal? par898)
+		public static bool? cash_lt(decimal? par897, decimal? par898)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMi
+		#region cash_mi
 
 		[Sql.Function(Name="pg_catalog.cash_mi", ServerSideOnly=true)]
-		public static decimal? CashMi(decimal? par900, decimal? par901)
+		public static decimal? cash_mi(decimal? par900, decimal? par901)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMulFlt4
+		#region cash_mul_flt4
 
 		[Sql.Function(Name="pg_catalog.cash_mul_flt4", ServerSideOnly=true)]
-		public static decimal? CashMulFlt4(decimal? par903, float? par904)
+		public static decimal? cash_mul_flt4(decimal? par903, float? par904)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMulFlt8
+		#region cash_mul_flt8
 
 		[Sql.Function(Name="pg_catalog.cash_mul_flt8", ServerSideOnly=true)]
-		public static decimal? CashMulFlt8(decimal? par906, double? par907)
+		public static decimal? cash_mul_flt8(decimal? par906, double? par907)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMulInt2
+		#region cash_mul_int2
 
 		[Sql.Function(Name="pg_catalog.cash_mul_int2", ServerSideOnly=true)]
-		public static decimal? CashMulInt2(decimal? par909, short? par910)
+		public static decimal? cash_mul_int2(decimal? par909, short? par910)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMulInt4
+		#region cash_mul_int4
 
 		[Sql.Function(Name="pg_catalog.cash_mul_int4", ServerSideOnly=true)]
-		public static decimal? CashMulInt4(decimal? par912, int? par913)
+		public static decimal? cash_mul_int4(decimal? par912, int? par913)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashMulInt8
+		#region cash_mul_int8
 
 		[Sql.Function(Name="pg_catalog.cash_mul_int8", ServerSideOnly=true)]
-		public static decimal? CashMulInt8(decimal? par915, long? par916)
+		public static decimal? cash_mul_int8(decimal? par915, long? par916)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashNe
+		#region cash_ne
 
 		[Sql.Function(Name="pg_catalog.cash_ne", ServerSideOnly=true)]
-		public static bool? CashNe(decimal? par918, decimal? par919)
+		public static bool? cash_ne(decimal? par918, decimal? par919)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashOut
+		#region cash_out
 
 		[Sql.Function(Name="pg_catalog.cash_out", ServerSideOnly=true)]
-		public static object CashOut(decimal? par921)
+		public static object cash_out(decimal? par921)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashPl
+		#region cash_pl
 
 		[Sql.Function(Name="pg_catalog.cash_pl", ServerSideOnly=true)]
-		public static decimal? CashPl(decimal? par923, decimal? par924)
+		public static decimal? cash_pl(decimal? par923, decimal? par924)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashRecv
+		#region cash_recv
 
 		[Sql.Function(Name="pg_catalog.cash_recv", ServerSideOnly=true)]
-		public static decimal? CashRecv(object par926)
+		public static decimal? cash_recv(object par926)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashSend
+		#region cash_send
 
 		[Sql.Function(Name="pg_catalog.cash_send", ServerSideOnly=true)]
-		public static byte[] CashSend(decimal? par928)
+		public static byte[] cash_send(decimal? par928)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cashsmaller
+		#region cashsmaller
 
 		[Sql.Function(Name="pg_catalog.cashsmaller", ServerSideOnly=true)]
-		public static decimal? Cashsmaller(decimal? par930, decimal? par931)
+		public static decimal? cashsmaller(decimal? par930, decimal? par931)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CashWords
+		#region cash_words
 
 		[Sql.Function(Name="pg_catalog.cash_words", ServerSideOnly=true)]
-		public static string CashWords(decimal? par933)
+		public static string cash_words(decimal? par933)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cbrt
+		#region cbrt
 
 		[Sql.Function(Name="pg_catalog.cbrt", ServerSideOnly=true)]
-		public static double? Cbrt(double? par935)
+		public static double? cbrt(double? par935)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ceil
+		#region ceil
 
 		[Sql.Function(Name="pg_catalog.ceil", ServerSideOnly=true)]
-		public static double? Ceil(double? par939)
+		public static double? ceil(double? par939)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ceiling
+		#region ceiling
 
 		[Sql.Function(Name="pg_catalog.ceiling", ServerSideOnly=true)]
-		public static double? Ceiling(double? par943)
+		public static double? ceiling(double? par943)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Center
+		#region center
 
 		[Sql.Function(Name="pg_catalog.center", ServerSideOnly=true)]
-		public static NpgsqlPoint? Center(NpgsqlCircle? par947)
+		public static NpgsqlPoint? center(NpgsqlCircle? par947)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Char
+		#region @char
 
 		[Sql.Function(Name="pg_catalog.char", ServerSideOnly=true)]
-		public static object Char(string par951)
+		public static object @char(string par951)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CharacterLength
+		#region character_length
 
 		[Sql.Function(Name="pg_catalog.character_length", ServerSideOnly=true)]
-		public static int? CharacterLength(string par955)
+		public static int? character_length(string par955)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Chareq
+		#region chareq
 
 		[Sql.Function(Name="pg_catalog.chareq", ServerSideOnly=true)]
-		public static bool? Chareq(object par957, object par958)
+		public static bool? chareq(object par957, object par958)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charge
+		#region charge
 
 		[Sql.Function(Name="pg_catalog.charge", ServerSideOnly=true)]
-		public static bool? Charge(object par960, object par961)
+		public static bool? charge(object par960, object par961)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Chargt
+		#region chargt
 
 		[Sql.Function(Name="pg_catalog.chargt", ServerSideOnly=true)]
-		public static bool? Chargt(object par963, object par964)
+		public static bool? chargt(object par963, object par964)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charin
+		#region charin
 
 		[Sql.Function(Name="pg_catalog.charin", ServerSideOnly=true)]
-		public static object Charin(object par966)
+		public static object charin(object par966)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charle
+		#region charle
 
 		[Sql.Function(Name="pg_catalog.charle", ServerSideOnly=true)]
-		public static bool? Charle(object par968, object par969)
+		public static bool? charle(object par968, object par969)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CharLength
+		#region char_length
 
 		[Sql.Function(Name="pg_catalog.char_length", ServerSideOnly=true)]
-		public static int? CharLength(string par973)
+		public static int? char_length(string par973)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charlt
+		#region charlt
 
 		[Sql.Function(Name="pg_catalog.charlt", ServerSideOnly=true)]
-		public static bool? Charlt(object par975, object par976)
+		public static bool? charlt(object par975, object par976)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charne
+		#region charne
 
 		[Sql.Function(Name="pg_catalog.charne", ServerSideOnly=true)]
-		public static bool? Charne(object par978, object par979)
+		public static bool? charne(object par978, object par979)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charout
+		#region charout
 
 		[Sql.Function(Name="pg_catalog.charout", ServerSideOnly=true)]
-		public static object Charout(object par981)
+		public static object charout(object par981)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charrecv
+		#region charrecv
 
 		[Sql.Function(Name="pg_catalog.charrecv", ServerSideOnly=true)]
-		public static object Charrecv(object par983)
+		public static object charrecv(object par983)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Charsend
+		#region charsend
 
 		[Sql.Function(Name="pg_catalog.charsend", ServerSideOnly=true)]
-		public static byte[] Charsend(object par985)
+		public static byte[] charsend(object par985)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Chr
+		#region chr
 
 		[Sql.Function(Name="pg_catalog.chr", ServerSideOnly=true)]
-		public static string Chr(int? par987)
+		public static string chr(int? par987)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cideq
+		#region cideq
 
 		[Sql.Function(Name="pg_catalog.cideq", ServerSideOnly=true)]
-		public static bool? Cideq(object par989, object par990)
+		public static bool? cideq(object par989, object par990)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cidin
+		#region cidin
 
 		[Sql.Function(Name="pg_catalog.cidin", ServerSideOnly=true)]
-		public static object Cidin(object par992)
+		public static object cidin(object par992)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cidout
+		#region cidout
 
 		[Sql.Function(Name="pg_catalog.cidout", ServerSideOnly=true)]
-		public static object Cidout(object par994)
+		public static object cidout(object par994)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cidr
+		#region cidr
 
 		[Sql.Function(Name="pg_catalog.cidr", ServerSideOnly=true)]
-		public static NpgsqlInet? Cidr(NpgsqlInet? par996)
+		public static NpgsqlInet? cidr(NpgsqlInet? par996)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cidrecv
+		#region cidrecv
 
 		[Sql.Function(Name="pg_catalog.cidrecv", ServerSideOnly=true)]
-		public static object Cidrecv(object par998)
+		public static object cidrecv(object par998)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CidrIn
+		#region cidr_in
 
 		[Sql.Function(Name="pg_catalog.cidr_in", ServerSideOnly=true)]
-		public static NpgsqlInet? CidrIn(object par1000)
+		public static NpgsqlInet? cidr_in(object par1000)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CidrOut
+		#region cidr_out
 
 		[Sql.Function(Name="pg_catalog.cidr_out", ServerSideOnly=true)]
-		public static object CidrOut(NpgsqlInet? par1002)
+		public static object cidr_out(NpgsqlInet? par1002)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CidrRecv
+		#region cidr_recv
 
 		[Sql.Function(Name="pg_catalog.cidr_recv", ServerSideOnly=true)]
-		public static NpgsqlInet? CidrRecv(object par1004)
+		public static NpgsqlInet? cidr_recv(object par1004)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CidrSend
+		#region cidr_send
 
 		[Sql.Function(Name="pg_catalog.cidr_send", ServerSideOnly=true)]
-		public static byte[] CidrSend(NpgsqlInet? par1006)
+		public static byte[] cidr_send(NpgsqlInet? par1006)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cidsend
+		#region cidsend
 
 		[Sql.Function(Name="pg_catalog.cidsend", ServerSideOnly=true)]
-		public static byte[] Cidsend(object par1008)
+		public static byte[] cidsend(object par1008)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Circle
+		#region circle
 
 		[Sql.Function(Name="pg_catalog.circle", ServerSideOnly=true)]
-		public static NpgsqlCircle? Circle(NpgsqlBox? par1015)
+		public static NpgsqlCircle? circle(NpgsqlBox? par1015)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleAbove
+		#region circle_above
 
 		[Sql.Function(Name="pg_catalog.circle_above", ServerSideOnly=true)]
-		public static bool? CircleAbove(NpgsqlCircle? par1017, NpgsqlCircle? par1018)
+		public static bool? circle_above(NpgsqlCircle? par1017, NpgsqlCircle? par1018)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleAddPt
+		#region circle_add_pt
 
 		[Sql.Function(Name="pg_catalog.circle_add_pt", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleAddPt(NpgsqlCircle? par1020, NpgsqlPoint? par1021)
+		public static NpgsqlCircle? circle_add_pt(NpgsqlCircle? par1020, NpgsqlPoint? par1021)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleBelow
+		#region circle_below
 
 		[Sql.Function(Name="pg_catalog.circle_below", ServerSideOnly=true)]
-		public static bool? CircleBelow(NpgsqlCircle? par1023, NpgsqlCircle? par1024)
+		public static bool? circle_below(NpgsqlCircle? par1023, NpgsqlCircle? par1024)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleCenter
+		#region circle_center
 
 		[Sql.Function(Name="pg_catalog.circle_center", ServerSideOnly=true)]
-		public static NpgsqlPoint? CircleCenter(NpgsqlCircle? par1026)
+		public static NpgsqlPoint? circle_center(NpgsqlCircle? par1026)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleContain
+		#region circle_contain
 
 		[Sql.Function(Name="pg_catalog.circle_contain", ServerSideOnly=true)]
-		public static bool? CircleContain(NpgsqlCircle? par1028, NpgsqlCircle? par1029)
+		public static bool? circle_contain(NpgsqlCircle? par1028, NpgsqlCircle? par1029)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleContained
+		#region circle_contained
 
 		[Sql.Function(Name="pg_catalog.circle_contained", ServerSideOnly=true)]
-		public static bool? CircleContained(NpgsqlCircle? par1031, NpgsqlCircle? par1032)
+		public static bool? circle_contained(NpgsqlCircle? par1031, NpgsqlCircle? par1032)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleContainPt
+		#region circle_contain_pt
 
 		[Sql.Function(Name="pg_catalog.circle_contain_pt", ServerSideOnly=true)]
-		public static bool? CircleContainPt(NpgsqlCircle? par1034, NpgsqlPoint? par1035)
+		public static bool? circle_contain_pt(NpgsqlCircle? par1034, NpgsqlPoint? par1035)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleDistance
+		#region circle_distance
 
 		[Sql.Function(Name="pg_catalog.circle_distance", ServerSideOnly=true)]
-		public static double? CircleDistance(NpgsqlCircle? par1037, NpgsqlCircle? par1038)
+		public static double? circle_distance(NpgsqlCircle? par1037, NpgsqlCircle? par1038)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleDivPt
+		#region circle_div_pt
 
 		[Sql.Function(Name="pg_catalog.circle_div_pt", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleDivPt(NpgsqlCircle? par1040, NpgsqlPoint? par1041)
+		public static NpgsqlCircle? circle_div_pt(NpgsqlCircle? par1040, NpgsqlPoint? par1041)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleEq
+		#region circle_eq
 
 		[Sql.Function(Name="pg_catalog.circle_eq", ServerSideOnly=true)]
-		public static bool? CircleEq(NpgsqlCircle? par1043, NpgsqlCircle? par1044)
+		public static bool? circle_eq(NpgsqlCircle? par1043, NpgsqlCircle? par1044)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleGe
+		#region circle_ge
 
 		[Sql.Function(Name="pg_catalog.circle_ge", ServerSideOnly=true)]
-		public static bool? CircleGe(NpgsqlCircle? par1046, NpgsqlCircle? par1047)
+		public static bool? circle_ge(NpgsqlCircle? par1046, NpgsqlCircle? par1047)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleGt
+		#region circle_gt
 
 		[Sql.Function(Name="pg_catalog.circle_gt", ServerSideOnly=true)]
-		public static bool? CircleGt(NpgsqlCircle? par1049, NpgsqlCircle? par1050)
+		public static bool? circle_gt(NpgsqlCircle? par1049, NpgsqlCircle? par1050)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleIn
+		#region circle_in
 
 		[Sql.Function(Name="pg_catalog.circle_in", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleIn(object par1052)
+		public static NpgsqlCircle? circle_in(object par1052)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleLe
+		#region circle_le
 
 		[Sql.Function(Name="pg_catalog.circle_le", ServerSideOnly=true)]
-		public static bool? CircleLe(NpgsqlCircle? par1054, NpgsqlCircle? par1055)
+		public static bool? circle_le(NpgsqlCircle? par1054, NpgsqlCircle? par1055)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleLeft
+		#region circle_left
 
 		[Sql.Function(Name="pg_catalog.circle_left", ServerSideOnly=true)]
-		public static bool? CircleLeft(NpgsqlCircle? par1057, NpgsqlCircle? par1058)
+		public static bool? circle_left(NpgsqlCircle? par1057, NpgsqlCircle? par1058)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleLt
+		#region circle_lt
 
 		[Sql.Function(Name="pg_catalog.circle_lt", ServerSideOnly=true)]
-		public static bool? CircleLt(NpgsqlCircle? par1060, NpgsqlCircle? par1061)
+		public static bool? circle_lt(NpgsqlCircle? par1060, NpgsqlCircle? par1061)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleMulPt
+		#region circle_mul_pt
 
 		[Sql.Function(Name="pg_catalog.circle_mul_pt", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleMulPt(NpgsqlCircle? par1063, NpgsqlPoint? par1064)
+		public static NpgsqlCircle? circle_mul_pt(NpgsqlCircle? par1063, NpgsqlPoint? par1064)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleNe
+		#region circle_ne
 
 		[Sql.Function(Name="pg_catalog.circle_ne", ServerSideOnly=true)]
-		public static bool? CircleNe(NpgsqlCircle? par1066, NpgsqlCircle? par1067)
+		public static bool? circle_ne(NpgsqlCircle? par1066, NpgsqlCircle? par1067)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOut
+		#region circle_out
 
 		[Sql.Function(Name="pg_catalog.circle_out", ServerSideOnly=true)]
-		public static object CircleOut(NpgsqlCircle? par1069)
+		public static object circle_out(NpgsqlCircle? par1069)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOverabove
+		#region circle_overabove
 
 		[Sql.Function(Name="pg_catalog.circle_overabove", ServerSideOnly=true)]
-		public static bool? CircleOverabove(NpgsqlCircle? par1071, NpgsqlCircle? par1072)
+		public static bool? circle_overabove(NpgsqlCircle? par1071, NpgsqlCircle? par1072)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOverbelow
+		#region circle_overbelow
 
 		[Sql.Function(Name="pg_catalog.circle_overbelow", ServerSideOnly=true)]
-		public static bool? CircleOverbelow(NpgsqlCircle? par1074, NpgsqlCircle? par1075)
+		public static bool? circle_overbelow(NpgsqlCircle? par1074, NpgsqlCircle? par1075)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOverlap
+		#region circle_overlap
 
 		[Sql.Function(Name="pg_catalog.circle_overlap", ServerSideOnly=true)]
-		public static bool? CircleOverlap(NpgsqlCircle? par1077, NpgsqlCircle? par1078)
+		public static bool? circle_overlap(NpgsqlCircle? par1077, NpgsqlCircle? par1078)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOverleft
+		#region circle_overleft
 
 		[Sql.Function(Name="pg_catalog.circle_overleft", ServerSideOnly=true)]
-		public static bool? CircleOverleft(NpgsqlCircle? par1080, NpgsqlCircle? par1081)
+		public static bool? circle_overleft(NpgsqlCircle? par1080, NpgsqlCircle? par1081)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleOverright
+		#region circle_overright
 
 		[Sql.Function(Name="pg_catalog.circle_overright", ServerSideOnly=true)]
-		public static bool? CircleOverright(NpgsqlCircle? par1083, NpgsqlCircle? par1084)
+		public static bool? circle_overright(NpgsqlCircle? par1083, NpgsqlCircle? par1084)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleRecv
+		#region circle_recv
 
 		[Sql.Function(Name="pg_catalog.circle_recv", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleRecv(object par1086)
+		public static NpgsqlCircle? circle_recv(object par1086)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleRight
+		#region circle_right
 
 		[Sql.Function(Name="pg_catalog.circle_right", ServerSideOnly=true)]
-		public static bool? CircleRight(NpgsqlCircle? par1088, NpgsqlCircle? par1089)
+		public static bool? circle_right(NpgsqlCircle? par1088, NpgsqlCircle? par1089)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleSame
+		#region circle_same
 
 		[Sql.Function(Name="pg_catalog.circle_same", ServerSideOnly=true)]
-		public static bool? CircleSame(NpgsqlCircle? par1091, NpgsqlCircle? par1092)
+		public static bool? circle_same(NpgsqlCircle? par1091, NpgsqlCircle? par1092)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleSend
+		#region circle_send
 
 		[Sql.Function(Name="pg_catalog.circle_send", ServerSideOnly=true)]
-		public static byte[] CircleSend(NpgsqlCircle? par1094)
+		public static byte[] circle_send(NpgsqlCircle? par1094)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CircleSubPt
+		#region circle_sub_pt
 
 		[Sql.Function(Name="pg_catalog.circle_sub_pt", ServerSideOnly=true)]
-		public static NpgsqlCircle? CircleSubPt(NpgsqlCircle? par1096, NpgsqlPoint? par1097)
+		public static NpgsqlCircle? circle_sub_pt(NpgsqlCircle? par1096, NpgsqlPoint? par1097)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ClockTimestamp
+		#region clock_timestamp
 
 		[Sql.Function(Name="pg_catalog.clock_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? ClockTimestamp()
+		public static DateTimeOffset? clock_timestamp()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CloseLb
+		#region close_lb
 
 		[Sql.Function(Name="pg_catalog.close_lb", ServerSideOnly=true)]
-		public static NpgsqlPoint? CloseLb(NpgsqlLine? par1100, NpgsqlBox? par1101)
+		public static NpgsqlPoint? close_lb(NpgsqlLine? par1100, NpgsqlBox? par1101)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CloseLs
+		#region close_ls
 
 		[Sql.Function(Name="pg_catalog.close_ls", ServerSideOnly=true)]
-		public static NpgsqlPoint? CloseLs(NpgsqlLine? par1103, NpgsqlLSeg? par1104)
+		public static NpgsqlPoint? close_ls(NpgsqlLine? par1103, NpgsqlLSeg? par1104)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CloseLseg
+		#region close_lseg
 
 		[Sql.Function(Name="pg_catalog.close_lseg", ServerSideOnly=true)]
-		public static NpgsqlPoint? CloseLseg(NpgsqlLSeg? par1106, NpgsqlLSeg? par1107)
+		public static NpgsqlPoint? close_lseg(NpgsqlLSeg? par1106, NpgsqlLSeg? par1107)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ClosePb
+		#region close_pb
 
 		[Sql.Function(Name="pg_catalog.close_pb", ServerSideOnly=true)]
-		public static NpgsqlPoint? ClosePb(NpgsqlPoint? par1109, NpgsqlBox? par1110)
+		public static NpgsqlPoint? close_pb(NpgsqlPoint? par1109, NpgsqlBox? par1110)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ClosePl
+		#region close_pl
 
 		[Sql.Function(Name="pg_catalog.close_pl", ServerSideOnly=true)]
-		public static NpgsqlPoint? ClosePl(NpgsqlPoint? par1112, NpgsqlLine? par1113)
+		public static NpgsqlPoint? close_pl(NpgsqlPoint? par1112, NpgsqlLine? par1113)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ClosePs
+		#region close_ps
 
 		[Sql.Function(Name="pg_catalog.close_ps", ServerSideOnly=true)]
-		public static NpgsqlPoint? ClosePs(NpgsqlPoint? par1115, NpgsqlLSeg? par1116)
+		public static NpgsqlPoint? close_ps(NpgsqlPoint? par1115, NpgsqlLSeg? par1116)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CloseSb
+		#region close_sb
 
 		[Sql.Function(Name="pg_catalog.close_sb", ServerSideOnly=true)]
-		public static NpgsqlPoint? CloseSb(NpgsqlLSeg? par1118, NpgsqlBox? par1119)
+		public static NpgsqlPoint? close_sb(NpgsqlLSeg? par1118, NpgsqlBox? par1119)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CloseSl
+		#region close_sl
 
 		[Sql.Function(Name="pg_catalog.close_sl", ServerSideOnly=true)]
-		public static NpgsqlPoint? CloseSl(NpgsqlLSeg? par1121, NpgsqlLine? par1122)
+		public static NpgsqlPoint? close_sl(NpgsqlLSeg? par1121, NpgsqlLine? par1122)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ColDescription
+		#region col_description
 
 		[Sql.Function(Name="pg_catalog.col_description", ServerSideOnly=true)]
-		public static string ColDescription(int? par1124, int? par1125)
+		public static string col_description(int? par1124, int? par1125)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Concat
+		#region concat
 
 		[Sql.Function(Name="pg_catalog.concat", ServerSideOnly=true)]
-		public static string Concat(object par1127)
+		public static string concat(object par1127)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ConcatWs
+		#region concat_ws
 
 		[Sql.Function(Name="pg_catalog.concat_ws", ServerSideOnly=true)]
-		public static string ConcatWs(string par1129, object par1130)
+		public static string concat_ws(string par1129, object par1130)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Contjoinsel
+		#region contjoinsel
 
 		[Sql.Function(Name="pg_catalog.contjoinsel", ServerSideOnly=true)]
-		public static double? Contjoinsel(object par1132, int? par1133, object par1134, short? par1135, object par1136)
+		public static double? contjoinsel(object par1132, int? par1133, object par1134, short? par1135, object par1136)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Contsel
+		#region contsel
 
 		[Sql.Function(Name="pg_catalog.contsel", ServerSideOnly=true)]
-		public static double? Contsel(object par1138, int? par1139, object par1140, int? par1141)
+		public static double? contsel(object par1138, int? par1139, object par1140, int? par1141)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Convert
+		#region convert
 
 		[Sql.Function(Name="pg_catalog.convert", ServerSideOnly=true)]
-		public static byte[] Convert(byte[] par1143, string par1144, string par1145)
+		public static byte[] convert(byte[] par1143, string par1144, string par1145)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ConvertFrom
+		#region convert_from
 
 		[Sql.Function(Name="pg_catalog.convert_from", ServerSideOnly=true)]
-		public static string ConvertFrom(byte[] par1147, string par1148)
+		public static string convert_from(byte[] par1147, string par1148)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ConvertTo
+		#region convert_to
 
 		[Sql.Function(Name="pg_catalog.convert_to", ServerSideOnly=true)]
-		public static byte[] ConvertTo(string par1150, string par1151)
+		public static byte[] convert_to(string par1150, string par1151)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Corr
+		#region corr
 
 		[Sql.Function(Name="pg_catalog.corr", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? Corr<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1153, Expression<Func<TSource, double?>> par1154)
+		public static double? corr<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1153, Expression<Func<TSource, double?>> par1154)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cos
+		#region cos
 
 		[Sql.Function(Name="pg_catalog.cos", ServerSideOnly=true)]
-		public static double? Cos(double? par1156)
+		public static double? cos(double? par1156)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cosd
+		#region cosd
 
 		[Sql.Function(Name="pg_catalog.cosd", ServerSideOnly=true)]
-		public static double? Cosd(double? par1158)
+		public static double? cosd(double? par1158)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cot
+		#region cot
 
 		[Sql.Function(Name="pg_catalog.cot", ServerSideOnly=true)]
-		public static double? Cot(double? par1160)
+		public static double? cot(double? par1160)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Cotd
+		#region cotd
 
 		[Sql.Function(Name="pg_catalog.cotd", ServerSideOnly=true)]
-		public static double? Cotd(double? par1162)
+		public static double? cotd(double? par1162)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Count
+		#region count
 
 		[Sql.Function(Name="pg_catalog.count", ServerSideOnly=true, IsAggregate = true)]
-		public static long? Count<TSource>(this IEnumerable<TSource> src)
+		public static long? count<TSource>(this IEnumerable<TSource> src)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CovarPop
+		#region covar_pop
 
 		[Sql.Function(Name="pg_catalog.covar_pop", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? CovarPop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1167, Expression<Func<TSource, double?>> par1168)
+		public static double? covar_pop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1167, Expression<Func<TSource, double?>> par1168)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CovarSamp
+		#region covar_samp
 
 		[Sql.Function(Name="pg_catalog.covar_samp", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? CovarSamp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1170, Expression<Func<TSource, double?>> par1171)
+		public static double? covar_samp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par1170, Expression<Func<TSource, double?>> par1171)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CstringIn
+		#region cstring_in
 
 		[Sql.Function(Name="pg_catalog.cstring_in", ServerSideOnly=true)]
-		public static object CstringIn(object par1173)
+		public static object cstring_in(object par1173)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CstringOut
+		#region cstring_out
 
 		[Sql.Function(Name="pg_catalog.cstring_out", ServerSideOnly=true)]
-		public static object CstringOut(object par1175)
+		public static object cstring_out(object par1175)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CstringRecv
+		#region cstring_recv
 
 		[Sql.Function(Name="pg_catalog.cstring_recv", ServerSideOnly=true)]
-		public static object CstringRecv(object par1177)
+		public static object cstring_recv(object par1177)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CstringSend
+		#region cstring_send
 
 		[Sql.Function(Name="pg_catalog.cstring_send", ServerSideOnly=true)]
-		public static byte[] CstringSend(object par1179)
+		public static byte[] cstring_send(object par1179)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CumeDist
+		#region cume_dist
 
 		[Sql.Function(Name="pg_catalog.cume_dist", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static double? CumeDist<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par1182)
+		public static double? cume_dist<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par1182)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CumeDistFinal
+		#region cume_dist_final
 
 		[Sql.Function(Name="pg_catalog.cume_dist_final", ServerSideOnly=true)]
-		public static double? CumeDistFinal(object par1184, object par1185)
+		public static double? cume_dist_final(object par1184, object par1185)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentDatabase
+		#region current_database
 
 		[Sql.Function(Name="pg_catalog.current_database", ServerSideOnly=true)]
-		public static string CurrentDatabase()
+		public static string current_database()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentQuery
+		#region current_query
 
 		[Sql.Function(Name="pg_catalog.current_query", ServerSideOnly=true)]
-		public static string CurrentQuery()
+		public static string current_query()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentSchema
+		#region current_schema
 
 		[Sql.Function(Name="pg_catalog.current_schema", ServerSideOnly=true)]
-		public static string CurrentSchema()
+		public static string current_schema()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentSchemas
+		#region current_schemas
 
 		[Sql.Function(Name="pg_catalog.current_schemas", ServerSideOnly=true)]
-		public static object CurrentSchemas(bool? par1190)
+		public static object current_schemas(bool? par1190)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentSetting
+		#region current_setting
 
 		[Sql.Function(Name="pg_catalog.current_setting", ServerSideOnly=true)]
-		public static string CurrentSetting(string par1194, bool? par1195)
+		public static string current_setting(string par1194, bool? par1195)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CurrentUser
+		#region current_user
 
 		[Sql.Function(Name="pg_catalog.current_user", ServerSideOnly=true)]
-		public static string CurrentUser()
+		public static string current_user()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Currtid
+		#region currtid
 
 		[Sql.Function(Name="pg_catalog.currtid", ServerSideOnly=true)]
-		public static object Currtid(int? par1198, object par1199)
+		public static object currtid(int? par1198, object par1199)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Currtid2
+		#region currtid2
 
 		[Sql.Function(Name="pg_catalog.currtid2", ServerSideOnly=true)]
-		public static object Currtid2(string par1201, object par1202)
+		public static object currtid2(string par1201, object par1202)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Currval
+		#region currval
 
 		[Sql.Function(Name="pg_catalog.currval", ServerSideOnly=true)]
-		public static long? Currval(object par1204)
+		public static long? currval(object par1204)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CursorToXml
+		#region cursor_to_xml
 
 		[Sql.Function(Name="pg_catalog.cursor_to_xml", ServerSideOnly=true)]
-		public static string CursorToXml(object cursor, int? count, bool? nulls, bool? tableforest, string targetns)
+		public static string cursor_to_xml(object cursor, int? count, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region CursorToXmlschema
+		#region cursor_to_xmlschema
 
 		[Sql.Function(Name="pg_catalog.cursor_to_xmlschema", ServerSideOnly=true)]
-		public static string CursorToXmlschema(object cursor, bool? nulls, bool? tableforest, string targetns)
+		public static string cursor_to_xmlschema(object cursor, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatabaseToXml
+		#region database_to_xml
 
 		[Sql.Function(Name="pg_catalog.database_to_xml", ServerSideOnly=true)]
-		public static string DatabaseToXml(bool? nulls, bool? tableforest, string targetns)
+		public static string database_to_xml(bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatabaseToXmlAndXmlschema
+		#region database_to_xml_and_xmlschema
 
 		[Sql.Function(Name="pg_catalog.database_to_xml_and_xmlschema", ServerSideOnly=true)]
-		public static string DatabaseToXmlAndXmlschema(bool? nulls, bool? tableforest, string targetns)
+		public static string database_to_xml_and_xmlschema(bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatabaseToXmlschema
+		#region database_to_xmlschema
 
 		[Sql.Function(Name="pg_catalog.database_to_xmlschema", ServerSideOnly=true)]
-		public static string DatabaseToXmlschema(bool? nulls, bool? tableforest, string targetns)
+		public static string database_to_xmlschema(bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Date
+		#region date
 
 		[Sql.Function(Name="pg_catalog.date", ServerSideOnly=true)]
-		public static NpgsqlDate? Date(DateTime? par1215)
+		public static NpgsqlDate? date(DateTime? par1215)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateCmp
+		#region date_cmp
 
 		[Sql.Function(Name="pg_catalog.date_cmp", ServerSideOnly=true)]
-		public static int? DateCmp(NpgsqlDate? par1217, NpgsqlDate? par1218)
+		public static int? date_cmp(NpgsqlDate? par1217, NpgsqlDate? par1218)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateCmpTimestamp
+		#region date_cmp_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_cmp_timestamp", ServerSideOnly=true)]
-		public static int? DateCmpTimestamp(NpgsqlDate? par1220, DateTime? par1221)
+		public static int? date_cmp_timestamp(NpgsqlDate? par1220, DateTime? par1221)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateCmpTimestamptz
+		#region date_cmp_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_cmp_timestamptz", ServerSideOnly=true)]
-		public static int? DateCmpTimestamptz(NpgsqlDate? par1223, DateTimeOffset? par1224)
+		public static int? date_cmp_timestamptz(NpgsqlDate? par1223, DateTimeOffset? par1224)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateEq
+		#region date_eq
 
 		[Sql.Function(Name="pg_catalog.date_eq", ServerSideOnly=true)]
-		public static bool? DateEq(NpgsqlDate? par1226, NpgsqlDate? par1227)
+		public static bool? date_eq(NpgsqlDate? par1226, NpgsqlDate? par1227)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateEqTimestamp
+		#region date_eq_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_eq_timestamp", ServerSideOnly=true)]
-		public static bool? DateEqTimestamp(NpgsqlDate? par1229, DateTime? par1230)
+		public static bool? date_eq_timestamp(NpgsqlDate? par1229, DateTime? par1230)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateEqTimestamptz
+		#region date_eq_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_eq_timestamptz", ServerSideOnly=true)]
-		public static bool? DateEqTimestamptz(NpgsqlDate? par1232, DateTimeOffset? par1233)
+		public static bool? date_eq_timestamptz(NpgsqlDate? par1232, DateTimeOffset? par1233)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGe
+		#region date_ge
 
 		[Sql.Function(Name="pg_catalog.date_ge", ServerSideOnly=true)]
-		public static bool? DateGe(NpgsqlDate? par1235, NpgsqlDate? par1236)
+		public static bool? date_ge(NpgsqlDate? par1235, NpgsqlDate? par1236)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGeTimestamp
+		#region date_ge_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_ge_timestamp", ServerSideOnly=true)]
-		public static bool? DateGeTimestamp(NpgsqlDate? par1238, DateTime? par1239)
+		public static bool? date_ge_timestamp(NpgsqlDate? par1238, DateTime? par1239)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGeTimestamptz
+		#region date_ge_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_ge_timestamptz", ServerSideOnly=true)]
-		public static bool? DateGeTimestamptz(NpgsqlDate? par1241, DateTimeOffset? par1242)
+		public static bool? date_ge_timestamptz(NpgsqlDate? par1241, DateTimeOffset? par1242)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGt
+		#region date_gt
 
 		[Sql.Function(Name="pg_catalog.date_gt", ServerSideOnly=true)]
-		public static bool? DateGt(NpgsqlDate? par1244, NpgsqlDate? par1245)
+		public static bool? date_gt(NpgsqlDate? par1244, NpgsqlDate? par1245)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGtTimestamp
+		#region date_gt_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_gt_timestamp", ServerSideOnly=true)]
-		public static bool? DateGtTimestamp(NpgsqlDate? par1247, DateTime? par1248)
+		public static bool? date_gt_timestamp(NpgsqlDate? par1247, DateTime? par1248)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateGtTimestamptz
+		#region date_gt_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_gt_timestamptz", ServerSideOnly=true)]
-		public static bool? DateGtTimestamptz(NpgsqlDate? par1250, DateTimeOffset? par1251)
+		public static bool? date_gt_timestamptz(NpgsqlDate? par1250, DateTimeOffset? par1251)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateIn
+		#region date_in
 
 		[Sql.Function(Name="pg_catalog.date_in", ServerSideOnly=true)]
-		public static NpgsqlDate? DateIn(object par1253)
+		public static NpgsqlDate? date_in(object par1253)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLarger
+		#region date_larger
 
 		[Sql.Function(Name="pg_catalog.date_larger", ServerSideOnly=true)]
-		public static NpgsqlDate? DateLarger(NpgsqlDate? par1255, NpgsqlDate? par1256)
+		public static NpgsqlDate? date_larger(NpgsqlDate? par1255, NpgsqlDate? par1256)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLe
+		#region date_le
 
 		[Sql.Function(Name="pg_catalog.date_le", ServerSideOnly=true)]
-		public static bool? DateLe(NpgsqlDate? par1258, NpgsqlDate? par1259)
+		public static bool? date_le(NpgsqlDate? par1258, NpgsqlDate? par1259)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLeTimestamp
+		#region date_le_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_le_timestamp", ServerSideOnly=true)]
-		public static bool? DateLeTimestamp(NpgsqlDate? par1261, DateTime? par1262)
+		public static bool? date_le_timestamp(NpgsqlDate? par1261, DateTime? par1262)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLeTimestamptz
+		#region date_le_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_le_timestamptz", ServerSideOnly=true)]
-		public static bool? DateLeTimestamptz(NpgsqlDate? par1264, DateTimeOffset? par1265)
+		public static bool? date_le_timestamptz(NpgsqlDate? par1264, DateTimeOffset? par1265)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLt
+		#region date_lt
 
 		[Sql.Function(Name="pg_catalog.date_lt", ServerSideOnly=true)]
-		public static bool? DateLt(NpgsqlDate? par1267, NpgsqlDate? par1268)
+		public static bool? date_lt(NpgsqlDate? par1267, NpgsqlDate? par1268)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLtTimestamp
+		#region date_lt_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_lt_timestamp", ServerSideOnly=true)]
-		public static bool? DateLtTimestamp(NpgsqlDate? par1270, DateTime? par1271)
+		public static bool? date_lt_timestamp(NpgsqlDate? par1270, DateTime? par1271)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateLtTimestamptz
+		#region date_lt_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_lt_timestamptz", ServerSideOnly=true)]
-		public static bool? DateLtTimestamptz(NpgsqlDate? par1273, DateTimeOffset? par1274)
+		public static bool? date_lt_timestamptz(NpgsqlDate? par1273, DateTimeOffset? par1274)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateMi
+		#region date_mi
 
 		[Sql.Function(Name="pg_catalog.date_mi", ServerSideOnly=true)]
-		public static int? DateMi(NpgsqlDate? par1276, NpgsqlDate? par1277)
+		public static int? date_mi(NpgsqlDate? par1276, NpgsqlDate? par1277)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateMii
+		#region date_mii
 
 		[Sql.Function(Name="pg_catalog.date_mii", ServerSideOnly=true)]
-		public static NpgsqlDate? DateMii(NpgsqlDate? par1279, int? par1280)
+		public static NpgsqlDate? date_mii(NpgsqlDate? par1279, int? par1280)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateMiInterval
+		#region date_mi_interval
 
 		[Sql.Function(Name="pg_catalog.date_mi_interval", ServerSideOnly=true)]
-		public static DateTime? DateMiInterval(NpgsqlDate? par1282, NpgsqlTimeSpan? par1283)
+		public static DateTime? date_mi_interval(NpgsqlDate? par1282, NpgsqlTimeSpan? par1283)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateNe
+		#region date_ne
 
 		[Sql.Function(Name="pg_catalog.date_ne", ServerSideOnly=true)]
-		public static bool? DateNe(NpgsqlDate? par1285, NpgsqlDate? par1286)
+		public static bool? date_ne(NpgsqlDate? par1285, NpgsqlDate? par1286)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateNeTimestamp
+		#region date_ne_timestamp
 
 		[Sql.Function(Name="pg_catalog.date_ne_timestamp", ServerSideOnly=true)]
-		public static bool? DateNeTimestamp(NpgsqlDate? par1288, DateTime? par1289)
+		public static bool? date_ne_timestamp(NpgsqlDate? par1288, DateTime? par1289)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateNeTimestamptz
+		#region date_ne_timestamptz
 
 		[Sql.Function(Name="pg_catalog.date_ne_timestamptz", ServerSideOnly=true)]
-		public static bool? DateNeTimestamptz(NpgsqlDate? par1291, DateTimeOffset? par1292)
+		public static bool? date_ne_timestamptz(NpgsqlDate? par1291, DateTimeOffset? par1292)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateOut
+		#region date_out
 
 		[Sql.Function(Name="pg_catalog.date_out", ServerSideOnly=true)]
-		public static object DateOut(NpgsqlDate? par1294)
+		public static object date_out(NpgsqlDate? par1294)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatePart
+		#region date_part
 
 		[Sql.Function(Name="pg_catalog.date_part", ServerSideOnly=true)]
-		public static double? DatePart(string par1317, DateTime? par1318)
+		public static double? date_part(string par1317, DateTime? par1318)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatePli
+		#region date_pli
 
 		[Sql.Function(Name="pg_catalog.date_pli", ServerSideOnly=true)]
-		public static NpgsqlDate? DatePli(NpgsqlDate? par1320, int? par1321)
+		public static NpgsqlDate? date_pli(NpgsqlDate? par1320, int? par1321)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatePlInterval
+		#region date_pl_interval
 
 		[Sql.Function(Name="pg_catalog.date_pl_interval", ServerSideOnly=true)]
-		public static DateTime? DatePlInterval(NpgsqlDate? par1323, NpgsqlTimeSpan? par1324)
+		public static DateTime? date_pl_interval(NpgsqlDate? par1323, NpgsqlTimeSpan? par1324)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Daterange
+		#region daterange
 
 		[Sql.Function(Name="pg_catalog.daterange", ServerSideOnly=true)]
-		public static object Daterange(NpgsqlDate? par1329, NpgsqlDate? par1330, string par1331)
+		public static object daterange(NpgsqlDate? par1329, NpgsqlDate? par1330, string par1331)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DaterangeCanonical
+		#region daterange_canonical
 
 		[Sql.Function(Name="pg_catalog.daterange_canonical", ServerSideOnly=true)]
-		public static object DaterangeCanonical(object par1333)
+		public static object daterange_canonical(object par1333)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DaterangeSubdiff
+		#region daterange_subdiff
 
 		[Sql.Function(Name="pg_catalog.daterange_subdiff", ServerSideOnly=true)]
-		public static double? DaterangeSubdiff(NpgsqlDate? par1335, NpgsqlDate? par1336)
+		public static double? daterange_subdiff(NpgsqlDate? par1335, NpgsqlDate? par1336)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateRecv
+		#region date_recv
 
 		[Sql.Function(Name="pg_catalog.date_recv", ServerSideOnly=true)]
-		public static NpgsqlDate? DateRecv(object par1338)
+		public static NpgsqlDate? date_recv(object par1338)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateSend
+		#region date_send
 
 		[Sql.Function(Name="pg_catalog.date_send", ServerSideOnly=true)]
-		public static byte[] DateSend(NpgsqlDate? par1340)
+		public static byte[] date_send(NpgsqlDate? par1340)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateSmaller
+		#region date_smaller
 
 		[Sql.Function(Name="pg_catalog.date_smaller", ServerSideOnly=true)]
-		public static NpgsqlDate? DateSmaller(NpgsqlDate? par1342, NpgsqlDate? par1343)
+		public static NpgsqlDate? date_smaller(NpgsqlDate? par1342, NpgsqlDate? par1343)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateSortsupport
+		#region date_sortsupport
 
 		[Sql.Function(Name="pg_catalog.date_sortsupport", ServerSideOnly=true)]
-		public static object DateSortsupport(object par1344)
+		public static object date_sortsupport(object par1344)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatetimePl
+		#region datetime_pl
 
 		[Sql.Function(Name="pg_catalog.datetime_pl", ServerSideOnly=true)]
-		public static DateTime? DatetimePl(NpgsqlDate? par1346, TimeSpan? par1347)
+		public static DateTime? datetime_pl(NpgsqlDate? par1346, TimeSpan? par1347)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DatetimetzPl
+		#region datetimetz_pl
 
 		[Sql.Function(Name="pg_catalog.datetimetz_pl", ServerSideOnly=true)]
-		public static DateTimeOffset? DatetimetzPl(NpgsqlDate? par1349, DateTimeOffset? par1350)
+		public static DateTimeOffset? datetimetz_pl(NpgsqlDate? par1349, DateTimeOffset? par1350)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DateTrunc
+		#region date_trunc
 
 		[Sql.Function(Name="pg_catalog.date_trunc", ServerSideOnly=true)]
-		public static DateTime? DateTrunc(string par1358, DateTime? par1359)
+		public static DateTime? date_trunc(string par1358, DateTime? par1359)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dcbrt
+		#region dcbrt
 
 		[Sql.Function(Name="pg_catalog.dcbrt", ServerSideOnly=true)]
-		public static double? Dcbrt(double? par1361)
+		public static double? dcbrt(double? par1361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Decode
+		#region decode
 
 		[Sql.Function(Name="pg_catalog.decode", ServerSideOnly=true)]
-		public static byte[] Decode(string par1363, string par1364)
+		public static byte[] decode(string par1363, string par1364)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Degrees
+		#region degrees
 
 		[Sql.Function(Name="pg_catalog.degrees", ServerSideOnly=true)]
-		public static double? Degrees(double? par1366)
+		public static double? degrees(double? par1366)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DenseRank
+		#region dense_rank
 
 		[Sql.Function(Name="pg_catalog.dense_rank", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static long? DenseRank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par1369)
+		public static long? dense_rank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par1369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DenseRankFinal
+		#region dense_rank_final
 
 		[Sql.Function(Name="pg_catalog.dense_rank_final", ServerSideOnly=true)]
-		public static long? DenseRankFinal(object par1371, object par1372)
+		public static long? dense_rank_final(object par1371, object par1372)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dexp
+		#region dexp
 
 		[Sql.Function(Name="pg_catalog.dexp", ServerSideOnly=true)]
-		public static double? Dexp(double? par1374)
+		public static double? dexp(double? par1374)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Diagonal
+		#region diagonal
 
 		[Sql.Function(Name="pg_catalog.diagonal", ServerSideOnly=true)]
-		public static NpgsqlLSeg? Diagonal(NpgsqlBox? par1376)
+		public static NpgsqlLSeg? diagonal(NpgsqlBox? par1376)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Diameter
+		#region diameter
 
 		[Sql.Function(Name="pg_catalog.diameter", ServerSideOnly=true)]
-		public static double? Diameter(NpgsqlCircle? par1378)
+		public static double? diameter(NpgsqlCircle? par1378)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DispellInit
+		#region dispell_init
 
 		[Sql.Function(Name="pg_catalog.dispell_init", ServerSideOnly=true)]
-		public static object DispellInit(object par1380)
+		public static object dispell_init(object par1380)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DispellLexize
+		#region dispell_lexize
 
 		[Sql.Function(Name="pg_catalog.dispell_lexize", ServerSideOnly=true)]
-		public static object DispellLexize(object par1382, object par1383, object par1384, object par1385)
+		public static object dispell_lexize(object par1382, object par1383, object par1384, object par1385)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistCpoint
+		#region dist_cpoint
 
 		[Sql.Function(Name="pg_catalog.dist_cpoint", ServerSideOnly=true)]
-		public static double? DistCpoint(NpgsqlCircle? par1387, NpgsqlPoint? par1388)
+		public static double? dist_cpoint(NpgsqlCircle? par1387, NpgsqlPoint? par1388)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistCpoly
+		#region dist_cpoly
 
 		[Sql.Function(Name="pg_catalog.dist_cpoly", ServerSideOnly=true)]
-		public static double? DistCpoly(NpgsqlCircle? par1390, NpgsqlPolygon? par1391)
+		public static double? dist_cpoly(NpgsqlCircle? par1390, NpgsqlPolygon? par1391)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistLb
+		#region dist_lb
 
 		[Sql.Function(Name="pg_catalog.dist_lb", ServerSideOnly=true)]
-		public static double? DistLb(NpgsqlLine? par1393, NpgsqlBox? par1394)
+		public static double? dist_lb(NpgsqlLine? par1393, NpgsqlBox? par1394)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPb
+		#region dist_pb
 
 		[Sql.Function(Name="pg_catalog.dist_pb", ServerSideOnly=true)]
-		public static double? DistPb(NpgsqlPoint? par1396, NpgsqlBox? par1397)
+		public static double? dist_pb(NpgsqlPoint? par1396, NpgsqlBox? par1397)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPc
+		#region dist_pc
 
 		[Sql.Function(Name="pg_catalog.dist_pc", ServerSideOnly=true)]
-		public static double? DistPc(NpgsqlPoint? par1399, NpgsqlCircle? par1400)
+		public static double? dist_pc(NpgsqlPoint? par1399, NpgsqlCircle? par1400)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPl
+		#region dist_pl
 
 		[Sql.Function(Name="pg_catalog.dist_pl", ServerSideOnly=true)]
-		public static double? DistPl(NpgsqlPoint? par1402, NpgsqlLine? par1403)
+		public static double? dist_pl(NpgsqlPoint? par1402, NpgsqlLine? par1403)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPolyp
+		#region dist_polyp
 
 		[Sql.Function(Name="pg_catalog.dist_polyp", ServerSideOnly=true)]
-		public static double? DistPolyp(NpgsqlPolygon? par1405, NpgsqlPoint? par1406)
+		public static double? dist_polyp(NpgsqlPolygon? par1405, NpgsqlPoint? par1406)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPpath
+		#region dist_ppath
 
 		[Sql.Function(Name="pg_catalog.dist_ppath", ServerSideOnly=true)]
-		public static double? DistPpath(NpgsqlPoint? par1408, NpgsqlPath? par1409)
+		public static double? dist_ppath(NpgsqlPoint? par1408, NpgsqlPath? par1409)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPpoly
+		#region dist_ppoly
 
 		[Sql.Function(Name="pg_catalog.dist_ppoly", ServerSideOnly=true)]
-		public static double? DistPpoly(NpgsqlPoint? par1411, NpgsqlPolygon? par1412)
+		public static double? dist_ppoly(NpgsqlPoint? par1411, NpgsqlPolygon? par1412)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistPs
+		#region dist_ps
 
 		[Sql.Function(Name="pg_catalog.dist_ps", ServerSideOnly=true)]
-		public static double? DistPs(NpgsqlPoint? par1414, NpgsqlLSeg? par1415)
+		public static double? dist_ps(NpgsqlPoint? par1414, NpgsqlLSeg? par1415)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistSb
+		#region dist_sb
 
 		[Sql.Function(Name="pg_catalog.dist_sb", ServerSideOnly=true)]
-		public static double? DistSb(NpgsqlLSeg? par1417, NpgsqlBox? par1418)
+		public static double? dist_sb(NpgsqlLSeg? par1417, NpgsqlBox? par1418)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DistSl
+		#region dist_sl
 
 		[Sql.Function(Name="pg_catalog.dist_sl", ServerSideOnly=true)]
-		public static double? DistSl(NpgsqlLSeg? par1420, NpgsqlLine? par1421)
+		public static double? dist_sl(NpgsqlLSeg? par1420, NpgsqlLine? par1421)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Div
+		#region div
 
 		[Sql.Function(Name="pg_catalog.div", ServerSideOnly=true)]
-		public static decimal? Div(decimal? par1423, decimal? par1424)
+		public static decimal? div(decimal? par1423, decimal? par1424)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dlog10
+		#region dlog10
 
 		[Sql.Function(Name="pg_catalog.dlog10", ServerSideOnly=true)]
-		public static double? Dlog10(double? par1426)
+		public static double? dlog10(double? par1426)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dlog1
+		#region dlog1
 
 		[Sql.Function(Name="pg_catalog.dlog1", ServerSideOnly=true)]
-		public static double? Dlog1(double? par1428)
+		public static double? dlog1(double? par1428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DomainIn
+		#region domain_in
 
 		[Sql.Function(Name="pg_catalog.domain_in", ServerSideOnly=true)]
-		public static object DomainIn(object par1430, int? par1431, int? par1432)
+		public static object domain_in(object par1430, int? par1431, int? par1432)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DomainRecv
+		#region domain_recv
 
 		[Sql.Function(Name="pg_catalog.domain_recv", ServerSideOnly=true)]
-		public static object DomainRecv(object par1434, int? par1435, int? par1436)
+		public static object domain_recv(object par1434, int? par1435, int? par1436)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dpow
+		#region dpow
 
 		[Sql.Function(Name="pg_catalog.dpow", ServerSideOnly=true)]
-		public static double? Dpow(double? par1438, double? par1439)
+		public static double? dpow(double? par1438, double? par1439)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dround
+		#region dround
 
 		[Sql.Function(Name="pg_catalog.dround", ServerSideOnly=true)]
-		public static double? Dround(double? par1441)
+		public static double? dround(double? par1441)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsimpleInit
+		#region dsimple_init
 
 		[Sql.Function(Name="pg_catalog.dsimple_init", ServerSideOnly=true)]
-		public static object DsimpleInit(object par1443)
+		public static object dsimple_init(object par1443)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsimpleLexize
+		#region dsimple_lexize
 
 		[Sql.Function(Name="pg_catalog.dsimple_lexize", ServerSideOnly=true)]
-		public static object DsimpleLexize(object par1445, object par1446, object par1447, object par1448)
+		public static object dsimple_lexize(object par1445, object par1446, object par1447, object par1448)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsnowballInit
+		#region dsnowball_init
 
 		[Sql.Function(Name="pg_catalog.dsnowball_init", ServerSideOnly=true)]
-		public static object DsnowballInit(object par1450)
+		public static object dsnowball_init(object par1450)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsnowballLexize
+		#region dsnowball_lexize
 
 		[Sql.Function(Name="pg_catalog.dsnowball_lexize", ServerSideOnly=true)]
-		public static object DsnowballLexize(object par1452, object par1453, object par1454, object par1455)
+		public static object dsnowball_lexize(object par1452, object par1453, object par1454, object par1455)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dsqrt
+		#region dsqrt
 
 		[Sql.Function(Name="pg_catalog.dsqrt", ServerSideOnly=true)]
-		public static double? Dsqrt(double? par1457)
+		public static double? dsqrt(double? par1457)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsynonymInit
+		#region dsynonym_init
 
 		[Sql.Function(Name="pg_catalog.dsynonym_init", ServerSideOnly=true)]
-		public static object DsynonymInit(object par1459)
+		public static object dsynonym_init(object par1459)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region DsynonymLexize
+		#region dsynonym_lexize
 
 		[Sql.Function(Name="pg_catalog.dsynonym_lexize", ServerSideOnly=true)]
-		public static object DsynonymLexize(object par1461, object par1462, object par1463, object par1464)
+		public static object dsynonym_lexize(object par1461, object par1462, object par1463, object par1464)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Dtrunc
+		#region dtrunc
 
 		[Sql.Function(Name="pg_catalog.dtrunc", ServerSideOnly=true)]
-		public static double? Dtrunc(double? par1466)
+		public static double? dtrunc(double? par1466)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ElemContainedByRange
+		#region elem_contained_by_range
 
 		[Sql.Function(Name="pg_catalog.elem_contained_by_range", ServerSideOnly=true)]
-		public static bool? ElemContainedByRange(object par1468, object par1469)
+		public static bool? elem_contained_by_range(object par1468, object par1469)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Encode
+		#region encode
 
 		[Sql.Function(Name="pg_catalog.encode", ServerSideOnly=true)]
-		public static string Encode(byte[] par1471, string par1472)
+		public static string encode(byte[] par1471, string par1472)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumCmp
+		#region enum_cmp
 
 		[Sql.Function(Name="pg_catalog.enum_cmp", ServerSideOnly=true)]
-		public static int? EnumCmp(object par1474, object par1475)
+		public static int? enum_cmp(object par1474, object par1475)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumEq
+		#region enum_eq
 
 		[Sql.Function(Name="pg_catalog.enum_eq", ServerSideOnly=true)]
-		public static bool? EnumEq(object par1477, object par1478)
+		public static bool? enum_eq(object par1477, object par1478)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumFirst
+		#region enum_first
 
 		[Sql.Function(Name="pg_catalog.enum_first", ServerSideOnly=true)]
-		public static object EnumFirst(object par1480)
+		public static object enum_first(object par1480)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumGe
+		#region enum_ge
 
 		[Sql.Function(Name="pg_catalog.enum_ge", ServerSideOnly=true)]
-		public static bool? EnumGe(object par1482, object par1483)
+		public static bool? enum_ge(object par1482, object par1483)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumGt
+		#region enum_gt
 
 		[Sql.Function(Name="pg_catalog.enum_gt", ServerSideOnly=true)]
-		public static bool? EnumGt(object par1485, object par1486)
+		public static bool? enum_gt(object par1485, object par1486)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumIn
+		#region enum_in
 
 		[Sql.Function(Name="pg_catalog.enum_in", ServerSideOnly=true)]
-		public static object EnumIn(object par1488, int? par1489)
+		public static object enum_in(object par1488, int? par1489)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumLarger
+		#region enum_larger
 
 		[Sql.Function(Name="pg_catalog.enum_larger", ServerSideOnly=true)]
-		public static object EnumLarger(object par1491, object par1492)
+		public static object enum_larger(object par1491, object par1492)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumLast
+		#region enum_last
 
 		[Sql.Function(Name="pg_catalog.enum_last", ServerSideOnly=true)]
-		public static object EnumLast(object par1494)
+		public static object enum_last(object par1494)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumLe
+		#region enum_le
 
 		[Sql.Function(Name="pg_catalog.enum_le", ServerSideOnly=true)]
-		public static bool? EnumLe(object par1496, object par1497)
+		public static bool? enum_le(object par1496, object par1497)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumLt
+		#region enum_lt
 
 		[Sql.Function(Name="pg_catalog.enum_lt", ServerSideOnly=true)]
-		public static bool? EnumLt(object par1499, object par1500)
+		public static bool? enum_lt(object par1499, object par1500)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumNe
+		#region enum_ne
 
 		[Sql.Function(Name="pg_catalog.enum_ne", ServerSideOnly=true)]
-		public static bool? EnumNe(object par1502, object par1503)
+		public static bool? enum_ne(object par1502, object par1503)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumOut
+		#region enum_out
 
 		[Sql.Function(Name="pg_catalog.enum_out", ServerSideOnly=true)]
-		public static object EnumOut(object par1505)
+		public static object enum_out(object par1505)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumRange
+		#region enum_range
 
 		[Sql.Function(Name="pg_catalog.enum_range", ServerSideOnly=true)]
-		public static object EnumRange(object par1510)
+		public static object enum_range(object par1510)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumRecv
+		#region enum_recv
 
 		[Sql.Function(Name="pg_catalog.enum_recv", ServerSideOnly=true)]
-		public static object EnumRecv(object par1512, int? par1513)
+		public static object enum_recv(object par1512, int? par1513)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumSend
+		#region enum_send
 
 		[Sql.Function(Name="pg_catalog.enum_send", ServerSideOnly=true)]
-		public static byte[] EnumSend(object par1515)
+		public static byte[] enum_send(object par1515)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EnumSmaller
+		#region enum_smaller
 
 		[Sql.Function(Name="pg_catalog.enum_smaller", ServerSideOnly=true)]
-		public static object EnumSmaller(object par1517, object par1518)
+		public static object enum_smaller(object par1517, object par1518)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Eqjoinsel
+		#region eqjoinsel
 
 		[Sql.Function(Name="pg_catalog.eqjoinsel", ServerSideOnly=true)]
-		public static double? Eqjoinsel(object par1520, int? par1521, object par1522, short? par1523, object par1524)
+		public static double? eqjoinsel(object par1520, int? par1521, object par1522, short? par1523, object par1524)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Eqsel
+		#region eqsel
 
 		[Sql.Function(Name="pg_catalog.eqsel", ServerSideOnly=true)]
-		public static double? Eqsel(object par1526, int? par1527, object par1528, int? par1529)
+		public static double? eqsel(object par1526, int? par1527, object par1528, int? par1529)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucCnToMic
+		#region euc_cn_to_mic
 
 		[Sql.Function(Name="pg_catalog.euc_cn_to_mic", ServerSideOnly=true)]
-		public static object EucCnToMic(int? par1530, int? par1531, object par1532, object par1533, int? par1534)
+		public static object euc_cn_to_mic(int? par1530, int? par1531, object par1532, object par1533, int? par1534)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucCnToUtf8
+		#region euc_cn_to_utf8
 
 		[Sql.Function(Name="pg_catalog.euc_cn_to_utf8", ServerSideOnly=true)]
-		public static object EucCnToUtf8(int? par1535, int? par1536, object par1537, object par1538, int? par1539)
+		public static object euc_cn_to_utf8(int? par1535, int? par1536, object par1537, object par1538, int? par1539)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucJis2004ToShiftJis2004
+		#region euc_jis_2004_to_shift_jis_2004
 
 		[Sql.Function(Name="pg_catalog.euc_jis_2004_to_shift_jis_2004", ServerSideOnly=true)]
-		public static object EucJis2004ToShiftJis2004(int? par1540, int? par1541, object par1542, object par1543, int? par1544)
+		public static object euc_jis_2004_to_shift_jis_2004(int? par1540, int? par1541, object par1542, object par1543, int? par1544)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucJis2004ToUtf8
+		#region euc_jis_2004_to_utf8
 
 		[Sql.Function(Name="pg_catalog.euc_jis_2004_to_utf8", ServerSideOnly=true)]
-		public static object EucJis2004ToUtf8(int? par1545, int? par1546, object par1547, object par1548, int? par1549)
+		public static object euc_jis_2004_to_utf8(int? par1545, int? par1546, object par1547, object par1548, int? par1549)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucJpToMic
+		#region euc_jp_to_mic
 
 		[Sql.Function(Name="pg_catalog.euc_jp_to_mic", ServerSideOnly=true)]
-		public static object EucJpToMic(int? par1550, int? par1551, object par1552, object par1553, int? par1554)
+		public static object euc_jp_to_mic(int? par1550, int? par1551, object par1552, object par1553, int? par1554)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucJpToSjis
+		#region euc_jp_to_sjis
 
 		[Sql.Function(Name="pg_catalog.euc_jp_to_sjis", ServerSideOnly=true)]
-		public static object EucJpToSjis(int? par1555, int? par1556, object par1557, object par1558, int? par1559)
+		public static object euc_jp_to_sjis(int? par1555, int? par1556, object par1557, object par1558, int? par1559)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucJpToUtf8
+		#region euc_jp_to_utf8
 
 		[Sql.Function(Name="pg_catalog.euc_jp_to_utf8", ServerSideOnly=true)]
-		public static object EucJpToUtf8(int? par1560, int? par1561, object par1562, object par1563, int? par1564)
+		public static object euc_jp_to_utf8(int? par1560, int? par1561, object par1562, object par1563, int? par1564)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucKrToMic
+		#region euc_kr_to_mic
 
 		[Sql.Function(Name="pg_catalog.euc_kr_to_mic", ServerSideOnly=true)]
-		public static object EucKrToMic(int? par1565, int? par1566, object par1567, object par1568, int? par1569)
+		public static object euc_kr_to_mic(int? par1565, int? par1566, object par1567, object par1568, int? par1569)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucKrToUtf8
+		#region euc_kr_to_utf8
 
 		[Sql.Function(Name="pg_catalog.euc_kr_to_utf8", ServerSideOnly=true)]
-		public static object EucKrToUtf8(int? par1570, int? par1571, object par1572, object par1573, int? par1574)
+		public static object euc_kr_to_utf8(int? par1570, int? par1571, object par1572, object par1573, int? par1574)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucTwToBig5
+		#region euc_tw_to_big5
 
 		[Sql.Function(Name="pg_catalog.euc_tw_to_big5", ServerSideOnly=true)]
-		public static object EucTwToBig5(int? par1575, int? par1576, object par1577, object par1578, int? par1579)
+		public static object euc_tw_to_big5(int? par1575, int? par1576, object par1577, object par1578, int? par1579)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucTwToMic
+		#region euc_tw_to_mic
 
 		[Sql.Function(Name="pg_catalog.euc_tw_to_mic", ServerSideOnly=true)]
-		public static object EucTwToMic(int? par1580, int? par1581, object par1582, object par1583, int? par1584)
+		public static object euc_tw_to_mic(int? par1580, int? par1581, object par1582, object par1583, int? par1584)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EucTwToUtf8
+		#region euc_tw_to_utf8
 
 		[Sql.Function(Name="pg_catalog.euc_tw_to_utf8", ServerSideOnly=true)]
-		public static object EucTwToUtf8(int? par1585, int? par1586, object par1587, object par1588, int? par1589)
+		public static object euc_tw_to_utf8(int? par1585, int? par1586, object par1587, object par1588, int? par1589)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EventTriggerIn
+		#region event_trigger_in
 
 		[Sql.Function(Name="pg_catalog.event_trigger_in", ServerSideOnly=true)]
-		public static object EventTriggerIn(object par1591)
+		public static object event_trigger_in(object par1591)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region EventTriggerOut
+		#region event_trigger_out
 
 		[Sql.Function(Name="pg_catalog.event_trigger_out", ServerSideOnly=true)]
-		public static object EventTriggerOut(object par1593)
+		public static object event_trigger_out(object par1593)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Every
+		#region every
 
 		[Sql.Function(Name="pg_catalog.every", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static bool? Every<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par1595)
+		public static bool? every<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, bool?>> par1595)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Exp
+		#region exp
 
 		[Sql.Function(Name="pg_catalog.exp", ServerSideOnly=true)]
-		public static decimal? Exp(decimal? par1599)
+		public static decimal? exp(decimal? par1599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Factorial
+		#region factorial
 
 		[Sql.Function(Name="pg_catalog.factorial", ServerSideOnly=true)]
-		public static decimal? Factorial(long? par1601)
+		public static decimal? factorial(long? par1601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Family
+		#region family
 
 		[Sql.Function(Name="pg_catalog.family", ServerSideOnly=true)]
-		public static int? Family(NpgsqlInet? par1603)
+		public static int? family(NpgsqlInet? par1603)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FdwHandlerIn
+		#region fdw_handler_in
 
 		[Sql.Function(Name="pg_catalog.fdw_handler_in", ServerSideOnly=true)]
-		public static object FdwHandlerIn(object par1605)
+		public static object fdw_handler_in(object par1605)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FdwHandlerOut
+		#region fdw_handler_out
 
 		[Sql.Function(Name="pg_catalog.fdw_handler_out", ServerSideOnly=true)]
-		public static object FdwHandlerOut(object par1607)
+		public static object fdw_handler_out(object par1607)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FirstValue
+		#region first_value
 
 		[Sql.Function(Name="pg_catalog.first_value", ServerSideOnly=true)]
-		public static object FirstValue(object par1609)
+		public static object first_value(object par1609)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4
+		#region float4
 
 		[Sql.Function(Name="pg_catalog.float4", ServerSideOnly=true)]
-		public static float? Float4(long? par1619)
+		public static float? float4(long? par1619)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48div
+		#region float48div
 
 		[Sql.Function(Name="pg_catalog.float48div", ServerSideOnly=true)]
-		public static double? Float48div(float? par1621, double? par1622)
+		public static double? float48div(float? par1621, double? par1622)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48eq
+		#region float48eq
 
 		[Sql.Function(Name="pg_catalog.float48eq", ServerSideOnly=true)]
-		public static bool? Float48eq(float? par1624, double? par1625)
+		public static bool? float48eq(float? par1624, double? par1625)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48ge
+		#region float48ge
 
 		[Sql.Function(Name="pg_catalog.float48ge", ServerSideOnly=true)]
-		public static bool? Float48ge(float? par1627, double? par1628)
+		public static bool? float48ge(float? par1627, double? par1628)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48gt
+		#region float48gt
 
 		[Sql.Function(Name="pg_catalog.float48gt", ServerSideOnly=true)]
-		public static bool? Float48gt(float? par1630, double? par1631)
+		public static bool? float48gt(float? par1630, double? par1631)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48le
+		#region float48le
 
 		[Sql.Function(Name="pg_catalog.float48le", ServerSideOnly=true)]
-		public static bool? Float48le(float? par1633, double? par1634)
+		public static bool? float48le(float? par1633, double? par1634)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48lt
+		#region float48lt
 
 		[Sql.Function(Name="pg_catalog.float48lt", ServerSideOnly=true)]
-		public static bool? Float48lt(float? par1636, double? par1637)
+		public static bool? float48lt(float? par1636, double? par1637)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48mi
+		#region float48mi
 
 		[Sql.Function(Name="pg_catalog.float48mi", ServerSideOnly=true)]
-		public static double? Float48mi(float? par1639, double? par1640)
+		public static double? float48mi(float? par1639, double? par1640)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48mul
+		#region float48mul
 
 		[Sql.Function(Name="pg_catalog.float48mul", ServerSideOnly=true)]
-		public static double? Float48mul(float? par1642, double? par1643)
+		public static double? float48mul(float? par1642, double? par1643)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48ne
+		#region float48ne
 
 		[Sql.Function(Name="pg_catalog.float48ne", ServerSideOnly=true)]
-		public static bool? Float48ne(float? par1645, double? par1646)
+		public static bool? float48ne(float? par1645, double? par1646)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float48pl
+		#region float48pl
 
 		[Sql.Function(Name="pg_catalog.float48pl", ServerSideOnly=true)]
-		public static double? Float48pl(float? par1648, double? par1649)
+		public static double? float48pl(float? par1648, double? par1649)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4abs
+		#region float4abs
 
 		[Sql.Function(Name="pg_catalog.float4abs", ServerSideOnly=true)]
-		public static float? Float4abs(float? par1651)
+		public static float? float4abs(float? par1651)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4Accum
+		#region float4_accum
 
 		[Sql.Function(Name="pg_catalog.float4_accum", ServerSideOnly=true)]
-		public static object Float4Accum(object par1653, float? par1654)
+		public static object float4_accum(object par1653, float? par1654)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4div
+		#region float4div
 
 		[Sql.Function(Name="pg_catalog.float4div", ServerSideOnly=true)]
-		public static float? Float4div(float? par1656, float? par1657)
+		public static float? float4div(float? par1656, float? par1657)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4eq
+		#region float4eq
 
 		[Sql.Function(Name="pg_catalog.float4eq", ServerSideOnly=true)]
-		public static bool? Float4eq(float? par1659, float? par1660)
+		public static bool? float4eq(float? par1659, float? par1660)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4ge
+		#region float4ge
 
 		[Sql.Function(Name="pg_catalog.float4ge", ServerSideOnly=true)]
-		public static bool? Float4ge(float? par1662, float? par1663)
+		public static bool? float4ge(float? par1662, float? par1663)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4gt
+		#region float4gt
 
 		[Sql.Function(Name="pg_catalog.float4gt", ServerSideOnly=true)]
-		public static bool? Float4gt(float? par1665, float? par1666)
+		public static bool? float4gt(float? par1665, float? par1666)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4in
+		#region float4in
 
 		[Sql.Function(Name="pg_catalog.float4in", ServerSideOnly=true)]
-		public static float? Float4in(object par1668)
+		public static float? float4in(object par1668)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4larger
+		#region float4larger
 
 		[Sql.Function(Name="pg_catalog.float4larger", ServerSideOnly=true)]
-		public static float? Float4larger(float? par1670, float? par1671)
+		public static float? float4larger(float? par1670, float? par1671)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4le
+		#region float4le
 
 		[Sql.Function(Name="pg_catalog.float4le", ServerSideOnly=true)]
-		public static bool? Float4le(float? par1673, float? par1674)
+		public static bool? float4le(float? par1673, float? par1674)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4lt
+		#region float4lt
 
 		[Sql.Function(Name="pg_catalog.float4lt", ServerSideOnly=true)]
-		public static bool? Float4lt(float? par1676, float? par1677)
+		public static bool? float4lt(float? par1676, float? par1677)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4mi
+		#region float4mi
 
 		[Sql.Function(Name="pg_catalog.float4mi", ServerSideOnly=true)]
-		public static float? Float4mi(float? par1679, float? par1680)
+		public static float? float4mi(float? par1679, float? par1680)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4mul
+		#region float4mul
 
 		[Sql.Function(Name="pg_catalog.float4mul", ServerSideOnly=true)]
-		public static float? Float4mul(float? par1682, float? par1683)
+		public static float? float4mul(float? par1682, float? par1683)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4ne
+		#region float4ne
 
 		[Sql.Function(Name="pg_catalog.float4ne", ServerSideOnly=true)]
-		public static bool? Float4ne(float? par1685, float? par1686)
+		public static bool? float4ne(float? par1685, float? par1686)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4out
+		#region float4out
 
 		[Sql.Function(Name="pg_catalog.float4out", ServerSideOnly=true)]
-		public static object Float4out(float? par1688)
+		public static object float4out(float? par1688)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4pl
+		#region float4pl
 
 		[Sql.Function(Name="pg_catalog.float4pl", ServerSideOnly=true)]
-		public static float? Float4pl(float? par1690, float? par1691)
+		public static float? float4pl(float? par1690, float? par1691)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4recv
+		#region float4recv
 
 		[Sql.Function(Name="pg_catalog.float4recv", ServerSideOnly=true)]
-		public static float? Float4recv(object par1693)
+		public static float? float4recv(object par1693)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4send
+		#region float4send
 
 		[Sql.Function(Name="pg_catalog.float4send", ServerSideOnly=true)]
-		public static byte[] Float4send(float? par1695)
+		public static byte[] float4send(float? par1695)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4smaller
+		#region float4smaller
 
 		[Sql.Function(Name="pg_catalog.float4smaller", ServerSideOnly=true)]
-		public static float? Float4smaller(float? par1697, float? par1698)
+		public static float? float4smaller(float? par1697, float? par1698)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4um
+		#region float4um
 
 		[Sql.Function(Name="pg_catalog.float4um", ServerSideOnly=true)]
-		public static float? Float4um(float? par1700)
+		public static float? float4um(float? par1700)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float4up
+		#region float4up
 
 		[Sql.Function(Name="pg_catalog.float4up", ServerSideOnly=true)]
-		public static float? Float4up(float? par1702)
+		public static float? float4up(float? par1702)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8
+		#region float8
 
 		[Sql.Function(Name="pg_catalog.float8", ServerSideOnly=true)]
-		public static double? Float8(long? par1712)
+		public static double? float8(long? par1712)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84div
+		#region float84div
 
 		[Sql.Function(Name="pg_catalog.float84div", ServerSideOnly=true)]
-		public static double? Float84div(double? par1714, float? par1715)
+		public static double? float84div(double? par1714, float? par1715)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84eq
+		#region float84eq
 
 		[Sql.Function(Name="pg_catalog.float84eq", ServerSideOnly=true)]
-		public static bool? Float84eq(double? par1717, float? par1718)
+		public static bool? float84eq(double? par1717, float? par1718)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84ge
+		#region float84ge
 
 		[Sql.Function(Name="pg_catalog.float84ge", ServerSideOnly=true)]
-		public static bool? Float84ge(double? par1720, float? par1721)
+		public static bool? float84ge(double? par1720, float? par1721)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84gt
+		#region float84gt
 
 		[Sql.Function(Name="pg_catalog.float84gt", ServerSideOnly=true)]
-		public static bool? Float84gt(double? par1723, float? par1724)
+		public static bool? float84gt(double? par1723, float? par1724)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84le
+		#region float84le
 
 		[Sql.Function(Name="pg_catalog.float84le", ServerSideOnly=true)]
-		public static bool? Float84le(double? par1726, float? par1727)
+		public static bool? float84le(double? par1726, float? par1727)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84lt
+		#region float84lt
 
 		[Sql.Function(Name="pg_catalog.float84lt", ServerSideOnly=true)]
-		public static bool? Float84lt(double? par1729, float? par1730)
+		public static bool? float84lt(double? par1729, float? par1730)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84mi
+		#region float84mi
 
 		[Sql.Function(Name="pg_catalog.float84mi", ServerSideOnly=true)]
-		public static double? Float84mi(double? par1732, float? par1733)
+		public static double? float84mi(double? par1732, float? par1733)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84mul
+		#region float84mul
 
 		[Sql.Function(Name="pg_catalog.float84mul", ServerSideOnly=true)]
-		public static double? Float84mul(double? par1735, float? par1736)
+		public static double? float84mul(double? par1735, float? par1736)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84ne
+		#region float84ne
 
 		[Sql.Function(Name="pg_catalog.float84ne", ServerSideOnly=true)]
-		public static bool? Float84ne(double? par1738, float? par1739)
+		public static bool? float84ne(double? par1738, float? par1739)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float84pl
+		#region float84pl
 
 		[Sql.Function(Name="pg_catalog.float84pl", ServerSideOnly=true)]
-		public static double? Float84pl(double? par1741, float? par1742)
+		public static double? float84pl(double? par1741, float? par1742)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8abs
+		#region float8abs
 
 		[Sql.Function(Name="pg_catalog.float8abs", ServerSideOnly=true)]
-		public static double? Float8abs(double? par1744)
+		public static double? float8abs(double? par1744)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8Accum
+		#region float8_accum
 
 		[Sql.Function(Name="pg_catalog.float8_accum", ServerSideOnly=true)]
-		public static object Float8Accum(object par1746, double? par1747)
+		public static object float8_accum(object par1746, double? par1747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8Avg
+		#region float8_avg
 
 		[Sql.Function(Name="pg_catalog.float8_avg", ServerSideOnly=true)]
-		public static double? Float8Avg(object par1749)
+		public static double? float8_avg(object par1749)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8Combine
+		#region float8_combine
 
 		[Sql.Function(Name="pg_catalog.float8_combine", ServerSideOnly=true)]
-		public static object Float8Combine(object par1751, object par1752)
+		public static object float8_combine(object par1751, object par1752)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8Corr
+		#region float8_corr
 
 		[Sql.Function(Name="pg_catalog.float8_corr", ServerSideOnly=true)]
-		public static double? Float8Corr(object par1754)
+		public static double? float8_corr(object par1754)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8CovarPop
+		#region float8_covar_pop
 
 		[Sql.Function(Name="pg_catalog.float8_covar_pop", ServerSideOnly=true)]
-		public static double? Float8CovarPop(object par1756)
+		public static double? float8_covar_pop(object par1756)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8CovarSamp
+		#region float8_covar_samp
 
 		[Sql.Function(Name="pg_catalog.float8_covar_samp", ServerSideOnly=true)]
-		public static double? Float8CovarSamp(object par1758)
+		public static double? float8_covar_samp(object par1758)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8div
+		#region float8div
 
 		[Sql.Function(Name="pg_catalog.float8div", ServerSideOnly=true)]
-		public static double? Float8div(double? par1760, double? par1761)
+		public static double? float8div(double? par1760, double? par1761)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8eq
+		#region float8eq
 
 		[Sql.Function(Name="pg_catalog.float8eq", ServerSideOnly=true)]
-		public static bool? Float8eq(double? par1763, double? par1764)
+		public static bool? float8eq(double? par1763, double? par1764)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8ge
+		#region float8ge
 
 		[Sql.Function(Name="pg_catalog.float8ge", ServerSideOnly=true)]
-		public static bool? Float8ge(double? par1766, double? par1767)
+		public static bool? float8ge(double? par1766, double? par1767)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8gt
+		#region float8gt
 
 		[Sql.Function(Name="pg_catalog.float8gt", ServerSideOnly=true)]
-		public static bool? Float8gt(double? par1769, double? par1770)
+		public static bool? float8gt(double? par1769, double? par1770)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8in
+		#region float8in
 
 		[Sql.Function(Name="pg_catalog.float8in", ServerSideOnly=true)]
-		public static double? Float8in(object par1772)
+		public static double? float8in(object par1772)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8larger
+		#region float8larger
 
 		[Sql.Function(Name="pg_catalog.float8larger", ServerSideOnly=true)]
-		public static double? Float8larger(double? par1774, double? par1775)
+		public static double? float8larger(double? par1774, double? par1775)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8le
+		#region float8le
 
 		[Sql.Function(Name="pg_catalog.float8le", ServerSideOnly=true)]
-		public static bool? Float8le(double? par1777, double? par1778)
+		public static bool? float8le(double? par1777, double? par1778)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8lt
+		#region float8lt
 
 		[Sql.Function(Name="pg_catalog.float8lt", ServerSideOnly=true)]
-		public static bool? Float8lt(double? par1780, double? par1781)
+		public static bool? float8lt(double? par1780, double? par1781)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8mi
+		#region float8mi
 
 		[Sql.Function(Name="pg_catalog.float8mi", ServerSideOnly=true)]
-		public static double? Float8mi(double? par1783, double? par1784)
+		public static double? float8mi(double? par1783, double? par1784)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8mul
+		#region float8mul
 
 		[Sql.Function(Name="pg_catalog.float8mul", ServerSideOnly=true)]
-		public static double? Float8mul(double? par1786, double? par1787)
+		public static double? float8mul(double? par1786, double? par1787)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8ne
+		#region float8ne
 
 		[Sql.Function(Name="pg_catalog.float8ne", ServerSideOnly=true)]
-		public static bool? Float8ne(double? par1789, double? par1790)
+		public static bool? float8ne(double? par1789, double? par1790)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8out
+		#region float8out
 
 		[Sql.Function(Name="pg_catalog.float8out", ServerSideOnly=true)]
-		public static object Float8out(double? par1792)
+		public static object float8out(double? par1792)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8pl
+		#region float8pl
 
 		[Sql.Function(Name="pg_catalog.float8pl", ServerSideOnly=true)]
-		public static double? Float8pl(double? par1794, double? par1795)
+		public static double? float8pl(double? par1794, double? par1795)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8recv
+		#region float8recv
 
 		[Sql.Function(Name="pg_catalog.float8recv", ServerSideOnly=true)]
-		public static double? Float8recv(object par1797)
+		public static double? float8recv(object par1797)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrAccum
+		#region float8_regr_accum
 
 		[Sql.Function(Name="pg_catalog.float8_regr_accum", ServerSideOnly=true)]
-		public static object Float8RegrAccum(object par1799, double? par1800, double? par1801)
+		public static object float8_regr_accum(object par1799, double? par1800, double? par1801)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrAvgx
+		#region float8_regr_avgx
 
 		[Sql.Function(Name="pg_catalog.float8_regr_avgx", ServerSideOnly=true)]
-		public static double? Float8RegrAvgx(object par1803)
+		public static double? float8_regr_avgx(object par1803)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrAvgy
+		#region float8_regr_avgy
 
 		[Sql.Function(Name="pg_catalog.float8_regr_avgy", ServerSideOnly=true)]
-		public static double? Float8RegrAvgy(object par1805)
+		public static double? float8_regr_avgy(object par1805)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrCombine
+		#region float8_regr_combine
 
 		[Sql.Function(Name="pg_catalog.float8_regr_combine", ServerSideOnly=true)]
-		public static object Float8RegrCombine(object par1807, object par1808)
+		public static object float8_regr_combine(object par1807, object par1808)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrIntercept
+		#region float8_regr_intercept
 
 		[Sql.Function(Name="pg_catalog.float8_regr_intercept", ServerSideOnly=true)]
-		public static double? Float8RegrIntercept(object par1810)
+		public static double? float8_regr_intercept(object par1810)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrR2
+		#region float8_regr_r2
 
 		[Sql.Function(Name="pg_catalog.float8_regr_r2", ServerSideOnly=true)]
-		public static double? Float8RegrR2(object par1812)
+		public static double? float8_regr_r2(object par1812)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrSlope
+		#region float8_regr_slope
 
 		[Sql.Function(Name="pg_catalog.float8_regr_slope", ServerSideOnly=true)]
-		public static double? Float8RegrSlope(object par1814)
+		public static double? float8_regr_slope(object par1814)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrSxx
+		#region float8_regr_sxx
 
 		[Sql.Function(Name="pg_catalog.float8_regr_sxx", ServerSideOnly=true)]
-		public static double? Float8RegrSxx(object par1816)
+		public static double? float8_regr_sxx(object par1816)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrSxy
+		#region float8_regr_sxy
 
 		[Sql.Function(Name="pg_catalog.float8_regr_sxy", ServerSideOnly=true)]
-		public static double? Float8RegrSxy(object par1818)
+		public static double? float8_regr_sxy(object par1818)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8RegrSyy
+		#region float8_regr_syy
 
 		[Sql.Function(Name="pg_catalog.float8_regr_syy", ServerSideOnly=true)]
-		public static double? Float8RegrSyy(object par1820)
+		public static double? float8_regr_syy(object par1820)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8send
+		#region float8send
 
 		[Sql.Function(Name="pg_catalog.float8send", ServerSideOnly=true)]
-		public static byte[] Float8send(double? par1822)
+		public static byte[] float8send(double? par1822)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8smaller
+		#region float8smaller
 
 		[Sql.Function(Name="pg_catalog.float8smaller", ServerSideOnly=true)]
-		public static double? Float8smaller(double? par1824, double? par1825)
+		public static double? float8smaller(double? par1824, double? par1825)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8StddevPop
+		#region float8_stddev_pop
 
 		[Sql.Function(Name="pg_catalog.float8_stddev_pop", ServerSideOnly=true)]
-		public static double? Float8StddevPop(object par1827)
+		public static double? float8_stddev_pop(object par1827)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8StddevSamp
+		#region float8_stddev_samp
 
 		[Sql.Function(Name="pg_catalog.float8_stddev_samp", ServerSideOnly=true)]
-		public static double? Float8StddevSamp(object par1829)
+		public static double? float8_stddev_samp(object par1829)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8um
+		#region float8um
 
 		[Sql.Function(Name="pg_catalog.float8um", ServerSideOnly=true)]
-		public static double? Float8um(double? par1831)
+		public static double? float8um(double? par1831)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8up
+		#region float8up
 
 		[Sql.Function(Name="pg_catalog.float8up", ServerSideOnly=true)]
-		public static double? Float8up(double? par1833)
+		public static double? float8up(double? par1833)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8VarPop
+		#region float8_var_pop
 
 		[Sql.Function(Name="pg_catalog.float8_var_pop", ServerSideOnly=true)]
-		public static double? Float8VarPop(object par1835)
+		public static double? float8_var_pop(object par1835)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Float8VarSamp
+		#region float8_var_samp
 
 		[Sql.Function(Name="pg_catalog.float8_var_samp", ServerSideOnly=true)]
-		public static double? Float8VarSamp(object par1837)
+		public static double? float8_var_samp(object par1837)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Floor
+		#region floor
 
 		[Sql.Function(Name="pg_catalog.floor", ServerSideOnly=true)]
-		public static double? Floor(double? par1841)
+		public static double? floor(double? par1841)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Flt4MulCash
+		#region flt4_mul_cash
 
 		[Sql.Function(Name="pg_catalog.flt4_mul_cash", ServerSideOnly=true)]
-		public static decimal? Flt4MulCash(float? par1843, decimal? par1844)
+		public static decimal? flt4_mul_cash(float? par1843, decimal? par1844)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Flt8MulCash
+		#region flt8_mul_cash
 
 		[Sql.Function(Name="pg_catalog.flt8_mul_cash", ServerSideOnly=true)]
-		public static decimal? Flt8MulCash(double? par1846, decimal? par1847)
+		public static decimal? flt8_mul_cash(double? par1846, decimal? par1847)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FmgrCValidator
+		#region fmgr_c_validator
 
 		[Sql.Function(Name="pg_catalog.fmgr_c_validator", ServerSideOnly=true)]
-		public static object FmgrCValidator(int? par1848)
+		public static object fmgr_c_validator(int? par1848)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FmgrInternalValidator
+		#region fmgr_internal_validator
 
 		[Sql.Function(Name="pg_catalog.fmgr_internal_validator", ServerSideOnly=true)]
-		public static object FmgrInternalValidator(int? par1849)
+		public static object fmgr_internal_validator(int? par1849)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FmgrSqlValidator
+		#region fmgr_sql_validator
 
 		[Sql.Function(Name="pg_catalog.fmgr_sql_validator", ServerSideOnly=true)]
-		public static object FmgrSqlValidator(int? par1850)
+		public static object fmgr_sql_validator(int? par1850)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Format
+		#region format
 
 		[Sql.Function(Name="pg_catalog.format", ServerSideOnly=true)]
-		public static string Format(string par1855)
+		public static string format(string par1855)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region FormatType
+		#region format_type
 
 		[Sql.Function(Name="pg_catalog.format_type", ServerSideOnly=true)]
-		public static string FormatType(int? par1857, int? par1858)
+		public static string format_type(int? par1857, int? par1858)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Gb18030ToUtf8
+		#region gb18030_to_utf8
 
 		[Sql.Function(Name="pg_catalog.gb18030_to_utf8", ServerSideOnly=true)]
-		public static object Gb18030ToUtf8(int? par1859, int? par1860, object par1861, object par1862, int? par1863)
+		public static object gb18030_to_utf8(int? par1859, int? par1860, object par1861, object par1862, int? par1863)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GbkToUtf8
+		#region gbk_to_utf8
 
 		[Sql.Function(Name="pg_catalog.gbk_to_utf8", ServerSideOnly=true)]
-		public static object GbkToUtf8(int? par1864, int? par1865, object par1866, object par1867, int? par1868)
+		public static object gbk_to_utf8(int? par1864, int? par1865, object par1866, object par1867, int? par1868)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GetBit
+		#region get_bit
 
 		[Sql.Function(Name="pg_catalog.get_bit", ServerSideOnly=true)]
-		public static int? GetBit(byte[] par1899, int? par1900)
+		public static int? get_bit(byte[] par1899, int? par1900)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GetByte
+		#region get_byte
 
 		[Sql.Function(Name="pg_catalog.get_byte", ServerSideOnly=true)]
-		public static int? GetByte(byte[] par1902, int? par1903)
+		public static int? get_byte(byte[] par1902, int? par1903)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GetCurrentTsConfig
+		#region get_current_ts_config
 
 		[Sql.Function(Name="pg_catalog.get_current_ts_config", ServerSideOnly=true)]
-		public static object GetCurrentTsConfig()
+		public static object get_current_ts_config()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Getdatabaseencoding
+		#region getdatabaseencoding
 
 		[Sql.Function(Name="pg_catalog.getdatabaseencoding", ServerSideOnly=true)]
-		public static string Getdatabaseencoding()
+		public static string getdatabaseencoding()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Getpgusername
+		#region getpgusername
 
 		[Sql.Function(Name="pg_catalog.getpgusername", ServerSideOnly=true)]
-		public static string Getpgusername()
+		public static string getpgusername()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ginarrayconsistent
+		#region ginarrayconsistent
 
 		[Sql.Function(Name="pg_catalog.ginarrayconsistent", ServerSideOnly=true)]
-		public static bool? Ginarrayconsistent(object par1908, short? par1909, object par1910, int? par1911, object par1912, object par1913, object par1914, object par1915)
+		public static bool? ginarrayconsistent(object par1908, short? par1909, object par1910, int? par1911, object par1912, object par1913, object par1914, object par1915)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ginarrayextract
+		#region ginarrayextract
 
 		[Sql.Function(Name="pg_catalog.ginarrayextract", ServerSideOnly=true)]
-		public static object Ginarrayextract(object par1921, object par1922)
+		public static object ginarrayextract(object par1921, object par1922)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ginarraytriconsistent
+		#region ginarraytriconsistent
 
 		[Sql.Function(Name="pg_catalog.ginarraytriconsistent", ServerSideOnly=true)]
-		public static object Ginarraytriconsistent(object par1924, short? par1925, object par1926, int? par1927, object par1928, object par1929, object par1930)
+		public static object ginarraytriconsistent(object par1924, short? par1925, object par1926, int? par1927, object par1928, object par1929, object par1930)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinCleanPendingList
+		#region gin_clean_pending_list
 
 		[Sql.Function(Name="pg_catalog.gin_clean_pending_list", ServerSideOnly=true)]
-		public static long? GinCleanPendingList(object par1932)
+		public static long? gin_clean_pending_list(object par1932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinCmpPrefix
+		#region gin_cmp_prefix
 
 		[Sql.Function(Name="pg_catalog.gin_cmp_prefix", ServerSideOnly=true)]
-		public static int? GinCmpPrefix(string par1934, string par1935, short? par1936, object par1937)
+		public static int? gin_cmp_prefix(string par1934, string par1935, short? par1936, object par1937)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinCmpTslexeme
+		#region gin_cmp_tslexeme
 
 		[Sql.Function(Name="pg_catalog.gin_cmp_tslexeme", ServerSideOnly=true)]
-		public static int? GinCmpTslexeme(string par1939, string par1940)
+		public static int? gin_cmp_tslexeme(string par1939, string par1940)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinCompareJsonb
+		#region gin_compare_jsonb
 
 		[Sql.Function(Name="pg_catalog.gin_compare_jsonb", ServerSideOnly=true)]
-		public static int? GinCompareJsonb(string par1942, string par1943)
+		public static int? gin_compare_jsonb(string par1942, string par1943)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinConsistentJsonb
+		#region gin_consistent_jsonb
 
 		[Sql.Function(Name="pg_catalog.gin_consistent_jsonb", ServerSideOnly=true)]
-		public static bool? GinConsistentJsonb(object par1945, short? par1946, string par1947, int? par1948, object par1949, object par1950, object par1951, object par1952)
+		public static bool? gin_consistent_jsonb(object par1945, short? par1946, string par1947, int? par1948, object par1949, object par1950, object par1951, object par1952)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinConsistentJsonbPath
+		#region gin_consistent_jsonb_path
 
 		[Sql.Function(Name="pg_catalog.gin_consistent_jsonb_path", ServerSideOnly=true)]
-		public static bool? GinConsistentJsonbPath(object par1954, short? par1955, string par1956, int? par1957, object par1958, object par1959, object par1960, object par1961)
+		public static bool? gin_consistent_jsonb_path(object par1954, short? par1955, string par1956, int? par1957, object par1958, object par1959, object par1960, object par1961)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractJsonb
+		#region gin_extract_jsonb
 
 		[Sql.Function(Name="pg_catalog.gin_extract_jsonb", ServerSideOnly=true)]
-		public static object GinExtractJsonb(string par1963, object par1964, object par1965)
+		public static object gin_extract_jsonb(string par1963, object par1964, object par1965)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractJsonbPath
+		#region gin_extract_jsonb_path
 
 		[Sql.Function(Name="pg_catalog.gin_extract_jsonb_path", ServerSideOnly=true)]
-		public static object GinExtractJsonbPath(string par1967, object par1968, object par1969)
+		public static object gin_extract_jsonb_path(string par1967, object par1968, object par1969)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractJsonbQuery
+		#region gin_extract_jsonb_query
 
 		[Sql.Function(Name="pg_catalog.gin_extract_jsonb_query", ServerSideOnly=true)]
-		public static object GinExtractJsonbQuery(string par1971, object par1972, short? par1973, object par1974, object par1975, object par1976, object par1977)
+		public static object gin_extract_jsonb_query(string par1971, object par1972, short? par1973, object par1974, object par1975, object par1976, object par1977)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractJsonbQueryPath
+		#region gin_extract_jsonb_query_path
 
 		[Sql.Function(Name="pg_catalog.gin_extract_jsonb_query_path", ServerSideOnly=true)]
-		public static object GinExtractJsonbQueryPath(string par1979, object par1980, short? par1981, object par1982, object par1983, object par1984, object par1985)
+		public static object gin_extract_jsonb_query_path(string par1979, object par1980, short? par1981, object par1982, object par1983, object par1984, object par1985)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractTsquery
+		#region gin_extract_tsquery
 
 		[Sql.Function(Name="pg_catalog.gin_extract_tsquery", ServerSideOnly=true)]
-		public static object GinExtractTsquery(object par2001, object par2002, short? par2003, object par2004, object par2005, object par2006, object par2007)
+		public static object gin_extract_tsquery(object par2001, object par2002, short? par2003, object par2004, object par2005, object par2006, object par2007)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinExtractTsvector
+		#region gin_extract_tsvector
 
 		[Sql.Function(Name="pg_catalog.gin_extract_tsvector", ServerSideOnly=true)]
-		public static object GinExtractTsvector(object par2012, object par2013, object par2014)
+		public static object gin_extract_tsvector(object par2012, object par2013, object par2014)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ginhandler
+		#region ginhandler
 
 		[Sql.Function(Name="pg_catalog.ginhandler", ServerSideOnly=true)]
-		public static object Ginhandler(object par2016)
+		public static object ginhandler(object par2016)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ginqueryarrayextract
+		#region ginqueryarrayextract
 
 		[Sql.Function(Name="pg_catalog.ginqueryarrayextract", ServerSideOnly=true)]
-		public static object Ginqueryarrayextract(object par2018, object par2019, short? par2020, object par2021, object par2022, object par2023, object par2024)
+		public static object ginqueryarrayextract(object par2018, object par2019, short? par2020, object par2021, object par2022, object par2023, object par2024)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinTriconsistentJsonb
+		#region gin_triconsistent_jsonb
 
 		[Sql.Function(Name="pg_catalog.gin_triconsistent_jsonb", ServerSideOnly=true)]
-		public static object GinTriconsistentJsonb(object par2026, short? par2027, string par2028, int? par2029, object par2030, object par2031, object par2032)
+		public static object gin_triconsistent_jsonb(object par2026, short? par2027, string par2028, int? par2029, object par2030, object par2031, object par2032)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinTriconsistentJsonbPath
+		#region gin_triconsistent_jsonb_path
 
 		[Sql.Function(Name="pg_catalog.gin_triconsistent_jsonb_path", ServerSideOnly=true)]
-		public static object GinTriconsistentJsonbPath(object par2034, short? par2035, string par2036, int? par2037, object par2038, object par2039, object par2040)
+		public static object gin_triconsistent_jsonb_path(object par2034, short? par2035, string par2036, int? par2037, object par2038, object par2039, object par2040)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinTsqueryConsistent
+		#region gin_tsquery_consistent
 
 		[Sql.Function(Name="pg_catalog.gin_tsquery_consistent", ServerSideOnly=true)]
-		public static bool? GinTsqueryConsistent(object par2058, short? par2059, object par2060, int? par2061, object par2062, object par2063, object par2064, object par2065)
+		public static bool? gin_tsquery_consistent(object par2058, short? par2059, object par2060, int? par2061, object par2062, object par2063, object par2064, object par2065)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GinTsqueryTriconsistent
+		#region gin_tsquery_triconsistent
 
 		[Sql.Function(Name="pg_catalog.gin_tsquery_triconsistent", ServerSideOnly=true)]
-		public static object GinTsqueryTriconsistent(object par2067, short? par2068, object par2069, int? par2070, object par2071, object par2072, object par2073)
+		public static object gin_tsquery_triconsistent(object par2067, short? par2068, object par2069, int? par2070, object par2071, object par2072, object par2073)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxCompress
+		#region gist_box_compress
 
 		[Sql.Function(Name="pg_catalog.gist_box_compress", ServerSideOnly=true)]
-		public static object GistBoxCompress(object par2075)
+		public static object gist_box_compress(object par2075)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxConsistent
+		#region gist_box_consistent
 
 		[Sql.Function(Name="pg_catalog.gist_box_consistent", ServerSideOnly=true)]
-		public static bool? GistBoxConsistent(object par2077, NpgsqlBox? par2078, short? par2079, int? par2080, object par2081)
+		public static bool? gist_box_consistent(object par2077, NpgsqlBox? par2078, short? par2079, int? par2080, object par2081)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxDecompress
+		#region gist_box_decompress
 
 		[Sql.Function(Name="pg_catalog.gist_box_decompress", ServerSideOnly=true)]
-		public static object GistBoxDecompress(object par2083)
+		public static object gist_box_decompress(object par2083)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxFetch
+		#region gist_box_fetch
 
 		[Sql.Function(Name="pg_catalog.gist_box_fetch", ServerSideOnly=true)]
-		public static object GistBoxFetch(object par2085)
+		public static object gist_box_fetch(object par2085)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxPenalty
+		#region gist_box_penalty
 
 		[Sql.Function(Name="pg_catalog.gist_box_penalty", ServerSideOnly=true)]
-		public static object GistBoxPenalty(object par2087, object par2088, object par2089)
+		public static object gist_box_penalty(object par2087, object par2088, object par2089)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxPicksplit
+		#region gist_box_picksplit
 
 		[Sql.Function(Name="pg_catalog.gist_box_picksplit", ServerSideOnly=true)]
-		public static object GistBoxPicksplit(object par2091, object par2092)
+		public static object gist_box_picksplit(object par2091, object par2092)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxSame
+		#region gist_box_same
 
 		[Sql.Function(Name="pg_catalog.gist_box_same", ServerSideOnly=true)]
-		public static object GistBoxSame(NpgsqlBox? par2094, NpgsqlBox? par2095, object par2096)
+		public static object gist_box_same(NpgsqlBox? par2094, NpgsqlBox? par2095, object par2096)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistBoxUnion
+		#region gist_box_union
 
 		[Sql.Function(Name="pg_catalog.gist_box_union", ServerSideOnly=true)]
-		public static NpgsqlBox? GistBoxUnion(object par2098, object par2099)
+		public static NpgsqlBox? gist_box_union(object par2098, object par2099)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistCircleCompress
+		#region gist_circle_compress
 
 		[Sql.Function(Name="pg_catalog.gist_circle_compress", ServerSideOnly=true)]
-		public static object GistCircleCompress(object par2101)
+		public static object gist_circle_compress(object par2101)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistCircleConsistent
+		#region gist_circle_consistent
 
 		[Sql.Function(Name="pg_catalog.gist_circle_consistent", ServerSideOnly=true)]
-		public static bool? GistCircleConsistent(object par2103, NpgsqlCircle? par2104, short? par2105, int? par2106, object par2107)
+		public static bool? gist_circle_consistent(object par2103, NpgsqlCircle? par2104, short? par2105, int? par2106, object par2107)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistCircleDistance
+		#region gist_circle_distance
 
 		[Sql.Function(Name="pg_catalog.gist_circle_distance", ServerSideOnly=true)]
-		public static double? GistCircleDistance(object par2109, NpgsqlCircle? par2110, short? par2111, int? par2112, object par2113)
+		public static double? gist_circle_distance(object par2109, NpgsqlCircle? par2110, short? par2111, int? par2112, object par2113)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Gisthandler
+		#region gisthandler
 
 		[Sql.Function(Name="pg_catalog.gisthandler", ServerSideOnly=true)]
-		public static object Gisthandler(object par2115)
+		public static object gisthandler(object par2115)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPointCompress
+		#region gist_point_compress
 
 		[Sql.Function(Name="pg_catalog.gist_point_compress", ServerSideOnly=true)]
-		public static object GistPointCompress(object par2117)
+		public static object gist_point_compress(object par2117)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPointConsistent
+		#region gist_point_consistent
 
 		[Sql.Function(Name="pg_catalog.gist_point_consistent", ServerSideOnly=true)]
-		public static bool? GistPointConsistent(object par2119, NpgsqlPoint? par2120, short? par2121, int? par2122, object par2123)
+		public static bool? gist_point_consistent(object par2119, NpgsqlPoint? par2120, short? par2121, int? par2122, object par2123)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPointDistance
+		#region gist_point_distance
 
 		[Sql.Function(Name="pg_catalog.gist_point_distance", ServerSideOnly=true)]
-		public static double? GistPointDistance(object par2125, NpgsqlPoint? par2126, short? par2127, int? par2128, object par2129)
+		public static double? gist_point_distance(object par2125, NpgsqlPoint? par2126, short? par2127, int? par2128, object par2129)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPointFetch
+		#region gist_point_fetch
 
 		[Sql.Function(Name="pg_catalog.gist_point_fetch", ServerSideOnly=true)]
-		public static object GistPointFetch(object par2131)
+		public static object gist_point_fetch(object par2131)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPolyCompress
+		#region gist_poly_compress
 
 		[Sql.Function(Name="pg_catalog.gist_poly_compress", ServerSideOnly=true)]
-		public static object GistPolyCompress(object par2133)
+		public static object gist_poly_compress(object par2133)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPolyConsistent
+		#region gist_poly_consistent
 
 		[Sql.Function(Name="pg_catalog.gist_poly_consistent", ServerSideOnly=true)]
-		public static bool? GistPolyConsistent(object par2135, NpgsqlPolygon? par2136, short? par2137, int? par2138, object par2139)
+		public static bool? gist_poly_consistent(object par2135, NpgsqlPolygon? par2136, short? par2137, int? par2138, object par2139)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GistPolyDistance
+		#region gist_poly_distance
 
 		[Sql.Function(Name="pg_catalog.gist_poly_distance", ServerSideOnly=true)]
-		public static double? GistPolyDistance(object par2141, NpgsqlPolygon? par2142, short? par2143, int? par2144, object par2145)
+		public static double? gist_poly_distance(object par2141, NpgsqlPolygon? par2142, short? par2143, int? par2144, object par2145)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryCompress
+		#region gtsquery_compress
 
 		[Sql.Function(Name="pg_catalog.gtsquery_compress", ServerSideOnly=true)]
-		public static object GtsqueryCompress(object par2147)
+		public static object gtsquery_compress(object par2147)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryConsistent
+		#region gtsquery_consistent
 
 		[Sql.Function(Name="pg_catalog.gtsquery_consistent", ServerSideOnly=true)]
-		public static bool? GtsqueryConsistent(object par2155, object par2156, int? par2157, int? par2158, object par2159)
+		public static bool? gtsquery_consistent(object par2155, object par2156, int? par2157, int? par2158, object par2159)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryDecompress
+		#region gtsquery_decompress
 
 		[Sql.Function(Name="pg_catalog.gtsquery_decompress", ServerSideOnly=true)]
-		public static object GtsqueryDecompress(object par2161)
+		public static object gtsquery_decompress(object par2161)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryPenalty
+		#region gtsquery_penalty
 
 		[Sql.Function(Name="pg_catalog.gtsquery_penalty", ServerSideOnly=true)]
-		public static object GtsqueryPenalty(object par2163, object par2164, object par2165)
+		public static object gtsquery_penalty(object par2163, object par2164, object par2165)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryPicksplit
+		#region gtsquery_picksplit
 
 		[Sql.Function(Name="pg_catalog.gtsquery_picksplit", ServerSideOnly=true)]
-		public static object GtsqueryPicksplit(object par2167, object par2168)
+		public static object gtsquery_picksplit(object par2167, object par2168)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsquerySame
+		#region gtsquery_same
 
 		[Sql.Function(Name="pg_catalog.gtsquery_same", ServerSideOnly=true)]
-		public static object GtsquerySame(long? par2170, long? par2171, object par2172)
+		public static object gtsquery_same(long? par2170, long? par2171, object par2172)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsqueryUnion
+		#region gtsquery_union
 
 		[Sql.Function(Name="pg_catalog.gtsquery_union", ServerSideOnly=true)]
-		public static long? GtsqueryUnion(object par2174, object par2175)
+		public static long? gtsquery_union(object par2174, object par2175)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorCompress
+		#region gtsvector_compress
 
 		[Sql.Function(Name="pg_catalog.gtsvector_compress", ServerSideOnly=true)]
-		public static object GtsvectorCompress(object par2177)
+		public static object gtsvector_compress(object par2177)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorConsistent
+		#region gtsvector_consistent
 
 		[Sql.Function(Name="pg_catalog.gtsvector_consistent", ServerSideOnly=true)]
-		public static bool? GtsvectorConsistent(object par2185, object par2186, int? par2187, int? par2188, object par2189)
+		public static bool? gtsvector_consistent(object par2185, object par2186, int? par2187, int? par2188, object par2189)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorDecompress
+		#region gtsvector_decompress
 
 		[Sql.Function(Name="pg_catalog.gtsvector_decompress", ServerSideOnly=true)]
-		public static object GtsvectorDecompress(object par2191)
+		public static object gtsvector_decompress(object par2191)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Gtsvectorin
+		#region gtsvectorin
 
 		[Sql.Function(Name="pg_catalog.gtsvectorin", ServerSideOnly=true)]
-		public static object Gtsvectorin(object par2193)
+		public static object gtsvectorin(object par2193)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Gtsvectorout
+		#region gtsvectorout
 
 		[Sql.Function(Name="pg_catalog.gtsvectorout", ServerSideOnly=true)]
-		public static object Gtsvectorout(object par2195)
+		public static object gtsvectorout(object par2195)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorPenalty
+		#region gtsvector_penalty
 
 		[Sql.Function(Name="pg_catalog.gtsvector_penalty", ServerSideOnly=true)]
-		public static object GtsvectorPenalty(object par2197, object par2198, object par2199)
+		public static object gtsvector_penalty(object par2197, object par2198, object par2199)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorPicksplit
+		#region gtsvector_picksplit
 
 		[Sql.Function(Name="pg_catalog.gtsvector_picksplit", ServerSideOnly=true)]
-		public static object GtsvectorPicksplit(object par2201, object par2202)
+		public static object gtsvector_picksplit(object par2201, object par2202)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorSame
+		#region gtsvector_same
 
 		[Sql.Function(Name="pg_catalog.gtsvector_same", ServerSideOnly=true)]
-		public static object GtsvectorSame(object par2204, object par2205, object par2206)
+		public static object gtsvector_same(object par2204, object par2205, object par2206)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region GtsvectorUnion
+		#region gtsvector_union
 
 		[Sql.Function(Name="pg_catalog.gtsvector_union", ServerSideOnly=true)]
-		public static object GtsvectorUnion(object par2208, object par2209)
+		public static object gtsvector_union(object par2208, object par2209)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasAnyColumnPrivilege
+		#region has_any_column_privilege
 
 		[Sql.Function(Name="pg_catalog.has_any_column_privilege", ServerSideOnly=true)]
-		public static bool? HasAnyColumnPrivilege(int? par2230, string par2231)
+		public static bool? has_any_column_privilege(int? par2230, string par2231)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasColumnPrivilege
+		#region has_column_privilege
 
 		[Sql.Function(Name="pg_catalog.has_column_privilege", ServerSideOnly=true)]
-		public static bool? HasColumnPrivilege(int? par2285, short? par2286, string par2287)
+		public static bool? has_column_privilege(int? par2285, short? par2286, string par2287)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasDatabasePrivilege
+		#region has_database_privilege
 
 		[Sql.Function(Name="pg_catalog.has_database_privilege", ServerSideOnly=true)]
-		public static bool? HasDatabasePrivilege(int? par2308, string par2309)
+		public static bool? has_database_privilege(int? par2308, string par2309)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasForeignDataWrapperPrivilege
+		#region has_foreign_data_wrapper_privilege
 
 		[Sql.Function(Name="pg_catalog.has_foreign_data_wrapper_privilege", ServerSideOnly=true)]
-		public static bool? HasForeignDataWrapperPrivilege(int? par2330, string par2331)
+		public static bool? has_foreign_data_wrapper_privilege(int? par2330, string par2331)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasFunctionPrivilege
+		#region has_function_privilege
 
 		[Sql.Function(Name="pg_catalog.has_function_privilege", ServerSideOnly=true)]
-		public static bool? HasFunctionPrivilege(int? par2352, string par2353)
+		public static bool? has_function_privilege(int? par2352, string par2353)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HashAclitem
+		#region hash_aclitem
 
 		[Sql.Function(Name="pg_catalog.hash_aclitem", ServerSideOnly=true)]
-		public static int? HashAclitem(object par2355)
+		public static int? hash_aclitem(object par2355)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HashArray
+		#region hash_array
 
 		[Sql.Function(Name="pg_catalog.hash_array", ServerSideOnly=true)]
-		public static int? HashArray(object par2357)
+		public static int? hash_array(object par2357)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashbpchar
+		#region hashbpchar
 
 		[Sql.Function(Name="pg_catalog.hashbpchar", ServerSideOnly=true)]
-		public static int? Hashbpchar(string par2359)
+		public static int? hashbpchar(string par2359)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashchar
+		#region hashchar
 
 		[Sql.Function(Name="pg_catalog.hashchar", ServerSideOnly=true)]
-		public static int? Hashchar(object par2361)
+		public static int? hashchar(object par2361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashenum
+		#region hashenum
 
 		[Sql.Function(Name="pg_catalog.hashenum", ServerSideOnly=true)]
-		public static int? Hashenum(object par2363)
+		public static int? hashenum(object par2363)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashfloat4
+		#region hashfloat4
 
 		[Sql.Function(Name="pg_catalog.hashfloat4", ServerSideOnly=true)]
-		public static int? Hashfloat4(float? par2365)
+		public static int? hashfloat4(float? par2365)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashfloat8
+		#region hashfloat8
 
 		[Sql.Function(Name="pg_catalog.hashfloat8", ServerSideOnly=true)]
-		public static int? Hashfloat8(double? par2367)
+		public static int? hashfloat8(double? par2367)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashhandler
+		#region hashhandler
 
 		[Sql.Function(Name="pg_catalog.hashhandler", ServerSideOnly=true)]
-		public static object Hashhandler(object par2369)
+		public static object hashhandler(object par2369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashinet
+		#region hashinet
 
 		[Sql.Function(Name="pg_catalog.hashinet", ServerSideOnly=true)]
-		public static int? Hashinet(NpgsqlInet? par2371)
+		public static int? hashinet(NpgsqlInet? par2371)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashint2
+		#region hashint2
 
 		[Sql.Function(Name="pg_catalog.hashint2", ServerSideOnly=true)]
-		public static int? Hashint2(short? par2373)
+		public static int? hashint2(short? par2373)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashint4
+		#region hashint4
 
 		[Sql.Function(Name="pg_catalog.hashint4", ServerSideOnly=true)]
-		public static int? Hashint4(int? par2375)
+		public static int? hashint4(int? par2375)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashint8
+		#region hashint8
 
 		[Sql.Function(Name="pg_catalog.hashint8", ServerSideOnly=true)]
-		public static int? Hashint8(long? par2377)
+		public static int? hashint8(long? par2377)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashmacaddr
+		#region hashmacaddr
 
 		[Sql.Function(Name="pg_catalog.hashmacaddr", ServerSideOnly=true)]
-		public static int? Hashmacaddr(PhysicalAddress par2379)
+		public static int? hashmacaddr(PhysicalAddress par2379)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashmacaddr8
+		#region hashmacaddr8
 
 		[Sql.Function(Name="pg_catalog.hashmacaddr8", ServerSideOnly=true)]
-		public static int? Hashmacaddr8(PhysicalAddress par2381)
+		public static int? hashmacaddr8(PhysicalAddress par2381)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashname
+		#region hashname
 
 		[Sql.Function(Name="pg_catalog.hashname", ServerSideOnly=true)]
-		public static int? Hashname(string par2383)
+		public static int? hashname(string par2383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HashNumeric
+		#region hash_numeric
 
 		[Sql.Function(Name="pg_catalog.hash_numeric", ServerSideOnly=true)]
-		public static int? HashNumeric(decimal? par2385)
+		public static int? hash_numeric(decimal? par2385)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashoid
+		#region hashoid
 
 		[Sql.Function(Name="pg_catalog.hashoid", ServerSideOnly=true)]
-		public static int? Hashoid(int? par2387)
+		public static int? hashoid(int? par2387)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashoidvector
+		#region hashoidvector
 
 		[Sql.Function(Name="pg_catalog.hashoidvector", ServerSideOnly=true)]
-		public static int? Hashoidvector(object par2389)
+		public static int? hashoidvector(object par2389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HashRange
+		#region hash_range
 
 		[Sql.Function(Name="pg_catalog.hash_range", ServerSideOnly=true)]
-		public static int? HashRange(object par2391)
+		public static int? hash_range(object par2391)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashtext
+		#region hashtext
 
 		[Sql.Function(Name="pg_catalog.hashtext", ServerSideOnly=true)]
-		public static int? Hashtext(string par2393)
+		public static int? hashtext(string par2393)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hashvarlena
+		#region hashvarlena
 
 		[Sql.Function(Name="pg_catalog.hashvarlena", ServerSideOnly=true)]
-		public static int? Hashvarlena(object par2395)
+		public static int? hashvarlena(object par2395)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasLanguagePrivilege
+		#region has_language_privilege
 
 		[Sql.Function(Name="pg_catalog.has_language_privilege", ServerSideOnly=true)]
-		public static bool? HasLanguagePrivilege(int? par2416, string par2417)
+		public static bool? has_language_privilege(int? par2416, string par2417)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasSchemaPrivilege
+		#region has_schema_privilege
 
 		[Sql.Function(Name="pg_catalog.has_schema_privilege", ServerSideOnly=true)]
-		public static bool? HasSchemaPrivilege(int? par2438, string par2439)
+		public static bool? has_schema_privilege(int? par2438, string par2439)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasSequencePrivilege
+		#region has_sequence_privilege
 
 		[Sql.Function(Name="pg_catalog.has_sequence_privilege", ServerSideOnly=true)]
-		public static bool? HasSequencePrivilege(int? par2460, string par2461)
+		public static bool? has_sequence_privilege(int? par2460, string par2461)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasServerPrivilege
+		#region has_server_privilege
 
 		[Sql.Function(Name="pg_catalog.has_server_privilege", ServerSideOnly=true)]
-		public static bool? HasServerPrivilege(int? par2482, string par2483)
+		public static bool? has_server_privilege(int? par2482, string par2483)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasTablePrivilege
+		#region has_table_privilege
 
 		[Sql.Function(Name="pg_catalog.has_table_privilege", ServerSideOnly=true)]
-		public static bool? HasTablePrivilege(int? par2504, string par2505)
+		public static bool? has_table_privilege(int? par2504, string par2505)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasTablespacePrivilege
+		#region has_tablespace_privilege
 
 		[Sql.Function(Name="pg_catalog.has_tablespace_privilege", ServerSideOnly=true)]
-		public static bool? HasTablespacePrivilege(int? par2526, string par2527)
+		public static bool? has_tablespace_privilege(int? par2526, string par2527)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region HasTypePrivilege
+		#region has_type_privilege
 
 		[Sql.Function(Name="pg_catalog.has_type_privilege", ServerSideOnly=true)]
-		public static bool? HasTypePrivilege(int? par2548, string par2549)
+		public static bool? has_type_privilege(int? par2548, string par2549)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Height
+		#region height
 
 		[Sql.Function(Name="pg_catalog.height", ServerSideOnly=true)]
-		public static double? Height(NpgsqlBox? par2551)
+		public static double? height(NpgsqlBox? par2551)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Host
+		#region host
 
 		[Sql.Function(Name="pg_catalog.host", ServerSideOnly=true)]
-		public static string Host(NpgsqlInet? par2553)
+		public static string host(NpgsqlInet? par2553)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Hostmask
+		#region hostmask
 
 		[Sql.Function(Name="pg_catalog.hostmask", ServerSideOnly=true)]
-		public static NpgsqlInet? Hostmask(NpgsqlInet? par2555)
+		public static NpgsqlInet? hostmask(NpgsqlInet? par2555)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Iclikejoinsel
+		#region iclikejoinsel
 
 		[Sql.Function(Name="pg_catalog.iclikejoinsel", ServerSideOnly=true)]
-		public static double? Iclikejoinsel(object par2557, int? par2558, object par2559, short? par2560, object par2561)
+		public static double? iclikejoinsel(object par2557, int? par2558, object par2559, short? par2560, object par2561)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Iclikesel
+		#region iclikesel
 
 		[Sql.Function(Name="pg_catalog.iclikesel", ServerSideOnly=true)]
-		public static double? Iclikesel(object par2563, int? par2564, object par2565, int? par2566)
+		public static double? iclikesel(object par2563, int? par2564, object par2565, int? par2566)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icnlikejoinsel
+		#region icnlikejoinsel
 
 		[Sql.Function(Name="pg_catalog.icnlikejoinsel", ServerSideOnly=true)]
-		public static double? Icnlikejoinsel(object par2568, int? par2569, object par2570, short? par2571, object par2572)
+		public static double? icnlikejoinsel(object par2568, int? par2569, object par2570, short? par2571, object par2572)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icnlikesel
+		#region icnlikesel
 
 		[Sql.Function(Name="pg_catalog.icnlikesel", ServerSideOnly=true)]
-		public static double? Icnlikesel(object par2574, int? par2575, object par2576, int? par2577)
+		public static double? icnlikesel(object par2574, int? par2575, object par2576, int? par2577)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icregexeqjoinsel
+		#region icregexeqjoinsel
 
 		[Sql.Function(Name="pg_catalog.icregexeqjoinsel", ServerSideOnly=true)]
-		public static double? Icregexeqjoinsel(object par2579, int? par2580, object par2581, short? par2582, object par2583)
+		public static double? icregexeqjoinsel(object par2579, int? par2580, object par2581, short? par2582, object par2583)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icregexeqsel
+		#region icregexeqsel
 
 		[Sql.Function(Name="pg_catalog.icregexeqsel", ServerSideOnly=true)]
-		public static double? Icregexeqsel(object par2585, int? par2586, object par2587, int? par2588)
+		public static double? icregexeqsel(object par2585, int? par2586, object par2587, int? par2588)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icregexnejoinsel
+		#region icregexnejoinsel
 
 		[Sql.Function(Name="pg_catalog.icregexnejoinsel", ServerSideOnly=true)]
-		public static double? Icregexnejoinsel(object par2590, int? par2591, object par2592, short? par2593, object par2594)
+		public static double? icregexnejoinsel(object par2590, int? par2591, object par2592, short? par2593, object par2594)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Icregexnesel
+		#region icregexnesel
 
 		[Sql.Function(Name="pg_catalog.icregexnesel", ServerSideOnly=true)]
-		public static double? Icregexnesel(object par2596, int? par2597, object par2598, int? par2599)
+		public static double? icregexnesel(object par2596, int? par2597, object par2598, int? par2599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IndexAmHandlerIn
+		#region index_am_handler_in
 
 		[Sql.Function(Name="pg_catalog.index_am_handler_in", ServerSideOnly=true)]
-		public static object IndexAmHandlerIn(object par2601)
+		public static object index_am_handler_in(object par2601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IndexAmHandlerOut
+		#region index_am_handler_out
 
 		[Sql.Function(Name="pg_catalog.index_am_handler_out", ServerSideOnly=true)]
-		public static object IndexAmHandlerOut(object par2603)
+		public static object index_am_handler_out(object par2603)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Inetand
+		#region inetand
 
 		[Sql.Function(Name="pg_catalog.inetand", ServerSideOnly=true)]
-		public static NpgsqlInet? Inetand(NpgsqlInet? par2605, NpgsqlInet? par2606)
+		public static NpgsqlInet? inetand(NpgsqlInet? par2605, NpgsqlInet? par2606)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetClientAddr
+		#region inet_client_addr
 
 		[Sql.Function(Name="pg_catalog.inet_client_addr", ServerSideOnly=true)]
-		public static NpgsqlInet? InetClientAddr()
+		public static NpgsqlInet? inet_client_addr()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetClientPort
+		#region inet_client_port
 
 		[Sql.Function(Name="pg_catalog.inet_client_port", ServerSideOnly=true)]
-		public static int? InetClientPort()
+		public static int? inet_client_port()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistCompress
+		#region inet_gist_compress
 
 		[Sql.Function(Name="pg_catalog.inet_gist_compress", ServerSideOnly=true)]
-		public static object InetGistCompress(object par2610)
+		public static object inet_gist_compress(object par2610)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistConsistent
+		#region inet_gist_consistent
 
 		[Sql.Function(Name="pg_catalog.inet_gist_consistent", ServerSideOnly=true)]
-		public static bool? InetGistConsistent(object par2612, NpgsqlInet? par2613, short? par2614, int? par2615, object par2616)
+		public static bool? inet_gist_consistent(object par2612, NpgsqlInet? par2613, short? par2614, int? par2615, object par2616)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistDecompress
+		#region inet_gist_decompress
 
 		[Sql.Function(Name="pg_catalog.inet_gist_decompress", ServerSideOnly=true)]
-		public static object InetGistDecompress(object par2618)
+		public static object inet_gist_decompress(object par2618)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistFetch
+		#region inet_gist_fetch
 
 		[Sql.Function(Name="pg_catalog.inet_gist_fetch", ServerSideOnly=true)]
-		public static object InetGistFetch(object par2620)
+		public static object inet_gist_fetch(object par2620)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistPenalty
+		#region inet_gist_penalty
 
 		[Sql.Function(Name="pg_catalog.inet_gist_penalty", ServerSideOnly=true)]
-		public static object InetGistPenalty(object par2622, object par2623, object par2624)
+		public static object inet_gist_penalty(object par2622, object par2623, object par2624)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistPicksplit
+		#region inet_gist_picksplit
 
 		[Sql.Function(Name="pg_catalog.inet_gist_picksplit", ServerSideOnly=true)]
-		public static object InetGistPicksplit(object par2626, object par2627)
+		public static object inet_gist_picksplit(object par2626, object par2627)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistSame
+		#region inet_gist_same
 
 		[Sql.Function(Name="pg_catalog.inet_gist_same", ServerSideOnly=true)]
-		public static object InetGistSame(NpgsqlInet? par2629, NpgsqlInet? par2630, object par2631)
+		public static object inet_gist_same(NpgsqlInet? par2629, NpgsqlInet? par2630, object par2631)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetGistUnion
+		#region inet_gist_union
 
 		[Sql.Function(Name="pg_catalog.inet_gist_union", ServerSideOnly=true)]
-		public static NpgsqlInet? InetGistUnion(object par2633, object par2634)
+		public static NpgsqlInet? inet_gist_union(object par2633, object par2634)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetIn
+		#region inet_in
 
 		[Sql.Function(Name="pg_catalog.inet_in", ServerSideOnly=true)]
-		public static NpgsqlInet? InetIn(object par2636)
+		public static NpgsqlInet? inet_in(object par2636)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetMerge
+		#region inet_merge
 
 		[Sql.Function(Name="pg_catalog.inet_merge", ServerSideOnly=true)]
-		public static NpgsqlInet? InetMerge(NpgsqlInet? par2638, NpgsqlInet? par2639)
+		public static NpgsqlInet? inet_merge(NpgsqlInet? par2638, NpgsqlInet? par2639)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Inetmi
+		#region inetmi
 
 		[Sql.Function(Name="pg_catalog.inetmi", ServerSideOnly=true)]
-		public static long? Inetmi(NpgsqlInet? par2641, NpgsqlInet? par2642)
+		public static long? inetmi(NpgsqlInet? par2641, NpgsqlInet? par2642)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetmiInt8
+		#region inetmi_int8
 
 		[Sql.Function(Name="pg_catalog.inetmi_int8", ServerSideOnly=true)]
-		public static NpgsqlInet? InetmiInt8(NpgsqlInet? par2644, long? par2645)
+		public static NpgsqlInet? inetmi_int8(NpgsqlInet? par2644, long? par2645)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Inetnot
+		#region inetnot
 
 		[Sql.Function(Name="pg_catalog.inetnot", ServerSideOnly=true)]
-		public static NpgsqlInet? Inetnot(NpgsqlInet? par2647)
+		public static NpgsqlInet? inetnot(NpgsqlInet? par2647)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Inetor
+		#region inetor
 
 		[Sql.Function(Name="pg_catalog.inetor", ServerSideOnly=true)]
-		public static NpgsqlInet? Inetor(NpgsqlInet? par2649, NpgsqlInet? par2650)
+		public static NpgsqlInet? inetor(NpgsqlInet? par2649, NpgsqlInet? par2650)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetOut
+		#region inet_out
 
 		[Sql.Function(Name="pg_catalog.inet_out", ServerSideOnly=true)]
-		public static object InetOut(NpgsqlInet? par2652)
+		public static object inet_out(NpgsqlInet? par2652)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Inetpl
+		#region inetpl
 
 		[Sql.Function(Name="pg_catalog.inetpl", ServerSideOnly=true)]
-		public static NpgsqlInet? Inetpl(NpgsqlInet? par2654, long? par2655)
+		public static NpgsqlInet? inetpl(NpgsqlInet? par2654, long? par2655)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetRecv
+		#region inet_recv
 
 		[Sql.Function(Name="pg_catalog.inet_recv", ServerSideOnly=true)]
-		public static NpgsqlInet? InetRecv(object par2657)
+		public static NpgsqlInet? inet_recv(object par2657)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSameFamily
+		#region inet_same_family
 
 		[Sql.Function(Name="pg_catalog.inet_same_family", ServerSideOnly=true)]
-		public static bool? InetSameFamily(NpgsqlInet? par2659, NpgsqlInet? par2660)
+		public static bool? inet_same_family(NpgsqlInet? par2659, NpgsqlInet? par2660)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSend
+		#region inet_send
 
 		[Sql.Function(Name="pg_catalog.inet_send", ServerSideOnly=true)]
-		public static byte[] InetSend(NpgsqlInet? par2662)
+		public static byte[] inet_send(NpgsqlInet? par2662)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetServerAddr
+		#region inet_server_addr
 
 		[Sql.Function(Name="pg_catalog.inet_server_addr", ServerSideOnly=true)]
-		public static NpgsqlInet? InetServerAddr()
+		public static NpgsqlInet? inet_server_addr()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetServerPort
+		#region inet_server_port
 
 		[Sql.Function(Name="pg_catalog.inet_server_port", ServerSideOnly=true)]
-		public static int? InetServerPort()
+		public static int? inet_server_port()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSpgChoose
+		#region inet_spg_choose
 
 		[Sql.Function(Name="pg_catalog.inet_spg_choose", ServerSideOnly=true)]
-		public static object InetSpgChoose(object par2665, object par2666)
+		public static object inet_spg_choose(object par2665, object par2666)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSpgConfig
+		#region inet_spg_config
 
 		[Sql.Function(Name="pg_catalog.inet_spg_config", ServerSideOnly=true)]
-		public static object InetSpgConfig(object par2667, object par2668)
+		public static object inet_spg_config(object par2667, object par2668)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSpgInnerConsistent
+		#region inet_spg_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.inet_spg_inner_consistent", ServerSideOnly=true)]
-		public static object InetSpgInnerConsistent(object par2669, object par2670)
+		public static object inet_spg_inner_consistent(object par2669, object par2670)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSpgLeafConsistent
+		#region inet_spg_leaf_consistent
 
 		[Sql.Function(Name="pg_catalog.inet_spg_leaf_consistent", ServerSideOnly=true)]
-		public static bool? InetSpgLeafConsistent(object par2672, object par2673)
+		public static bool? inet_spg_leaf_consistent(object par2672, object par2673)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InetSpgPicksplit
+		#region inet_spg_picksplit
 
 		[Sql.Function(Name="pg_catalog.inet_spg_picksplit", ServerSideOnly=true)]
-		public static object InetSpgPicksplit(object par2674, object par2675)
+		public static object inet_spg_picksplit(object par2674, object par2675)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Initcap
+		#region initcap
 
 		[Sql.Function(Name="pg_catalog.initcap", ServerSideOnly=true)]
-		public static string Initcap(string par2677)
+		public static string initcap(string par2677)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2
+		#region int2
 
 		[Sql.Function(Name="pg_catalog.int2", ServerSideOnly=true)]
-		public static short? Int2(long? par2717)
+		public static short? int2(long? par2717)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24div
+		#region int24div
 
 		[Sql.Function(Name="pg_catalog.int24div", ServerSideOnly=true)]
-		public static int? Int24div(short? par2687, int? par2688)
+		public static int? int24div(short? par2687, int? par2688)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24eq
+		#region int24eq
 
 		[Sql.Function(Name="pg_catalog.int24eq", ServerSideOnly=true)]
-		public static bool? Int24eq(short? par2690, int? par2691)
+		public static bool? int24eq(short? par2690, int? par2691)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24ge
+		#region int24ge
 
 		[Sql.Function(Name="pg_catalog.int24ge", ServerSideOnly=true)]
-		public static bool? Int24ge(short? par2693, int? par2694)
+		public static bool? int24ge(short? par2693, int? par2694)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24gt
+		#region int24gt
 
 		[Sql.Function(Name="pg_catalog.int24gt", ServerSideOnly=true)]
-		public static bool? Int24gt(short? par2696, int? par2697)
+		public static bool? int24gt(short? par2696, int? par2697)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24le
+		#region int24le
 
 		[Sql.Function(Name="pg_catalog.int24le", ServerSideOnly=true)]
-		public static bool? Int24le(short? par2699, int? par2700)
+		public static bool? int24le(short? par2699, int? par2700)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24lt
+		#region int24lt
 
 		[Sql.Function(Name="pg_catalog.int24lt", ServerSideOnly=true)]
-		public static bool? Int24lt(short? par2702, int? par2703)
+		public static bool? int24lt(short? par2702, int? par2703)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24mi
+		#region int24mi
 
 		[Sql.Function(Name="pg_catalog.int24mi", ServerSideOnly=true)]
-		public static int? Int24mi(short? par2705, int? par2706)
+		public static int? int24mi(short? par2705, int? par2706)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24mul
+		#region int24mul
 
 		[Sql.Function(Name="pg_catalog.int24mul", ServerSideOnly=true)]
-		public static int? Int24mul(short? par2708, int? par2709)
+		public static int? int24mul(short? par2708, int? par2709)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24ne
+		#region int24ne
 
 		[Sql.Function(Name="pg_catalog.int24ne", ServerSideOnly=true)]
-		public static bool? Int24ne(short? par2711, int? par2712)
+		public static bool? int24ne(short? par2711, int? par2712)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int24pl
+		#region int24pl
 
 		[Sql.Function(Name="pg_catalog.int24pl", ServerSideOnly=true)]
-		public static int? Int24pl(short? par2714, int? par2715)
+		public static int? int24pl(short? par2714, int? par2715)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28div
+		#region int28div
 
 		[Sql.Function(Name="pg_catalog.int28div", ServerSideOnly=true)]
-		public static long? Int28div(short? par2719, long? par2720)
+		public static long? int28div(short? par2719, long? par2720)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28eq
+		#region int28eq
 
 		[Sql.Function(Name="pg_catalog.int28eq", ServerSideOnly=true)]
-		public static bool? Int28eq(short? par2722, long? par2723)
+		public static bool? int28eq(short? par2722, long? par2723)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28ge
+		#region int28ge
 
 		[Sql.Function(Name="pg_catalog.int28ge", ServerSideOnly=true)]
-		public static bool? Int28ge(short? par2725, long? par2726)
+		public static bool? int28ge(short? par2725, long? par2726)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28gt
+		#region int28gt
 
 		[Sql.Function(Name="pg_catalog.int28gt", ServerSideOnly=true)]
-		public static bool? Int28gt(short? par2728, long? par2729)
+		public static bool? int28gt(short? par2728, long? par2729)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28le
+		#region int28le
 
 		[Sql.Function(Name="pg_catalog.int28le", ServerSideOnly=true)]
-		public static bool? Int28le(short? par2731, long? par2732)
+		public static bool? int28le(short? par2731, long? par2732)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28lt
+		#region int28lt
 
 		[Sql.Function(Name="pg_catalog.int28lt", ServerSideOnly=true)]
-		public static bool? Int28lt(short? par2734, long? par2735)
+		public static bool? int28lt(short? par2734, long? par2735)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28mi
+		#region int28mi
 
 		[Sql.Function(Name="pg_catalog.int28mi", ServerSideOnly=true)]
-		public static long? Int28mi(short? par2737, long? par2738)
+		public static long? int28mi(short? par2737, long? par2738)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28mul
+		#region int28mul
 
 		[Sql.Function(Name="pg_catalog.int28mul", ServerSideOnly=true)]
-		public static long? Int28mul(short? par2740, long? par2741)
+		public static long? int28mul(short? par2740, long? par2741)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28ne
+		#region int28ne
 
 		[Sql.Function(Name="pg_catalog.int28ne", ServerSideOnly=true)]
-		public static bool? Int28ne(short? par2743, long? par2744)
+		public static bool? int28ne(short? par2743, long? par2744)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int28pl
+		#region int28pl
 
 		[Sql.Function(Name="pg_catalog.int28pl", ServerSideOnly=true)]
-		public static long? Int28pl(short? par2746, long? par2747)
+		public static long? int28pl(short? par2746, long? par2747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2abs
+		#region int2abs
 
 		[Sql.Function(Name="pg_catalog.int2abs", ServerSideOnly=true)]
-		public static short? Int2abs(short? par2749)
+		public static short? int2abs(short? par2749)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2Accum
+		#region int2_accum
 
 		[Sql.Function(Name="pg_catalog.int2_accum", ServerSideOnly=true)]
-		public static object Int2Accum(object par2751, short? par2752)
+		public static object int2_accum(object par2751, short? par2752)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2AccumInv
+		#region int2_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int2_accum_inv", ServerSideOnly=true)]
-		public static object Int2AccumInv(object par2754, short? par2755)
+		public static object int2_accum_inv(object par2754, short? par2755)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2and
+		#region int2and
 
 		[Sql.Function(Name="pg_catalog.int2and", ServerSideOnly=true)]
-		public static short? Int2and(short? par2757, short? par2758)
+		public static short? int2and(short? par2757, short? par2758)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2AvgAccum
+		#region int2_avg_accum
 
 		[Sql.Function(Name="pg_catalog.int2_avg_accum", ServerSideOnly=true)]
-		public static object Int2AvgAccum(object par2760, short? par2761)
+		public static object int2_avg_accum(object par2760, short? par2761)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2AvgAccumInv
+		#region int2_avg_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int2_avg_accum_inv", ServerSideOnly=true)]
-		public static object Int2AvgAccumInv(object par2763, short? par2764)
+		public static object int2_avg_accum_inv(object par2763, short? par2764)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2div
+		#region int2div
 
 		[Sql.Function(Name="pg_catalog.int2div", ServerSideOnly=true)]
-		public static short? Int2div(short? par2766, short? par2767)
+		public static short? int2div(short? par2766, short? par2767)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2eq
+		#region int2eq
 
 		[Sql.Function(Name="pg_catalog.int2eq", ServerSideOnly=true)]
-		public static bool? Int2eq(short? par2769, short? par2770)
+		public static bool? int2eq(short? par2769, short? par2770)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2ge
+		#region int2ge
 
 		[Sql.Function(Name="pg_catalog.int2ge", ServerSideOnly=true)]
-		public static bool? Int2ge(short? par2772, short? par2773)
+		public static bool? int2ge(short? par2772, short? par2773)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2gt
+		#region int2gt
 
 		[Sql.Function(Name="pg_catalog.int2gt", ServerSideOnly=true)]
-		public static bool? Int2gt(short? par2775, short? par2776)
+		public static bool? int2gt(short? par2775, short? par2776)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2in
+		#region int2in
 
 		[Sql.Function(Name="pg_catalog.int2in", ServerSideOnly=true)]
-		public static short? Int2in(object par2778)
+		public static short? int2in(object par2778)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2int4Sum
+		#region int2int4_sum
 
 		[Sql.Function(Name="pg_catalog.int2int4_sum", ServerSideOnly=true)]
-		public static long? Int2int4Sum(object par2780)
+		public static long? int2int4_sum(object par2780)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2larger
+		#region int2larger
 
 		[Sql.Function(Name="pg_catalog.int2larger", ServerSideOnly=true)]
-		public static short? Int2larger(short? par2782, short? par2783)
+		public static short? int2larger(short? par2782, short? par2783)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2le
+		#region int2le
 
 		[Sql.Function(Name="pg_catalog.int2le", ServerSideOnly=true)]
-		public static bool? Int2le(short? par2785, short? par2786)
+		public static bool? int2le(short? par2785, short? par2786)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2lt
+		#region int2lt
 
 		[Sql.Function(Name="pg_catalog.int2lt", ServerSideOnly=true)]
-		public static bool? Int2lt(short? par2788, short? par2789)
+		public static bool? int2lt(short? par2788, short? par2789)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2mi
+		#region int2mi
 
 		[Sql.Function(Name="pg_catalog.int2mi", ServerSideOnly=true)]
-		public static short? Int2mi(short? par2791, short? par2792)
+		public static short? int2mi(short? par2791, short? par2792)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2mod
+		#region int2mod
 
 		[Sql.Function(Name="pg_catalog.int2mod", ServerSideOnly=true)]
-		public static short? Int2mod(short? par2794, short? par2795)
+		public static short? int2mod(short? par2794, short? par2795)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2mul
+		#region int2mul
 
 		[Sql.Function(Name="pg_catalog.int2mul", ServerSideOnly=true)]
-		public static short? Int2mul(short? par2797, short? par2798)
+		public static short? int2mul(short? par2797, short? par2798)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2MulCash
+		#region int2_mul_cash
 
 		[Sql.Function(Name="pg_catalog.int2_mul_cash", ServerSideOnly=true)]
-		public static decimal? Int2MulCash(short? par2800, decimal? par2801)
+		public static decimal? int2_mul_cash(short? par2800, decimal? par2801)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2ne
+		#region int2ne
 
 		[Sql.Function(Name="pg_catalog.int2ne", ServerSideOnly=true)]
-		public static bool? Int2ne(short? par2803, short? par2804)
+		public static bool? int2ne(short? par2803, short? par2804)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2not
+		#region int2not
 
 		[Sql.Function(Name="pg_catalog.int2not", ServerSideOnly=true)]
-		public static short? Int2not(short? par2806)
+		public static short? int2not(short? par2806)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2or
+		#region int2or
 
 		[Sql.Function(Name="pg_catalog.int2or", ServerSideOnly=true)]
-		public static short? Int2or(short? par2808, short? par2809)
+		public static short? int2or(short? par2808, short? par2809)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2out
+		#region int2out
 
 		[Sql.Function(Name="pg_catalog.int2out", ServerSideOnly=true)]
-		public static object Int2out(short? par2811)
+		public static object int2out(short? par2811)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2pl
+		#region int2pl
 
 		[Sql.Function(Name="pg_catalog.int2pl", ServerSideOnly=true)]
-		public static short? Int2pl(short? par2813, short? par2814)
+		public static short? int2pl(short? par2813, short? par2814)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2recv
+		#region int2recv
 
 		[Sql.Function(Name="pg_catalog.int2recv", ServerSideOnly=true)]
-		public static short? Int2recv(object par2816)
+		public static short? int2recv(object par2816)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2send
+		#region int2send
 
 		[Sql.Function(Name="pg_catalog.int2send", ServerSideOnly=true)]
-		public static byte[] Int2send(short? par2818)
+		public static byte[] int2send(short? par2818)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2shl
+		#region int2shl
 
 		[Sql.Function(Name="pg_catalog.int2shl", ServerSideOnly=true)]
-		public static short? Int2shl(short? par2820, int? par2821)
+		public static short? int2shl(short? par2820, int? par2821)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2shr
+		#region int2shr
 
 		[Sql.Function(Name="pg_catalog.int2shr", ServerSideOnly=true)]
-		public static short? Int2shr(short? par2823, int? par2824)
+		public static short? int2shr(short? par2823, int? par2824)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2smaller
+		#region int2smaller
 
 		[Sql.Function(Name="pg_catalog.int2smaller", ServerSideOnly=true)]
-		public static short? Int2smaller(short? par2826, short? par2827)
+		public static short? int2smaller(short? par2826, short? par2827)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2Sum
+		#region int2_sum
 
 		[Sql.Function(Name="pg_catalog.int2_sum", ServerSideOnly=true)]
-		public static long? Int2Sum(long? par2829, short? par2830)
+		public static long? int2_sum(long? par2829, short? par2830)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2um
+		#region int2um
 
 		[Sql.Function(Name="pg_catalog.int2um", ServerSideOnly=true)]
-		public static short? Int2um(short? par2832)
+		public static short? int2um(short? par2832)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2up
+		#region int2up
 
 		[Sql.Function(Name="pg_catalog.int2up", ServerSideOnly=true)]
-		public static short? Int2up(short? par2834)
+		public static short? int2up(short? par2834)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2vectorin
+		#region int2vectorin
 
 		[Sql.Function(Name="pg_catalog.int2vectorin", ServerSideOnly=true)]
-		public static object Int2vectorin(object par2836)
+		public static object int2vectorin(object par2836)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2vectorout
+		#region int2vectorout
 
 		[Sql.Function(Name="pg_catalog.int2vectorout", ServerSideOnly=true)]
-		public static object Int2vectorout(object par2838)
+		public static object int2vectorout(object par2838)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2vectorrecv
+		#region int2vectorrecv
 
 		[Sql.Function(Name="pg_catalog.int2vectorrecv", ServerSideOnly=true)]
-		public static object Int2vectorrecv(object par2840)
+		public static object int2vectorrecv(object par2840)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2vectorsend
+		#region int2vectorsend
 
 		[Sql.Function(Name="pg_catalog.int2vectorsend", ServerSideOnly=true)]
-		public static byte[] Int2vectorsend(object par2842)
+		public static byte[] int2vectorsend(object par2842)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int2xor
+		#region int2xor
 
 		[Sql.Function(Name="pg_catalog.int2xor", ServerSideOnly=true)]
-		public static short? Int2xor(short? par2844, short? par2845)
+		public static short? int2xor(short? par2844, short? par2845)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4
+		#region int4
 
 		[Sql.Function(Name="pg_catalog.int4", ServerSideOnly=true)]
-		public static int? Int4(object par2891)
+		public static int? int4(object par2891)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42div
+		#region int42div
 
 		[Sql.Function(Name="pg_catalog.int42div", ServerSideOnly=true)]
-		public static int? Int42div(int? par2853, short? par2854)
+		public static int? int42div(int? par2853, short? par2854)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42eq
+		#region int42eq
 
 		[Sql.Function(Name="pg_catalog.int42eq", ServerSideOnly=true)]
-		public static bool? Int42eq(int? par2856, short? par2857)
+		public static bool? int42eq(int? par2856, short? par2857)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42ge
+		#region int42ge
 
 		[Sql.Function(Name="pg_catalog.int42ge", ServerSideOnly=true)]
-		public static bool? Int42ge(int? par2859, short? par2860)
+		public static bool? int42ge(int? par2859, short? par2860)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42gt
+		#region int42gt
 
 		[Sql.Function(Name="pg_catalog.int42gt", ServerSideOnly=true)]
-		public static bool? Int42gt(int? par2862, short? par2863)
+		public static bool? int42gt(int? par2862, short? par2863)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42le
+		#region int42le
 
 		[Sql.Function(Name="pg_catalog.int42le", ServerSideOnly=true)]
-		public static bool? Int42le(int? par2865, short? par2866)
+		public static bool? int42le(int? par2865, short? par2866)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42lt
+		#region int42lt
 
 		[Sql.Function(Name="pg_catalog.int42lt", ServerSideOnly=true)]
-		public static bool? Int42lt(int? par2868, short? par2869)
+		public static bool? int42lt(int? par2868, short? par2869)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42mi
+		#region int42mi
 
 		[Sql.Function(Name="pg_catalog.int42mi", ServerSideOnly=true)]
-		public static int? Int42mi(int? par2871, short? par2872)
+		public static int? int42mi(int? par2871, short? par2872)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42mul
+		#region int42mul
 
 		[Sql.Function(Name="pg_catalog.int42mul", ServerSideOnly=true)]
-		public static int? Int42mul(int? par2874, short? par2875)
+		public static int? int42mul(int? par2874, short? par2875)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42ne
+		#region int42ne
 
 		[Sql.Function(Name="pg_catalog.int42ne", ServerSideOnly=true)]
-		public static bool? Int42ne(int? par2877, short? par2878)
+		public static bool? int42ne(int? par2877, short? par2878)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int42pl
+		#region int42pl
 
 		[Sql.Function(Name="pg_catalog.int42pl", ServerSideOnly=true)]
-		public static int? Int42pl(int? par2880, short? par2881)
+		public static int? int42pl(int? par2880, short? par2881)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48div
+		#region int48div
 
 		[Sql.Function(Name="pg_catalog.int48div", ServerSideOnly=true)]
-		public static long? Int48div(int? par2893, long? par2894)
+		public static long? int48div(int? par2893, long? par2894)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48eq
+		#region int48eq
 
 		[Sql.Function(Name="pg_catalog.int48eq", ServerSideOnly=true)]
-		public static bool? Int48eq(int? par2896, long? par2897)
+		public static bool? int48eq(int? par2896, long? par2897)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48ge
+		#region int48ge
 
 		[Sql.Function(Name="pg_catalog.int48ge", ServerSideOnly=true)]
-		public static bool? Int48ge(int? par2899, long? par2900)
+		public static bool? int48ge(int? par2899, long? par2900)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48gt
+		#region int48gt
 
 		[Sql.Function(Name="pg_catalog.int48gt", ServerSideOnly=true)]
-		public static bool? Int48gt(int? par2902, long? par2903)
+		public static bool? int48gt(int? par2902, long? par2903)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48le
+		#region int48le
 
 		[Sql.Function(Name="pg_catalog.int48le", ServerSideOnly=true)]
-		public static bool? Int48le(int? par2905, long? par2906)
+		public static bool? int48le(int? par2905, long? par2906)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48lt
+		#region int48lt
 
 		[Sql.Function(Name="pg_catalog.int48lt", ServerSideOnly=true)]
-		public static bool? Int48lt(int? par2908, long? par2909)
+		public static bool? int48lt(int? par2908, long? par2909)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48mi
+		#region int48mi
 
 		[Sql.Function(Name="pg_catalog.int48mi", ServerSideOnly=true)]
-		public static long? Int48mi(int? par2911, long? par2912)
+		public static long? int48mi(int? par2911, long? par2912)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48mul
+		#region int48mul
 
 		[Sql.Function(Name="pg_catalog.int48mul", ServerSideOnly=true)]
-		public static long? Int48mul(int? par2914, long? par2915)
+		public static long? int48mul(int? par2914, long? par2915)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48ne
+		#region int48ne
 
 		[Sql.Function(Name="pg_catalog.int48ne", ServerSideOnly=true)]
-		public static bool? Int48ne(int? par2917, long? par2918)
+		public static bool? int48ne(int? par2917, long? par2918)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int48pl
+		#region int48pl
 
 		[Sql.Function(Name="pg_catalog.int48pl", ServerSideOnly=true)]
-		public static long? Int48pl(int? par2920, long? par2921)
+		public static long? int48pl(int? par2920, long? par2921)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4abs
+		#region int4abs
 
 		[Sql.Function(Name="pg_catalog.int4abs", ServerSideOnly=true)]
-		public static int? Int4abs(int? par2923)
+		public static int? int4abs(int? par2923)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4Accum
+		#region int4_accum
 
 		[Sql.Function(Name="pg_catalog.int4_accum", ServerSideOnly=true)]
-		public static object Int4Accum(object par2925, int? par2926)
+		public static object int4_accum(object par2925, int? par2926)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4AccumInv
+		#region int4_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int4_accum_inv", ServerSideOnly=true)]
-		public static object Int4AccumInv(object par2928, int? par2929)
+		public static object int4_accum_inv(object par2928, int? par2929)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4and
+		#region int4and
 
 		[Sql.Function(Name="pg_catalog.int4and", ServerSideOnly=true)]
-		public static int? Int4and(int? par2931, int? par2932)
+		public static int? int4and(int? par2931, int? par2932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4AvgAccum
+		#region int4_avg_accum
 
 		[Sql.Function(Name="pg_catalog.int4_avg_accum", ServerSideOnly=true)]
-		public static object Int4AvgAccum(object par2934, int? par2935)
+		public static object int4_avg_accum(object par2934, int? par2935)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4AvgAccumInv
+		#region int4_avg_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int4_avg_accum_inv", ServerSideOnly=true)]
-		public static object Int4AvgAccumInv(object par2937, int? par2938)
+		public static object int4_avg_accum_inv(object par2937, int? par2938)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4AvgCombine
+		#region int4_avg_combine
 
 		[Sql.Function(Name="pg_catalog.int4_avg_combine", ServerSideOnly=true)]
-		public static object Int4AvgCombine(object par2940, object par2941)
+		public static object int4_avg_combine(object par2940, object par2941)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4div
+		#region int4div
 
 		[Sql.Function(Name="pg_catalog.int4div", ServerSideOnly=true)]
-		public static int? Int4div(int? par2943, int? par2944)
+		public static int? int4div(int? par2943, int? par2944)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4eq
+		#region int4eq
 
 		[Sql.Function(Name="pg_catalog.int4eq", ServerSideOnly=true)]
-		public static bool? Int4eq(int? par2946, int? par2947)
+		public static bool? int4eq(int? par2946, int? par2947)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4ge
+		#region int4ge
 
 		[Sql.Function(Name="pg_catalog.int4ge", ServerSideOnly=true)]
-		public static bool? Int4ge(int? par2949, int? par2950)
+		public static bool? int4ge(int? par2949, int? par2950)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4gt
+		#region int4gt
 
 		[Sql.Function(Name="pg_catalog.int4gt", ServerSideOnly=true)]
-		public static bool? Int4gt(int? par2952, int? par2953)
+		public static bool? int4gt(int? par2952, int? par2953)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4in
+		#region int4in
 
 		[Sql.Function(Name="pg_catalog.int4in", ServerSideOnly=true)]
-		public static int? Int4in(object par2955)
+		public static int? int4in(object par2955)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4inc
+		#region int4inc
 
 		[Sql.Function(Name="pg_catalog.int4inc", ServerSideOnly=true)]
-		public static int? Int4inc(int? par2957)
+		public static int? int4inc(int? par2957)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4larger
+		#region int4larger
 
 		[Sql.Function(Name="pg_catalog.int4larger", ServerSideOnly=true)]
-		public static int? Int4larger(int? par2959, int? par2960)
+		public static int? int4larger(int? par2959, int? par2960)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4le
+		#region int4le
 
 		[Sql.Function(Name="pg_catalog.int4le", ServerSideOnly=true)]
-		public static bool? Int4le(int? par2962, int? par2963)
+		public static bool? int4le(int? par2962, int? par2963)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4lt
+		#region int4lt
 
 		[Sql.Function(Name="pg_catalog.int4lt", ServerSideOnly=true)]
-		public static bool? Int4lt(int? par2965, int? par2966)
+		public static bool? int4lt(int? par2965, int? par2966)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4mi
+		#region int4mi
 
 		[Sql.Function(Name="pg_catalog.int4mi", ServerSideOnly=true)]
-		public static int? Int4mi(int? par2968, int? par2969)
+		public static int? int4mi(int? par2968, int? par2969)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4mod
+		#region int4mod
 
 		[Sql.Function(Name="pg_catalog.int4mod", ServerSideOnly=true)]
-		public static int? Int4mod(int? par2971, int? par2972)
+		public static int? int4mod(int? par2971, int? par2972)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4mul
+		#region int4mul
 
 		[Sql.Function(Name="pg_catalog.int4mul", ServerSideOnly=true)]
-		public static int? Int4mul(int? par2974, int? par2975)
+		public static int? int4mul(int? par2974, int? par2975)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4MulCash
+		#region int4_mul_cash
 
 		[Sql.Function(Name="pg_catalog.int4_mul_cash", ServerSideOnly=true)]
-		public static decimal? Int4MulCash(int? par2977, decimal? par2978)
+		public static decimal? int4_mul_cash(int? par2977, decimal? par2978)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4ne
+		#region int4ne
 
 		[Sql.Function(Name="pg_catalog.int4ne", ServerSideOnly=true)]
-		public static bool? Int4ne(int? par2980, int? par2981)
+		public static bool? int4ne(int? par2980, int? par2981)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4not
+		#region int4not
 
 		[Sql.Function(Name="pg_catalog.int4not", ServerSideOnly=true)]
-		public static int? Int4not(int? par2983)
+		public static int? int4not(int? par2983)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4or
+		#region int4or
 
 		[Sql.Function(Name="pg_catalog.int4or", ServerSideOnly=true)]
-		public static int? Int4or(int? par2985, int? par2986)
+		public static int? int4or(int? par2985, int? par2986)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4out
+		#region int4out
 
 		[Sql.Function(Name="pg_catalog.int4out", ServerSideOnly=true)]
-		public static object Int4out(int? par2988)
+		public static object int4out(int? par2988)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4pl
+		#region int4pl
 
 		[Sql.Function(Name="pg_catalog.int4pl", ServerSideOnly=true)]
-		public static int? Int4pl(int? par2990, int? par2991)
+		public static int? int4pl(int? par2990, int? par2991)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4range
+		#region int4range
 
 		[Sql.Function(Name="pg_catalog.int4range", ServerSideOnly=true)]
-		public static object Int4range(int? par2996, int? par2997, string par2998)
+		public static object int4range(int? par2996, int? par2997, string par2998)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4rangeCanonical
+		#region int4range_canonical
 
 		[Sql.Function(Name="pg_catalog.int4range_canonical", ServerSideOnly=true)]
-		public static object Int4rangeCanonical(object par3000)
+		public static object int4range_canonical(object par3000)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4rangeSubdiff
+		#region int4range_subdiff
 
 		[Sql.Function(Name="pg_catalog.int4range_subdiff", ServerSideOnly=true)]
-		public static double? Int4rangeSubdiff(int? par3002, int? par3003)
+		public static double? int4range_subdiff(int? par3002, int? par3003)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4recv
+		#region int4recv
 
 		[Sql.Function(Name="pg_catalog.int4recv", ServerSideOnly=true)]
-		public static int? Int4recv(object par3005)
+		public static int? int4recv(object par3005)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4send
+		#region int4send
 
 		[Sql.Function(Name="pg_catalog.int4send", ServerSideOnly=true)]
-		public static byte[] Int4send(int? par3007)
+		public static byte[] int4send(int? par3007)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4shl
+		#region int4shl
 
 		[Sql.Function(Name="pg_catalog.int4shl", ServerSideOnly=true)]
-		public static int? Int4shl(int? par3009, int? par3010)
+		public static int? int4shl(int? par3009, int? par3010)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4shr
+		#region int4shr
 
 		[Sql.Function(Name="pg_catalog.int4shr", ServerSideOnly=true)]
-		public static int? Int4shr(int? par3012, int? par3013)
+		public static int? int4shr(int? par3012, int? par3013)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4smaller
+		#region int4smaller
 
 		[Sql.Function(Name="pg_catalog.int4smaller", ServerSideOnly=true)]
-		public static int? Int4smaller(int? par3015, int? par3016)
+		public static int? int4smaller(int? par3015, int? par3016)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4Sum
+		#region int4_sum
 
 		[Sql.Function(Name="pg_catalog.int4_sum", ServerSideOnly=true)]
-		public static long? Int4Sum(long? par3018, int? par3019)
+		public static long? int4_sum(long? par3018, int? par3019)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4um
+		#region int4um
 
 		[Sql.Function(Name="pg_catalog.int4um", ServerSideOnly=true)]
-		public static int? Int4um(int? par3021)
+		public static int? int4um(int? par3021)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4up
+		#region int4up
 
 		[Sql.Function(Name="pg_catalog.int4up", ServerSideOnly=true)]
-		public static int? Int4up(int? par3023)
+		public static int? int4up(int? par3023)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int4xor
+		#region int4xor
 
 		[Sql.Function(Name="pg_catalog.int4xor", ServerSideOnly=true)]
-		public static int? Int4xor(int? par3025, int? par3026)
+		public static int? int4xor(int? par3025, int? par3026)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8
+		#region int8
 
 		[Sql.Function(Name="pg_catalog.int8", ServerSideOnly=true)]
-		public static long? Int8(short? par3100)
+		public static long? int8(short? par3100)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82div
+		#region int82div
 
 		[Sql.Function(Name="pg_catalog.int82div", ServerSideOnly=true)]
-		public static long? Int82div(long? par3034, short? par3035)
+		public static long? int82div(long? par3034, short? par3035)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82eq
+		#region int82eq
 
 		[Sql.Function(Name="pg_catalog.int82eq", ServerSideOnly=true)]
-		public static bool? Int82eq(long? par3037, short? par3038)
+		public static bool? int82eq(long? par3037, short? par3038)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82ge
+		#region int82ge
 
 		[Sql.Function(Name="pg_catalog.int82ge", ServerSideOnly=true)]
-		public static bool? Int82ge(long? par3040, short? par3041)
+		public static bool? int82ge(long? par3040, short? par3041)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82gt
+		#region int82gt
 
 		[Sql.Function(Name="pg_catalog.int82gt", ServerSideOnly=true)]
-		public static bool? Int82gt(long? par3043, short? par3044)
+		public static bool? int82gt(long? par3043, short? par3044)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82le
+		#region int82le
 
 		[Sql.Function(Name="pg_catalog.int82le", ServerSideOnly=true)]
-		public static bool? Int82le(long? par3046, short? par3047)
+		public static bool? int82le(long? par3046, short? par3047)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82lt
+		#region int82lt
 
 		[Sql.Function(Name="pg_catalog.int82lt", ServerSideOnly=true)]
-		public static bool? Int82lt(long? par3049, short? par3050)
+		public static bool? int82lt(long? par3049, short? par3050)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82mi
+		#region int82mi
 
 		[Sql.Function(Name="pg_catalog.int82mi", ServerSideOnly=true)]
-		public static long? Int82mi(long? par3052, short? par3053)
+		public static long? int82mi(long? par3052, short? par3053)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82mul
+		#region int82mul
 
 		[Sql.Function(Name="pg_catalog.int82mul", ServerSideOnly=true)]
-		public static long? Int82mul(long? par3055, short? par3056)
+		public static long? int82mul(long? par3055, short? par3056)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82ne
+		#region int82ne
 
 		[Sql.Function(Name="pg_catalog.int82ne", ServerSideOnly=true)]
-		public static bool? Int82ne(long? par3058, short? par3059)
+		public static bool? int82ne(long? par3058, short? par3059)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int82pl
+		#region int82pl
 
 		[Sql.Function(Name="pg_catalog.int82pl", ServerSideOnly=true)]
-		public static long? Int82pl(long? par3061, short? par3062)
+		public static long? int82pl(long? par3061, short? par3062)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84div
+		#region int84div
 
 		[Sql.Function(Name="pg_catalog.int84div", ServerSideOnly=true)]
-		public static long? Int84div(long? par3068, int? par3069)
+		public static long? int84div(long? par3068, int? par3069)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84eq
+		#region int84eq
 
 		[Sql.Function(Name="pg_catalog.int84eq", ServerSideOnly=true)]
-		public static bool? Int84eq(long? par3071, int? par3072)
+		public static bool? int84eq(long? par3071, int? par3072)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84ge
+		#region int84ge
 
 		[Sql.Function(Name="pg_catalog.int84ge", ServerSideOnly=true)]
-		public static bool? Int84ge(long? par3074, int? par3075)
+		public static bool? int84ge(long? par3074, int? par3075)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84gt
+		#region int84gt
 
 		[Sql.Function(Name="pg_catalog.int84gt", ServerSideOnly=true)]
-		public static bool? Int84gt(long? par3077, int? par3078)
+		public static bool? int84gt(long? par3077, int? par3078)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84le
+		#region int84le
 
 		[Sql.Function(Name="pg_catalog.int84le", ServerSideOnly=true)]
-		public static bool? Int84le(long? par3080, int? par3081)
+		public static bool? int84le(long? par3080, int? par3081)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84lt
+		#region int84lt
 
 		[Sql.Function(Name="pg_catalog.int84lt", ServerSideOnly=true)]
-		public static bool? Int84lt(long? par3083, int? par3084)
+		public static bool? int84lt(long? par3083, int? par3084)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84mi
+		#region int84mi
 
 		[Sql.Function(Name="pg_catalog.int84mi", ServerSideOnly=true)]
-		public static long? Int84mi(long? par3086, int? par3087)
+		public static long? int84mi(long? par3086, int? par3087)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84mul
+		#region int84mul
 
 		[Sql.Function(Name="pg_catalog.int84mul", ServerSideOnly=true)]
-		public static long? Int84mul(long? par3089, int? par3090)
+		public static long? int84mul(long? par3089, int? par3090)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84ne
+		#region int84ne
 
 		[Sql.Function(Name="pg_catalog.int84ne", ServerSideOnly=true)]
-		public static bool? Int84ne(long? par3092, int? par3093)
+		public static bool? int84ne(long? par3092, int? par3093)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int84pl
+		#region int84pl
 
 		[Sql.Function(Name="pg_catalog.int84pl", ServerSideOnly=true)]
-		public static long? Int84pl(long? par3095, int? par3096)
+		public static long? int84pl(long? par3095, int? par3096)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8abs
+		#region int8abs
 
 		[Sql.Function(Name="pg_catalog.int8abs", ServerSideOnly=true)]
-		public static long? Int8abs(long? par3102)
+		public static long? int8abs(long? par3102)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8Accum
+		#region int8_accum
 
 		[Sql.Function(Name="pg_catalog.int8_accum", ServerSideOnly=true)]
-		public static object Int8Accum(object par3104, long? par3105)
+		public static object int8_accum(object par3104, long? par3105)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AccumInv
+		#region int8_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int8_accum_inv", ServerSideOnly=true)]
-		public static object Int8AccumInv(object par3107, long? par3108)
+		public static object int8_accum_inv(object par3107, long? par3108)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8and
+		#region int8and
 
 		[Sql.Function(Name="pg_catalog.int8and", ServerSideOnly=true)]
-		public static long? Int8and(long? par3110, long? par3111)
+		public static long? int8and(long? par3110, long? par3111)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8Avg
+		#region int8_avg
 
 		[Sql.Function(Name="pg_catalog.int8_avg", ServerSideOnly=true)]
-		public static decimal? Int8Avg(object par3113)
+		public static decimal? int8_avg(object par3113)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AvgAccum
+		#region int8_avg_accum
 
 		[Sql.Function(Name="pg_catalog.int8_avg_accum", ServerSideOnly=true)]
-		public static object Int8AvgAccum(object par3115, long? par3116)
+		public static object int8_avg_accum(object par3115, long? par3116)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AvgAccumInv
+		#region int8_avg_accum_inv
 
 		[Sql.Function(Name="pg_catalog.int8_avg_accum_inv", ServerSideOnly=true)]
-		public static object Int8AvgAccumInv(object par3118, long? par3119)
+		public static object int8_avg_accum_inv(object par3118, long? par3119)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AvgCombine
+		#region int8_avg_combine
 
 		[Sql.Function(Name="pg_catalog.int8_avg_combine", ServerSideOnly=true)]
-		public static object Int8AvgCombine(object par3121, object par3122)
+		public static object int8_avg_combine(object par3121, object par3122)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AvgDeserialize
+		#region int8_avg_deserialize
 
 		[Sql.Function(Name="pg_catalog.int8_avg_deserialize", ServerSideOnly=true)]
-		public static object Int8AvgDeserialize(byte[] par3124, object par3125)
+		public static object int8_avg_deserialize(byte[] par3124, object par3125)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8AvgSerialize
+		#region int8_avg_serialize
 
 		[Sql.Function(Name="pg_catalog.int8_avg_serialize", ServerSideOnly=true)]
-		public static byte[] Int8AvgSerialize(object par3127)
+		public static byte[] int8_avg_serialize(object par3127)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8dec
+		#region int8dec
 
 		[Sql.Function(Name="pg_catalog.int8dec", ServerSideOnly=true)]
-		public static long? Int8dec(long? par3129)
+		public static long? int8dec(long? par3129)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8decAny
+		#region int8dec_any
 
 		[Sql.Function(Name="pg_catalog.int8dec_any", ServerSideOnly=true)]
-		public static long? Int8decAny(long? par3131, object par3132)
+		public static long? int8dec_any(long? par3131, object par3132)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8div
+		#region int8div
 
 		[Sql.Function(Name="pg_catalog.int8div", ServerSideOnly=true)]
-		public static long? Int8div(long? par3134, long? par3135)
+		public static long? int8div(long? par3134, long? par3135)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8eq
+		#region int8eq
 
 		[Sql.Function(Name="pg_catalog.int8eq", ServerSideOnly=true)]
-		public static bool? Int8eq(long? par3137, long? par3138)
+		public static bool? int8eq(long? par3137, long? par3138)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8ge
+		#region int8ge
 
 		[Sql.Function(Name="pg_catalog.int8ge", ServerSideOnly=true)]
-		public static bool? Int8ge(long? par3140, long? par3141)
+		public static bool? int8ge(long? par3140, long? par3141)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8gt
+		#region int8gt
 
 		[Sql.Function(Name="pg_catalog.int8gt", ServerSideOnly=true)]
-		public static bool? Int8gt(long? par3143, long? par3144)
+		public static bool? int8gt(long? par3143, long? par3144)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8in
+		#region int8in
 
 		[Sql.Function(Name="pg_catalog.int8in", ServerSideOnly=true)]
-		public static long? Int8in(object par3146)
+		public static long? int8in(object par3146)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8inc
+		#region int8inc
 
 		[Sql.Function(Name="pg_catalog.int8inc", ServerSideOnly=true)]
-		public static long? Int8inc(long? par3148)
+		public static long? int8inc(long? par3148)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8incAny
+		#region int8inc_any
 
 		[Sql.Function(Name="pg_catalog.int8inc_any", ServerSideOnly=true)]
-		public static long? Int8incAny(long? par3150, object par3151)
+		public static long? int8inc_any(long? par3150, object par3151)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8incFloat8Float8
+		#region int8inc_float8_float8
 
 		[Sql.Function(Name="pg_catalog.int8inc_float8_float8", ServerSideOnly=true)]
-		public static long? Int8incFloat8Float8(long? par3153, double? par3154, double? par3155)
+		public static long? int8inc_float8_float8(long? par3153, double? par3154, double? par3155)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8larger
+		#region int8larger
 
 		[Sql.Function(Name="pg_catalog.int8larger", ServerSideOnly=true)]
-		public static long? Int8larger(long? par3157, long? par3158)
+		public static long? int8larger(long? par3157, long? par3158)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8le
+		#region int8le
 
 		[Sql.Function(Name="pg_catalog.int8le", ServerSideOnly=true)]
-		public static bool? Int8le(long? par3160, long? par3161)
+		public static bool? int8le(long? par3160, long? par3161)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8lt
+		#region int8lt
 
 		[Sql.Function(Name="pg_catalog.int8lt", ServerSideOnly=true)]
-		public static bool? Int8lt(long? par3163, long? par3164)
+		public static bool? int8lt(long? par3163, long? par3164)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8mi
+		#region int8mi
 
 		[Sql.Function(Name="pg_catalog.int8mi", ServerSideOnly=true)]
-		public static long? Int8mi(long? par3166, long? par3167)
+		public static long? int8mi(long? par3166, long? par3167)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8mod
+		#region int8mod
 
 		[Sql.Function(Name="pg_catalog.int8mod", ServerSideOnly=true)]
-		public static long? Int8mod(long? par3169, long? par3170)
+		public static long? int8mod(long? par3169, long? par3170)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8mul
+		#region int8mul
 
 		[Sql.Function(Name="pg_catalog.int8mul", ServerSideOnly=true)]
-		public static long? Int8mul(long? par3172, long? par3173)
+		public static long? int8mul(long? par3172, long? par3173)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8MulCash
+		#region int8_mul_cash
 
 		[Sql.Function(Name="pg_catalog.int8_mul_cash", ServerSideOnly=true)]
-		public static decimal? Int8MulCash(long? par3175, decimal? par3176)
+		public static decimal? int8_mul_cash(long? par3175, decimal? par3176)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8ne
+		#region int8ne
 
 		[Sql.Function(Name="pg_catalog.int8ne", ServerSideOnly=true)]
-		public static bool? Int8ne(long? par3178, long? par3179)
+		public static bool? int8ne(long? par3178, long? par3179)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8not
+		#region int8not
 
 		[Sql.Function(Name="pg_catalog.int8not", ServerSideOnly=true)]
-		public static long? Int8not(long? par3181)
+		public static long? int8not(long? par3181)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8or
+		#region int8or
 
 		[Sql.Function(Name="pg_catalog.int8or", ServerSideOnly=true)]
-		public static long? Int8or(long? par3183, long? par3184)
+		public static long? int8or(long? par3183, long? par3184)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8out
+		#region int8out
 
 		[Sql.Function(Name="pg_catalog.int8out", ServerSideOnly=true)]
-		public static object Int8out(long? par3186)
+		public static object int8out(long? par3186)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8pl
+		#region int8pl
 
 		[Sql.Function(Name="pg_catalog.int8pl", ServerSideOnly=true)]
-		public static long? Int8pl(long? par3188, long? par3189)
+		public static long? int8pl(long? par3188, long? par3189)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8plInet
+		#region int8pl_inet
 
 		[Sql.Function(Name="pg_catalog.int8pl_inet", ServerSideOnly=true)]
-		public static NpgsqlInet? Int8plInet(long? par3191, NpgsqlInet? par3192)
+		public static NpgsqlInet? int8pl_inet(long? par3191, NpgsqlInet? par3192)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8range
+		#region int8range
 
 		[Sql.Function(Name="pg_catalog.int8range", ServerSideOnly=true)]
-		public static object Int8range(long? par3197, long? par3198, string par3199)
+		public static object int8range(long? par3197, long? par3198, string par3199)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8rangeCanonical
+		#region int8range_canonical
 
 		[Sql.Function(Name="pg_catalog.int8range_canonical", ServerSideOnly=true)]
-		public static object Int8rangeCanonical(object par3201)
+		public static object int8range_canonical(object par3201)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8rangeSubdiff
+		#region int8range_subdiff
 
 		[Sql.Function(Name="pg_catalog.int8range_subdiff", ServerSideOnly=true)]
-		public static double? Int8rangeSubdiff(long? par3203, long? par3204)
+		public static double? int8range_subdiff(long? par3203, long? par3204)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8recv
+		#region int8recv
 
 		[Sql.Function(Name="pg_catalog.int8recv", ServerSideOnly=true)]
-		public static long? Int8recv(object par3206)
+		public static long? int8recv(object par3206)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8send
+		#region int8send
 
 		[Sql.Function(Name="pg_catalog.int8send", ServerSideOnly=true)]
-		public static byte[] Int8send(long? par3208)
+		public static byte[] int8send(long? par3208)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8shl
+		#region int8shl
 
 		[Sql.Function(Name="pg_catalog.int8shl", ServerSideOnly=true)]
-		public static long? Int8shl(long? par3210, int? par3211)
+		public static long? int8shl(long? par3210, int? par3211)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8shr
+		#region int8shr
 
 		[Sql.Function(Name="pg_catalog.int8shr", ServerSideOnly=true)]
-		public static long? Int8shr(long? par3213, int? par3214)
+		public static long? int8shr(long? par3213, int? par3214)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8smaller
+		#region int8smaller
 
 		[Sql.Function(Name="pg_catalog.int8smaller", ServerSideOnly=true)]
-		public static long? Int8smaller(long? par3216, long? par3217)
+		public static long? int8smaller(long? par3216, long? par3217)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8Sum
+		#region int8_sum
 
 		[Sql.Function(Name="pg_catalog.int8_sum", ServerSideOnly=true)]
-		public static decimal? Int8Sum(decimal? par3219, long? par3220)
+		public static decimal? int8_sum(decimal? par3219, long? par3220)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8um
+		#region int8um
 
 		[Sql.Function(Name="pg_catalog.int8um", ServerSideOnly=true)]
-		public static long? Int8um(long? par3222)
+		public static long? int8um(long? par3222)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8up
+		#region int8up
 
 		[Sql.Function(Name="pg_catalog.int8up", ServerSideOnly=true)]
-		public static long? Int8up(long? par3224)
+		public static long? int8up(long? par3224)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Int8xor
+		#region int8xor
 
 		[Sql.Function(Name="pg_catalog.int8xor", ServerSideOnly=true)]
-		public static long? Int8xor(long? par3226, long? par3227)
+		public static long? int8xor(long? par3226, long? par3227)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntegerPlDate
+		#region integer_pl_date
 
 		[Sql.Function(Name="pg_catalog.integer_pl_date", ServerSideOnly=true)]
-		public static NpgsqlDate? IntegerPlDate(int? par3229, NpgsqlDate? par3230)
+		public static NpgsqlDate? integer_pl_date(int? par3229, NpgsqlDate? par3230)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InterLb
+		#region inter_lb
 
 		[Sql.Function(Name="pg_catalog.inter_lb", ServerSideOnly=true)]
-		public static bool? InterLb(NpgsqlLine? par3232, NpgsqlBox? par3233)
+		public static bool? inter_lb(NpgsqlLine? par3232, NpgsqlBox? par3233)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InternalIn
+		#region internal_in
 
 		[Sql.Function(Name="pg_catalog.internal_in", ServerSideOnly=true)]
-		public static object InternalIn(object par3235)
+		public static object internal_in(object par3235)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InternalOut
+		#region internal_out
 
 		[Sql.Function(Name="pg_catalog.internal_out", ServerSideOnly=true)]
-		public static object InternalOut(object par3237)
+		public static object internal_out(object par3237)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InterSb
+		#region inter_sb
 
 		[Sql.Function(Name="pg_catalog.inter_sb", ServerSideOnly=true)]
-		public static bool? InterSb(NpgsqlLSeg? par3239, NpgsqlBox? par3240)
+		public static bool? inter_sb(NpgsqlLSeg? par3239, NpgsqlBox? par3240)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region InterSl
+		#region inter_sl
 
 		[Sql.Function(Name="pg_catalog.inter_sl", ServerSideOnly=true)]
-		public static bool? InterSl(NpgsqlLSeg? par3242, NpgsqlLine? par3243)
+		public static bool? inter_sl(NpgsqlLSeg? par3242, NpgsqlLine? par3243)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Interval
+		#region interval
 
 		[Sql.Function(Name="pg_catalog.interval", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? Interval(TimeSpan? par3250)
+		public static NpgsqlTimeSpan? interval(TimeSpan? par3250)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalAccum
+		#region interval_accum
 
 		[Sql.Function(Name="pg_catalog.interval_accum", ServerSideOnly=true)]
-		public static object IntervalAccum(object par3252, NpgsqlTimeSpan? par3253)
+		public static object interval_accum(object par3252, NpgsqlTimeSpan? par3253)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalAccumInv
+		#region interval_accum_inv
 
 		[Sql.Function(Name="pg_catalog.interval_accum_inv", ServerSideOnly=true)]
-		public static object IntervalAccumInv(object par3255, NpgsqlTimeSpan? par3256)
+		public static object interval_accum_inv(object par3255, NpgsqlTimeSpan? par3256)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalAvg
+		#region interval_avg
 
 		[Sql.Function(Name="pg_catalog.interval_avg", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalAvg(object par3258)
+		public static NpgsqlTimeSpan? interval_avg(object par3258)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalCmp
+		#region interval_cmp
 
 		[Sql.Function(Name="pg_catalog.interval_cmp", ServerSideOnly=true)]
-		public static int? IntervalCmp(NpgsqlTimeSpan? par3260, NpgsqlTimeSpan? par3261)
+		public static int? interval_cmp(NpgsqlTimeSpan? par3260, NpgsqlTimeSpan? par3261)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalCombine
+		#region interval_combine
 
 		[Sql.Function(Name="pg_catalog.interval_combine", ServerSideOnly=true)]
-		public static object IntervalCombine(object par3263, object par3264)
+		public static object interval_combine(object par3263, object par3264)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalDiv
+		#region interval_div
 
 		[Sql.Function(Name="pg_catalog.interval_div", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalDiv(NpgsqlTimeSpan? par3266, double? par3267)
+		public static NpgsqlTimeSpan? interval_div(NpgsqlTimeSpan? par3266, double? par3267)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalEq
+		#region interval_eq
 
 		[Sql.Function(Name="pg_catalog.interval_eq", ServerSideOnly=true)]
-		public static bool? IntervalEq(NpgsqlTimeSpan? par3269, NpgsqlTimeSpan? par3270)
+		public static bool? interval_eq(NpgsqlTimeSpan? par3269, NpgsqlTimeSpan? par3270)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalGe
+		#region interval_ge
 
 		[Sql.Function(Name="pg_catalog.interval_ge", ServerSideOnly=true)]
-		public static bool? IntervalGe(NpgsqlTimeSpan? par3272, NpgsqlTimeSpan? par3273)
+		public static bool? interval_ge(NpgsqlTimeSpan? par3272, NpgsqlTimeSpan? par3273)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalGt
+		#region interval_gt
 
 		[Sql.Function(Name="pg_catalog.interval_gt", ServerSideOnly=true)]
-		public static bool? IntervalGt(NpgsqlTimeSpan? par3275, NpgsqlTimeSpan? par3276)
+		public static bool? interval_gt(NpgsqlTimeSpan? par3275, NpgsqlTimeSpan? par3276)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalHash
+		#region interval_hash
 
 		[Sql.Function(Name="pg_catalog.interval_hash", ServerSideOnly=true)]
-		public static int? IntervalHash(NpgsqlTimeSpan? par3278)
+		public static int? interval_hash(NpgsqlTimeSpan? par3278)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalIn
+		#region interval_in
 
 		[Sql.Function(Name="pg_catalog.interval_in", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalIn(object par3280, int? par3281, int? par3282)
+		public static NpgsqlTimeSpan? interval_in(object par3280, int? par3281, int? par3282)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalLarger
+		#region interval_larger
 
 		[Sql.Function(Name="pg_catalog.interval_larger", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalLarger(NpgsqlTimeSpan? par3284, NpgsqlTimeSpan? par3285)
+		public static NpgsqlTimeSpan? interval_larger(NpgsqlTimeSpan? par3284, NpgsqlTimeSpan? par3285)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalLe
+		#region interval_le
 
 		[Sql.Function(Name="pg_catalog.interval_le", ServerSideOnly=true)]
-		public static bool? IntervalLe(NpgsqlTimeSpan? par3287, NpgsqlTimeSpan? par3288)
+		public static bool? interval_le(NpgsqlTimeSpan? par3287, NpgsqlTimeSpan? par3288)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalLt
+		#region interval_lt
 
 		[Sql.Function(Name="pg_catalog.interval_lt", ServerSideOnly=true)]
-		public static bool? IntervalLt(NpgsqlTimeSpan? par3290, NpgsqlTimeSpan? par3291)
+		public static bool? interval_lt(NpgsqlTimeSpan? par3290, NpgsqlTimeSpan? par3291)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalMi
+		#region interval_mi
 
 		[Sql.Function(Name="pg_catalog.interval_mi", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalMi(NpgsqlTimeSpan? par3293, NpgsqlTimeSpan? par3294)
+		public static NpgsqlTimeSpan? interval_mi(NpgsqlTimeSpan? par3293, NpgsqlTimeSpan? par3294)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalMul
+		#region interval_mul
 
 		[Sql.Function(Name="pg_catalog.interval_mul", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalMul(NpgsqlTimeSpan? par3296, double? par3297)
+		public static NpgsqlTimeSpan? interval_mul(NpgsqlTimeSpan? par3296, double? par3297)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalNe
+		#region interval_ne
 
 		[Sql.Function(Name="pg_catalog.interval_ne", ServerSideOnly=true)]
-		public static bool? IntervalNe(NpgsqlTimeSpan? par3299, NpgsqlTimeSpan? par3300)
+		public static bool? interval_ne(NpgsqlTimeSpan? par3299, NpgsqlTimeSpan? par3300)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalOut
+		#region interval_out
 
 		[Sql.Function(Name="pg_catalog.interval_out", ServerSideOnly=true)]
-		public static object IntervalOut(NpgsqlTimeSpan? par3302)
+		public static object interval_out(NpgsqlTimeSpan? par3302)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPl
+		#region interval_pl
 
 		[Sql.Function(Name="pg_catalog.interval_pl", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalPl(NpgsqlTimeSpan? par3304, NpgsqlTimeSpan? par3305)
+		public static NpgsqlTimeSpan? interval_pl(NpgsqlTimeSpan? par3304, NpgsqlTimeSpan? par3305)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPlDate
+		#region interval_pl_date
 
 		[Sql.Function(Name="pg_catalog.interval_pl_date", ServerSideOnly=true)]
-		public static DateTime? IntervalPlDate(NpgsqlTimeSpan? par3307, NpgsqlDate? par3308)
+		public static DateTime? interval_pl_date(NpgsqlTimeSpan? par3307, NpgsqlDate? par3308)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPlTime
+		#region interval_pl_time
 
 		[Sql.Function(Name="pg_catalog.interval_pl_time", ServerSideOnly=true)]
-		public static TimeSpan? IntervalPlTime(NpgsqlTimeSpan? par3310, TimeSpan? par3311)
+		public static TimeSpan? interval_pl_time(NpgsqlTimeSpan? par3310, TimeSpan? par3311)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPlTimestamp
+		#region interval_pl_timestamp
 
 		[Sql.Function(Name="pg_catalog.interval_pl_timestamp", ServerSideOnly=true)]
-		public static DateTime? IntervalPlTimestamp(NpgsqlTimeSpan? par3313, DateTime? par3314)
+		public static DateTime? interval_pl_timestamp(NpgsqlTimeSpan? par3313, DateTime? par3314)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPlTimestamptz
+		#region interval_pl_timestamptz
 
 		[Sql.Function(Name="pg_catalog.interval_pl_timestamptz", ServerSideOnly=true)]
-		public static DateTimeOffset? IntervalPlTimestamptz(NpgsqlTimeSpan? par3316, DateTimeOffset? par3317)
+		public static DateTimeOffset? interval_pl_timestamptz(NpgsqlTimeSpan? par3316, DateTimeOffset? par3317)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalPlTimetz
+		#region interval_pl_timetz
 
 		[Sql.Function(Name="pg_catalog.interval_pl_timetz", ServerSideOnly=true)]
-		public static DateTimeOffset? IntervalPlTimetz(NpgsqlTimeSpan? par3319, DateTimeOffset? par3320)
+		public static DateTimeOffset? interval_pl_timetz(NpgsqlTimeSpan? par3319, DateTimeOffset? par3320)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalRecv
+		#region interval_recv
 
 		[Sql.Function(Name="pg_catalog.interval_recv", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalRecv(object par3322, int? par3323, int? par3324)
+		public static NpgsqlTimeSpan? interval_recv(object par3322, int? par3323, int? par3324)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalSend
+		#region interval_send
 
 		[Sql.Function(Name="pg_catalog.interval_send", ServerSideOnly=true)]
-		public static byte[] IntervalSend(NpgsqlTimeSpan? par3326)
+		public static byte[] interval_send(NpgsqlTimeSpan? par3326)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalSmaller
+		#region interval_smaller
 
 		[Sql.Function(Name="pg_catalog.interval_smaller", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalSmaller(NpgsqlTimeSpan? par3328, NpgsqlTimeSpan? par3329)
+		public static NpgsqlTimeSpan? interval_smaller(NpgsqlTimeSpan? par3328, NpgsqlTimeSpan? par3329)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalTransform
+		#region interval_transform
 
 		[Sql.Function(Name="pg_catalog.interval_transform", ServerSideOnly=true)]
-		public static object IntervalTransform(object par3331)
+		public static object interval_transform(object par3331)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Intervaltypmodin
+		#region intervaltypmodin
 
 		[Sql.Function(Name="pg_catalog.intervaltypmodin", ServerSideOnly=true)]
-		public static int? Intervaltypmodin(object par3333)
+		public static int? intervaltypmodin(object par3333)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Intervaltypmodout
+		#region intervaltypmodout
 
 		[Sql.Function(Name="pg_catalog.intervaltypmodout", ServerSideOnly=true)]
-		public static object Intervaltypmodout(int? par3335)
+		public static object intervaltypmodout(int? par3335)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IntervalUm
+		#region interval_um
 
 		[Sql.Function(Name="pg_catalog.interval_um", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? IntervalUm(NpgsqlTimeSpan? par3337)
+		public static NpgsqlTimeSpan? interval_um(NpgsqlTimeSpan? par3337)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Intinterval
+		#region intinterval
 
 		[Sql.Function(Name="pg_catalog.intinterval", ServerSideOnly=true)]
-		public static bool? Intinterval(object par3339, object par3340)
+		public static bool? intinterval(object par3339, object par3340)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isclosed
+		#region isclosed
 
 		[Sql.Function(Name="pg_catalog.isclosed", ServerSideOnly=true)]
-		public static bool? Isclosed(NpgsqlPath? par3342)
+		public static bool? isclosed(NpgsqlPath? par3342)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isempty
+		#region isempty
 
 		[Sql.Function(Name="pg_catalog.isempty", ServerSideOnly=true)]
-		public static bool? Isempty(object par3344)
+		public static bool? isempty(object par3344)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isfinite
+		#region isfinite
 
 		[Sql.Function(Name="pg_catalog.isfinite", ServerSideOnly=true)]
-		public static bool? Isfinite(object par3354)
+		public static bool? isfinite(object par3354)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ishorizontal
+		#region ishorizontal
 
 		[Sql.Function(Name="pg_catalog.ishorizontal", ServerSideOnly=true)]
-		public static bool? Ishorizontal(NpgsqlLine? par3361)
+		public static bool? ishorizontal(NpgsqlLine? par3361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Iso88591ToUtf8
+		#region iso8859_1_to_utf8
 
 		[Sql.Function(Name="pg_catalog.iso8859_1_to_utf8", ServerSideOnly=true)]
-		public static object Iso88591ToUtf8(int? par3362, int? par3363, object par3364, object par3365, int? par3366)
+		public static object iso8859_1_to_utf8(int? par3362, int? par3363, object par3364, object par3365, int? par3366)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Iso8859ToUtf8
+		#region iso8859_to_utf8
 
 		[Sql.Function(Name="pg_catalog.iso8859_to_utf8", ServerSideOnly=true)]
-		public static object Iso8859ToUtf8(int? par3367, int? par3368, object par3369, object par3370, int? par3371)
+		public static object iso8859_to_utf8(int? par3367, int? par3368, object par3369, object par3370, int? par3371)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isopen
+		#region isopen
 
 		[Sql.Function(Name="pg_catalog.isopen", ServerSideOnly=true)]
-		public static bool? Isopen(NpgsqlPath? par3373)
+		public static bool? isopen(NpgsqlPath? par3373)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IsoToKoi8r
+		#region iso_to_koi8r
 
 		[Sql.Function(Name="pg_catalog.iso_to_koi8r", ServerSideOnly=true)]
-		public static object IsoToKoi8r(int? par3374, int? par3375, object par3376, object par3377, int? par3378)
+		public static object iso_to_koi8r(int? par3374, int? par3375, object par3376, object par3377, int? par3378)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IsoToMic
+		#region iso_to_mic
 
 		[Sql.Function(Name="pg_catalog.iso_to_mic", ServerSideOnly=true)]
-		public static object IsoToMic(int? par3379, int? par3380, object par3381, object par3382, int? par3383)
+		public static object iso_to_mic(int? par3379, int? par3380, object par3381, object par3382, int? par3383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IsoToWin1251
+		#region iso_to_win1251
 
 		[Sql.Function(Name="pg_catalog.iso_to_win1251", ServerSideOnly=true)]
-		public static object IsoToWin1251(int? par3384, int? par3385, object par3386, object par3387, int? par3388)
+		public static object iso_to_win1251(int? par3384, int? par3385, object par3386, object par3387, int? par3388)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region IsoToWin866
+		#region iso_to_win866
 
 		[Sql.Function(Name="pg_catalog.iso_to_win866", ServerSideOnly=true)]
-		public static object IsoToWin866(int? par3389, int? par3390, object par3391, object par3392, int? par3393)
+		public static object iso_to_win866(int? par3389, int? par3390, object par3391, object par3392, int? par3393)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isparallel
+		#region isparallel
 
 		[Sql.Function(Name="pg_catalog.isparallel", ServerSideOnly=true)]
-		public static bool? Isparallel(NpgsqlLine? par3398, NpgsqlLine? par3399)
+		public static bool? isparallel(NpgsqlLine? par3398, NpgsqlLine? par3399)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isperp
+		#region isperp
 
 		[Sql.Function(Name="pg_catalog.isperp", ServerSideOnly=true)]
-		public static bool? Isperp(NpgsqlLine? par3404, NpgsqlLine? par3405)
+		public static bool? isperp(NpgsqlLine? par3404, NpgsqlLine? par3405)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Isvertical
+		#region isvertical
 
 		[Sql.Function(Name="pg_catalog.isvertical", ServerSideOnly=true)]
-		public static bool? Isvertical(NpgsqlLine? par3412)
+		public static bool? isvertical(NpgsqlLine? par3412)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JohabToUtf8
+		#region johab_to_utf8
 
 		[Sql.Function(Name="pg_catalog.johab_to_utf8", ServerSideOnly=true)]
-		public static object JohabToUtf8(int? par3413, int? par3414, object par3415, object par3416, int? par3417)
+		public static object johab_to_utf8(int? par3413, int? par3414, object par3415, object par3416, int? par3417)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonAgg
+		#region json_agg
 
 		[Sql.Function(Name="pg_catalog.json_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static string JsonAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3419)
+		public static string json_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3419)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonAggFinalfn
+		#region json_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.json_agg_finalfn", ServerSideOnly=true)]
-		public static string JsonAggFinalfn(object par3421)
+		public static string json_agg_finalfn(object par3421)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonAggTransfn
+		#region json_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.json_agg_transfn", ServerSideOnly=true)]
-		public static object JsonAggTransfn(object par3423, object par3424)
+		public static object json_agg_transfn(object par3423, object par3424)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonArrayElement
+		#region json_array_element
 
 		[Sql.Function(Name="pg_catalog.json_array_element", ServerSideOnly=true)]
-		public static string JsonArrayElement(string from_json, int? element_index)
+		public static string json_array_element(string from_json, int? element_index)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonArrayElementText
+		#region json_array_element_text
 
 		[Sql.Function(Name="pg_catalog.json_array_element_text", ServerSideOnly=true)]
-		public static string JsonArrayElementText(string from_json, int? element_index)
+		public static string json_array_element_text(string from_json, int? element_index)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonArrayLength
+		#region json_array_length
 
 		[Sql.Function(Name="pg_catalog.json_array_length", ServerSideOnly=true)]
-		public static int? JsonArrayLength(string par3428)
+		public static int? json_array_length(string par3428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbAgg
+		#region jsonb_agg
 
 		[Sql.Function(Name="pg_catalog.jsonb_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static string JsonbAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3430)
+		public static string jsonb_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3430)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbAggFinalfn
+		#region jsonb_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.jsonb_agg_finalfn", ServerSideOnly=true)]
-		public static string JsonbAggFinalfn(object par3432)
+		public static string jsonb_agg_finalfn(object par3432)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbAggTransfn
+		#region jsonb_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.jsonb_agg_transfn", ServerSideOnly=true)]
-		public static object JsonbAggTransfn(object par3434, object par3435)
+		public static object jsonb_agg_transfn(object par3434, object par3435)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbArrayElement
+		#region jsonb_array_element
 
 		[Sql.Function(Name="pg_catalog.jsonb_array_element", ServerSideOnly=true)]
-		public static string JsonbArrayElement(string from_json, int? element_index)
+		public static string jsonb_array_element(string from_json, int? element_index)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbArrayElementText
+		#region jsonb_array_element_text
 
 		[Sql.Function(Name="pg_catalog.jsonb_array_element_text", ServerSideOnly=true)]
-		public static string JsonbArrayElementText(string from_json, int? element_index)
+		public static string jsonb_array_element_text(string from_json, int? element_index)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbArrayLength
+		#region jsonb_array_length
 
 		[Sql.Function(Name="pg_catalog.jsonb_array_length", ServerSideOnly=true)]
-		public static int? JsonbArrayLength(string par3439)
+		public static int? jsonb_array_length(string par3439)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbBuildArray
+		#region jsonb_build_array
 
 		[Sql.Function(Name="pg_catalog.jsonb_build_array", ServerSideOnly=true)]
-		public static string JsonbBuildArray()
+		public static string jsonb_build_array()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbBuildObject
+		#region jsonb_build_object
 
 		[Sql.Function(Name="pg_catalog.jsonb_build_object", ServerSideOnly=true)]
-		public static string JsonbBuildObject()
+		public static string jsonb_build_object()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbCmp
+		#region jsonb_cmp
 
 		[Sql.Function(Name="pg_catalog.jsonb_cmp", ServerSideOnly=true)]
-		public static int? JsonbCmp(string par3447, string par3448)
+		public static int? jsonb_cmp(string par3447, string par3448)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbConcat
+		#region jsonb_concat
 
 		[Sql.Function(Name="pg_catalog.jsonb_concat", ServerSideOnly=true)]
-		public static string JsonbConcat(string par3450, string par3451)
+		public static string jsonb_concat(string par3450, string par3451)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbContained
+		#region jsonb_contained
 
 		[Sql.Function(Name="pg_catalog.jsonb_contained", ServerSideOnly=true)]
-		public static bool? JsonbContained(string par3453, string par3454)
+		public static bool? jsonb_contained(string par3453, string par3454)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbContains
+		#region jsonb_contains
 
 		[Sql.Function(Name="pg_catalog.jsonb_contains", ServerSideOnly=true)]
-		public static bool? JsonbContains(string par3456, string par3457)
+		public static bool? jsonb_contains(string par3456, string par3457)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbDelete
+		#region jsonb_delete
 
 		[Sql.Function(Name="pg_catalog.jsonb_delete", ServerSideOnly=true)]
-		public static string JsonbDelete(string from_json, object path_elems)
+		public static string jsonb_delete(string from_json, object path_elems)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbDeletePath
+		#region jsonb_delete_path
 
 		[Sql.Function(Name="pg_catalog.jsonb_delete_path", ServerSideOnly=true)]
-		public static string JsonbDeletePath(string par3466, object par3467)
+		public static string jsonb_delete_path(string par3466, object par3467)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbEq
+		#region jsonb_eq
 
 		[Sql.Function(Name="pg_catalog.jsonb_eq", ServerSideOnly=true)]
-		public static bool? JsonbEq(string par3469, string par3470)
+		public static bool? jsonb_eq(string par3469, string par3470)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbExists
+		#region jsonb_exists
 
 		[Sql.Function(Name="pg_catalog.jsonb_exists", ServerSideOnly=true)]
-		public static bool? JsonbExists(string par3472, string par3473)
+		public static bool? jsonb_exists(string par3472, string par3473)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbExistsAll
+		#region jsonb_exists_all
 
 		[Sql.Function(Name="pg_catalog.jsonb_exists_all", ServerSideOnly=true)]
-		public static bool? JsonbExistsAll(string par3475, object par3476)
+		public static bool? jsonb_exists_all(string par3475, object par3476)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbExistsAny
+		#region jsonb_exists_any
 
 		[Sql.Function(Name="pg_catalog.jsonb_exists_any", ServerSideOnly=true)]
-		public static bool? JsonbExistsAny(string par3478, object par3479)
+		public static bool? jsonb_exists_any(string par3478, object par3479)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbExtractPath
+		#region jsonb_extract_path
 
 		[Sql.Function(Name="pg_catalog.jsonb_extract_path", ServerSideOnly=true)]
-		public static string JsonbExtractPath(string from_json, object path_elems)
+		public static string jsonb_extract_path(string from_json, object path_elems)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbExtractPathText
+		#region jsonb_extract_path_text
 
 		[Sql.Function(Name="pg_catalog.jsonb_extract_path_text", ServerSideOnly=true)]
-		public static string JsonbExtractPathText(string from_json, object path_elems)
+		public static string jsonb_extract_path_text(string from_json, object path_elems)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbGe
+		#region jsonb_ge
 
 		[Sql.Function(Name="pg_catalog.jsonb_ge", ServerSideOnly=true)]
-		public static bool? JsonbGe(string par3483, string par3484)
+		public static bool? jsonb_ge(string par3483, string par3484)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbGt
+		#region jsonb_gt
 
 		[Sql.Function(Name="pg_catalog.jsonb_gt", ServerSideOnly=true)]
-		public static bool? JsonbGt(string par3486, string par3487)
+		public static bool? jsonb_gt(string par3486, string par3487)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbHash
+		#region jsonb_hash
 
 		[Sql.Function(Name="pg_catalog.jsonb_hash", ServerSideOnly=true)]
-		public static int? JsonbHash(string par3489)
+		public static int? jsonb_hash(string par3489)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbIn
+		#region jsonb_in
 
 		[Sql.Function(Name="pg_catalog.jsonb_in", ServerSideOnly=true)]
-		public static string JsonbIn(object par3491)
+		public static string jsonb_in(object par3491)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbInsert
+		#region jsonb_insert
 
 		[Sql.Function(Name="pg_catalog.jsonb_insert", ServerSideOnly=true)]
-		public static string JsonbInsert(string jsonb_in, object path, string replacement, bool? insert_after)
+		public static string jsonb_insert(string jsonb_in, object path, string replacement, bool? insert_after)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbLe
+		#region jsonb_le
 
 		[Sql.Function(Name="pg_catalog.jsonb_le", ServerSideOnly=true)]
-		public static bool? JsonbLe(string par3494, string par3495)
+		public static bool? jsonb_le(string par3494, string par3495)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbLt
+		#region jsonb_lt
 
 		[Sql.Function(Name="pg_catalog.jsonb_lt", ServerSideOnly=true)]
-		public static bool? JsonbLt(string par3497, string par3498)
+		public static bool? jsonb_lt(string par3497, string par3498)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbNe
+		#region jsonb_ne
 
 		[Sql.Function(Name="pg_catalog.jsonb_ne", ServerSideOnly=true)]
-		public static bool? JsonbNe(string par3500, string par3501)
+		public static bool? jsonb_ne(string par3500, string par3501)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObject
+		#region jsonb_object
 
 		[Sql.Function(Name="pg_catalog.jsonb_object", ServerSideOnly=true)]
-		public static string JsonbObject(object par3505, object par3506)
+		public static string jsonb_object(object par3505, object par3506)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObjectAgg
+		#region jsonb_object_agg
 
 		[Sql.Function(Name="pg_catalog.jsonb_object_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static string JsonbObjectAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3508, Expression<Func<TSource, object>> par3509)
+		public static string jsonb_object_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3508, Expression<Func<TSource, object>> par3509)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObjectAggFinalfn
+		#region jsonb_object_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.jsonb_object_agg_finalfn", ServerSideOnly=true)]
-		public static string JsonbObjectAggFinalfn(object par3511)
+		public static string jsonb_object_agg_finalfn(object par3511)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObjectAggTransfn
+		#region jsonb_object_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.jsonb_object_agg_transfn", ServerSideOnly=true)]
-		public static object JsonbObjectAggTransfn(object par3513, object par3514, object par3515)
+		public static object jsonb_object_agg_transfn(object par3513, object par3514, object par3515)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObjectField
+		#region jsonb_object_field
 
 		[Sql.Function(Name="pg_catalog.jsonb_object_field", ServerSideOnly=true)]
-		public static string JsonbObjectField(string from_json, string field_name)
+		public static string jsonb_object_field(string from_json, string field_name)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbObjectFieldText
+		#region jsonb_object_field_text
 
 		[Sql.Function(Name="pg_catalog.jsonb_object_field_text", ServerSideOnly=true)]
-		public static string JsonbObjectFieldText(string from_json, string field_name)
+		public static string jsonb_object_field_text(string from_json, string field_name)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbOut
+		#region jsonb_out
 
 		[Sql.Function(Name="pg_catalog.jsonb_out", ServerSideOnly=true)]
-		public static object JsonbOut(string par3520)
+		public static object jsonb_out(string par3520)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbPopulateRecord
+		#region jsonb_populate_record
 
 		[Sql.Function(Name="pg_catalog.jsonb_populate_record", ServerSideOnly=true)]
-		public static object JsonbPopulateRecord(object par3522, string par3523)
+		public static object jsonb_populate_record(object par3522, string par3523)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbPretty
+		#region jsonb_pretty
 
 		[Sql.Function(Name="pg_catalog.jsonb_pretty", ServerSideOnly=true)]
-		public static string JsonbPretty(string par3527)
+		public static string jsonb_pretty(string par3527)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbRecv
+		#region jsonb_recv
 
 		[Sql.Function(Name="pg_catalog.jsonb_recv", ServerSideOnly=true)]
-		public static string JsonbRecv(object par3529)
+		public static string jsonb_recv(object par3529)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbSend
+		#region jsonb_send
 
 		[Sql.Function(Name="pg_catalog.jsonb_send", ServerSideOnly=true)]
-		public static byte[] JsonbSend(string par3531)
+		public static byte[] jsonb_send(string par3531)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbSet
+		#region jsonb_set
 
 		[Sql.Function(Name="pg_catalog.jsonb_set", ServerSideOnly=true)]
-		public static string JsonbSet(string jsonb_in, object path, string replacement, bool? create_if_missing)
+		public static string jsonb_set(string jsonb_in, object path, string replacement, bool? create_if_missing)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbStripNulls
+		#region jsonb_strip_nulls
 
 		[Sql.Function(Name="pg_catalog.jsonb_strip_nulls", ServerSideOnly=true)]
-		public static string JsonbStripNulls(string par3534)
+		public static string jsonb_strip_nulls(string par3534)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbToRecord
+		#region jsonb_to_record
 
 		[Sql.Function(Name="pg_catalog.jsonb_to_record", ServerSideOnly=true)]
-		public static object JsonbToRecord(string par3535)
+		public static object jsonb_to_record(string par3535)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonbTypeof
+		#region jsonb_typeof
 
 		[Sql.Function(Name="pg_catalog.jsonb_typeof", ServerSideOnly=true)]
-		public static string JsonbTypeof(string par3538)
+		public static string jsonb_typeof(string par3538)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonBuildArray
+		#region json_build_array
 
 		[Sql.Function(Name="pg_catalog.json_build_array", ServerSideOnly=true)]
-		public static string JsonBuildArray()
+		public static string json_build_array()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonBuildObject
+		#region json_build_object
 
 		[Sql.Function(Name="pg_catalog.json_build_object", ServerSideOnly=true)]
-		public static string JsonBuildObject()
+		public static string json_build_object()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonExtractPath
+		#region json_extract_path
 
 		[Sql.Function(Name="pg_catalog.json_extract_path", ServerSideOnly=true)]
-		public static string JsonExtractPath(string from_json, object path_elems)
+		public static string json_extract_path(string from_json, object path_elems)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonExtractPathText
+		#region json_extract_path_text
 
 		[Sql.Function(Name="pg_catalog.json_extract_path_text", ServerSideOnly=true)]
-		public static string JsonExtractPathText(string from_json, object path_elems)
+		public static string json_extract_path_text(string from_json, object path_elems)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonIn
+		#region json_in
 
 		[Sql.Function(Name="pg_catalog.json_in", ServerSideOnly=true)]
-		public static string JsonIn(object par3548)
+		public static string json_in(object par3548)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObject
+		#region json_object
 
 		[Sql.Function(Name="pg_catalog.json_object", ServerSideOnly=true)]
-		public static string JsonObject(object par3552, object par3553)
+		public static string json_object(object par3552, object par3553)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObjectAgg
+		#region json_object_agg
 
 		[Sql.Function(Name="pg_catalog.json_object_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static string JsonObjectAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3555, Expression<Func<TSource, object>> par3556)
+		public static string json_object_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par3555, Expression<Func<TSource, object>> par3556)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObjectAggFinalfn
+		#region json_object_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.json_object_agg_finalfn", ServerSideOnly=true)]
-		public static string JsonObjectAggFinalfn(object par3558)
+		public static string json_object_agg_finalfn(object par3558)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObjectAggTransfn
+		#region json_object_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.json_object_agg_transfn", ServerSideOnly=true)]
-		public static object JsonObjectAggTransfn(object par3560, object par3561, object par3562)
+		public static object json_object_agg_transfn(object par3560, object par3561, object par3562)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObjectField
+		#region json_object_field
 
 		[Sql.Function(Name="pg_catalog.json_object_field", ServerSideOnly=true)]
-		public static string JsonObjectField(string from_json, string field_name)
+		public static string json_object_field(string from_json, string field_name)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonObjectFieldText
+		#region json_object_field_text
 
 		[Sql.Function(Name="pg_catalog.json_object_field_text", ServerSideOnly=true)]
-		public static string JsonObjectFieldText(string from_json, string field_name)
+		public static string json_object_field_text(string from_json, string field_name)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonOut
+		#region json_out
 
 		[Sql.Function(Name="pg_catalog.json_out", ServerSideOnly=true)]
-		public static object JsonOut(string par3567)
+		public static object json_out(string par3567)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonPopulateRecord
+		#region json_populate_record
 
 		[Sql.Function(Name="pg_catalog.json_populate_record", ServerSideOnly=true)]
-		public static object JsonPopulateRecord(object @base, string from_json, bool? use_json_as_text)
+		public static object json_populate_record(object @base, string from_json, bool? use_json_as_text)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonRecv
+		#region json_recv
 
 		[Sql.Function(Name="pg_catalog.json_recv", ServerSideOnly=true)]
-		public static string JsonRecv(object par3570)
+		public static string json_recv(object par3570)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonSend
+		#region json_send
 
 		[Sql.Function(Name="pg_catalog.json_send", ServerSideOnly=true)]
-		public static byte[] JsonSend(string par3572)
+		public static byte[] json_send(string par3572)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonStripNulls
+		#region json_strip_nulls
 
 		[Sql.Function(Name="pg_catalog.json_strip_nulls", ServerSideOnly=true)]
-		public static string JsonStripNulls(string par3574)
+		public static string json_strip_nulls(string par3574)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonToRecord
+		#region json_to_record
 
 		[Sql.Function(Name="pg_catalog.json_to_record", ServerSideOnly=true)]
-		public static object JsonToRecord(string par3575)
+		public static object json_to_record(string par3575)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JsonTypeof
+		#region json_typeof
 
 		[Sql.Function(Name="pg_catalog.json_typeof", ServerSideOnly=true)]
-		public static string JsonTypeof(string par3578)
+		public static string json_typeof(string par3578)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JustifyDays
+		#region justify_days
 
 		[Sql.Function(Name="pg_catalog.justify_days", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? JustifyDays(NpgsqlTimeSpan? par3580)
+		public static NpgsqlTimeSpan? justify_days(NpgsqlTimeSpan? par3580)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JustifyHours
+		#region justify_hours
 
 		[Sql.Function(Name="pg_catalog.justify_hours", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? JustifyHours(NpgsqlTimeSpan? par3582)
+		public static NpgsqlTimeSpan? justify_hours(NpgsqlTimeSpan? par3582)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region JustifyInterval
+		#region justify_interval
 
 		[Sql.Function(Name="pg_catalog.justify_interval", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? JustifyInterval(NpgsqlTimeSpan? par3584)
+		public static NpgsqlTimeSpan? justify_interval(NpgsqlTimeSpan? par3584)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8rToIso
+		#region koi8r_to_iso
 
 		[Sql.Function(Name="pg_catalog.koi8r_to_iso", ServerSideOnly=true)]
-		public static object Koi8rToIso(int? par3585, int? par3586, object par3587, object par3588, int? par3589)
+		public static object koi8r_to_iso(int? par3585, int? par3586, object par3587, object par3588, int? par3589)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8rToMic
+		#region koi8r_to_mic
 
 		[Sql.Function(Name="pg_catalog.koi8r_to_mic", ServerSideOnly=true)]
-		public static object Koi8rToMic(int? par3590, int? par3591, object par3592, object par3593, int? par3594)
+		public static object koi8r_to_mic(int? par3590, int? par3591, object par3592, object par3593, int? par3594)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8rToUtf8
+		#region koi8r_to_utf8
 
 		[Sql.Function(Name="pg_catalog.koi8r_to_utf8", ServerSideOnly=true)]
-		public static object Koi8rToUtf8(int? par3595, int? par3596, object par3597, object par3598, int? par3599)
+		public static object koi8r_to_utf8(int? par3595, int? par3596, object par3597, object par3598, int? par3599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8rToWin1251
+		#region koi8r_to_win1251
 
 		[Sql.Function(Name="pg_catalog.koi8r_to_win1251", ServerSideOnly=true)]
-		public static object Koi8rToWin1251(int? par3600, int? par3601, object par3602, object par3603, int? par3604)
+		public static object koi8r_to_win1251(int? par3600, int? par3601, object par3602, object par3603, int? par3604)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8rToWin866
+		#region koi8r_to_win866
 
 		[Sql.Function(Name="pg_catalog.koi8r_to_win866", ServerSideOnly=true)]
-		public static object Koi8rToWin866(int? par3605, int? par3606, object par3607, object par3608, int? par3609)
+		public static object koi8r_to_win866(int? par3605, int? par3606, object par3607, object par3608, int? par3609)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Koi8uToUtf8
+		#region koi8u_to_utf8
 
 		[Sql.Function(Name="pg_catalog.koi8u_to_utf8", ServerSideOnly=true)]
-		public static object Koi8uToUtf8(int? par3610, int? par3611, object par3612, object par3613, int? par3614)
+		public static object koi8u_to_utf8(int? par3610, int? par3611, object par3612, object par3613, int? par3614)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lag
+		#region lag
 
 		[Sql.Function(Name="pg_catalog.lag", ServerSideOnly=true)]
-		public static object Lag(object par3621, int? par3622, object par3623)
+		public static object lag(object par3621, int? par3622, object par3623)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LanguageHandlerIn
+		#region language_handler_in
 
 		[Sql.Function(Name="pg_catalog.language_handler_in", ServerSideOnly=true)]
-		public static object LanguageHandlerIn(object par3625)
+		public static object language_handler_in(object par3625)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LanguageHandlerOut
+		#region language_handler_out
 
 		[Sql.Function(Name="pg_catalog.language_handler_out", ServerSideOnly=true)]
-		public static object LanguageHandlerOut(object par3627)
+		public static object language_handler_out(object par3627)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lastval
+		#region lastval
 
 		[Sql.Function(Name="pg_catalog.lastval", ServerSideOnly=true)]
-		public static long? Lastval()
+		public static long? lastval()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LastValue
+		#region last_value
 
 		[Sql.Function(Name="pg_catalog.last_value", ServerSideOnly=true)]
-		public static object LastValue(object par3630)
+		public static object last_value(object par3630)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Latin1ToMic
+		#region latin1_to_mic
 
 		[Sql.Function(Name="pg_catalog.latin1_to_mic", ServerSideOnly=true)]
-		public static object Latin1ToMic(int? par3631, int? par3632, object par3633, object par3634, int? par3635)
+		public static object latin1_to_mic(int? par3631, int? par3632, object par3633, object par3634, int? par3635)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Latin2ToMic
+		#region latin2_to_mic
 
 		[Sql.Function(Name="pg_catalog.latin2_to_mic", ServerSideOnly=true)]
-		public static object Latin2ToMic(int? par3636, int? par3637, object par3638, object par3639, int? par3640)
+		public static object latin2_to_mic(int? par3636, int? par3637, object par3638, object par3639, int? par3640)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Latin2ToWin1250
+		#region latin2_to_win1250
 
 		[Sql.Function(Name="pg_catalog.latin2_to_win1250", ServerSideOnly=true)]
-		public static object Latin2ToWin1250(int? par3641, int? par3642, object par3643, object par3644, int? par3645)
+		public static object latin2_to_win1250(int? par3641, int? par3642, object par3643, object par3644, int? par3645)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Latin3ToMic
+		#region latin3_to_mic
 
 		[Sql.Function(Name="pg_catalog.latin3_to_mic", ServerSideOnly=true)]
-		public static object Latin3ToMic(int? par3646, int? par3647, object par3648, object par3649, int? par3650)
+		public static object latin3_to_mic(int? par3646, int? par3647, object par3648, object par3649, int? par3650)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Latin4ToMic
+		#region latin4_to_mic
 
 		[Sql.Function(Name="pg_catalog.latin4_to_mic", ServerSideOnly=true)]
-		public static object Latin4ToMic(int? par3651, int? par3652, object par3653, object par3654, int? par3655)
+		public static object latin4_to_mic(int? par3651, int? par3652, object par3653, object par3654, int? par3655)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lead
+		#region lead
 
 		[Sql.Function(Name="pg_catalog.lead", ServerSideOnly=true)]
-		public static object Lead(object par3662, int? par3663, object par3664)
+		public static object lead(object par3662, int? par3663, object par3664)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Left
+		#region left
 
 		[Sql.Function(Name="pg_catalog.left", ServerSideOnly=true)]
-		public static string Left(string par3666, int? par3667)
+		public static string left(string par3666, int? par3667)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Length
+		#region length
 
 		[Sql.Function(Name="pg_catalog.length", ServerSideOnly=true)]
-		public static int? Length(object par3684)
+		public static int? length(object par3684)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Like
+		#region like
 
 		[Sql.Function(Name="pg_catalog.like", ServerSideOnly=true)]
-		public static bool? Like(byte[] par3692, byte[] par3693)
+		public static bool? like(byte[] par3692, byte[] par3693)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LikeEscape
+		#region like_escape
 
 		[Sql.Function(Name="pg_catalog.like_escape", ServerSideOnly=true)]
-		public static byte[] LikeEscape(byte[] par3698, byte[] par3699)
+		public static byte[] like_escape(byte[] par3698, byte[] par3699)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Likejoinsel
+		#region likejoinsel
 
 		[Sql.Function(Name="pg_catalog.likejoinsel", ServerSideOnly=true)]
-		public static double? Likejoinsel(object par3701, int? par3702, object par3703, short? par3704, object par3705)
+		public static double? likejoinsel(object par3701, int? par3702, object par3703, short? par3704, object par3705)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Likesel
+		#region likesel
 
 		[Sql.Function(Name="pg_catalog.likesel", ServerSideOnly=true)]
-		public static double? Likesel(object par3707, int? par3708, object par3709, int? par3710)
+		public static double? likesel(object par3707, int? par3708, object par3709, int? par3710)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Line
+		#region line
 
 		[Sql.Function(Name="pg_catalog.line", ServerSideOnly=true)]
-		public static NpgsqlLine? Line(NpgsqlPoint? par3712, NpgsqlPoint? par3713)
+		public static NpgsqlLine? line(NpgsqlPoint? par3712, NpgsqlPoint? par3713)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineDistance
+		#region line_distance
 
 		[Sql.Function(Name="pg_catalog.line_distance", ServerSideOnly=true)]
-		public static double? LineDistance(NpgsqlLine? par3715, NpgsqlLine? par3716)
+		public static double? line_distance(NpgsqlLine? par3715, NpgsqlLine? par3716)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineEq
+		#region line_eq
 
 		[Sql.Function(Name="pg_catalog.line_eq", ServerSideOnly=true)]
-		public static bool? LineEq(NpgsqlLine? par3718, NpgsqlLine? par3719)
+		public static bool? line_eq(NpgsqlLine? par3718, NpgsqlLine? par3719)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineHorizontal
+		#region line_horizontal
 
 		[Sql.Function(Name="pg_catalog.line_horizontal", ServerSideOnly=true)]
-		public static bool? LineHorizontal(NpgsqlLine? par3721)
+		public static bool? line_horizontal(NpgsqlLine? par3721)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineIn
+		#region line_in
 
 		[Sql.Function(Name="pg_catalog.line_in", ServerSideOnly=true)]
-		public static NpgsqlLine? LineIn(object par3723)
+		public static NpgsqlLine? line_in(object par3723)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineInterpt
+		#region line_interpt
 
 		[Sql.Function(Name="pg_catalog.line_interpt", ServerSideOnly=true)]
-		public static NpgsqlPoint? LineInterpt(NpgsqlLine? par3725, NpgsqlLine? par3726)
+		public static NpgsqlPoint? line_interpt(NpgsqlLine? par3725, NpgsqlLine? par3726)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineIntersect
+		#region line_intersect
 
 		[Sql.Function(Name="pg_catalog.line_intersect", ServerSideOnly=true)]
-		public static bool? LineIntersect(NpgsqlLine? par3728, NpgsqlLine? par3729)
+		public static bool? line_intersect(NpgsqlLine? par3728, NpgsqlLine? par3729)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineOut
+		#region line_out
 
 		[Sql.Function(Name="pg_catalog.line_out", ServerSideOnly=true)]
-		public static object LineOut(NpgsqlLine? par3731)
+		public static object line_out(NpgsqlLine? par3731)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineParallel
+		#region line_parallel
 
 		[Sql.Function(Name="pg_catalog.line_parallel", ServerSideOnly=true)]
-		public static bool? LineParallel(NpgsqlLine? par3733, NpgsqlLine? par3734)
+		public static bool? line_parallel(NpgsqlLine? par3733, NpgsqlLine? par3734)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LinePerp
+		#region line_perp
 
 		[Sql.Function(Name="pg_catalog.line_perp", ServerSideOnly=true)]
-		public static bool? LinePerp(NpgsqlLine? par3736, NpgsqlLine? par3737)
+		public static bool? line_perp(NpgsqlLine? par3736, NpgsqlLine? par3737)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineRecv
+		#region line_recv
 
 		[Sql.Function(Name="pg_catalog.line_recv", ServerSideOnly=true)]
-		public static NpgsqlLine? LineRecv(object par3739)
+		public static NpgsqlLine? line_recv(object par3739)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineSend
+		#region line_send
 
 		[Sql.Function(Name="pg_catalog.line_send", ServerSideOnly=true)]
-		public static byte[] LineSend(NpgsqlLine? par3741)
+		public static byte[] line_send(NpgsqlLine? par3741)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LineVertical
+		#region line_vertical
 
 		[Sql.Function(Name="pg_catalog.line_vertical", ServerSideOnly=true)]
-		public static bool? LineVertical(NpgsqlLine? par3743)
+		public static bool? line_vertical(NpgsqlLine? par3743)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ln
+		#region ln
 
 		[Sql.Function(Name="pg_catalog.ln", ServerSideOnly=true)]
-		public static decimal? Ln(decimal? par3747)
+		public static decimal? ln(decimal? par3747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoClose
+		#region lo_close
 
 		[Sql.Function(Name="pg_catalog.lo_close", ServerSideOnly=true)]
-		public static int? LoClose(int? par3749)
+		public static int? lo_close(int? par3749)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoCreat
+		#region lo_creat
 
 		[Sql.Function(Name="pg_catalog.lo_creat", ServerSideOnly=true)]
-		public static int? LoCreat(int? par3751)
+		public static int? lo_creat(int? par3751)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoCreate
+		#region lo_create
 
 		[Sql.Function(Name="pg_catalog.lo_create", ServerSideOnly=true)]
-		public static int? LoCreate(int? par3753)
+		public static int? lo_create(int? par3753)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoExport
+		#region lo_export
 
 		[Sql.Function(Name="pg_catalog.lo_export", ServerSideOnly=true)]
-		public static int? LoExport(int? par3755, string par3756)
+		public static int? lo_export(int? par3755, string par3756)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoFromBytea
+		#region lo_from_bytea
 
 		[Sql.Function(Name="pg_catalog.lo_from_bytea", ServerSideOnly=true)]
-		public static int? LoFromBytea(int? par3758, byte[] par3759)
+		public static int? lo_from_bytea(int? par3758, byte[] par3759)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Log
+		#region log
 
 		[Sql.Function(Name="pg_catalog.log", ServerSideOnly=true)]
-		public static decimal? Log(decimal? par3766)
+		public static decimal? log(decimal? par3766)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoGet
+		#region lo_get
 
 		[Sql.Function(Name="pg_catalog.lo_get", ServerSideOnly=true)]
-		public static byte[] LoGet(int? par3770, long? par3771, int? par3772)
+		public static byte[] lo_get(int? par3770, long? par3771, int? par3772)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoImport
+		#region lo_import
 
 		[Sql.Function(Name="pg_catalog.lo_import", ServerSideOnly=true)]
-		public static int? LoImport(string par3776, int? par3777)
+		public static int? lo_import(string par3776, int? par3777)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoLseek64
+		#region lo_lseek64
 
 		[Sql.Function(Name="pg_catalog.lo_lseek64", ServerSideOnly=true)]
-		public static long? LoLseek64(int? par3779, long? par3780, int? par3781)
+		public static long? lo_lseek64(int? par3779, long? par3780, int? par3781)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoLseek
+		#region lo_lseek
 
 		[Sql.Function(Name="pg_catalog.lo_lseek", ServerSideOnly=true)]
-		public static int? LoLseek(int? par3783, int? par3784, int? par3785)
+		public static int? lo_lseek(int? par3783, int? par3784, int? par3785)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoOpen
+		#region lo_open
 
 		[Sql.Function(Name="pg_catalog.lo_open", ServerSideOnly=true)]
-		public static int? LoOpen(int? par3787, int? par3788)
+		public static int? lo_open(int? par3787, int? par3788)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoPut
+		#region lo_put
 
 		[Sql.Function(Name="pg_catalog.lo_put", ServerSideOnly=true)]
-		public static object LoPut(int? par3789, long? par3790, byte[] par3791)
+		public static object lo_put(int? par3789, long? par3790, byte[] par3791)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Loread
+		#region loread
 
 		[Sql.Function(Name="pg_catalog.loread", ServerSideOnly=true)]
-		public static byte[] Loread(int? par3793, int? par3794)
+		public static byte[] loread(int? par3793, int? par3794)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoTell64
+		#region lo_tell64
 
 		[Sql.Function(Name="pg_catalog.lo_tell64", ServerSideOnly=true)]
-		public static long? LoTell64(int? par3796)
+		public static long? lo_tell64(int? par3796)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoTell
+		#region lo_tell
 
 		[Sql.Function(Name="pg_catalog.lo_tell", ServerSideOnly=true)]
-		public static int? LoTell(int? par3798)
+		public static int? lo_tell(int? par3798)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoTruncate
+		#region lo_truncate
 
 		[Sql.Function(Name="pg_catalog.lo_truncate", ServerSideOnly=true)]
-		public static int? LoTruncate(int? par3800, int? par3801)
+		public static int? lo_truncate(int? par3800, int? par3801)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoTruncate64
+		#region lo_truncate64
 
 		[Sql.Function(Name="pg_catalog.lo_truncate64", ServerSideOnly=true)]
-		public static int? LoTruncate64(int? par3803, long? par3804)
+		public static int? lo_truncate64(int? par3803, long? par3804)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LoUnlink
+		#region lo_unlink
 
 		[Sql.Function(Name="pg_catalog.lo_unlink", ServerSideOnly=true)]
-		public static int? LoUnlink(int? par3806)
+		public static int? lo_unlink(int? par3806)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lower
+		#region lower
 
 		[Sql.Function(Name="pg_catalog.lower", ServerSideOnly=true)]
-		public static string Lower(string par3810)
+		public static string lower(string par3810)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LowerInc
+		#region lower_inc
 
 		[Sql.Function(Name="pg_catalog.lower_inc", ServerSideOnly=true)]
-		public static bool? LowerInc(object par3812)
+		public static bool? lower_inc(object par3812)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LowerInf
+		#region lower_inf
 
 		[Sql.Function(Name="pg_catalog.lower_inf", ServerSideOnly=true)]
-		public static bool? LowerInf(object par3814)
+		public static bool? lower_inf(object par3814)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lowrite
+		#region lowrite
 
 		[Sql.Function(Name="pg_catalog.lowrite", ServerSideOnly=true)]
-		public static int? Lowrite(int? par3816, byte[] par3817)
+		public static int? lowrite(int? par3816, byte[] par3817)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lpad
+		#region lpad
 
 		[Sql.Function(Name="pg_catalog.lpad", ServerSideOnly=true)]
-		public static string Lpad(string par3823, int? par3824)
+		public static string lpad(string par3823, int? par3824)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Lseg
+		#region lseg
 
 		[Sql.Function(Name="pg_catalog.lseg", ServerSideOnly=true)]
-		public static NpgsqlLSeg? Lseg(NpgsqlPoint? par3828, NpgsqlPoint? par3829)
+		public static NpgsqlLSeg? lseg(NpgsqlPoint? par3828, NpgsqlPoint? par3829)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegCenter
+		#region lseg_center
 
 		[Sql.Function(Name="pg_catalog.lseg_center", ServerSideOnly=true)]
-		public static NpgsqlPoint? LsegCenter(NpgsqlLSeg? par3831)
+		public static NpgsqlPoint? lseg_center(NpgsqlLSeg? par3831)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegDistance
+		#region lseg_distance
 
 		[Sql.Function(Name="pg_catalog.lseg_distance", ServerSideOnly=true)]
-		public static double? LsegDistance(NpgsqlLSeg? par3833, NpgsqlLSeg? par3834)
+		public static double? lseg_distance(NpgsqlLSeg? par3833, NpgsqlLSeg? par3834)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegEq
+		#region lseg_eq
 
 		[Sql.Function(Name="pg_catalog.lseg_eq", ServerSideOnly=true)]
-		public static bool? LsegEq(NpgsqlLSeg? par3836, NpgsqlLSeg? par3837)
+		public static bool? lseg_eq(NpgsqlLSeg? par3836, NpgsqlLSeg? par3837)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegGe
+		#region lseg_ge
 
 		[Sql.Function(Name="pg_catalog.lseg_ge", ServerSideOnly=true)]
-		public static bool? LsegGe(NpgsqlLSeg? par3839, NpgsqlLSeg? par3840)
+		public static bool? lseg_ge(NpgsqlLSeg? par3839, NpgsqlLSeg? par3840)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegGt
+		#region lseg_gt
 
 		[Sql.Function(Name="pg_catalog.lseg_gt", ServerSideOnly=true)]
-		public static bool? LsegGt(NpgsqlLSeg? par3842, NpgsqlLSeg? par3843)
+		public static bool? lseg_gt(NpgsqlLSeg? par3842, NpgsqlLSeg? par3843)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegHorizontal
+		#region lseg_horizontal
 
 		[Sql.Function(Name="pg_catalog.lseg_horizontal", ServerSideOnly=true)]
-		public static bool? LsegHorizontal(NpgsqlLSeg? par3845)
+		public static bool? lseg_horizontal(NpgsqlLSeg? par3845)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegIn
+		#region lseg_in
 
 		[Sql.Function(Name="pg_catalog.lseg_in", ServerSideOnly=true)]
-		public static NpgsqlLSeg? LsegIn(object par3847)
+		public static NpgsqlLSeg? lseg_in(object par3847)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegInterpt
+		#region lseg_interpt
 
 		[Sql.Function(Name="pg_catalog.lseg_interpt", ServerSideOnly=true)]
-		public static NpgsqlPoint? LsegInterpt(NpgsqlLSeg? par3849, NpgsqlLSeg? par3850)
+		public static NpgsqlPoint? lseg_interpt(NpgsqlLSeg? par3849, NpgsqlLSeg? par3850)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegIntersect
+		#region lseg_intersect
 
 		[Sql.Function(Name="pg_catalog.lseg_intersect", ServerSideOnly=true)]
-		public static bool? LsegIntersect(NpgsqlLSeg? par3852, NpgsqlLSeg? par3853)
+		public static bool? lseg_intersect(NpgsqlLSeg? par3852, NpgsqlLSeg? par3853)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegLe
+		#region lseg_le
 
 		[Sql.Function(Name="pg_catalog.lseg_le", ServerSideOnly=true)]
-		public static bool? LsegLe(NpgsqlLSeg? par3855, NpgsqlLSeg? par3856)
+		public static bool? lseg_le(NpgsqlLSeg? par3855, NpgsqlLSeg? par3856)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegLength
+		#region lseg_length
 
 		[Sql.Function(Name="pg_catalog.lseg_length", ServerSideOnly=true)]
-		public static double? LsegLength(NpgsqlLSeg? par3858)
+		public static double? lseg_length(NpgsqlLSeg? par3858)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegLt
+		#region lseg_lt
 
 		[Sql.Function(Name="pg_catalog.lseg_lt", ServerSideOnly=true)]
-		public static bool? LsegLt(NpgsqlLSeg? par3860, NpgsqlLSeg? par3861)
+		public static bool? lseg_lt(NpgsqlLSeg? par3860, NpgsqlLSeg? par3861)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegNe
+		#region lseg_ne
 
 		[Sql.Function(Name="pg_catalog.lseg_ne", ServerSideOnly=true)]
-		public static bool? LsegNe(NpgsqlLSeg? par3863, NpgsqlLSeg? par3864)
+		public static bool? lseg_ne(NpgsqlLSeg? par3863, NpgsqlLSeg? par3864)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegOut
+		#region lseg_out
 
 		[Sql.Function(Name="pg_catalog.lseg_out", ServerSideOnly=true)]
-		public static object LsegOut(NpgsqlLSeg? par3866)
+		public static object lseg_out(NpgsqlLSeg? par3866)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegParallel
+		#region lseg_parallel
 
 		[Sql.Function(Name="pg_catalog.lseg_parallel", ServerSideOnly=true)]
-		public static bool? LsegParallel(NpgsqlLSeg? par3868, NpgsqlLSeg? par3869)
+		public static bool? lseg_parallel(NpgsqlLSeg? par3868, NpgsqlLSeg? par3869)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegPerp
+		#region lseg_perp
 
 		[Sql.Function(Name="pg_catalog.lseg_perp", ServerSideOnly=true)]
-		public static bool? LsegPerp(NpgsqlLSeg? par3871, NpgsqlLSeg? par3872)
+		public static bool? lseg_perp(NpgsqlLSeg? par3871, NpgsqlLSeg? par3872)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegRecv
+		#region lseg_recv
 
 		[Sql.Function(Name="pg_catalog.lseg_recv", ServerSideOnly=true)]
-		public static NpgsqlLSeg? LsegRecv(object par3874)
+		public static NpgsqlLSeg? lseg_recv(object par3874)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegSend
+		#region lseg_send
 
 		[Sql.Function(Name="pg_catalog.lseg_send", ServerSideOnly=true)]
-		public static byte[] LsegSend(NpgsqlLSeg? par3876)
+		public static byte[] lseg_send(NpgsqlLSeg? par3876)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region LsegVertical
+		#region lseg_vertical
 
 		[Sql.Function(Name="pg_catalog.lseg_vertical", ServerSideOnly=true)]
-		public static bool? LsegVertical(NpgsqlLSeg? par3878)
+		public static bool? lseg_vertical(NpgsqlLSeg? par3878)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ltrim
+		#region ltrim
 
 		[Sql.Function(Name="pg_catalog.ltrim", ServerSideOnly=true)]
-		public static string Ltrim(string par3883)
+		public static string ltrim(string par3883)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr
+		#region macaddr
 
 		[Sql.Function(Name="pg_catalog.macaddr", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr(PhysicalAddress par3885)
+		public static PhysicalAddress macaddr(PhysicalAddress par3885)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8
+		#region macaddr8
 
 		[Sql.Function(Name="pg_catalog.macaddr8", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8(PhysicalAddress par3887)
+		public static PhysicalAddress macaddr8(PhysicalAddress par3887)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8And
+		#region macaddr8_and
 
 		[Sql.Function(Name="pg_catalog.macaddr8_and", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8And(PhysicalAddress par3889, PhysicalAddress par3890)
+		public static PhysicalAddress macaddr8_and(PhysicalAddress par3889, PhysicalAddress par3890)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Cmp
+		#region macaddr8_cmp
 
 		[Sql.Function(Name="pg_catalog.macaddr8_cmp", ServerSideOnly=true)]
-		public static int? Macaddr8Cmp(PhysicalAddress par3892, PhysicalAddress par3893)
+		public static int? macaddr8_cmp(PhysicalAddress par3892, PhysicalAddress par3893)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Eq
+		#region macaddr8_eq
 
 		[Sql.Function(Name="pg_catalog.macaddr8_eq", ServerSideOnly=true)]
-		public static bool? Macaddr8Eq(PhysicalAddress par3895, PhysicalAddress par3896)
+		public static bool? macaddr8_eq(PhysicalAddress par3895, PhysicalAddress par3896)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Ge
+		#region macaddr8_ge
 
 		[Sql.Function(Name="pg_catalog.macaddr8_ge", ServerSideOnly=true)]
-		public static bool? Macaddr8Ge(PhysicalAddress par3898, PhysicalAddress par3899)
+		public static bool? macaddr8_ge(PhysicalAddress par3898, PhysicalAddress par3899)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Gt
+		#region macaddr8_gt
 
 		[Sql.Function(Name="pg_catalog.macaddr8_gt", ServerSideOnly=true)]
-		public static bool? Macaddr8Gt(PhysicalAddress par3901, PhysicalAddress par3902)
+		public static bool? macaddr8_gt(PhysicalAddress par3901, PhysicalAddress par3902)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8In
+		#region macaddr8_in
 
 		[Sql.Function(Name="pg_catalog.macaddr8_in", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8In(object par3904)
+		public static PhysicalAddress macaddr8_in(object par3904)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Le
+		#region macaddr8_le
 
 		[Sql.Function(Name="pg_catalog.macaddr8_le", ServerSideOnly=true)]
-		public static bool? Macaddr8Le(PhysicalAddress par3906, PhysicalAddress par3907)
+		public static bool? macaddr8_le(PhysicalAddress par3906, PhysicalAddress par3907)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Lt
+		#region macaddr8_lt
 
 		[Sql.Function(Name="pg_catalog.macaddr8_lt", ServerSideOnly=true)]
-		public static bool? Macaddr8Lt(PhysicalAddress par3909, PhysicalAddress par3910)
+		public static bool? macaddr8_lt(PhysicalAddress par3909, PhysicalAddress par3910)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Ne
+		#region macaddr8_ne
 
 		[Sql.Function(Name="pg_catalog.macaddr8_ne", ServerSideOnly=true)]
-		public static bool? Macaddr8Ne(PhysicalAddress par3912, PhysicalAddress par3913)
+		public static bool? macaddr8_ne(PhysicalAddress par3912, PhysicalAddress par3913)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Not
+		#region macaddr8_not
 
 		[Sql.Function(Name="pg_catalog.macaddr8_not", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8Not(PhysicalAddress par3915)
+		public static PhysicalAddress macaddr8_not(PhysicalAddress par3915)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Or
+		#region macaddr8_or
 
 		[Sql.Function(Name="pg_catalog.macaddr8_or", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8Or(PhysicalAddress par3917, PhysicalAddress par3918)
+		public static PhysicalAddress macaddr8_or(PhysicalAddress par3917, PhysicalAddress par3918)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Out
+		#region macaddr8_out
 
 		[Sql.Function(Name="pg_catalog.macaddr8_out", ServerSideOnly=true)]
-		public static object Macaddr8Out(PhysicalAddress par3920)
+		public static object macaddr8_out(PhysicalAddress par3920)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Recv
+		#region macaddr8_recv
 
 		[Sql.Function(Name="pg_catalog.macaddr8_recv", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8Recv(object par3922)
+		public static PhysicalAddress macaddr8_recv(object par3922)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Send
+		#region macaddr8_send
 
 		[Sql.Function(Name="pg_catalog.macaddr8_send", ServerSideOnly=true)]
-		public static byte[] Macaddr8Send(PhysicalAddress par3924)
+		public static byte[] macaddr8_send(PhysicalAddress par3924)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Macaddr8Set7bit
+		#region macaddr8_set7bit
 
 		[Sql.Function(Name="pg_catalog.macaddr8_set7bit", ServerSideOnly=true)]
-		public static PhysicalAddress Macaddr8Set7bit(PhysicalAddress par3926)
+		public static PhysicalAddress macaddr8_set7bit(PhysicalAddress par3926)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrAnd
+		#region macaddr_and
 
 		[Sql.Function(Name="pg_catalog.macaddr_and", ServerSideOnly=true)]
-		public static PhysicalAddress MacaddrAnd(PhysicalAddress par3928, PhysicalAddress par3929)
+		public static PhysicalAddress macaddr_and(PhysicalAddress par3928, PhysicalAddress par3929)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrCmp
+		#region macaddr_cmp
 
 		[Sql.Function(Name="pg_catalog.macaddr_cmp", ServerSideOnly=true)]
-		public static int? MacaddrCmp(PhysicalAddress par3931, PhysicalAddress par3932)
+		public static int? macaddr_cmp(PhysicalAddress par3931, PhysicalAddress par3932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrEq
+		#region macaddr_eq
 
 		[Sql.Function(Name="pg_catalog.macaddr_eq", ServerSideOnly=true)]
-		public static bool? MacaddrEq(PhysicalAddress par3934, PhysicalAddress par3935)
+		public static bool? macaddr_eq(PhysicalAddress par3934, PhysicalAddress par3935)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrGe
+		#region macaddr_ge
 
 		[Sql.Function(Name="pg_catalog.macaddr_ge", ServerSideOnly=true)]
-		public static bool? MacaddrGe(PhysicalAddress par3937, PhysicalAddress par3938)
+		public static bool? macaddr_ge(PhysicalAddress par3937, PhysicalAddress par3938)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrGt
+		#region macaddr_gt
 
 		[Sql.Function(Name="pg_catalog.macaddr_gt", ServerSideOnly=true)]
-		public static bool? MacaddrGt(PhysicalAddress par3940, PhysicalAddress par3941)
+		public static bool? macaddr_gt(PhysicalAddress par3940, PhysicalAddress par3941)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrIn
+		#region macaddr_in
 
 		[Sql.Function(Name="pg_catalog.macaddr_in", ServerSideOnly=true)]
-		public static PhysicalAddress MacaddrIn(object par3943)
+		public static PhysicalAddress macaddr_in(object par3943)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrLe
+		#region macaddr_le
 
 		[Sql.Function(Name="pg_catalog.macaddr_le", ServerSideOnly=true)]
-		public static bool? MacaddrLe(PhysicalAddress par3945, PhysicalAddress par3946)
+		public static bool? macaddr_le(PhysicalAddress par3945, PhysicalAddress par3946)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrLt
+		#region macaddr_lt
 
 		[Sql.Function(Name="pg_catalog.macaddr_lt", ServerSideOnly=true)]
-		public static bool? MacaddrLt(PhysicalAddress par3948, PhysicalAddress par3949)
+		public static bool? macaddr_lt(PhysicalAddress par3948, PhysicalAddress par3949)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrNe
+		#region macaddr_ne
 
 		[Sql.Function(Name="pg_catalog.macaddr_ne", ServerSideOnly=true)]
-		public static bool? MacaddrNe(PhysicalAddress par3951, PhysicalAddress par3952)
+		public static bool? macaddr_ne(PhysicalAddress par3951, PhysicalAddress par3952)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrNot
+		#region macaddr_not
 
 		[Sql.Function(Name="pg_catalog.macaddr_not", ServerSideOnly=true)]
-		public static PhysicalAddress MacaddrNot(PhysicalAddress par3954)
+		public static PhysicalAddress macaddr_not(PhysicalAddress par3954)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrOr
+		#region macaddr_or
 
 		[Sql.Function(Name="pg_catalog.macaddr_or", ServerSideOnly=true)]
-		public static PhysicalAddress MacaddrOr(PhysicalAddress par3956, PhysicalAddress par3957)
+		public static PhysicalAddress macaddr_or(PhysicalAddress par3956, PhysicalAddress par3957)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrOut
+		#region macaddr_out
 
 		[Sql.Function(Name="pg_catalog.macaddr_out", ServerSideOnly=true)]
-		public static object MacaddrOut(PhysicalAddress par3959)
+		public static object macaddr_out(PhysicalAddress par3959)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrRecv
+		#region macaddr_recv
 
 		[Sql.Function(Name="pg_catalog.macaddr_recv", ServerSideOnly=true)]
-		public static PhysicalAddress MacaddrRecv(object par3961)
+		public static PhysicalAddress macaddr_recv(object par3961)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrSend
+		#region macaddr_send
 
 		[Sql.Function(Name="pg_catalog.macaddr_send", ServerSideOnly=true)]
-		public static byte[] MacaddrSend(PhysicalAddress par3963)
+		public static byte[] macaddr_send(PhysicalAddress par3963)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MacaddrSortsupport
+		#region macaddr_sortsupport
 
 		[Sql.Function(Name="pg_catalog.macaddr_sortsupport", ServerSideOnly=true)]
-		public static object MacaddrSortsupport(object par3964)
+		public static object macaddr_sortsupport(object par3964)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Makeaclitem
+		#region makeaclitem
 
 		[Sql.Function(Name="pg_catalog.makeaclitem", ServerSideOnly=true)]
-		public static object Makeaclitem(int? par3966, int? par3967, string par3968, bool? par3969)
+		public static object makeaclitem(int? par3966, int? par3967, string par3968, bool? par3969)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MakeDate
+		#region make_date
 
 		[Sql.Function(Name="pg_catalog.make_date", ServerSideOnly=true)]
-		public static NpgsqlDate? MakeDate(int? year, int? month, int? day)
+		public static NpgsqlDate? make_date(int? year, int? month, int? day)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MakeInterval
+		#region make_interval
 
 		[Sql.Function(Name="pg_catalog.make_interval", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? MakeInterval(int? years, int? months, int? weeks, int? days, int? hours, int? mins, double? secs)
+		public static NpgsqlTimeSpan? make_interval(int? years, int? months, int? weeks, int? days, int? hours, int? mins, double? secs)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MakeTime
+		#region make_time
 
 		[Sql.Function(Name="pg_catalog.make_time", ServerSideOnly=true)]
-		public static TimeSpan? MakeTime(int? hour, int? min, double? sec)
+		public static TimeSpan? make_time(int? hour, int? min, double? sec)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MakeTimestamp
+		#region make_timestamp
 
 		[Sql.Function(Name="pg_catalog.make_timestamp", ServerSideOnly=true)]
-		public static DateTime? MakeTimestamp(int? year, int? month, int? mday, int? hour, int? min, double? sec)
+		public static DateTime? make_timestamp(int? year, int? month, int? mday, int? hour, int? min, double? sec)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MakeTimestamptz
+		#region make_timestamptz
 
 		[Sql.Function(Name="pg_catalog.make_timestamptz", ServerSideOnly=true)]
-		public static DateTimeOffset? MakeTimestamptz(int? year, int? month, int? mday, int? hour, int? min, double? sec, string timezone)
+		public static DateTimeOffset? make_timestamptz(int? year, int? month, int? mday, int? hour, int? min, double? sec, string timezone)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Masklen
+		#region masklen
 
 		[Sql.Function(Name="pg_catalog.masklen", ServerSideOnly=true)]
-		public static int? Masklen(NpgsqlInet? par3977)
+		public static int? masklen(NpgsqlInet? par3977)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Max
+		#region max
 
 		[Sql.Function(Name="pg_catalog.max", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static NpgsqlInet? Max<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlInet?>> par4019)
+		public static NpgsqlInet? max<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlInet?>> par4019)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Md5
+		#region md5
 
 		[Sql.Function(Name="pg_catalog.md5", ServerSideOnly=true)]
-		public static string Md5(byte[] par4023)
+		public static string md5(byte[] par4023)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToAscii
+		#region mic_to_ascii
 
 		[Sql.Function(Name="pg_catalog.mic_to_ascii", ServerSideOnly=true)]
-		public static object MicToAscii(int? par4024, int? par4025, object par4026, object par4027, int? par4028)
+		public static object mic_to_ascii(int? par4024, int? par4025, object par4026, object par4027, int? par4028)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToBig5
+		#region mic_to_big5
 
 		[Sql.Function(Name="pg_catalog.mic_to_big5", ServerSideOnly=true)]
-		public static object MicToBig5(int? par4029, int? par4030, object par4031, object par4032, int? par4033)
+		public static object mic_to_big5(int? par4029, int? par4030, object par4031, object par4032, int? par4033)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToEucCn
+		#region mic_to_euc_cn
 
 		[Sql.Function(Name="pg_catalog.mic_to_euc_cn", ServerSideOnly=true)]
-		public static object MicToEucCn(int? par4034, int? par4035, object par4036, object par4037, int? par4038)
+		public static object mic_to_euc_cn(int? par4034, int? par4035, object par4036, object par4037, int? par4038)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToEucJp
+		#region mic_to_euc_jp
 
 		[Sql.Function(Name="pg_catalog.mic_to_euc_jp", ServerSideOnly=true)]
-		public static object MicToEucJp(int? par4039, int? par4040, object par4041, object par4042, int? par4043)
+		public static object mic_to_euc_jp(int? par4039, int? par4040, object par4041, object par4042, int? par4043)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToEucKr
+		#region mic_to_euc_kr
 
 		[Sql.Function(Name="pg_catalog.mic_to_euc_kr", ServerSideOnly=true)]
-		public static object MicToEucKr(int? par4044, int? par4045, object par4046, object par4047, int? par4048)
+		public static object mic_to_euc_kr(int? par4044, int? par4045, object par4046, object par4047, int? par4048)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToEucTw
+		#region mic_to_euc_tw
 
 		[Sql.Function(Name="pg_catalog.mic_to_euc_tw", ServerSideOnly=true)]
-		public static object MicToEucTw(int? par4049, int? par4050, object par4051, object par4052, int? par4053)
+		public static object mic_to_euc_tw(int? par4049, int? par4050, object par4051, object par4052, int? par4053)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToIso
+		#region mic_to_iso
 
 		[Sql.Function(Name="pg_catalog.mic_to_iso", ServerSideOnly=true)]
-		public static object MicToIso(int? par4054, int? par4055, object par4056, object par4057, int? par4058)
+		public static object mic_to_iso(int? par4054, int? par4055, object par4056, object par4057, int? par4058)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToKoi8r
+		#region mic_to_koi8r
 
 		[Sql.Function(Name="pg_catalog.mic_to_koi8r", ServerSideOnly=true)]
-		public static object MicToKoi8r(int? par4059, int? par4060, object par4061, object par4062, int? par4063)
+		public static object mic_to_koi8r(int? par4059, int? par4060, object par4061, object par4062, int? par4063)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToLatin1
+		#region mic_to_latin1
 
 		[Sql.Function(Name="pg_catalog.mic_to_latin1", ServerSideOnly=true)]
-		public static object MicToLatin1(int? par4064, int? par4065, object par4066, object par4067, int? par4068)
+		public static object mic_to_latin1(int? par4064, int? par4065, object par4066, object par4067, int? par4068)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToLatin2
+		#region mic_to_latin2
 
 		[Sql.Function(Name="pg_catalog.mic_to_latin2", ServerSideOnly=true)]
-		public static object MicToLatin2(int? par4069, int? par4070, object par4071, object par4072, int? par4073)
+		public static object mic_to_latin2(int? par4069, int? par4070, object par4071, object par4072, int? par4073)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToLatin3
+		#region mic_to_latin3
 
 		[Sql.Function(Name="pg_catalog.mic_to_latin3", ServerSideOnly=true)]
-		public static object MicToLatin3(int? par4074, int? par4075, object par4076, object par4077, int? par4078)
+		public static object mic_to_latin3(int? par4074, int? par4075, object par4076, object par4077, int? par4078)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToLatin4
+		#region mic_to_latin4
 
 		[Sql.Function(Name="pg_catalog.mic_to_latin4", ServerSideOnly=true)]
-		public static object MicToLatin4(int? par4079, int? par4080, object par4081, object par4082, int? par4083)
+		public static object mic_to_latin4(int? par4079, int? par4080, object par4081, object par4082, int? par4083)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToSjis
+		#region mic_to_sjis
 
 		[Sql.Function(Name="pg_catalog.mic_to_sjis", ServerSideOnly=true)]
-		public static object MicToSjis(int? par4084, int? par4085, object par4086, object par4087, int? par4088)
+		public static object mic_to_sjis(int? par4084, int? par4085, object par4086, object par4087, int? par4088)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToWin1250
+		#region mic_to_win1250
 
 		[Sql.Function(Name="pg_catalog.mic_to_win1250", ServerSideOnly=true)]
-		public static object MicToWin1250(int? par4089, int? par4090, object par4091, object par4092, int? par4093)
+		public static object mic_to_win1250(int? par4089, int? par4090, object par4091, object par4092, int? par4093)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToWin1251
+		#region mic_to_win1251
 
 		[Sql.Function(Name="pg_catalog.mic_to_win1251", ServerSideOnly=true)]
-		public static object MicToWin1251(int? par4094, int? par4095, object par4096, object par4097, int? par4098)
+		public static object mic_to_win1251(int? par4094, int? par4095, object par4096, object par4097, int? par4098)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MicToWin866
+		#region mic_to_win866
 
 		[Sql.Function(Name="pg_catalog.mic_to_win866", ServerSideOnly=true)]
-		public static object MicToWin866(int? par4099, int? par4100, object par4101, object par4102, int? par4103)
+		public static object mic_to_win866(int? par4099, int? par4100, object par4101, object par4102, int? par4103)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Min
+		#region min
 
 		[Sql.Function(Name="pg_catalog.min", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static NpgsqlInet? Min<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlInet?>> par4145)
+		public static NpgsqlInet? min<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, NpgsqlInet?>> par4145)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Mktinterval
+		#region mktinterval
 
 		[Sql.Function(Name="pg_catalog.mktinterval", ServerSideOnly=true)]
-		public static object Mktinterval(object par4147, object par4148)
+		public static object mktinterval(object par4147, object par4148)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Mod
+		#region mod
 
 		[Sql.Function(Name="pg_catalog.mod", ServerSideOnly=true)]
-		public static long? Mod(long? par4159, long? par4160)
+		public static long? mod(long? par4159, long? par4160)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Mode
+		#region mode
 
 		[Sql.Function(Name="pg_catalog.mode", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static object Mode<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4162)
+		public static object mode<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4162)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ModeFinal
+		#region mode_final
 
 		[Sql.Function(Name="pg_catalog.mode_final", ServerSideOnly=true)]
-		public static object ModeFinal(object par4164, object par4165)
+		public static object mode_final(object par4164, object par4165)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Money
+		#region money
 
 		[Sql.Function(Name="pg_catalog.money", ServerSideOnly=true)]
-		public static decimal? Money(decimal? par4171)
+		public static decimal? money(decimal? par4171)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MulDInterval
+		#region mul_d_interval
 
 		[Sql.Function(Name="pg_catalog.mul_d_interval", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? MulDInterval(double? par4173, NpgsqlTimeSpan? par4174)
+		public static NpgsqlTimeSpan? mul_d_interval(double? par4173, NpgsqlTimeSpan? par4174)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region MxidAge
+		#region mxid_age
 
 		[Sql.Function(Name="pg_catalog.mxid_age", ServerSideOnly=true)]
-		public static int? MxidAge(int? par4176)
+		public static int? mxid_age(int? par4176)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Name
+		#region name
 
 		[Sql.Function(Name="pg_catalog.name", ServerSideOnly=true)]
-		public static string Name(string par4182)
+		public static string name(string par4182)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameeq
+		#region nameeq
 
 		[Sql.Function(Name="pg_catalog.nameeq", ServerSideOnly=true)]
-		public static bool? Nameeq(string par4184, string par4185)
+		public static bool? nameeq(string par4184, string par4185)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namege
+		#region namege
 
 		[Sql.Function(Name="pg_catalog.namege", ServerSideOnly=true)]
-		public static bool? Namege(string par4187, string par4188)
+		public static bool? namege(string par4187, string par4188)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namegt
+		#region namegt
 
 		[Sql.Function(Name="pg_catalog.namegt", ServerSideOnly=true)]
-		public static bool? Namegt(string par4190, string par4191)
+		public static bool? namegt(string par4190, string par4191)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameiclike
+		#region nameiclike
 
 		[Sql.Function(Name="pg_catalog.nameiclike", ServerSideOnly=true)]
-		public static bool? Nameiclike(string par4193, string par4194)
+		public static bool? nameiclike(string par4193, string par4194)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameicnlike
+		#region nameicnlike
 
 		[Sql.Function(Name="pg_catalog.nameicnlike", ServerSideOnly=true)]
-		public static bool? Nameicnlike(string par4196, string par4197)
+		public static bool? nameicnlike(string par4196, string par4197)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameicregexeq
+		#region nameicregexeq
 
 		[Sql.Function(Name="pg_catalog.nameicregexeq", ServerSideOnly=true)]
-		public static bool? Nameicregexeq(string par4199, string par4200)
+		public static bool? nameicregexeq(string par4199, string par4200)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameicregexne
+		#region nameicregexne
 
 		[Sql.Function(Name="pg_catalog.nameicregexne", ServerSideOnly=true)]
-		public static bool? Nameicregexne(string par4202, string par4203)
+		public static bool? nameicregexne(string par4202, string par4203)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namein
+		#region namein
 
 		[Sql.Function(Name="pg_catalog.namein", ServerSideOnly=true)]
-		public static string Namein(object par4205)
+		public static string namein(object par4205)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namele
+		#region namele
 
 		[Sql.Function(Name="pg_catalog.namele", ServerSideOnly=true)]
-		public static bool? Namele(string par4207, string par4208)
+		public static bool? namele(string par4207, string par4208)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namelike
+		#region namelike
 
 		[Sql.Function(Name="pg_catalog.namelike", ServerSideOnly=true)]
-		public static bool? Namelike(string par4210, string par4211)
+		public static bool? namelike(string par4210, string par4211)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namelt
+		#region namelt
 
 		[Sql.Function(Name="pg_catalog.namelt", ServerSideOnly=true)]
-		public static bool? Namelt(string par4213, string par4214)
+		public static bool? namelt(string par4213, string par4214)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namene
+		#region namene
 
 		[Sql.Function(Name="pg_catalog.namene", ServerSideOnly=true)]
-		public static bool? Namene(string par4216, string par4217)
+		public static bool? namene(string par4216, string par4217)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namenlike
+		#region namenlike
 
 		[Sql.Function(Name="pg_catalog.namenlike", ServerSideOnly=true)]
-		public static bool? Namenlike(string par4219, string par4220)
+		public static bool? namenlike(string par4219, string par4220)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameout
+		#region nameout
 
 		[Sql.Function(Name="pg_catalog.nameout", ServerSideOnly=true)]
-		public static object Nameout(string par4222)
+		public static object nameout(string par4222)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namerecv
+		#region namerecv
 
 		[Sql.Function(Name="pg_catalog.namerecv", ServerSideOnly=true)]
-		public static string Namerecv(object par4224)
+		public static string namerecv(object par4224)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameregexeq
+		#region nameregexeq
 
 		[Sql.Function(Name="pg_catalog.nameregexeq", ServerSideOnly=true)]
-		public static bool? Nameregexeq(string par4226, string par4227)
+		public static bool? nameregexeq(string par4226, string par4227)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nameregexne
+		#region nameregexne
 
 		[Sql.Function(Name="pg_catalog.nameregexne", ServerSideOnly=true)]
-		public static bool? Nameregexne(string par4229, string par4230)
+		public static bool? nameregexne(string par4229, string par4230)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Namesend
+		#region namesend
 
 		[Sql.Function(Name="pg_catalog.namesend", ServerSideOnly=true)]
-		public static byte[] Namesend(string par4232)
+		public static byte[] namesend(string par4232)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Neqjoinsel
+		#region neqjoinsel
 
 		[Sql.Function(Name="pg_catalog.neqjoinsel", ServerSideOnly=true)]
-		public static double? Neqjoinsel(object par4234, int? par4235, object par4236, short? par4237, object par4238)
+		public static double? neqjoinsel(object par4234, int? par4235, object par4236, short? par4237, object par4238)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Neqsel
+		#region neqsel
 
 		[Sql.Function(Name="pg_catalog.neqsel", ServerSideOnly=true)]
-		public static double? Neqsel(object par4240, int? par4241, object par4242, int? par4243)
+		public static double? neqsel(object par4240, int? par4241, object par4242, int? par4243)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Netmask
+		#region netmask
 
 		[Sql.Function(Name="pg_catalog.netmask", ServerSideOnly=true)]
-		public static NpgsqlInet? Netmask(NpgsqlInet? par4245)
+		public static NpgsqlInet? netmask(NpgsqlInet? par4245)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Network
+		#region network
 
 		[Sql.Function(Name="pg_catalog.network", ServerSideOnly=true)]
-		public static NpgsqlInet? Network(NpgsqlInet? par4247)
+		public static NpgsqlInet? network(NpgsqlInet? par4247)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkCmp
+		#region network_cmp
 
 		[Sql.Function(Name="pg_catalog.network_cmp", ServerSideOnly=true)]
-		public static int? NetworkCmp(NpgsqlInet? par4249, NpgsqlInet? par4250)
+		public static int? network_cmp(NpgsqlInet? par4249, NpgsqlInet? par4250)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkEq
+		#region network_eq
 
 		[Sql.Function(Name="pg_catalog.network_eq", ServerSideOnly=true)]
-		public static bool? NetworkEq(NpgsqlInet? par4252, NpgsqlInet? par4253)
+		public static bool? network_eq(NpgsqlInet? par4252, NpgsqlInet? par4253)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkGe
+		#region network_ge
 
 		[Sql.Function(Name="pg_catalog.network_ge", ServerSideOnly=true)]
-		public static bool? NetworkGe(NpgsqlInet? par4255, NpgsqlInet? par4256)
+		public static bool? network_ge(NpgsqlInet? par4255, NpgsqlInet? par4256)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkGt
+		#region network_gt
 
 		[Sql.Function(Name="pg_catalog.network_gt", ServerSideOnly=true)]
-		public static bool? NetworkGt(NpgsqlInet? par4258, NpgsqlInet? par4259)
+		public static bool? network_gt(NpgsqlInet? par4258, NpgsqlInet? par4259)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Networkjoinsel
+		#region networkjoinsel
 
 		[Sql.Function(Name="pg_catalog.networkjoinsel", ServerSideOnly=true)]
-		public static double? Networkjoinsel(object par4261, int? par4262, object par4263, short? par4264, object par4265)
+		public static double? networkjoinsel(object par4261, int? par4262, object par4263, short? par4264, object par4265)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkLarger
+		#region network_larger
 
 		[Sql.Function(Name="pg_catalog.network_larger", ServerSideOnly=true)]
-		public static NpgsqlInet? NetworkLarger(NpgsqlInet? par4267, NpgsqlInet? par4268)
+		public static NpgsqlInet? network_larger(NpgsqlInet? par4267, NpgsqlInet? par4268)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkLe
+		#region network_le
 
 		[Sql.Function(Name="pg_catalog.network_le", ServerSideOnly=true)]
-		public static bool? NetworkLe(NpgsqlInet? par4270, NpgsqlInet? par4271)
+		public static bool? network_le(NpgsqlInet? par4270, NpgsqlInet? par4271)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkLt
+		#region network_lt
 
 		[Sql.Function(Name="pg_catalog.network_lt", ServerSideOnly=true)]
-		public static bool? NetworkLt(NpgsqlInet? par4273, NpgsqlInet? par4274)
+		public static bool? network_lt(NpgsqlInet? par4273, NpgsqlInet? par4274)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkNe
+		#region network_ne
 
 		[Sql.Function(Name="pg_catalog.network_ne", ServerSideOnly=true)]
-		public static bool? NetworkNe(NpgsqlInet? par4276, NpgsqlInet? par4277)
+		public static bool? network_ne(NpgsqlInet? par4276, NpgsqlInet? par4277)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkOverlap
+		#region network_overlap
 
 		[Sql.Function(Name="pg_catalog.network_overlap", ServerSideOnly=true)]
-		public static bool? NetworkOverlap(NpgsqlInet? par4279, NpgsqlInet? par4280)
+		public static bool? network_overlap(NpgsqlInet? par4279, NpgsqlInet? par4280)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Networksel
+		#region networksel
 
 		[Sql.Function(Name="pg_catalog.networksel", ServerSideOnly=true)]
-		public static double? Networksel(object par4282, int? par4283, object par4284, int? par4285)
+		public static double? networksel(object par4282, int? par4283, object par4284, int? par4285)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkSmaller
+		#region network_smaller
 
 		[Sql.Function(Name="pg_catalog.network_smaller", ServerSideOnly=true)]
-		public static NpgsqlInet? NetworkSmaller(NpgsqlInet? par4287, NpgsqlInet? par4288)
+		public static NpgsqlInet? network_smaller(NpgsqlInet? par4287, NpgsqlInet? par4288)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkSub
+		#region network_sub
 
 		[Sql.Function(Name="pg_catalog.network_sub", ServerSideOnly=true)]
-		public static bool? NetworkSub(NpgsqlInet? par4290, NpgsqlInet? par4291)
+		public static bool? network_sub(NpgsqlInet? par4290, NpgsqlInet? par4291)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkSubeq
+		#region network_subeq
 
 		[Sql.Function(Name="pg_catalog.network_subeq", ServerSideOnly=true)]
-		public static bool? NetworkSubeq(NpgsqlInet? par4293, NpgsqlInet? par4294)
+		public static bool? network_subeq(NpgsqlInet? par4293, NpgsqlInet? par4294)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkSup
+		#region network_sup
 
 		[Sql.Function(Name="pg_catalog.network_sup", ServerSideOnly=true)]
-		public static bool? NetworkSup(NpgsqlInet? par4296, NpgsqlInet? par4297)
+		public static bool? network_sup(NpgsqlInet? par4296, NpgsqlInet? par4297)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NetworkSupeq
+		#region network_supeq
 
 		[Sql.Function(Name="pg_catalog.network_supeq", ServerSideOnly=true)]
-		public static bool? NetworkSupeq(NpgsqlInet? par4299, NpgsqlInet? par4300)
+		public static bool? network_supeq(NpgsqlInet? par4299, NpgsqlInet? par4300)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nextval
+		#region nextval
 
 		[Sql.Function(Name="pg_catalog.nextval", ServerSideOnly=true)]
-		public static long? Nextval(object par4302)
+		public static long? nextval(object par4302)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nlikejoinsel
+		#region nlikejoinsel
 
 		[Sql.Function(Name="pg_catalog.nlikejoinsel", ServerSideOnly=true)]
-		public static double? Nlikejoinsel(object par4304, int? par4305, object par4306, short? par4307, object par4308)
+		public static double? nlikejoinsel(object par4304, int? par4305, object par4306, short? par4307, object par4308)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Nlikesel
+		#region nlikesel
 
 		[Sql.Function(Name="pg_catalog.nlikesel", ServerSideOnly=true)]
-		public static double? Nlikesel(object par4310, int? par4311, object par4312, int? par4313)
+		public static double? nlikesel(object par4310, int? par4311, object par4312, int? par4313)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Notlike
+		#region notlike
 
 		[Sql.Function(Name="pg_catalog.notlike", ServerSideOnly=true)]
-		public static bool? Notlike(byte[] par4321, byte[] par4322)
+		public static bool? notlike(byte[] par4321, byte[] par4322)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Now
+		#region now
 
 		[Sql.Function(Name="pg_catalog.now", ServerSideOnly=true)]
-		public static DateTimeOffset? Now()
+		public static DateTimeOffset? now()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Npoints
+		#region npoints
 
 		[Sql.Function(Name="pg_catalog.npoints", ServerSideOnly=true)]
-		public static int? Npoints(NpgsqlPolygon? par4327)
+		public static int? npoints(NpgsqlPolygon? par4327)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NthValue
+		#region nth_value
 
 		[Sql.Function(Name="pg_catalog.nth_value", ServerSideOnly=true)]
-		public static object NthValue(object par4329, int? par4330)
+		public static object nth_value(object par4329, int? par4330)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Ntile
+		#region ntile
 
 		[Sql.Function(Name="pg_catalog.ntile", ServerSideOnly=true)]
-		public static int? Ntile(int? par4332)
+		public static int? ntile(int? par4332)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Numeric
+		#region numeric
 
 		[Sql.Function(Name="pg_catalog.numeric", ServerSideOnly=true)]
-		public static decimal? Numeric(decimal? par4347)
+		public static decimal? numeric(decimal? par4347)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAbs
+		#region numeric_abs
 
 		[Sql.Function(Name="pg_catalog.numeric_abs", ServerSideOnly=true)]
-		public static decimal? NumericAbs(decimal? par4349)
+		public static decimal? numeric_abs(decimal? par4349)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAccum
+		#region numeric_accum
 
 		[Sql.Function(Name="pg_catalog.numeric_accum", ServerSideOnly=true)]
-		public static object NumericAccum(object par4351, decimal? par4352)
+		public static object numeric_accum(object par4351, decimal? par4352)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAccumInv
+		#region numeric_accum_inv
 
 		[Sql.Function(Name="pg_catalog.numeric_accum_inv", ServerSideOnly=true)]
-		public static object NumericAccumInv(object par4354, decimal? par4355)
+		public static object numeric_accum_inv(object par4354, decimal? par4355)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAdd
+		#region numeric_add
 
 		[Sql.Function(Name="pg_catalog.numeric_add", ServerSideOnly=true)]
-		public static decimal? NumericAdd(decimal? par4357, decimal? par4358)
+		public static decimal? numeric_add(decimal? par4357, decimal? par4358)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAvg
+		#region numeric_avg
 
 		[Sql.Function(Name="pg_catalog.numeric_avg", ServerSideOnly=true)]
-		public static decimal? NumericAvg(object par4360)
+		public static decimal? numeric_avg(object par4360)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAvgAccum
+		#region numeric_avg_accum
 
 		[Sql.Function(Name="pg_catalog.numeric_avg_accum", ServerSideOnly=true)]
-		public static object NumericAvgAccum(object par4362, decimal? par4363)
+		public static object numeric_avg_accum(object par4362, decimal? par4363)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAvgCombine
+		#region numeric_avg_combine
 
 		[Sql.Function(Name="pg_catalog.numeric_avg_combine", ServerSideOnly=true)]
-		public static object NumericAvgCombine(object par4365, object par4366)
+		public static object numeric_avg_combine(object par4365, object par4366)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAvgDeserialize
+		#region numeric_avg_deserialize
 
 		[Sql.Function(Name="pg_catalog.numeric_avg_deserialize", ServerSideOnly=true)]
-		public static object NumericAvgDeserialize(byte[] par4368, object par4369)
+		public static object numeric_avg_deserialize(byte[] par4368, object par4369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericAvgSerialize
+		#region numeric_avg_serialize
 
 		[Sql.Function(Name="pg_catalog.numeric_avg_serialize", ServerSideOnly=true)]
-		public static byte[] NumericAvgSerialize(object par4371)
+		public static byte[] numeric_avg_serialize(object par4371)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericCmp
+		#region numeric_cmp
 
 		[Sql.Function(Name="pg_catalog.numeric_cmp", ServerSideOnly=true)]
-		public static int? NumericCmp(decimal? par4373, decimal? par4374)
+		public static int? numeric_cmp(decimal? par4373, decimal? par4374)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericCombine
+		#region numeric_combine
 
 		[Sql.Function(Name="pg_catalog.numeric_combine", ServerSideOnly=true)]
-		public static object NumericCombine(object par4376, object par4377)
+		public static object numeric_combine(object par4376, object par4377)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericDeserialize
+		#region numeric_deserialize
 
 		[Sql.Function(Name="pg_catalog.numeric_deserialize", ServerSideOnly=true)]
-		public static object NumericDeserialize(byte[] par4379, object par4380)
+		public static object numeric_deserialize(byte[] par4379, object par4380)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericDiv
+		#region numeric_div
 
 		[Sql.Function(Name="pg_catalog.numeric_div", ServerSideOnly=true)]
-		public static decimal? NumericDiv(decimal? par4382, decimal? par4383)
+		public static decimal? numeric_div(decimal? par4382, decimal? par4383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericDivTrunc
+		#region numeric_div_trunc
 
 		[Sql.Function(Name="pg_catalog.numeric_div_trunc", ServerSideOnly=true)]
-		public static decimal? NumericDivTrunc(decimal? par4385, decimal? par4386)
+		public static decimal? numeric_div_trunc(decimal? par4385, decimal? par4386)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericEq
+		#region numeric_eq
 
 		[Sql.Function(Name="pg_catalog.numeric_eq", ServerSideOnly=true)]
-		public static bool? NumericEq(decimal? par4388, decimal? par4389)
+		public static bool? numeric_eq(decimal? par4388, decimal? par4389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericExp
+		#region numeric_exp
 
 		[Sql.Function(Name="pg_catalog.numeric_exp", ServerSideOnly=true)]
-		public static decimal? NumericExp(decimal? par4391)
+		public static decimal? numeric_exp(decimal? par4391)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericFac
+		#region numeric_fac
 
 		[Sql.Function(Name="pg_catalog.numeric_fac", ServerSideOnly=true)]
-		public static decimal? NumericFac(long? par4393)
+		public static decimal? numeric_fac(long? par4393)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericGe
+		#region numeric_ge
 
 		[Sql.Function(Name="pg_catalog.numeric_ge", ServerSideOnly=true)]
-		public static bool? NumericGe(decimal? par4395, decimal? par4396)
+		public static bool? numeric_ge(decimal? par4395, decimal? par4396)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericGt
+		#region numeric_gt
 
 		[Sql.Function(Name="pg_catalog.numeric_gt", ServerSideOnly=true)]
-		public static bool? NumericGt(decimal? par4398, decimal? par4399)
+		public static bool? numeric_gt(decimal? par4398, decimal? par4399)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericIn
+		#region numeric_in
 
 		[Sql.Function(Name="pg_catalog.numeric_in", ServerSideOnly=true)]
-		public static decimal? NumericIn(object par4401, int? par4402, int? par4403)
+		public static decimal? numeric_in(object par4401, int? par4402, int? par4403)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericInc
+		#region numeric_inc
 
 		[Sql.Function(Name="pg_catalog.numeric_inc", ServerSideOnly=true)]
-		public static decimal? NumericInc(decimal? par4405)
+		public static decimal? numeric_inc(decimal? par4405)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericLarger
+		#region numeric_larger
 
 		[Sql.Function(Name="pg_catalog.numeric_larger", ServerSideOnly=true)]
-		public static decimal? NumericLarger(decimal? par4407, decimal? par4408)
+		public static decimal? numeric_larger(decimal? par4407, decimal? par4408)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericLe
+		#region numeric_le
 
 		[Sql.Function(Name="pg_catalog.numeric_le", ServerSideOnly=true)]
-		public static bool? NumericLe(decimal? par4410, decimal? par4411)
+		public static bool? numeric_le(decimal? par4410, decimal? par4411)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericLn
+		#region numeric_ln
 
 		[Sql.Function(Name="pg_catalog.numeric_ln", ServerSideOnly=true)]
-		public static decimal? NumericLn(decimal? par4413)
+		public static decimal? numeric_ln(decimal? par4413)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericLog
+		#region numeric_log
 
 		[Sql.Function(Name="pg_catalog.numeric_log", ServerSideOnly=true)]
-		public static decimal? NumericLog(decimal? par4415, decimal? par4416)
+		public static decimal? numeric_log(decimal? par4415, decimal? par4416)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericLt
+		#region numeric_lt
 
 		[Sql.Function(Name="pg_catalog.numeric_lt", ServerSideOnly=true)]
-		public static bool? NumericLt(decimal? par4418, decimal? par4419)
+		public static bool? numeric_lt(decimal? par4418, decimal? par4419)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericMod
+		#region numeric_mod
 
 		[Sql.Function(Name="pg_catalog.numeric_mod", ServerSideOnly=true)]
-		public static decimal? NumericMod(decimal? par4421, decimal? par4422)
+		public static decimal? numeric_mod(decimal? par4421, decimal? par4422)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericMul
+		#region numeric_mul
 
 		[Sql.Function(Name="pg_catalog.numeric_mul", ServerSideOnly=true)]
-		public static decimal? NumericMul(decimal? par4424, decimal? par4425)
+		public static decimal? numeric_mul(decimal? par4424, decimal? par4425)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericNe
+		#region numeric_ne
 
 		[Sql.Function(Name="pg_catalog.numeric_ne", ServerSideOnly=true)]
-		public static bool? NumericNe(decimal? par4427, decimal? par4428)
+		public static bool? numeric_ne(decimal? par4427, decimal? par4428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericOut
+		#region numeric_out
 
 		[Sql.Function(Name="pg_catalog.numeric_out", ServerSideOnly=true)]
-		public static object NumericOut(decimal? par4430)
+		public static object numeric_out(decimal? par4430)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyAvg
+		#region numeric_poly_avg
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_avg", ServerSideOnly=true)]
-		public static decimal? NumericPolyAvg(object par4432)
+		public static decimal? numeric_poly_avg(object par4432)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyCombine
+		#region numeric_poly_combine
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_combine", ServerSideOnly=true)]
-		public static object NumericPolyCombine(object par4434, object par4435)
+		public static object numeric_poly_combine(object par4434, object par4435)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyDeserialize
+		#region numeric_poly_deserialize
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_deserialize", ServerSideOnly=true)]
-		public static object NumericPolyDeserialize(byte[] par4437, object par4438)
+		public static object numeric_poly_deserialize(byte[] par4437, object par4438)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolySerialize
+		#region numeric_poly_serialize
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_serialize", ServerSideOnly=true)]
-		public static byte[] NumericPolySerialize(object par4440)
+		public static byte[] numeric_poly_serialize(object par4440)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyStddevPop
+		#region numeric_poly_stddev_pop
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_stddev_pop", ServerSideOnly=true)]
-		public static decimal? NumericPolyStddevPop(object par4442)
+		public static decimal? numeric_poly_stddev_pop(object par4442)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyStddevSamp
+		#region numeric_poly_stddev_samp
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_stddev_samp", ServerSideOnly=true)]
-		public static decimal? NumericPolyStddevSamp(object par4444)
+		public static decimal? numeric_poly_stddev_samp(object par4444)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolySum
+		#region numeric_poly_sum
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_sum", ServerSideOnly=true)]
-		public static decimal? NumericPolySum(object par4446)
+		public static decimal? numeric_poly_sum(object par4446)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyVarPop
+		#region numeric_poly_var_pop
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_var_pop", ServerSideOnly=true)]
-		public static decimal? NumericPolyVarPop(object par4448)
+		public static decimal? numeric_poly_var_pop(object par4448)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPolyVarSamp
+		#region numeric_poly_var_samp
 
 		[Sql.Function(Name="pg_catalog.numeric_poly_var_samp", ServerSideOnly=true)]
-		public static decimal? NumericPolyVarSamp(object par4450)
+		public static decimal? numeric_poly_var_samp(object par4450)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericPower
+		#region numeric_power
 
 		[Sql.Function(Name="pg_catalog.numeric_power", ServerSideOnly=true)]
-		public static decimal? NumericPower(decimal? par4452, decimal? par4453)
+		public static decimal? numeric_power(decimal? par4452, decimal? par4453)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericRecv
+		#region numeric_recv
 
 		[Sql.Function(Name="pg_catalog.numeric_recv", ServerSideOnly=true)]
-		public static decimal? NumericRecv(object par4455, int? par4456, int? par4457)
+		public static decimal? numeric_recv(object par4455, int? par4456, int? par4457)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSend
+		#region numeric_send
 
 		[Sql.Function(Name="pg_catalog.numeric_send", ServerSideOnly=true)]
-		public static byte[] NumericSend(decimal? par4459)
+		public static byte[] numeric_send(decimal? par4459)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSerialize
+		#region numeric_serialize
 
 		[Sql.Function(Name="pg_catalog.numeric_serialize", ServerSideOnly=true)]
-		public static byte[] NumericSerialize(object par4461)
+		public static byte[] numeric_serialize(object par4461)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSmaller
+		#region numeric_smaller
 
 		[Sql.Function(Name="pg_catalog.numeric_smaller", ServerSideOnly=true)]
-		public static decimal? NumericSmaller(decimal? par4463, decimal? par4464)
+		public static decimal? numeric_smaller(decimal? par4463, decimal? par4464)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSortsupport
+		#region numeric_sortsupport
 
 		[Sql.Function(Name="pg_catalog.numeric_sortsupport", ServerSideOnly=true)]
-		public static object NumericSortsupport(object par4465)
+		public static object numeric_sortsupport(object par4465)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSqrt
+		#region numeric_sqrt
 
 		[Sql.Function(Name="pg_catalog.numeric_sqrt", ServerSideOnly=true)]
-		public static decimal? NumericSqrt(decimal? par4467)
+		public static decimal? numeric_sqrt(decimal? par4467)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericStddevPop
+		#region numeric_stddev_pop
 
 		[Sql.Function(Name="pg_catalog.numeric_stddev_pop", ServerSideOnly=true)]
-		public static decimal? NumericStddevPop(object par4469)
+		public static decimal? numeric_stddev_pop(object par4469)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericStddevSamp
+		#region numeric_stddev_samp
 
 		[Sql.Function(Name="pg_catalog.numeric_stddev_samp", ServerSideOnly=true)]
-		public static decimal? NumericStddevSamp(object par4471)
+		public static decimal? numeric_stddev_samp(object par4471)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSub
+		#region numeric_sub
 
 		[Sql.Function(Name="pg_catalog.numeric_sub", ServerSideOnly=true)]
-		public static decimal? NumericSub(decimal? par4473, decimal? par4474)
+		public static decimal? numeric_sub(decimal? par4473, decimal? par4474)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericSum
+		#region numeric_sum
 
 		[Sql.Function(Name="pg_catalog.numeric_sum", ServerSideOnly=true)]
-		public static decimal? NumericSum(object par4476)
+		public static decimal? numeric_sum(object par4476)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericTransform
+		#region numeric_transform
 
 		[Sql.Function(Name="pg_catalog.numeric_transform", ServerSideOnly=true)]
-		public static object NumericTransform(object par4478)
+		public static object numeric_transform(object par4478)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Numerictypmodin
+		#region numerictypmodin
 
 		[Sql.Function(Name="pg_catalog.numerictypmodin", ServerSideOnly=true)]
-		public static int? Numerictypmodin(object par4480)
+		public static int? numerictypmodin(object par4480)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Numerictypmodout
+		#region numerictypmodout
 
 		[Sql.Function(Name="pg_catalog.numerictypmodout", ServerSideOnly=true)]
-		public static object Numerictypmodout(int? par4482)
+		public static object numerictypmodout(int? par4482)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericUminus
+		#region numeric_uminus
 
 		[Sql.Function(Name="pg_catalog.numeric_uminus", ServerSideOnly=true)]
-		public static decimal? NumericUminus(decimal? par4484)
+		public static decimal? numeric_uminus(decimal? par4484)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericUplus
+		#region numeric_uplus
 
 		[Sql.Function(Name="pg_catalog.numeric_uplus", ServerSideOnly=true)]
-		public static decimal? NumericUplus(decimal? par4486)
+		public static decimal? numeric_uplus(decimal? par4486)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericVarPop
+		#region numeric_var_pop
 
 		[Sql.Function(Name="pg_catalog.numeric_var_pop", ServerSideOnly=true)]
-		public static decimal? NumericVarPop(object par4488)
+		public static decimal? numeric_var_pop(object par4488)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumericVarSamp
+		#region numeric_var_samp
 
 		[Sql.Function(Name="pg_catalog.numeric_var_samp", ServerSideOnly=true)]
-		public static decimal? NumericVarSamp(object par4490)
+		public static decimal? numeric_var_samp(object par4490)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Numnode
+		#region numnode
 
 		[Sql.Function(Name="pg_catalog.numnode", ServerSideOnly=true)]
-		public static int? Numnode(object par4492)
+		public static int? numnode(object par4492)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumNonnulls
+		#region num_nonnulls
 
 		[Sql.Function(Name="pg_catalog.num_nonnulls", ServerSideOnly=true)]
-		public static int? NumNonnulls(object par4494)
+		public static int? num_nonnulls(object par4494)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumNulls
+		#region num_nulls
 
 		[Sql.Function(Name="pg_catalog.num_nulls", ServerSideOnly=true)]
-		public static int? NumNulls(object par4496)
+		public static int? num_nulls(object par4496)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Numrange
+		#region numrange
 
 		[Sql.Function(Name="pg_catalog.numrange", ServerSideOnly=true)]
-		public static object Numrange(decimal? par4501, decimal? par4502, string par4503)
+		public static object numrange(decimal? par4501, decimal? par4502, string par4503)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region NumrangeSubdiff
+		#region numrange_subdiff
 
 		[Sql.Function(Name="pg_catalog.numrange_subdiff", ServerSideOnly=true)]
-		public static double? NumrangeSubdiff(decimal? par4505, decimal? par4506)
+		public static double? numrange_subdiff(decimal? par4505, decimal? par4506)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ObjDescription
+		#region obj_description
 
 		[Sql.Function(Name="pg_catalog.obj_description", ServerSideOnly=true)]
-		public static string ObjDescription(int? par4511)
+		public static string obj_description(int? par4511)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OctetLength
+		#region octet_length
 
 		[Sql.Function(Name="pg_catalog.octet_length", ServerSideOnly=true)]
-		public static int? OctetLength(byte[] par4519)
+		public static int? octet_length(byte[] par4519)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oid
+		#region oid
 
 		[Sql.Function(Name="pg_catalog.oid", ServerSideOnly=true)]
-		public static int? Oid(long? par4521)
+		public static int? oid(long? par4521)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oideq
+		#region oideq
 
 		[Sql.Function(Name="pg_catalog.oideq", ServerSideOnly=true)]
-		public static bool? Oideq(int? par4523, int? par4524)
+		public static bool? oideq(int? par4523, int? par4524)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidge
+		#region oidge
 
 		[Sql.Function(Name="pg_catalog.oidge", ServerSideOnly=true)]
-		public static bool? Oidge(int? par4526, int? par4527)
+		public static bool? oidge(int? par4526, int? par4527)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidgt
+		#region oidgt
 
 		[Sql.Function(Name="pg_catalog.oidgt", ServerSideOnly=true)]
-		public static bool? Oidgt(int? par4529, int? par4530)
+		public static bool? oidgt(int? par4529, int? par4530)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidin
+		#region oidin
 
 		[Sql.Function(Name="pg_catalog.oidin", ServerSideOnly=true)]
-		public static int? Oidin(object par4532)
+		public static int? oidin(object par4532)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidlarger
+		#region oidlarger
 
 		[Sql.Function(Name="pg_catalog.oidlarger", ServerSideOnly=true)]
-		public static int? Oidlarger(int? par4534, int? par4535)
+		public static int? oidlarger(int? par4534, int? par4535)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidle
+		#region oidle
 
 		[Sql.Function(Name="pg_catalog.oidle", ServerSideOnly=true)]
-		public static bool? Oidle(int? par4537, int? par4538)
+		public static bool? oidle(int? par4537, int? par4538)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidlt
+		#region oidlt
 
 		[Sql.Function(Name="pg_catalog.oidlt", ServerSideOnly=true)]
-		public static bool? Oidlt(int? par4540, int? par4541)
+		public static bool? oidlt(int? par4540, int? par4541)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidne
+		#region oidne
 
 		[Sql.Function(Name="pg_catalog.oidne", ServerSideOnly=true)]
-		public static bool? Oidne(int? par4543, int? par4544)
+		public static bool? oidne(int? par4543, int? par4544)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidout
+		#region oidout
 
 		[Sql.Function(Name="pg_catalog.oidout", ServerSideOnly=true)]
-		public static object Oidout(int? par4546)
+		public static object oidout(int? par4546)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidrecv
+		#region oidrecv
 
 		[Sql.Function(Name="pg_catalog.oidrecv", ServerSideOnly=true)]
-		public static int? Oidrecv(object par4548)
+		public static int? oidrecv(object par4548)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidsend
+		#region oidsend
 
 		[Sql.Function(Name="pg_catalog.oidsend", ServerSideOnly=true)]
-		public static byte[] Oidsend(int? par4550)
+		public static byte[] oidsend(int? par4550)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidsmaller
+		#region oidsmaller
 
 		[Sql.Function(Name="pg_catalog.oidsmaller", ServerSideOnly=true)]
-		public static int? Oidsmaller(int? par4552, int? par4553)
+		public static int? oidsmaller(int? par4552, int? par4553)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectoreq
+		#region oidvectoreq
 
 		[Sql.Function(Name="pg_catalog.oidvectoreq", ServerSideOnly=true)]
-		public static bool? Oidvectoreq(object par4555, object par4556)
+		public static bool? oidvectoreq(object par4555, object par4556)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorge
+		#region oidvectorge
 
 		[Sql.Function(Name="pg_catalog.oidvectorge", ServerSideOnly=true)]
-		public static bool? Oidvectorge(object par4558, object par4559)
+		public static bool? oidvectorge(object par4558, object par4559)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorgt
+		#region oidvectorgt
 
 		[Sql.Function(Name="pg_catalog.oidvectorgt", ServerSideOnly=true)]
-		public static bool? Oidvectorgt(object par4561, object par4562)
+		public static bool? oidvectorgt(object par4561, object par4562)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorin
+		#region oidvectorin
 
 		[Sql.Function(Name="pg_catalog.oidvectorin", ServerSideOnly=true)]
-		public static object Oidvectorin(object par4564)
+		public static object oidvectorin(object par4564)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorle
+		#region oidvectorle
 
 		[Sql.Function(Name="pg_catalog.oidvectorle", ServerSideOnly=true)]
-		public static bool? Oidvectorle(object par4566, object par4567)
+		public static bool? oidvectorle(object par4566, object par4567)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorlt
+		#region oidvectorlt
 
 		[Sql.Function(Name="pg_catalog.oidvectorlt", ServerSideOnly=true)]
-		public static bool? Oidvectorlt(object par4569, object par4570)
+		public static bool? oidvectorlt(object par4569, object par4570)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorne
+		#region oidvectorne
 
 		[Sql.Function(Name="pg_catalog.oidvectorne", ServerSideOnly=true)]
-		public static bool? Oidvectorne(object par4572, object par4573)
+		public static bool? oidvectorne(object par4572, object par4573)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorout
+		#region oidvectorout
 
 		[Sql.Function(Name="pg_catalog.oidvectorout", ServerSideOnly=true)]
-		public static object Oidvectorout(object par4575)
+		public static object oidvectorout(object par4575)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorrecv
+		#region oidvectorrecv
 
 		[Sql.Function(Name="pg_catalog.oidvectorrecv", ServerSideOnly=true)]
-		public static object Oidvectorrecv(object par4577)
+		public static object oidvectorrecv(object par4577)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectorsend
+		#region oidvectorsend
 
 		[Sql.Function(Name="pg_catalog.oidvectorsend", ServerSideOnly=true)]
-		public static byte[] Oidvectorsend(object par4579)
+		public static byte[] oidvectorsend(object par4579)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Oidvectortypes
+		#region oidvectortypes
 
 		[Sql.Function(Name="pg_catalog.oidvectortypes", ServerSideOnly=true)]
-		public static string Oidvectortypes(object par4581)
+		public static string oidvectortypes(object par4581)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnPb
+		#region on_pb
 
 		[Sql.Function(Name="pg_catalog.on_pb", ServerSideOnly=true)]
-		public static bool? OnPb(NpgsqlPoint? par4583, NpgsqlBox? par4584)
+		public static bool? on_pb(NpgsqlPoint? par4583, NpgsqlBox? par4584)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnPl
+		#region on_pl
 
 		[Sql.Function(Name="pg_catalog.on_pl", ServerSideOnly=true)]
-		public static bool? OnPl(NpgsqlPoint? par4586, NpgsqlLine? par4587)
+		public static bool? on_pl(NpgsqlPoint? par4586, NpgsqlLine? par4587)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnPpath
+		#region on_ppath
 
 		[Sql.Function(Name="pg_catalog.on_ppath", ServerSideOnly=true)]
-		public static bool? OnPpath(NpgsqlPoint? par4589, NpgsqlPath? par4590)
+		public static bool? on_ppath(NpgsqlPoint? par4589, NpgsqlPath? par4590)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnPs
+		#region on_ps
 
 		[Sql.Function(Name="pg_catalog.on_ps", ServerSideOnly=true)]
-		public static bool? OnPs(NpgsqlPoint? par4592, NpgsqlLSeg? par4593)
+		public static bool? on_ps(NpgsqlPoint? par4592, NpgsqlLSeg? par4593)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnSb
+		#region on_sb
 
 		[Sql.Function(Name="pg_catalog.on_sb", ServerSideOnly=true)]
-		public static bool? OnSb(NpgsqlLSeg? par4595, NpgsqlBox? par4596)
+		public static bool? on_sb(NpgsqlLSeg? par4595, NpgsqlBox? par4596)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OnSl
+		#region on_sl
 
 		[Sql.Function(Name="pg_catalog.on_sl", ServerSideOnly=true)]
-		public static bool? OnSl(NpgsqlLSeg? par4598, NpgsqlLine? par4599)
+		public static bool? on_sl(NpgsqlLSeg? par4598, NpgsqlLine? par4599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OpaqueIn
+		#region opaque_in
 
 		[Sql.Function(Name="pg_catalog.opaque_in", ServerSideOnly=true)]
-		public static object OpaqueIn(object par4601)
+		public static object opaque_in(object par4601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OpaqueOut
+		#region opaque_out
 
 		[Sql.Function(Name="pg_catalog.opaque_out", ServerSideOnly=true)]
-		public static object OpaqueOut(object par4603)
+		public static object opaque_out(object par4603)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OrderedSetTransition
+		#region ordered_set_transition
 
 		[Sql.Function(Name="pg_catalog.ordered_set_transition", ServerSideOnly=true)]
-		public static object OrderedSetTransition(object par4605, object par4606)
+		public static object ordered_set_transition(object par4605, object par4606)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region OrderedSetTransitionMulti
+		#region ordered_set_transition_multi
 
 		[Sql.Function(Name="pg_catalog.ordered_set_transition_multi", ServerSideOnly=true)]
-		public static object OrderedSetTransitionMulti(object par4608, object par4609)
+		public static object ordered_set_transition_multi(object par4608, object par4609)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Overlaps
+		#region overlaps
 
 		[Sql.Function(Name="pg_catalog.overlaps", ServerSideOnly=true)]
-		public static bool? Overlaps(DateTime? par4671, NpgsqlTimeSpan? par4672, DateTime? par4673, DateTime? par4674)
+		public static bool? overlaps(DateTime? par4671, NpgsqlTimeSpan? par4672, DateTime? par4673, DateTime? par4674)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Overlay
+		#region overlay
 
 		[Sql.Function(Name="pg_catalog.overlay", ServerSideOnly=true)]
-		public static byte[] Overlay(byte[] par4699, byte[] par4700, int? par4701)
+		public static byte[] overlay(byte[] par4699, byte[] par4700, int? par4701)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ParseIdent
+		#region parse_ident
 
 		[Sql.Function(Name="pg_catalog.parse_ident", ServerSideOnly=true)]
-		public static object ParseIdent(string str, bool? strict)
+		public static object parse_ident(string str, bool? strict)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Path
+		#region path
 
 		[Sql.Function(Name="pg_catalog.path", ServerSideOnly=true)]
-		public static NpgsqlPath? Path(NpgsqlPolygon? par4704)
+		public static NpgsqlPath? path(NpgsqlPolygon? par4704)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathAdd
+		#region path_add
 
 		[Sql.Function(Name="pg_catalog.path_add", ServerSideOnly=true)]
-		public static NpgsqlPath? PathAdd(NpgsqlPath? par4706, NpgsqlPath? par4707)
+		public static NpgsqlPath? path_add(NpgsqlPath? par4706, NpgsqlPath? par4707)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathAddPt
+		#region path_add_pt
 
 		[Sql.Function(Name="pg_catalog.path_add_pt", ServerSideOnly=true)]
-		public static NpgsqlPath? PathAddPt(NpgsqlPath? par4709, NpgsqlPoint? par4710)
+		public static NpgsqlPath? path_add_pt(NpgsqlPath? par4709, NpgsqlPoint? par4710)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathCenter
+		#region path_center
 
 		[Sql.Function(Name="pg_catalog.path_center", ServerSideOnly=true)]
-		public static NpgsqlPoint? PathCenter(NpgsqlPath? par4712)
+		public static NpgsqlPoint? path_center(NpgsqlPath? par4712)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathContainPt
+		#region path_contain_pt
 
 		[Sql.Function(Name="pg_catalog.path_contain_pt", ServerSideOnly=true)]
-		public static bool? PathContainPt(NpgsqlPath? par4714, NpgsqlPoint? par4715)
+		public static bool? path_contain_pt(NpgsqlPath? par4714, NpgsqlPoint? par4715)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathDistance
+		#region path_distance
 
 		[Sql.Function(Name="pg_catalog.path_distance", ServerSideOnly=true)]
-		public static double? PathDistance(NpgsqlPath? par4717, NpgsqlPath? par4718)
+		public static double? path_distance(NpgsqlPath? par4717, NpgsqlPath? par4718)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathDivPt
+		#region path_div_pt
 
 		[Sql.Function(Name="pg_catalog.path_div_pt", ServerSideOnly=true)]
-		public static NpgsqlPath? PathDivPt(NpgsqlPath? par4720, NpgsqlPoint? par4721)
+		public static NpgsqlPath? path_div_pt(NpgsqlPath? par4720, NpgsqlPoint? par4721)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathIn
+		#region path_in
 
 		[Sql.Function(Name="pg_catalog.path_in", ServerSideOnly=true)]
-		public static NpgsqlPath? PathIn(object par4723)
+		public static NpgsqlPath? path_in(object par4723)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathInter
+		#region path_inter
 
 		[Sql.Function(Name="pg_catalog.path_inter", ServerSideOnly=true)]
-		public static bool? PathInter(NpgsqlPath? par4725, NpgsqlPath? par4726)
+		public static bool? path_inter(NpgsqlPath? par4725, NpgsqlPath? par4726)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathLength
+		#region path_length
 
 		[Sql.Function(Name="pg_catalog.path_length", ServerSideOnly=true)]
-		public static double? PathLength(NpgsqlPath? par4728)
+		public static double? path_length(NpgsqlPath? par4728)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathMulPt
+		#region path_mul_pt
 
 		[Sql.Function(Name="pg_catalog.path_mul_pt", ServerSideOnly=true)]
-		public static NpgsqlPath? PathMulPt(NpgsqlPath? par4730, NpgsqlPoint? par4731)
+		public static NpgsqlPath? path_mul_pt(NpgsqlPath? par4730, NpgsqlPoint? par4731)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNEq
+		#region path_n_eq
 
 		[Sql.Function(Name="pg_catalog.path_n_eq", ServerSideOnly=true)]
-		public static bool? PathNEq(NpgsqlPath? par4733, NpgsqlPath? par4734)
+		public static bool? path_n_eq(NpgsqlPath? par4733, NpgsqlPath? par4734)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNGe
+		#region path_n_ge
 
 		[Sql.Function(Name="pg_catalog.path_n_ge", ServerSideOnly=true)]
-		public static bool? PathNGe(NpgsqlPath? par4736, NpgsqlPath? par4737)
+		public static bool? path_n_ge(NpgsqlPath? par4736, NpgsqlPath? par4737)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNGt
+		#region path_n_gt
 
 		[Sql.Function(Name="pg_catalog.path_n_gt", ServerSideOnly=true)]
-		public static bool? PathNGt(NpgsqlPath? par4739, NpgsqlPath? par4740)
+		public static bool? path_n_gt(NpgsqlPath? par4739, NpgsqlPath? par4740)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNLe
+		#region path_n_le
 
 		[Sql.Function(Name="pg_catalog.path_n_le", ServerSideOnly=true)]
-		public static bool? PathNLe(NpgsqlPath? par4742, NpgsqlPath? par4743)
+		public static bool? path_n_le(NpgsqlPath? par4742, NpgsqlPath? par4743)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNLt
+		#region path_n_lt
 
 		[Sql.Function(Name="pg_catalog.path_n_lt", ServerSideOnly=true)]
-		public static bool? PathNLt(NpgsqlPath? par4745, NpgsqlPath? par4746)
+		public static bool? path_n_lt(NpgsqlPath? par4745, NpgsqlPath? par4746)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathNpoints
+		#region path_npoints
 
 		[Sql.Function(Name="pg_catalog.path_npoints", ServerSideOnly=true)]
-		public static int? PathNpoints(NpgsqlPath? par4748)
+		public static int? path_npoints(NpgsqlPath? par4748)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathOut
+		#region path_out
 
 		[Sql.Function(Name="pg_catalog.path_out", ServerSideOnly=true)]
-		public static object PathOut(NpgsqlPath? par4750)
+		public static object path_out(NpgsqlPath? par4750)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathRecv
+		#region path_recv
 
 		[Sql.Function(Name="pg_catalog.path_recv", ServerSideOnly=true)]
-		public static NpgsqlPath? PathRecv(object par4752)
+		public static NpgsqlPath? path_recv(object par4752)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathSend
+		#region path_send
 
 		[Sql.Function(Name="pg_catalog.path_send", ServerSideOnly=true)]
-		public static byte[] PathSend(NpgsqlPath? par4754)
+		public static byte[] path_send(NpgsqlPath? par4754)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PathSubPt
+		#region path_sub_pt
 
 		[Sql.Function(Name="pg_catalog.path_sub_pt", ServerSideOnly=true)]
-		public static NpgsqlPath? PathSubPt(NpgsqlPath? par4756, NpgsqlPoint? par4757)
+		public static NpgsqlPath? path_sub_pt(NpgsqlPath? par4756, NpgsqlPoint? par4757)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Pclose
+		#region pclose
 
 		[Sql.Function(Name="pg_catalog.pclose", ServerSideOnly=true)]
-		public static NpgsqlPath? Pclose(NpgsqlPath? par4759)
+		public static NpgsqlPath? pclose(NpgsqlPath? par4759)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileCont
+		#region percentile_cont
 
 		[Sql.Function(Name="pg_catalog.percentile_cont", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static object PercentileCont<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4770, Expression<Func<TSource, NpgsqlTimeSpan?>> par4771)
+		public static object percentile_cont<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4770, Expression<Func<TSource, NpgsqlTimeSpan?>> par4771)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileContFloat8Final
+		#region percentile_cont_float8_final
 
 		[Sql.Function(Name="pg_catalog.percentile_cont_float8_final", ServerSideOnly=true)]
-		public static double? PercentileContFloat8Final(object par4773, double? par4774)
+		public static double? percentile_cont_float8_final(object par4773, double? par4774)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileContFloat8MultiFinal
+		#region percentile_cont_float8_multi_final
 
 		[Sql.Function(Name="pg_catalog.percentile_cont_float8_multi_final", ServerSideOnly=true)]
-		public static object PercentileContFloat8MultiFinal(object par4776, object par4777)
+		public static object percentile_cont_float8_multi_final(object par4776, object par4777)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileContIntervalFinal
+		#region percentile_cont_interval_final
 
 		[Sql.Function(Name="pg_catalog.percentile_cont_interval_final", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? PercentileContIntervalFinal(object par4779, double? par4780)
+		public static NpgsqlTimeSpan? percentile_cont_interval_final(object par4779, double? par4780)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileContIntervalMultiFinal
+		#region percentile_cont_interval_multi_final
 
 		[Sql.Function(Name="pg_catalog.percentile_cont_interval_multi_final", ServerSideOnly=true)]
-		public static object PercentileContIntervalMultiFinal(object par4782, object par4783)
+		public static object percentile_cont_interval_multi_final(object par4782, object par4783)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileDisc
+		#region percentile_disc
 
 		[Sql.Function(Name="pg_catalog.percentile_disc", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static object PercentileDisc<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4788, Expression<Func<TSource, object>> par4789)
+		public static object percentile_disc<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4788, Expression<Func<TSource, object>> par4789)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileDiscFinal
+		#region percentile_disc_final
 
 		[Sql.Function(Name="pg_catalog.percentile_disc_final", ServerSideOnly=true)]
-		public static object PercentileDiscFinal(object par4791, double? par4792, object par4793)
+		public static object percentile_disc_final(object par4791, double? par4792, object par4793)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentileDiscMultiFinal
+		#region percentile_disc_multi_final
 
 		[Sql.Function(Name="pg_catalog.percentile_disc_multi_final", ServerSideOnly=true)]
-		public static object PercentileDiscMultiFinal(object par4795, object par4796, object par4797)
+		public static object percentile_disc_multi_final(object par4795, object par4796, object par4797)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentRank
+		#region percent_rank
 
 		[Sql.Function(Name="pg_catalog.percent_rank", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static double? PercentRank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4800)
+		public static double? percent_rank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par4800)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PercentRankFinal
+		#region percent_rank_final
 
 		[Sql.Function(Name="pg_catalog.percent_rank_final", ServerSideOnly=true)]
-		public static double? PercentRankFinal(object par4802, object par4803)
+		public static double? percent_rank_final(object par4802, object par4803)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryLock
+		#region pg_advisory_lock
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_lock", ServerSideOnly=true)]
-		public static object PgAdvisoryLock(int? par4805, int? par4806)
+		public static object pg_advisory_lock(int? par4805, int? par4806)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryLockShared
+		#region pg_advisory_lock_shared
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_lock_shared", ServerSideOnly=true)]
-		public static object PgAdvisoryLockShared(int? par4808, int? par4809)
+		public static object pg_advisory_lock_shared(int? par4808, int? par4809)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryUnlock
+		#region pg_advisory_unlock
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_unlock", ServerSideOnly=true)]
-		public static bool? PgAdvisoryUnlock(int? par4813, int? par4814)
+		public static bool? pg_advisory_unlock(int? par4813, int? par4814)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryUnlockAll
+		#region pg_advisory_unlock_all
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_unlock_all", ServerSideOnly=true)]
-		public static object PgAdvisoryUnlockAll()
+		public static object pg_advisory_unlock_all()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryUnlockShared
+		#region pg_advisory_unlock_shared
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_unlock_shared", ServerSideOnly=true)]
-		public static bool? PgAdvisoryUnlockShared(int? par4818, int? par4819)
+		public static bool? pg_advisory_unlock_shared(int? par4818, int? par4819)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryXactLock
+		#region pg_advisory_xact_lock
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_xact_lock", ServerSideOnly=true)]
-		public static object PgAdvisoryXactLock(int? par4821, int? par4822)
+		public static object pg_advisory_xact_lock(int? par4821, int? par4822)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgAdvisoryXactLockShared
+		#region pg_advisory_xact_lock_shared
 
 		[Sql.Function(Name="pg_catalog.pg_advisory_xact_lock_shared", ServerSideOnly=true)]
-		public static object PgAdvisoryXactLockShared(int? par4824, int? par4825)
+		public static object pg_advisory_xact_lock_shared(int? par4824, int? par4825)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgBackendPid
+		#region pg_backend_pid
 
 		[Sql.Function(Name="pg_catalog.pg_backend_pid", ServerSideOnly=true)]
-		public static int? PgBackendPid()
+		public static int? pg_backend_pid()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgBackupStartTime
+		#region pg_backup_start_time
 
 		[Sql.Function(Name="pg_catalog.pg_backup_start_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgBackupStartTime()
+		public static DateTimeOffset? pg_backup_start_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgBlockingPids
+		#region pg_blocking_pids
 
 		[Sql.Function(Name="pg_catalog.pg_blocking_pids", ServerSideOnly=true)]
-		public static object PgBlockingPids(int? par4829)
+		public static object pg_blocking_pids(int? par4829)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCancelBackend
+		#region pg_cancel_backend
 
 		[Sql.Function(Name="pg_catalog.pg_cancel_backend", ServerSideOnly=true)]
-		public static bool? PgCancelBackend(int? par4831)
+		public static bool? pg_cancel_backend(int? par4831)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCharMaxLength
+		#region _pg_char_max_length
 
 		[Sql.Function(Name="information_schema._pg_char_max_length", ServerSideOnly=true)]
-		public static int? PgCharMaxLength(int? typid, int? typmod)
+		public static int? _pg_char_max_length(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCharOctetLength
+		#region _pg_char_octet_length
 
 		[Sql.Function(Name="information_schema._pg_char_octet_length", ServerSideOnly=true)]
-		public static int? PgCharOctetLength(int? typid, int? typmod)
+		public static int? _pg_char_octet_length(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCharToEncoding
+		#region pg_char_to_encoding
 
 		[Sql.Function(Name="pg_catalog.pg_char_to_encoding", ServerSideOnly=true)]
-		public static int? PgCharToEncoding(string par4835)
+		public static int? pg_char_to_encoding(string par4835)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgClientEncoding
+		#region pg_client_encoding
 
 		[Sql.Function(Name="pg_catalog.pg_client_encoding", ServerSideOnly=true)]
-		public static string PgClientEncoding()
+		public static string pg_client_encoding()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCollationActualVersion
+		#region pg_collation_actual_version
 
 		[Sql.Function(Name="pg_catalog.pg_collation_actual_version", ServerSideOnly=true)]
-		public static string PgCollationActualVersion(int? par4838)
+		public static string pg_collation_actual_version(int? par4838)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCollationFor
+		#region pg_collation_for
 
 		[Sql.Function(Name="pg_catalog.pg_collation_for", ServerSideOnly=true)]
-		public static string PgCollationFor(object par4840)
+		public static string pg_collation_for(object par4840)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCollationIsVisible
+		#region pg_collation_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_collation_is_visible", ServerSideOnly=true)]
-		public static bool? PgCollationIsVisible(int? par4842)
+		public static bool? pg_collation_is_visible(int? par4842)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgColumnIsUpdatable
+		#region pg_column_is_updatable
 
 		[Sql.Function(Name="pg_catalog.pg_column_is_updatable", ServerSideOnly=true)]
-		public static bool? PgColumnIsUpdatable(object par4844, short? par4845, bool? par4846)
+		public static bool? pg_column_is_updatable(object par4844, short? par4845, bool? par4846)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgColumnSize
+		#region pg_column_size
 
 		[Sql.Function(Name="pg_catalog.pg_column_size", ServerSideOnly=true)]
-		public static int? PgColumnSize(object par4848)
+		public static int? pg_column_size(object par4848)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgConfLoadTime
+		#region pg_conf_load_time
 
 		[Sql.Function(Name="pg_catalog.pg_conf_load_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgConfLoadTime()
+		public static DateTimeOffset? pg_conf_load_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgControlCheckpoint
+		#region pg_control_checkpoint
 
 		[Sql.Function(Name="pg_catalog.pg_control_checkpoint", ServerSideOnly=true)]
-		public static pg_control_checkpointResult PgControlCheckpoint()
+		public static pg_control_checkpointResult pg_control_checkpoint()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgControlInit
+		#region pg_control_init
 
 		[Sql.Function(Name="pg_catalog.pg_control_init", ServerSideOnly=true)]
-		public static pg_control_initResult PgControlInit()
+		public static pg_control_initResult pg_control_init()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgControlRecovery
+		#region pg_control_recovery
 
 		[Sql.Function(Name="pg_catalog.pg_control_recovery", ServerSideOnly=true)]
-		public static pg_control_recoveryResult PgControlRecovery()
+		public static pg_control_recoveryResult pg_control_recovery()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgControlSystem
+		#region pg_control_system
 
 		[Sql.Function(Name="pg_catalog.pg_control_system", ServerSideOnly=true)]
-		public static pg_control_systemResult PgControlSystem()
+		public static pg_control_systemResult pg_control_system()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgConversionIsVisible
+		#region pg_conversion_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_conversion_is_visible", ServerSideOnly=true)]
-		public static bool? PgConversionIsVisible(int? par4851)
+		public static bool? pg_conversion_is_visible(int? par4851)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCreateLogicalReplicationSlot
+		#region pg_create_logical_replication_slot
 
 		[Sql.Function(Name="pg_catalog.pg_create_logical_replication_slot", ServerSideOnly=true)]
-		public static pg_create_logical_replication_slotResult PgCreateLogicalReplicationSlot(string slot_name, string plugin, bool? temporary)
+		public static pg_create_logical_replication_slotResult pg_create_logical_replication_slot(string slot_name, string plugin, bool? temporary)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCreatePhysicalReplicationSlot
+		#region pg_create_physical_replication_slot
 
 		[Sql.Function(Name="pg_catalog.pg_create_physical_replication_slot", ServerSideOnly=true)]
-		public static pg_create_physical_replication_slotResult PgCreatePhysicalReplicationSlot(string slot_name, bool? immediately_reserve, bool? temporary)
+		public static pg_create_physical_replication_slotResult pg_create_physical_replication_slot(string slot_name, bool? immediately_reserve, bool? temporary)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCreateRestorePoint
+		#region pg_create_restore_point
 
 		[Sql.Function(Name="pg_catalog.pg_create_restore_point", ServerSideOnly=true)]
-		public static object PgCreateRestorePoint(string par4853)
+		public static object pg_create_restore_point(string par4853)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCurrentLogfile
+		#region pg_current_logfile
 
 		[Sql.Function(Name="pg_catalog.pg_current_logfile", ServerSideOnly=true)]
-		public static string PgCurrentLogfile(string par4856)
+		public static string pg_current_logfile(string par4856)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCurrentWalFlushLsn
+		#region pg_current_wal_flush_lsn
 
 		[Sql.Function(Name="pg_catalog.pg_current_wal_flush_lsn", ServerSideOnly=true)]
-		public static object PgCurrentWalFlushLsn()
+		public static object pg_current_wal_flush_lsn()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCurrentWalInsertLsn
+		#region pg_current_wal_insert_lsn
 
 		[Sql.Function(Name="pg_catalog.pg_current_wal_insert_lsn", ServerSideOnly=true)]
-		public static object PgCurrentWalInsertLsn()
+		public static object pg_current_wal_insert_lsn()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgCurrentWalLsn
+		#region pg_current_wal_lsn
 
 		[Sql.Function(Name="pg_catalog.pg_current_wal_lsn", ServerSideOnly=true)]
-		public static object PgCurrentWalLsn()
+		public static object pg_current_wal_lsn()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDatabaseSize
+		#region pg_database_size
 
 		[Sql.Function(Name="pg_catalog.pg_database_size", ServerSideOnly=true)]
-		public static long? PgDatabaseSize(int? par4863)
+		public static long? pg_database_size(int? par4863)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDatetimePrecision
+		#region _pg_datetime_precision
 
 		[Sql.Function(Name="information_schema._pg_datetime_precision", ServerSideOnly=true)]
-		public static int? PgDatetimePrecision(int? typid, int? typmod)
+		public static int? _pg_datetime_precision(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDdlCommandIn
+		#region pg_ddl_command_in
 
 		[Sql.Function(Name="pg_catalog.pg_ddl_command_in", ServerSideOnly=true)]
-		public static object PgDdlCommandIn(object par4866)
+		public static object pg_ddl_command_in(object par4866)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDdlCommandOut
+		#region pg_ddl_command_out
 
 		[Sql.Function(Name="pg_catalog.pg_ddl_command_out", ServerSideOnly=true)]
-		public static object PgDdlCommandOut(object par4868)
+		public static object pg_ddl_command_out(object par4868)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDdlCommandRecv
+		#region pg_ddl_command_recv
 
 		[Sql.Function(Name="pg_catalog.pg_ddl_command_recv", ServerSideOnly=true)]
-		public static object PgDdlCommandRecv(object par4870)
+		public static object pg_ddl_command_recv(object par4870)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDdlCommandSend
+		#region pg_ddl_command_send
 
 		[Sql.Function(Name="pg_catalog.pg_ddl_command_send", ServerSideOnly=true)]
-		public static byte[] PgDdlCommandSend(object par4872)
+		public static byte[] pg_ddl_command_send(object par4872)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDependenciesIn
+		#region pg_dependencies_in
 
 		[Sql.Function(Name="pg_catalog.pg_dependencies_in", ServerSideOnly=true)]
-		public static object PgDependenciesIn(object par4874)
+		public static object pg_dependencies_in(object par4874)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDependenciesOut
+		#region pg_dependencies_out
 
 		[Sql.Function(Name="pg_catalog.pg_dependencies_out", ServerSideOnly=true)]
-		public static object PgDependenciesOut(object par4876)
+		public static object pg_dependencies_out(object par4876)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDependenciesRecv
+		#region pg_dependencies_recv
 
 		[Sql.Function(Name="pg_catalog.pg_dependencies_recv", ServerSideOnly=true)]
-		public static object PgDependenciesRecv(object par4878)
+		public static object pg_dependencies_recv(object par4878)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDependenciesSend
+		#region pg_dependencies_send
 
 		[Sql.Function(Name="pg_catalog.pg_dependencies_send", ServerSideOnly=true)]
-		public static byte[] PgDependenciesSend(object par4880)
+		public static byte[] pg_dependencies_send(object par4880)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDescribeObject
+		#region pg_describe_object
 
 		[Sql.Function(Name="pg_catalog.pg_describe_object", ServerSideOnly=true)]
-		public static string PgDescribeObject(int? par4882, int? par4883, int? par4884)
+		public static string pg_describe_object(int? par4882, int? par4883, int? par4884)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgDropReplicationSlot
+		#region pg_drop_replication_slot
 
 		[Sql.Function(Name="pg_catalog.pg_drop_replication_slot", ServerSideOnly=true)]
-		public static object PgDropReplicationSlot(string par4885)
+		public static object pg_drop_replication_slot(string par4885)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgEncodingMaxLength
+		#region pg_encoding_max_length
 
 		[Sql.Function(Name="pg_catalog.pg_encoding_max_length", ServerSideOnly=true)]
-		public static int? PgEncodingMaxLength(int? par4887)
+		public static int? pg_encoding_max_length(int? par4887)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgEncodingToChar
+		#region pg_encoding_to_char
 
 		[Sql.Function(Name="pg_catalog.pg_encoding_to_char", ServerSideOnly=true)]
-		public static string PgEncodingToChar(int? par4889)
+		public static string pg_encoding_to_char(int? par4889)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgEventTriggerTableRewriteOid
+		#region pg_event_trigger_table_rewrite_oid
 
 		[Sql.Function(Name="pg_catalog.pg_event_trigger_table_rewrite_oid", ServerSideOnly=true)]
-		public static int? PgEventTriggerTableRewriteOid()
+		public static int? pg_event_trigger_table_rewrite_oid()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgEventTriggerTableRewriteReason
+		#region pg_event_trigger_table_rewrite_reason
 
 		[Sql.Function(Name="pg_catalog.pg_event_trigger_table_rewrite_reason", ServerSideOnly=true)]
-		public static int? PgEventTriggerTableRewriteReason()
+		public static int? pg_event_trigger_table_rewrite_reason()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgExportSnapshot
+		#region pg_export_snapshot
 
 		[Sql.Function(Name="pg_catalog.pg_export_snapshot", ServerSideOnly=true)]
-		public static string PgExportSnapshot()
+		public static string pg_export_snapshot()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgExtensionConfigDump
+		#region pg_extension_config_dump
 
 		[Sql.Function(Name="pg_catalog.pg_extension_config_dump", ServerSideOnly=true)]
-		public static object PgExtensionConfigDump(object par4893, string par4894)
+		public static object pg_extension_config_dump(object par4893, string par4894)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgFilenodeRelation
+		#region pg_filenode_relation
 
 		[Sql.Function(Name="pg_catalog.pg_filenode_relation", ServerSideOnly=true)]
-		public static object PgFilenodeRelation(int? par4896, int? par4897)
+		public static object pg_filenode_relation(int? par4896, int? par4897)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgFunctionIsVisible
+		#region pg_function_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_function_is_visible", ServerSideOnly=true)]
-		public static bool? PgFunctionIsVisible(int? par4899)
+		public static bool? pg_function_is_visible(int? par4899)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetConstraintdef
+		#region pg_get_constraintdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_constraintdef", ServerSideOnly=true)]
-		public static string PgGetConstraintdef(int? par4903, bool? par4904)
+		public static string pg_get_constraintdef(int? par4903, bool? par4904)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetExpr
+		#region pg_get_expr
 
 		[Sql.Function(Name="pg_catalog.pg_get_expr", ServerSideOnly=true)]
-		public static string PgGetExpr(object par4909, int? par4910, bool? par4911)
+		public static string pg_get_expr(object par4909, int? par4910, bool? par4911)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetFunctionArgDefault
+		#region pg_get_function_arg_default
 
 		[Sql.Function(Name="pg_catalog.pg_get_function_arg_default", ServerSideOnly=true)]
-		public static string PgGetFunctionArgDefault(int? par4913, int? par4914)
+		public static string pg_get_function_arg_default(int? par4913, int? par4914)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetFunctionArguments
+		#region pg_get_function_arguments
 
 		[Sql.Function(Name="pg_catalog.pg_get_function_arguments", ServerSideOnly=true)]
-		public static string PgGetFunctionArguments(int? par4916)
+		public static string pg_get_function_arguments(int? par4916)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetFunctiondef
+		#region pg_get_functiondef
 
 		[Sql.Function(Name="pg_catalog.pg_get_functiondef", ServerSideOnly=true)]
-		public static string PgGetFunctiondef(int? par4918)
+		public static string pg_get_functiondef(int? par4918)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetFunctionIdentityArguments
+		#region pg_get_function_identity_arguments
 
 		[Sql.Function(Name="pg_catalog.pg_get_function_identity_arguments", ServerSideOnly=true)]
-		public static string PgGetFunctionIdentityArguments(int? par4920)
+		public static string pg_get_function_identity_arguments(int? par4920)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetFunctionResult
+		#region pg_get_function_result
 
 		[Sql.Function(Name="pg_catalog.pg_get_function_result", ServerSideOnly=true)]
-		public static string PgGetFunctionResult(int? par4922)
+		public static string pg_get_function_result(int? par4922)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetIndexdef
+		#region pg_get_indexdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_indexdef", ServerSideOnly=true)]
-		public static string PgGetIndexdef(int? par4926, int? par4927, bool? par4928)
+		public static string pg_get_indexdef(int? par4926, int? par4927, bool? par4928)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetObjectAddress
+		#region pg_get_object_address
 
 		[Sql.Function(Name="pg_catalog.pg_get_object_address", ServerSideOnly=true)]
-		public static pg_get_object_addressResult PgGetObjectAddress(string type, object name, object args)
+		public static pg_get_object_addressResult pg_get_object_address(string type, object name, object args)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetPartitionConstraintdef
+		#region pg_get_partition_constraintdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_partition_constraintdef", ServerSideOnly=true)]
-		public static string PgGetPartitionConstraintdef(int? par4930)
+		public static string pg_get_partition_constraintdef(int? par4930)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetPartkeydef
+		#region pg_get_partkeydef
 
 		[Sql.Function(Name="pg_catalog.pg_get_partkeydef", ServerSideOnly=true)]
-		public static string PgGetPartkeydef(int? par4932)
+		public static string pg_get_partkeydef(int? par4932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetReplicaIdentityIndex
+		#region pg_get_replica_identity_index
 
 		[Sql.Function(Name="pg_catalog.pg_get_replica_identity_index", ServerSideOnly=true)]
-		public static object PgGetReplicaIdentityIndex(object par4934)
+		public static object pg_get_replica_identity_index(object par4934)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetRuledef
+		#region pg_get_ruledef
 
 		[Sql.Function(Name="pg_catalog.pg_get_ruledef", ServerSideOnly=true)]
-		public static string PgGetRuledef(int? par4938, bool? par4939)
+		public static string pg_get_ruledef(int? par4938, bool? par4939)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetSerialSequence
+		#region pg_get_serial_sequence
 
 		[Sql.Function(Name="pg_catalog.pg_get_serial_sequence", ServerSideOnly=true)]
-		public static string PgGetSerialSequence(string par4941, string par4942)
+		public static string pg_get_serial_sequence(string par4941, string par4942)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetStatisticsobjdef
+		#region pg_get_statisticsobjdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_statisticsobjdef", ServerSideOnly=true)]
-		public static string PgGetStatisticsobjdef(int? par4944)
+		public static string pg_get_statisticsobjdef(int? par4944)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetTriggerdef
+		#region pg_get_triggerdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_triggerdef", ServerSideOnly=true)]
-		public static string PgGetTriggerdef(int? par4948, bool? par4949)
+		public static string pg_get_triggerdef(int? par4948, bool? par4949)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetUserbyid
+		#region pg_get_userbyid
 
 		[Sql.Function(Name="pg_catalog.pg_get_userbyid", ServerSideOnly=true)]
-		public static string PgGetUserbyid(int? par4951)
+		public static string pg_get_userbyid(int? par4951)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgGetViewdef
+		#region pg_get_viewdef
 
 		[Sql.Function(Name="pg_catalog.pg_get_viewdef", ServerSideOnly=true)]
-		public static string PgGetViewdef(int? par4963, int? par4964)
+		public static string pg_get_viewdef(int? par4963, int? par4964)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgHasRole
+		#region pg_has_role
 
 		[Sql.Function(Name="pg_catalog.pg_has_role", ServerSideOnly=true)]
-		public static bool? PgHasRole(int? par4985, string par4986)
+		public static bool? pg_has_role(int? par4985, string par4986)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIdentifyObject
+		#region pg_identify_object
 
 		[Sql.Function(Name="pg_catalog.pg_identify_object", ServerSideOnly=true)]
-		public static pg_identify_objectResult PgIdentifyObject(int? classid, int? objid, int? objsubid)
+		public static pg_identify_objectResult pg_identify_object(int? classid, int? objid, int? objsubid)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIdentifyObjectAsAddress
+		#region pg_identify_object_as_address
 
 		[Sql.Function(Name="pg_catalog.pg_identify_object_as_address", ServerSideOnly=true)]
-		public static pg_identify_object_as_addressResult PgIdentifyObjectAsAddress(int? classid, int? objid, int? objsubid)
+		public static pg_identify_object_as_addressResult pg_identify_object_as_address(int? classid, int? objid, int? objsubid)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgImportSystemCollations
+		#region pg_import_system_collations
 
 		[Sql.Function(Name="pg_catalog.pg_import_system_collations", ServerSideOnly=true)]
-		public static int? PgImportSystemCollations(object par4988)
+		public static int? pg_import_system_collations(object par4988)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIndexamHasProperty
+		#region pg_indexam_has_property
 
 		[Sql.Function(Name="pg_catalog.pg_indexam_has_property", ServerSideOnly=true)]
-		public static bool? PgIndexamHasProperty(int? par4990, string par4991)
+		public static bool? pg_indexam_has_property(int? par4990, string par4991)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIndexColumnHasProperty
+		#region pg_index_column_has_property
 
 		[Sql.Function(Name="pg_catalog.pg_index_column_has_property", ServerSideOnly=true)]
-		public static bool? PgIndexColumnHasProperty(object par4993, int? par4994, string par4995)
+		public static bool? pg_index_column_has_property(object par4993, int? par4994, string par4995)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIndexesSize
+		#region pg_indexes_size
 
 		[Sql.Function(Name="pg_catalog.pg_indexes_size", ServerSideOnly=true)]
-		public static long? PgIndexesSize(object par4997)
+		public static long? pg_indexes_size(object par4997)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIndexHasProperty
+		#region pg_index_has_property
 
 		[Sql.Function(Name="pg_catalog.pg_index_has_property", ServerSideOnly=true)]
-		public static bool? PgIndexHasProperty(object par4999, string par5000)
+		public static bool? pg_index_has_property(object par4999, string par5000)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIndexPosition
+		#region _pg_index_position
 
 		[Sql.Function(Name="information_schema._pg_index_position", ServerSideOnly=true)]
-		public static int? PgIndexPosition(int? par5002, short? par5003)
+		public static int? _pg_index_position(int? par5002, short? par5003)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIntervalType
+		#region _pg_interval_type
 
 		[Sql.Function(Name="information_schema._pg_interval_type", ServerSideOnly=true)]
-		public static string PgIntervalType(int? typid, int? mod)
+		public static string _pg_interval_type(int? typid, int? mod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIsInBackup
+		#region pg_is_in_backup
 
 		[Sql.Function(Name="pg_catalog.pg_is_in_backup", ServerSideOnly=true)]
-		public static bool? PgIsInBackup()
+		public static bool? pg_is_in_backup()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIsInRecovery
+		#region pg_is_in_recovery
 
 		[Sql.Function(Name="pg_catalog.pg_is_in_recovery", ServerSideOnly=true)]
-		public static bool? PgIsInRecovery()
+		public static bool? pg_is_in_recovery()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIsolationTestSessionIsBlocked
+		#region pg_isolation_test_session_is_blocked
 
 		[Sql.Function(Name="pg_catalog.pg_isolation_test_session_is_blocked", ServerSideOnly=true)]
-		public static bool? PgIsolationTestSessionIsBlocked(int? par5008, object par5009)
+		public static bool? pg_isolation_test_session_is_blocked(int? par5008, object par5009)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIsOtherTempSchema
+		#region pg_is_other_temp_schema
 
 		[Sql.Function(Name="pg_catalog.pg_is_other_temp_schema", ServerSideOnly=true)]
-		public static bool? PgIsOtherTempSchema(int? par5011)
+		public static bool? pg_is_other_temp_schema(int? par5011)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgIsWalReplayPaused
+		#region pg_is_wal_replay_paused
 
 		[Sql.Function(Name="pg_catalog.pg_is_wal_replay_paused", ServerSideOnly=true)]
-		public static bool? PgIsWalReplayPaused()
+		public static bool? pg_is_wal_replay_paused()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgKeysequal
+		#region _pg_keysequal
 
 		[Sql.Function(Name="information_schema._pg_keysequal", ServerSideOnly=true)]
-		public static bool? PgKeysequal(object par5014, object par5015)
+		public static bool? _pg_keysequal(object par5014, object par5015)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLastCommittedXact
+		#region pg_last_committed_xact
 
 		[Sql.Function(Name="pg_catalog.pg_last_committed_xact", ServerSideOnly=true)]
-		public static pg_last_committed_xactResult PgLastCommittedXact()
+		public static pg_last_committed_xactResult pg_last_committed_xact()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLastWalReceiveLsn
+		#region pg_last_wal_receive_lsn
 
 		[Sql.Function(Name="pg_catalog.pg_last_wal_receive_lsn", ServerSideOnly=true)]
-		public static object PgLastWalReceiveLsn()
+		public static object pg_last_wal_receive_lsn()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLastWalReplayLsn
+		#region pg_last_wal_replay_lsn
 
 		[Sql.Function(Name="pg_catalog.pg_last_wal_replay_lsn", ServerSideOnly=true)]
-		public static object PgLastWalReplayLsn()
+		public static object pg_last_wal_replay_lsn()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLastXactReplayTimestamp
+		#region pg_last_xact_replay_timestamp
 
 		[Sql.Function(Name="pg_catalog.pg_last_xact_replay_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? PgLastXactReplayTimestamp()
+		public static DateTimeOffset? pg_last_xact_replay_timestamp()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLogicalEmitMessage
+		#region pg_logical_emit_message
 
 		[Sql.Function(Name="pg_catalog.pg_logical_emit_message", ServerSideOnly=true)]
-		public static object PgLogicalEmitMessage(bool? par5024, string par5025, byte[] par5026)
+		public static object pg_logical_emit_message(bool? par5024, string par5025, byte[] par5026)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnCmp
+		#region pg_lsn_cmp
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_cmp", ServerSideOnly=true)]
-		public static int? PgLsnCmp(object par5032, object par5033)
+		public static int? pg_lsn_cmp(object par5032, object par5033)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnEq
+		#region pg_lsn_eq
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_eq", ServerSideOnly=true)]
-		public static bool? PgLsnEq(object par5035, object par5036)
+		public static bool? pg_lsn_eq(object par5035, object par5036)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnGe
+		#region pg_lsn_ge
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_ge", ServerSideOnly=true)]
-		public static bool? PgLsnGe(object par5038, object par5039)
+		public static bool? pg_lsn_ge(object par5038, object par5039)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnGt
+		#region pg_lsn_gt
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_gt", ServerSideOnly=true)]
-		public static bool? PgLsnGt(object par5041, object par5042)
+		public static bool? pg_lsn_gt(object par5041, object par5042)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnHash
+		#region pg_lsn_hash
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_hash", ServerSideOnly=true)]
-		public static int? PgLsnHash(object par5044)
+		public static int? pg_lsn_hash(object par5044)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnIn
+		#region pg_lsn_in
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_in", ServerSideOnly=true)]
-		public static object PgLsnIn(object par5046)
+		public static object pg_lsn_in(object par5046)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnLe
+		#region pg_lsn_le
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_le", ServerSideOnly=true)]
-		public static bool? PgLsnLe(object par5048, object par5049)
+		public static bool? pg_lsn_le(object par5048, object par5049)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnLt
+		#region pg_lsn_lt
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_lt", ServerSideOnly=true)]
-		public static bool? PgLsnLt(object par5051, object par5052)
+		public static bool? pg_lsn_lt(object par5051, object par5052)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnMi
+		#region pg_lsn_mi
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_mi", ServerSideOnly=true)]
-		public static decimal? PgLsnMi(object par5054, object par5055)
+		public static decimal? pg_lsn_mi(object par5054, object par5055)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnNe
+		#region pg_lsn_ne
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_ne", ServerSideOnly=true)]
-		public static bool? PgLsnNe(object par5057, object par5058)
+		public static bool? pg_lsn_ne(object par5057, object par5058)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnOut
+		#region pg_lsn_out
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_out", ServerSideOnly=true)]
-		public static object PgLsnOut(object par5060)
+		public static object pg_lsn_out(object par5060)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnRecv
+		#region pg_lsn_recv
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_recv", ServerSideOnly=true)]
-		public static object PgLsnRecv(object par5062)
+		public static object pg_lsn_recv(object par5062)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgLsnSend
+		#region pg_lsn_send
 
 		[Sql.Function(Name="pg_catalog.pg_lsn_send", ServerSideOnly=true)]
-		public static byte[] PgLsnSend(object par5064)
+		public static byte[] pg_lsn_send(object par5064)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgMyTempSchema
+		#region pg_my_temp_schema
 
 		[Sql.Function(Name="pg_catalog.pg_my_temp_schema", ServerSideOnly=true)]
-		public static int? PgMyTempSchema()
+		public static int? pg_my_temp_schema()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNdistinctIn
+		#region pg_ndistinct_in
 
 		[Sql.Function(Name="pg_catalog.pg_ndistinct_in", ServerSideOnly=true)]
-		public static object PgNdistinctIn(object par5067)
+		public static object pg_ndistinct_in(object par5067)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNdistinctOut
+		#region pg_ndistinct_out
 
 		[Sql.Function(Name="pg_catalog.pg_ndistinct_out", ServerSideOnly=true)]
-		public static object PgNdistinctOut(object par5069)
+		public static object pg_ndistinct_out(object par5069)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNdistinctRecv
+		#region pg_ndistinct_recv
 
 		[Sql.Function(Name="pg_catalog.pg_ndistinct_recv", ServerSideOnly=true)]
-		public static object PgNdistinctRecv(object par5071)
+		public static object pg_ndistinct_recv(object par5071)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNdistinctSend
+		#region pg_ndistinct_send
 
 		[Sql.Function(Name="pg_catalog.pg_ndistinct_send", ServerSideOnly=true)]
-		public static byte[] PgNdistinctSend(object par5073)
+		public static byte[] pg_ndistinct_send(object par5073)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNodeTreeIn
+		#region pg_node_tree_in
 
 		[Sql.Function(Name="pg_catalog.pg_node_tree_in", ServerSideOnly=true)]
-		public static object PgNodeTreeIn(object par5075)
+		public static object pg_node_tree_in(object par5075)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNodeTreeOut
+		#region pg_node_tree_out
 
 		[Sql.Function(Name="pg_catalog.pg_node_tree_out", ServerSideOnly=true)]
-		public static object PgNodeTreeOut(object par5077)
+		public static object pg_node_tree_out(object par5077)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNodeTreeRecv
+		#region pg_node_tree_recv
 
 		[Sql.Function(Name="pg_catalog.pg_node_tree_recv", ServerSideOnly=true)]
-		public static object PgNodeTreeRecv(object par5079)
+		public static object pg_node_tree_recv(object par5079)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNodeTreeSend
+		#region pg_node_tree_send
 
 		[Sql.Function(Name="pg_catalog.pg_node_tree_send", ServerSideOnly=true)]
-		public static byte[] PgNodeTreeSend(object par5081)
+		public static byte[] pg_node_tree_send(object par5081)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNotificationQueueUsage
+		#region pg_notification_queue_usage
 
 		[Sql.Function(Name="pg_catalog.pg_notification_queue_usage", ServerSideOnly=true)]
-		public static double? PgNotificationQueueUsage()
+		public static double? pg_notification_queue_usage()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNotify
+		#region pg_notify
 
 		[Sql.Function(Name="pg_catalog.pg_notify", ServerSideOnly=true)]
-		public static object PgNotify(string par5083, string par5084)
+		public static object pg_notify(string par5083, string par5084)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNumericPrecision
+		#region _pg_numeric_precision
 
 		[Sql.Function(Name="information_schema._pg_numeric_precision", ServerSideOnly=true)]
-		public static int? PgNumericPrecision(int? typid, int? typmod)
+		public static int? _pg_numeric_precision(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNumericPrecisionRadix
+		#region _pg_numeric_precision_radix
 
 		[Sql.Function(Name="information_schema._pg_numeric_precision_radix", ServerSideOnly=true)]
-		public static int? PgNumericPrecisionRadix(int? typid, int? typmod)
+		public static int? _pg_numeric_precision_radix(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgNumericScale
+		#region _pg_numeric_scale
 
 		[Sql.Function(Name="information_schema._pg_numeric_scale", ServerSideOnly=true)]
-		public static int? PgNumericScale(int? typid, int? typmod)
+		public static int? _pg_numeric_scale(int? typid, int? typmod)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgOpclassIsVisible
+		#region pg_opclass_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_opclass_is_visible", ServerSideOnly=true)]
-		public static bool? PgOpclassIsVisible(int? par5089)
+		public static bool? pg_opclass_is_visible(int? par5089)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgOperatorIsVisible
+		#region pg_operator_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_operator_is_visible", ServerSideOnly=true)]
-		public static bool? PgOperatorIsVisible(int? par5091)
+		public static bool? pg_operator_is_visible(int? par5091)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgOpfamilyIsVisible
+		#region pg_opfamily_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_opfamily_is_visible", ServerSideOnly=true)]
-		public static bool? PgOpfamilyIsVisible(int? par5093)
+		public static bool? pg_opfamily_is_visible(int? par5093)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgPostmasterStartTime
+		#region pg_postmaster_start_time
 
 		[Sql.Function(Name="pg_catalog.pg_postmaster_start_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgPostmasterStartTime()
+		public static DateTimeOffset? pg_postmaster_start_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReadBinaryFile
+		#region pg_read_binary_file
 
 		[Sql.Function(Name="pg_catalog.pg_read_binary_file", ServerSideOnly=true)]
-		public static byte[] PgReadBinaryFile(string par5105)
+		public static byte[] pg_read_binary_file(string par5105)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReadFile
+		#region pg_read_file
 
 		[Sql.Function(Name="pg_catalog.pg_read_file", ServerSideOnly=true)]
-		public static string PgReadFile(string par5116)
+		public static string pg_read_file(string par5116)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRelationFilenode
+		#region pg_relation_filenode
 
 		[Sql.Function(Name="pg_catalog.pg_relation_filenode", ServerSideOnly=true)]
-		public static int? PgRelationFilenode(object par5118)
+		public static int? pg_relation_filenode(object par5118)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRelationFilepath
+		#region pg_relation_filepath
 
 		[Sql.Function(Name="pg_catalog.pg_relation_filepath", ServerSideOnly=true)]
-		public static string PgRelationFilepath(object par5120)
+		public static string pg_relation_filepath(object par5120)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRelationIsPublishable
+		#region pg_relation_is_publishable
 
 		[Sql.Function(Name="pg_catalog.pg_relation_is_publishable", ServerSideOnly=true)]
-		public static bool? PgRelationIsPublishable(object par5122)
+		public static bool? pg_relation_is_publishable(object par5122)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRelationIsUpdatable
+		#region pg_relation_is_updatable
 
 		[Sql.Function(Name="pg_catalog.pg_relation_is_updatable", ServerSideOnly=true)]
-		public static int? PgRelationIsUpdatable(object par5124, bool? par5125)
+		public static int? pg_relation_is_updatable(object par5124, bool? par5125)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRelationSize
+		#region pg_relation_size
 
 		[Sql.Function(Name="pg_catalog.pg_relation_size", ServerSideOnly=true)]
-		public static long? PgRelationSize(object par5129, string par5130)
+		public static long? pg_relation_size(object par5129, string par5130)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReloadConf
+		#region pg_reload_conf
 
 		[Sql.Function(Name="pg_catalog.pg_reload_conf", ServerSideOnly=true)]
-		public static bool? PgReloadConf()
+		public static bool? pg_reload_conf()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginAdvance
+		#region pg_replication_origin_advance
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_advance", ServerSideOnly=true)]
-		public static object PgReplicationOriginAdvance(string par5132, object par5133)
+		public static object pg_replication_origin_advance(string par5132, object par5133)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginCreate
+		#region pg_replication_origin_create
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_create", ServerSideOnly=true)]
-		public static int? PgReplicationOriginCreate(string par5135)
+		public static int? pg_replication_origin_create(string par5135)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginDrop
+		#region pg_replication_origin_drop
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_drop", ServerSideOnly=true)]
-		public static object PgReplicationOriginDrop(string par5136)
+		public static object pg_replication_origin_drop(string par5136)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginOid
+		#region pg_replication_origin_oid
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_oid", ServerSideOnly=true)]
-		public static int? PgReplicationOriginOid(string par5138)
+		public static int? pg_replication_origin_oid(string par5138)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginProgress
+		#region pg_replication_origin_progress
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_progress", ServerSideOnly=true)]
-		public static object PgReplicationOriginProgress(string par5140, bool? par5141)
+		public static object pg_replication_origin_progress(string par5140, bool? par5141)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginSessionIsSetup
+		#region pg_replication_origin_session_is_setup
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_session_is_setup", ServerSideOnly=true)]
-		public static bool? PgReplicationOriginSessionIsSetup()
+		public static bool? pg_replication_origin_session_is_setup()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginSessionProgress
+		#region pg_replication_origin_session_progress
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_session_progress", ServerSideOnly=true)]
-		public static object PgReplicationOriginSessionProgress(bool? par5144)
+		public static object pg_replication_origin_session_progress(bool? par5144)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginSessionReset
+		#region pg_replication_origin_session_reset
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_session_reset", ServerSideOnly=true)]
-		public static object PgReplicationOriginSessionReset()
+		public static object pg_replication_origin_session_reset()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginSessionSetup
+		#region pg_replication_origin_session_setup
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_session_setup", ServerSideOnly=true)]
-		public static object PgReplicationOriginSessionSetup(string par5145)
+		public static object pg_replication_origin_session_setup(string par5145)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginXactReset
+		#region pg_replication_origin_xact_reset
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_xact_reset", ServerSideOnly=true)]
-		public static object PgReplicationOriginXactReset()
+		public static object pg_replication_origin_xact_reset()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgReplicationOriginXactSetup
+		#region pg_replication_origin_xact_setup
 
 		[Sql.Function(Name="pg_catalog.pg_replication_origin_xact_setup", ServerSideOnly=true)]
-		public static object PgReplicationOriginXactSetup(object par5146, DateTimeOffset? par5147)
+		public static object pg_replication_origin_xact_setup(object par5146, DateTimeOffset? par5147)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgRotateLogfile
+		#region pg_rotate_logfile
 
 		[Sql.Function(Name="pg_catalog.pg_rotate_logfile", ServerSideOnly=true)]
-		public static bool? PgRotateLogfile()
+		public static bool? pg_rotate_logfile()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSafeSnapshotBlockingPids
+		#region pg_safe_snapshot_blocking_pids
 
 		[Sql.Function(Name="pg_catalog.pg_safe_snapshot_blocking_pids", ServerSideOnly=true)]
-		public static object PgSafeSnapshotBlockingPids(int? par5150)
+		public static object pg_safe_snapshot_blocking_pids(int? par5150)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSequenceLastValue
+		#region pg_sequence_last_value
 
 		[Sql.Function(Name="pg_catalog.pg_sequence_last_value", ServerSideOnly=true)]
-		public static long? PgSequenceLastValue(object par5152)
+		public static long? pg_sequence_last_value(object par5152)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSequenceParameters
+		#region pg_sequence_parameters
 
 		[Sql.Function(Name="pg_catalog.pg_sequence_parameters", ServerSideOnly=true)]
-		public static pg_sequence_parametersResult PgSequenceParameters(int? sequence_oid)
+		public static pg_sequence_parametersResult pg_sequence_parameters(int? sequence_oid)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSizeBytes
+		#region pg_size_bytes
 
 		[Sql.Function(Name="pg_catalog.pg_size_bytes", ServerSideOnly=true)]
-		public static long? PgSizeBytes(string par5154)
+		public static long? pg_size_bytes(string par5154)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSizePretty
+		#region pg_size_pretty
 
 		[Sql.Function(Name="pg_catalog.pg_size_pretty", ServerSideOnly=true)]
-		public static string PgSizePretty(decimal? par5158)
+		public static string pg_size_pretty(decimal? par5158)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSleep
+		#region pg_sleep
 
 		[Sql.Function(Name="pg_catalog.pg_sleep", ServerSideOnly=true)]
-		public static object PgSleep(double? par5159)
+		public static object pg_sleep(double? par5159)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSleepFor
+		#region pg_sleep_for
 
 		[Sql.Function(Name="pg_catalog.pg_sleep_for", ServerSideOnly=true)]
-		public static object PgSleepFor(NpgsqlTimeSpan? par5160)
+		public static object pg_sleep_for(NpgsqlTimeSpan? par5160)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSleepUntil
+		#region pg_sleep_until
 
 		[Sql.Function(Name="pg_catalog.pg_sleep_until", ServerSideOnly=true)]
-		public static object PgSleepUntil(DateTimeOffset? par5161)
+		public static object pg_sleep_until(DateTimeOffset? par5161)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStartBackup
+		#region pg_start_backup
 
 		[Sql.Function(Name="pg_catalog.pg_start_backup", ServerSideOnly=true)]
-		public static object PgStartBackup(string label, bool? fast, bool? exclusive)
+		public static object pg_start_backup(string label, bool? fast, bool? exclusive)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatClearSnapshot
+		#region pg_stat_clear_snapshot
 
 		[Sql.Function(Name="pg_catalog.pg_stat_clear_snapshot", ServerSideOnly=true)]
-		public static object PgStatClearSnapshot()
+		public static object pg_stat_clear_snapshot()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatFile
+		#region pg_stat_file
 
 		[Sql.Function(Name="pg_catalog.pg_stat_file", ServerSideOnly=true)]
-		public static pg_stat_fileResult PgStatFile(string filename, bool? missing_ok)
+		public static pg_stat_fileResult pg_stat_file(string filename, bool? missing_ok)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetAnalyzeCount
+		#region pg_stat_get_analyze_count
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_analyze_count", ServerSideOnly=true)]
-		public static long? PgStatGetAnalyzeCount(int? par5164)
+		public static long? pg_stat_get_analyze_count(int? par5164)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetArchiver
+		#region pg_stat_get_archiver
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_archiver", ServerSideOnly=true)]
-		public static pg_stat_get_archiverResult PgStatGetArchiver()
+		public static pg_stat_get_archiverResult pg_stat_get_archiver()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetAutoanalyzeCount
+		#region pg_stat_get_autoanalyze_count
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_autoanalyze_count", ServerSideOnly=true)]
-		public static long? PgStatGetAutoanalyzeCount(int? par5166)
+		public static long? pg_stat_get_autoanalyze_count(int? par5166)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetAutovacuumCount
+		#region pg_stat_get_autovacuum_count
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_autovacuum_count", ServerSideOnly=true)]
-		public static long? PgStatGetAutovacuumCount(int? par5168)
+		public static long? pg_stat_get_autovacuum_count(int? par5168)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendActivity
+		#region pg_stat_get_backend_activity
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_activity", ServerSideOnly=true)]
-		public static string PgStatGetBackendActivity(int? par5170)
+		public static string pg_stat_get_backend_activity(int? par5170)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendActivityStart
+		#region pg_stat_get_backend_activity_start
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_activity_start", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetBackendActivityStart(int? par5172)
+		public static DateTimeOffset? pg_stat_get_backend_activity_start(int? par5172)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendClientAddr
+		#region pg_stat_get_backend_client_addr
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_client_addr", ServerSideOnly=true)]
-		public static NpgsqlInet? PgStatGetBackendClientAddr(int? par5174)
+        [Obsolete]
+        public static NpgsqlInet? pg_stat_get_backend_client_addr(int? par5174)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendClientPort
+		#region pg_stat_get_backend_client_port
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_client_port", ServerSideOnly=true)]
-		public static int? PgStatGetBackendClientPort(int? par5176)
+		public static int? pg_stat_get_backend_client_port(int? par5176)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendDbid
+		#region pg_stat_get_backend_dbid
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_dbid", ServerSideOnly=true)]
-		public static int? PgStatGetBackendDbid(int? par5178)
+		public static int? pg_stat_get_backend_dbid(int? par5178)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendPid
+		#region pg_stat_get_backend_pid
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_pid", ServerSideOnly=true)]
-		public static int? PgStatGetBackendPid(int? par5180)
+		public static int? pg_stat_get_backend_pid(int? par5180)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendStart
+		#region pg_stat_get_backend_start
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_start", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetBackendStart(int? par5182)
+		public static DateTimeOffset? pg_stat_get_backend_start(int? par5182)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendUserid
+		#region pg_stat_get_backend_userid
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_userid", ServerSideOnly=true)]
-		public static int? PgStatGetBackendUserid(int? par5184)
+		public static int? pg_stat_get_backend_userid(int? par5184)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendWaitEvent
+		#region pg_stat_get_backend_wait_event
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_wait_event", ServerSideOnly=true)]
-		public static string PgStatGetBackendWaitEvent(int? par5186)
+		public static string pg_stat_get_backend_wait_event(int? par5186)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendWaitEventType
+		#region pg_stat_get_backend_wait_event_type
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_wait_event_type", ServerSideOnly=true)]
-		public static string PgStatGetBackendWaitEventType(int? par5188)
+		public static string pg_stat_get_backend_wait_event_type(int? par5188)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBackendXactStart
+		#region pg_stat_get_backend_xact_start
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_backend_xact_start", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetBackendXactStart(int? par5190)
+		public static DateTimeOffset? pg_stat_get_backend_xact_start(int? par5190)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterBufWrittenCheckpoints
+		#region pg_stat_get_bgwriter_buf_written_checkpoints
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_buf_written_checkpoints", ServerSideOnly=true)]
-		public static long? PgStatGetBgwriterBufWrittenCheckpoints()
+		public static long? pg_stat_get_bgwriter_buf_written_checkpoints()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterBufWrittenClean
+		#region pg_stat_get_bgwriter_buf_written_clean
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_buf_written_clean", ServerSideOnly=true)]
-		public static long? PgStatGetBgwriterBufWrittenClean()
+		public static long? pg_stat_get_bgwriter_buf_written_clean()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterMaxwrittenClean
+		#region pg_stat_get_bgwriter_maxwritten_clean
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_maxwritten_clean", ServerSideOnly=true)]
-		public static long? PgStatGetBgwriterMaxwrittenClean()
+		public static long? pg_stat_get_bgwriter_maxwritten_clean()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterRequestedCheckpoints
+		#region pg_stat_get_bgwriter_requested_checkpoints
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_requested_checkpoints", ServerSideOnly=true)]
-		public static long? PgStatGetBgwriterRequestedCheckpoints()
+		public static long? pg_stat_get_bgwriter_requested_checkpoints()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterStatResetTime
+		#region pg_stat_get_bgwriter_stat_reset_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_stat_reset_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetBgwriterStatResetTime()
+		public static DateTimeOffset? pg_stat_get_bgwriter_stat_reset_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBgwriterTimedCheckpoints
+		#region pg_stat_get_bgwriter_timed_checkpoints
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_bgwriter_timed_checkpoints", ServerSideOnly=true)]
-		public static long? PgStatGetBgwriterTimedCheckpoints()
+		public static long? pg_stat_get_bgwriter_timed_checkpoints()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBlocksFetched
+		#region pg_stat_get_blocks_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_blocks_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetBlocksFetched(int? par5198)
+		public static long? pg_stat_get_blocks_fetched(int? par5198)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBlocksHit
+		#region pg_stat_get_blocks_hit
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_blocks_hit", ServerSideOnly=true)]
-		public static long? PgStatGetBlocksHit(int? par5200)
+		public static long? pg_stat_get_blocks_hit(int? par5200)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBufAlloc
+		#region pg_stat_get_buf_alloc
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_buf_alloc", ServerSideOnly=true)]
-		public static long? PgStatGetBufAlloc()
+		public static long? pg_stat_get_buf_alloc()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBufFsyncBackend
+		#region pg_stat_get_buf_fsync_backend
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_buf_fsync_backend", ServerSideOnly=true)]
-		public static long? PgStatGetBufFsyncBackend()
+		public static long? pg_stat_get_buf_fsync_backend()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetBufWrittenBackend
+		#region pg_stat_get_buf_written_backend
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_buf_written_backend", ServerSideOnly=true)]
-		public static long? PgStatGetBufWrittenBackend()
+		public static long? pg_stat_get_buf_written_backend()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetCheckpointSyncTime
+		#region pg_stat_get_checkpoint_sync_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_checkpoint_sync_time", ServerSideOnly=true)]
-		public static double? PgStatGetCheckpointSyncTime()
+		public static double? pg_stat_get_checkpoint_sync_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetCheckpointWriteTime
+		#region pg_stat_get_checkpoint_write_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_checkpoint_write_time", ServerSideOnly=true)]
-		public static double? PgStatGetCheckpointWriteTime()
+		public static double? pg_stat_get_checkpoint_write_time()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbBlkReadTime
+		#region pg_stat_get_db_blk_read_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_blk_read_time", ServerSideOnly=true)]
-		public static double? PgStatGetDbBlkReadTime(int? par5207)
+		public static double? pg_stat_get_db_blk_read_time(int? par5207)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbBlkWriteTime
+		#region pg_stat_get_db_blk_write_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_blk_write_time", ServerSideOnly=true)]
-		public static double? PgStatGetDbBlkWriteTime(int? par5209)
+		public static double? pg_stat_get_db_blk_write_time(int? par5209)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbBlocksFetched
+		#region pg_stat_get_db_blocks_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_blocks_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetDbBlocksFetched(int? par5211)
+		public static long? pg_stat_get_db_blocks_fetched(int? par5211)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbBlocksHit
+		#region pg_stat_get_db_blocks_hit
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_blocks_hit", ServerSideOnly=true)]
-		public static long? PgStatGetDbBlocksHit(int? par5213)
+		public static long? pg_stat_get_db_blocks_hit(int? par5213)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictAll
+		#region pg_stat_get_db_conflict_all
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_all", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictAll(int? par5215)
+		public static long? pg_stat_get_db_conflict_all(int? par5215)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictBufferpin
+		#region pg_stat_get_db_conflict_bufferpin
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_bufferpin", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictBufferpin(int? par5217)
+		public static long? pg_stat_get_db_conflict_bufferpin(int? par5217)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictLock
+		#region pg_stat_get_db_conflict_lock
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_lock", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictLock(int? par5219)
+		public static long? pg_stat_get_db_conflict_lock(int? par5219)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictSnapshot
+		#region pg_stat_get_db_conflict_snapshot
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_snapshot", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictSnapshot(int? par5221)
+		public static long? pg_stat_get_db_conflict_snapshot(int? par5221)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictStartupDeadlock
+		#region pg_stat_get_db_conflict_startup_deadlock
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_startup_deadlock", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictStartupDeadlock(int? par5223)
+		public static long? pg_stat_get_db_conflict_startup_deadlock(int? par5223)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbConflictTablespace
+		#region pg_stat_get_db_conflict_tablespace
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_conflict_tablespace", ServerSideOnly=true)]
-		public static long? PgStatGetDbConflictTablespace(int? par5225)
+		public static long? pg_stat_get_db_conflict_tablespace(int? par5225)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbDeadlocks
+		#region pg_stat_get_db_deadlocks
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_deadlocks", ServerSideOnly=true)]
-		public static long? PgStatGetDbDeadlocks(int? par5227)
+		public static long? pg_stat_get_db_deadlocks(int? par5227)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbNumbackends
+		#region pg_stat_get_db_numbackends
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_numbackends", ServerSideOnly=true)]
-		public static int? PgStatGetDbNumbackends(int? par5229)
+		public static int? pg_stat_get_db_numbackends(int? par5229)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbStatResetTime
+		#region pg_stat_get_db_stat_reset_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_stat_reset_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetDbStatResetTime(int? par5231)
+		public static DateTimeOffset? pg_stat_get_db_stat_reset_time(int? par5231)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTempBytes
+		#region pg_stat_get_db_temp_bytes
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_temp_bytes", ServerSideOnly=true)]
-		public static long? PgStatGetDbTempBytes(int? par5233)
+		public static long? pg_stat_get_db_temp_bytes(int? par5233)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTempFiles
+		#region pg_stat_get_db_temp_files
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_temp_files", ServerSideOnly=true)]
-		public static long? PgStatGetDbTempFiles(int? par5235)
+		public static long? pg_stat_get_db_temp_files(int? par5235)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTuplesDeleted
+		#region pg_stat_get_db_tuples_deleted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_tuples_deleted", ServerSideOnly=true)]
-		public static long? PgStatGetDbTuplesDeleted(int? par5237)
+		public static long? pg_stat_get_db_tuples_deleted(int? par5237)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTuplesFetched
+		#region pg_stat_get_db_tuples_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_tuples_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetDbTuplesFetched(int? par5239)
+		public static long? pg_stat_get_db_tuples_fetched(int? par5239)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTuplesInserted
+		#region pg_stat_get_db_tuples_inserted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_tuples_inserted", ServerSideOnly=true)]
-		public static long? PgStatGetDbTuplesInserted(int? par5241)
+		public static long? pg_stat_get_db_tuples_inserted(int? par5241)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTuplesReturned
+		#region pg_stat_get_db_tuples_returned
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_tuples_returned", ServerSideOnly=true)]
-		public static long? PgStatGetDbTuplesReturned(int? par5243)
+		public static long? pg_stat_get_db_tuples_returned(int? par5243)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbTuplesUpdated
+		#region pg_stat_get_db_tuples_updated
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_tuples_updated", ServerSideOnly=true)]
-		public static long? PgStatGetDbTuplesUpdated(int? par5245)
+		public static long? pg_stat_get_db_tuples_updated(int? par5245)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbXactCommit
+		#region pg_stat_get_db_xact_commit
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_xact_commit", ServerSideOnly=true)]
-		public static long? PgStatGetDbXactCommit(int? par5247)
+		public static long? pg_stat_get_db_xact_commit(int? par5247)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDbXactRollback
+		#region pg_stat_get_db_xact_rollback
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_db_xact_rollback", ServerSideOnly=true)]
-		public static long? PgStatGetDbXactRollback(int? par5249)
+		public static long? pg_stat_get_db_xact_rollback(int? par5249)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetDeadTuples
+		#region pg_stat_get_dead_tuples
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_dead_tuples", ServerSideOnly=true)]
-		public static long? PgStatGetDeadTuples(int? par5251)
+		public static long? pg_stat_get_dead_tuples(int? par5251)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetFunctionCalls
+		#region pg_stat_get_function_calls
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_function_calls", ServerSideOnly=true)]
-		public static long? PgStatGetFunctionCalls(int? par5253)
+		public static long? pg_stat_get_function_calls(int? par5253)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetFunctionSelfTime
+		#region pg_stat_get_function_self_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_function_self_time", ServerSideOnly=true)]
-		public static double? PgStatGetFunctionSelfTime(int? par5255)
+		public static double? pg_stat_get_function_self_time(int? par5255)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetFunctionTotalTime
+		#region pg_stat_get_function_total_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_function_total_time", ServerSideOnly=true)]
-		public static double? PgStatGetFunctionTotalTime(int? par5257)
+		public static double? pg_stat_get_function_total_time(int? par5257)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetLastAnalyzeTime
+		#region pg_stat_get_last_analyze_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_last_analyze_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetLastAnalyzeTime(int? par5259)
+		public static DateTimeOffset? pg_stat_get_last_analyze_time(int? par5259)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetLastAutoanalyzeTime
+		#region pg_stat_get_last_autoanalyze_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_last_autoanalyze_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetLastAutoanalyzeTime(int? par5261)
+		public static DateTimeOffset? pg_stat_get_last_autoanalyze_time(int? par5261)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetLastAutovacuumTime
+		#region pg_stat_get_last_autovacuum_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_last_autovacuum_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetLastAutovacuumTime(int? par5263)
+		public static DateTimeOffset? pg_stat_get_last_autovacuum_time(int? par5263)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetLastVacuumTime
+		#region pg_stat_get_last_vacuum_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_last_vacuum_time", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetLastVacuumTime(int? par5265)
+		public static DateTimeOffset? pg_stat_get_last_vacuum_time(int? par5265)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetLiveTuples
+		#region pg_stat_get_live_tuples
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_live_tuples", ServerSideOnly=true)]
-		public static long? PgStatGetLiveTuples(int? par5267)
+		public static long? pg_stat_get_live_tuples(int? par5267)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetModSinceAnalyze
+		#region pg_stat_get_mod_since_analyze
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_mod_since_analyze", ServerSideOnly=true)]
-		public static long? PgStatGetModSinceAnalyze(int? par5269)
+		public static long? pg_stat_get_mod_since_analyze(int? par5269)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetNumscans
+		#region pg_stat_get_numscans
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_numscans", ServerSideOnly=true)]
-		public static long? PgStatGetNumscans(int? par5271)
+		public static long? pg_stat_get_numscans(int? par5271)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetSnapshotTimestamp
+		#region pg_stat_get_snapshot_timestamp
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_snapshot_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? PgStatGetSnapshotTimestamp()
+		public static DateTimeOffset? pg_stat_get_snapshot_timestamp()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetSubscription
+		#region pg_stat_get_subscription
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_subscription", ServerSideOnly=true)]
-		public static pg_stat_get_subscriptionResult PgStatGetSubscription(int? subid)
+		public static pg_stat_get_subscriptionResult pg_stat_get_subscription(int? subid)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesDeleted
+		#region pg_stat_get_tuples_deleted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_deleted", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesDeleted(int? par5274)
+		public static long? pg_stat_get_tuples_deleted(int? par5274)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesFetched
+		#region pg_stat_get_tuples_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesFetched(int? par5276)
+		public static long? pg_stat_get_tuples_fetched(int? par5276)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesHotUpdated
+		#region pg_stat_get_tuples_hot_updated
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_hot_updated", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesHotUpdated(int? par5278)
+		public static long? pg_stat_get_tuples_hot_updated(int? par5278)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesInserted
+		#region pg_stat_get_tuples_inserted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_inserted", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesInserted(int? par5280)
+		public static long? pg_stat_get_tuples_inserted(int? par5280)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesReturned
+		#region pg_stat_get_tuples_returned
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_returned", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesReturned(int? par5282)
+		public static long? pg_stat_get_tuples_returned(int? par5282)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetTuplesUpdated
+		#region pg_stat_get_tuples_updated
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_tuples_updated", ServerSideOnly=true)]
-		public static long? PgStatGetTuplesUpdated(int? par5284)
+		public static long? pg_stat_get_tuples_updated(int? par5284)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetVacuumCount
+		#region pg_stat_get_vacuum_count
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_vacuum_count", ServerSideOnly=true)]
-		public static long? PgStatGetVacuumCount(int? par5286)
+		public static long? pg_stat_get_vacuum_count(int? par5286)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetWalReceiver
+		#region pg_stat_get_wal_receiver
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_wal_receiver", ServerSideOnly=true)]
-		public static pg_stat_get_wal_receiverResult PgStatGetWalReceiver()
+		public static pg_stat_get_wal_receiverResult pg_stat_get_wal_receiver()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactBlocksFetched
+		#region pg_stat_get_xact_blocks_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_blocks_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetXactBlocksFetched(int? par5288)
+		public static long? pg_stat_get_xact_blocks_fetched(int? par5288)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactBlocksHit
+		#region pg_stat_get_xact_blocks_hit
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_blocks_hit", ServerSideOnly=true)]
-		public static long? PgStatGetXactBlocksHit(int? par5290)
+		public static long? pg_stat_get_xact_blocks_hit(int? par5290)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactFunctionCalls
+		#region pg_stat_get_xact_function_calls
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_function_calls", ServerSideOnly=true)]
-		public static long? PgStatGetXactFunctionCalls(int? par5292)
+		public static long? pg_stat_get_xact_function_calls(int? par5292)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactFunctionSelfTime
+		#region pg_stat_get_xact_function_self_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_function_self_time", ServerSideOnly=true)]
-		public static double? PgStatGetXactFunctionSelfTime(int? par5294)
+		public static double? pg_stat_get_xact_function_self_time(int? par5294)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactFunctionTotalTime
+		#region pg_stat_get_xact_function_total_time
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_function_total_time", ServerSideOnly=true)]
-		public static double? PgStatGetXactFunctionTotalTime(int? par5296)
+		public static double? pg_stat_get_xact_function_total_time(int? par5296)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactNumscans
+		#region pg_stat_get_xact_numscans
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_numscans", ServerSideOnly=true)]
-		public static long? PgStatGetXactNumscans(int? par5298)
+		public static long? pg_stat_get_xact_numscans(int? par5298)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesDeleted
+		#region pg_stat_get_xact_tuples_deleted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_deleted", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesDeleted(int? par5300)
+		public static long? pg_stat_get_xact_tuples_deleted(int? par5300)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesFetched
+		#region pg_stat_get_xact_tuples_fetched
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_fetched", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesFetched(int? par5302)
+		public static long? pg_stat_get_xact_tuples_fetched(int? par5302)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesHotUpdated
+		#region pg_stat_get_xact_tuples_hot_updated
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_hot_updated", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesHotUpdated(int? par5304)
+		public static long? pg_stat_get_xact_tuples_hot_updated(int? par5304)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesInserted
+		#region pg_stat_get_xact_tuples_inserted
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_inserted", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesInserted(int? par5306)
+		public static long? pg_stat_get_xact_tuples_inserted(int? par5306)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesReturned
+		#region pg_stat_get_xact_tuples_returned
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_returned", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesReturned(int? par5308)
+		public static long? pg_stat_get_xact_tuples_returned(int? par5308)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatGetXactTuplesUpdated
+		#region pg_stat_get_xact_tuples_updated
 
 		[Sql.Function(Name="pg_catalog.pg_stat_get_xact_tuples_updated", ServerSideOnly=true)]
-		public static long? PgStatGetXactTuplesUpdated(int? par5310)
+		public static long? pg_stat_get_xact_tuples_updated(int? par5310)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatisticsObjIsVisible
+		#region pg_statistics_obj_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_statistics_obj_is_visible", ServerSideOnly=true)]
-		public static bool? PgStatisticsObjIsVisible(int? par5312)
+		public static bool? pg_statistics_obj_is_visible(int? par5312)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatReset
+		#region pg_stat_reset
 
 		[Sql.Function(Name="pg_catalog.pg_stat_reset", ServerSideOnly=true)]
-		public static object PgStatReset()
+		public static object pg_stat_reset()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatResetShared
+		#region pg_stat_reset_shared
 
 		[Sql.Function(Name="pg_catalog.pg_stat_reset_shared", ServerSideOnly=true)]
-		public static object PgStatResetShared(string par5313)
+		public static object pg_stat_reset_shared(string par5313)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatResetSingleFunctionCounters
+		#region pg_stat_reset_single_function_counters
 
 		[Sql.Function(Name="pg_catalog.pg_stat_reset_single_function_counters", ServerSideOnly=true)]
-		public static object PgStatResetSingleFunctionCounters(int? par5314)
+		public static object pg_stat_reset_single_function_counters(int? par5314)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgStatResetSingleTableCounters
+		#region pg_stat_reset_single_table_counters
 
 		[Sql.Function(Name="pg_catalog.pg_stat_reset_single_table_counters", ServerSideOnly=true)]
-		public static object PgStatResetSingleTableCounters(int? par5315)
+		public static object pg_stat_reset_single_table_counters(int? par5315)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgSwitchWal
+		#region pg_switch_wal
 
 		[Sql.Function(Name="pg_catalog.pg_switch_wal", ServerSideOnly=true)]
-		public static object PgSwitchWal()
+		public static object pg_switch_wal()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTableIsVisible
+		#region pg_table_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_table_is_visible", ServerSideOnly=true)]
-		public static bool? PgTableIsVisible(int? par5319)
+		public static bool? pg_table_is_visible(int? par5319)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTableSize
+		#region pg_table_size
 
 		[Sql.Function(Name="pg_catalog.pg_table_size", ServerSideOnly=true)]
-		public static long? PgTableSize(object par5321)
+		public static long? pg_table_size(object par5321)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTablespaceLocation
+		#region pg_tablespace_location
 
 		[Sql.Function(Name="pg_catalog.pg_tablespace_location", ServerSideOnly=true)]
-		public static string PgTablespaceLocation(int? par5324)
+		public static string pg_tablespace_location(int? par5324)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTablespaceSize
+		#region pg_tablespace_size
 
 		[Sql.Function(Name="pg_catalog.pg_tablespace_size", ServerSideOnly=true)]
-		public static long? PgTablespaceSize(string par5328)
+		public static long? pg_tablespace_size(string par5328)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTerminateBackend
+		#region pg_terminate_backend
 
 		[Sql.Function(Name="pg_catalog.pg_terminate_backend", ServerSideOnly=true)]
-		public static bool? PgTerminateBackend(int? par5330)
+		public static bool? pg_terminate_backend(int? par5330)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTotalRelationSize
+		#region pg_total_relation_size
 
 		[Sql.Function(Name="pg_catalog.pg_total_relation_size", ServerSideOnly=true)]
-		public static long? PgTotalRelationSize(object par5332)
+		public static long? pg_total_relation_size(object par5332)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTriggerDepth
+		#region pg_trigger_depth
 
 		[Sql.Function(Name="pg_catalog.pg_trigger_depth", ServerSideOnly=true)]
-		public static int? PgTriggerDepth()
+		public static int? pg_trigger_depth()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTruetypid
+		#region _pg_truetypid
 
 		[Sql.Function(Name="information_schema._pg_truetypid", ServerSideOnly=true)]
-		public static int? PgTruetypid(object par5335, object par5336)
+		public static int? _pg_truetypid(object par5335, object par5336)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTruetypmod
+		#region _pg_truetypmod
 
 		[Sql.Function(Name="information_schema._pg_truetypmod", ServerSideOnly=true)]
-		public static int? PgTruetypmod(object par5338, object par5339)
+		public static int? _pg_truetypmod(object par5338, object par5339)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTryAdvisoryLock
+		#region pg_try_advisory_lock
 
 		[Sql.Function(Name="pg_catalog.pg_try_advisory_lock", ServerSideOnly=true)]
-		public static bool? PgTryAdvisoryLock(int? par5343, int? par5344)
+		public static bool? pg_try_advisory_lock(int? par5343, int? par5344)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTryAdvisoryLockShared
+		#region pg_try_advisory_lock_shared
 
 		[Sql.Function(Name="pg_catalog.pg_try_advisory_lock_shared", ServerSideOnly=true)]
-		public static bool? PgTryAdvisoryLockShared(int? par5348, int? par5349)
+		public static bool? pg_try_advisory_lock_shared(int? par5348, int? par5349)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTryAdvisoryXactLock
+		#region pg_try_advisory_xact_lock
 
 		[Sql.Function(Name="pg_catalog.pg_try_advisory_xact_lock", ServerSideOnly=true)]
-		public static bool? PgTryAdvisoryXactLock(int? par5353, int? par5354)
+		public static bool? pg_try_advisory_xact_lock(int? par5353, int? par5354)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTryAdvisoryXactLockShared
+		#region pg_try_advisory_xact_lock_shared
 
 		[Sql.Function(Name="pg_catalog.pg_try_advisory_xact_lock_shared", ServerSideOnly=true)]
-		public static bool? PgTryAdvisoryXactLockShared(int? par5358, int? par5359)
+		public static bool? pg_try_advisory_xact_lock_shared(int? par5358, int? par5359)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTsConfigIsVisible
+		#region pg_ts_config_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_ts_config_is_visible", ServerSideOnly=true)]
-		public static bool? PgTsConfigIsVisible(int? par5361)
+		public static bool? pg_ts_config_is_visible(int? par5361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTsDictIsVisible
+		#region pg_ts_dict_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_ts_dict_is_visible", ServerSideOnly=true)]
-		public static bool? PgTsDictIsVisible(int? par5363)
+		public static bool? pg_ts_dict_is_visible(int? par5363)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTsParserIsVisible
+		#region pg_ts_parser_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_ts_parser_is_visible", ServerSideOnly=true)]
-		public static bool? PgTsParserIsVisible(int? par5365)
+		public static bool? pg_ts_parser_is_visible(int? par5365)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTsTemplateIsVisible
+		#region pg_ts_template_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_ts_template_is_visible", ServerSideOnly=true)]
-		public static bool? PgTsTemplateIsVisible(int? par5367)
+		public static bool? pg_ts_template_is_visible(int? par5367)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTypeIsVisible
+		#region pg_type_is_visible
 
 		[Sql.Function(Name="pg_catalog.pg_type_is_visible", ServerSideOnly=true)]
-		public static bool? PgTypeIsVisible(int? par5369)
+		public static bool? pg_type_is_visible(int? par5369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgTypeof
+		#region pg_typeof
 
 		[Sql.Function(Name="pg_catalog.pg_typeof", ServerSideOnly=true)]
-		public static object PgTypeof(object par5371)
+		public static object pg_typeof(object par5371)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgWalfileName
+		#region pg_walfile_name
 
 		[Sql.Function(Name="pg_catalog.pg_walfile_name", ServerSideOnly=true)]
-		public static string PgWalfileName(object par5373)
+		public static string pg_walfile_name(object par5373)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgWalfileNameOffset
+		#region pg_walfile_name_offset
 
 		[Sql.Function(Name="pg_catalog.pg_walfile_name_offset", ServerSideOnly=true)]
-		public static pg_walfile_name_offsetResult PgWalfileNameOffset(object lsn)
+		public static pg_walfile_name_offsetResult pg_walfile_name_offset(object lsn)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgWalLsnDiff
+		#region pg_wal_lsn_diff
 
 		[Sql.Function(Name="pg_catalog.pg_wal_lsn_diff", ServerSideOnly=true)]
-		public static decimal? PgWalLsnDiff(object par5375, object par5376)
+		public static decimal? pg_wal_lsn_diff(object par5375, object par5376)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgWalReplayPause
+		#region pg_wal_replay_pause
 
 		[Sql.Function(Name="pg_catalog.pg_wal_replay_pause", ServerSideOnly=true)]
-		public static object PgWalReplayPause()
+		public static object pg_wal_replay_pause()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgWalReplayResume
+		#region pg_wal_replay_resume
 
 		[Sql.Function(Name="pg_catalog.pg_wal_replay_resume", ServerSideOnly=true)]
-		public static object PgWalReplayResume()
+		public static object pg_wal_replay_resume()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PgXactCommitTimestamp
+		#region pg_xact_commit_timestamp
 
 		[Sql.Function(Name="pg_catalog.pg_xact_commit_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? PgXactCommitTimestamp(int? par5378)
+		public static DateTimeOffset? pg_xact_commit_timestamp(int? par5378)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PhrasetoTsquery
+		#region phraseto_tsquery
 
 		[Sql.Function(Name="pg_catalog.phraseto_tsquery", ServerSideOnly=true)]
-		public static object PhrasetoTsquery(object par5382, string par5383)
+		public static object phraseto_tsquery(object par5382, string par5383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Pi
+		#region pi
 
 		[Sql.Function(Name="pg_catalog.pi", ServerSideOnly=true)]
-		public static double? Pi()
+		public static double? pi()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PlaintoTsquery
+		#region plainto_tsquery
 
 		[Sql.Function(Name="pg_catalog.plainto_tsquery", ServerSideOnly=true)]
-		public static object PlaintoTsquery(string par5389)
+		public static object plainto_tsquery(string par5389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PlpgsqlCallHandler
+		#region plpgsql_call_handler
 
 		[Sql.Function(Name="pg_catalog.plpgsql_call_handler", ServerSideOnly=true)]
-		public static object PlpgsqlCallHandler()
+		public static object plpgsql_call_handler()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PlpgsqlInlineHandler
+		#region plpgsql_inline_handler
 
 		[Sql.Function(Name="pg_catalog.plpgsql_inline_handler", ServerSideOnly=true)]
-		public static object PlpgsqlInlineHandler(object par5391)
+		public static object plpgsql_inline_handler(object par5391)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PlpgsqlValidator
+		#region plpgsql_validator
 
 		[Sql.Function(Name="pg_catalog.plpgsql_validator", ServerSideOnly=true)]
-		public static object PlpgsqlValidator(int? par5392)
+		public static object plpgsql_validator(int? par5392)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Point
+		#region point
 
 		[Sql.Function(Name="pg_catalog.point", ServerSideOnly=true)]
-		public static NpgsqlPoint? Point(NpgsqlPolygon? par5405)
+		public static NpgsqlPoint? point(NpgsqlPolygon? par5405)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointAbove
+		#region point_above
 
 		[Sql.Function(Name="pg_catalog.point_above", ServerSideOnly=true)]
-		public static bool? PointAbove(NpgsqlPoint? par5407, NpgsqlPoint? par5408)
+		public static bool? point_above(NpgsqlPoint? par5407, NpgsqlPoint? par5408)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointAdd
+		#region point_add
 
 		[Sql.Function(Name="pg_catalog.point_add", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointAdd(NpgsqlPoint? par5410, NpgsqlPoint? par5411)
+		public static NpgsqlPoint? point_add(NpgsqlPoint? par5410, NpgsqlPoint? par5411)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointBelow
+		#region point_below
 
 		[Sql.Function(Name="pg_catalog.point_below", ServerSideOnly=true)]
-		public static bool? PointBelow(NpgsqlPoint? par5413, NpgsqlPoint? par5414)
+		public static bool? point_below(NpgsqlPoint? par5413, NpgsqlPoint? par5414)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointDistance
+		#region point_distance
 
 		[Sql.Function(Name="pg_catalog.point_distance", ServerSideOnly=true)]
-		public static double? PointDistance(NpgsqlPoint? par5416, NpgsqlPoint? par5417)
+		public static double? point_distance(NpgsqlPoint? par5416, NpgsqlPoint? par5417)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointDiv
+		#region point_div
 
 		[Sql.Function(Name="pg_catalog.point_div", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointDiv(NpgsqlPoint? par5419, NpgsqlPoint? par5420)
+		public static NpgsqlPoint? point_div(NpgsqlPoint? par5419, NpgsqlPoint? par5420)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointEq
+		#region point_eq
 
 		[Sql.Function(Name="pg_catalog.point_eq", ServerSideOnly=true)]
-		public static bool? PointEq(NpgsqlPoint? par5422, NpgsqlPoint? par5423)
+		public static bool? point_eq(NpgsqlPoint? par5422, NpgsqlPoint? par5423)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointHoriz
+		#region point_horiz
 
 		[Sql.Function(Name="pg_catalog.point_horiz", ServerSideOnly=true)]
-		public static bool? PointHoriz(NpgsqlPoint? par5425, NpgsqlPoint? par5426)
+		public static bool? point_horiz(NpgsqlPoint? par5425, NpgsqlPoint? par5426)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointIn
+		#region point_in
 
 		[Sql.Function(Name="pg_catalog.point_in", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointIn(object par5428)
+		public static NpgsqlPoint? point_in(object par5428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointLeft
+		#region point_left
 
 		[Sql.Function(Name="pg_catalog.point_left", ServerSideOnly=true)]
-		public static bool? PointLeft(NpgsqlPoint? par5430, NpgsqlPoint? par5431)
+		public static bool? point_left(NpgsqlPoint? par5430, NpgsqlPoint? par5431)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointMul
+		#region point_mul
 
 		[Sql.Function(Name="pg_catalog.point_mul", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointMul(NpgsqlPoint? par5433, NpgsqlPoint? par5434)
+		public static NpgsqlPoint? point_mul(NpgsqlPoint? par5433, NpgsqlPoint? par5434)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointNe
+		#region point_ne
 
 		[Sql.Function(Name="pg_catalog.point_ne", ServerSideOnly=true)]
-		public static bool? PointNe(NpgsqlPoint? par5436, NpgsqlPoint? par5437)
+		public static bool? point_ne(NpgsqlPoint? par5436, NpgsqlPoint? par5437)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointOut
+		#region point_out
 
 		[Sql.Function(Name="pg_catalog.point_out", ServerSideOnly=true)]
-		public static object PointOut(NpgsqlPoint? par5439)
+		public static object point_out(NpgsqlPoint? par5439)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointRecv
+		#region point_recv
 
 		[Sql.Function(Name="pg_catalog.point_recv", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointRecv(object par5441)
+		public static NpgsqlPoint? point_recv(object par5441)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointRight
+		#region point_right
 
 		[Sql.Function(Name="pg_catalog.point_right", ServerSideOnly=true)]
-		public static bool? PointRight(NpgsqlPoint? par5443, NpgsqlPoint? par5444)
+		public static bool? point_right(NpgsqlPoint? par5443, NpgsqlPoint? par5444)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointSend
+		#region point_send
 
 		[Sql.Function(Name="pg_catalog.point_send", ServerSideOnly=true)]
-		public static byte[] PointSend(NpgsqlPoint? par5446)
+		public static byte[] point_send(NpgsqlPoint? par5446)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointSub
+		#region point_sub
 
 		[Sql.Function(Name="pg_catalog.point_sub", ServerSideOnly=true)]
-		public static NpgsqlPoint? PointSub(NpgsqlPoint? par5448, NpgsqlPoint? par5449)
+		public static NpgsqlPoint? point_sub(NpgsqlPoint? par5448, NpgsqlPoint? par5449)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PointVert
+		#region point_vert
 
 		[Sql.Function(Name="pg_catalog.point_vert", ServerSideOnly=true)]
-		public static bool? PointVert(NpgsqlPoint? par5451, NpgsqlPoint? par5452)
+		public static bool? point_vert(NpgsqlPoint? par5451, NpgsqlPoint? par5452)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyAbove
+		#region poly_above
 
 		[Sql.Function(Name="pg_catalog.poly_above", ServerSideOnly=true)]
-		public static bool? PolyAbove(NpgsqlPolygon? par5454, NpgsqlPolygon? par5455)
+		public static bool? poly_above(NpgsqlPolygon? par5454, NpgsqlPolygon? par5455)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyBelow
+		#region poly_below
 
 		[Sql.Function(Name="pg_catalog.poly_below", ServerSideOnly=true)]
-		public static bool? PolyBelow(NpgsqlPolygon? par5457, NpgsqlPolygon? par5458)
+		public static bool? poly_below(NpgsqlPolygon? par5457, NpgsqlPolygon? par5458)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyCenter
+		#region poly_center
 
 		[Sql.Function(Name="pg_catalog.poly_center", ServerSideOnly=true)]
-		public static NpgsqlPoint? PolyCenter(NpgsqlPolygon? par5460)
+		public static NpgsqlPoint? poly_center(NpgsqlPolygon? par5460)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyContain
+		#region poly_contain
 
 		[Sql.Function(Name="pg_catalog.poly_contain", ServerSideOnly=true)]
-		public static bool? PolyContain(NpgsqlPolygon? par5462, NpgsqlPolygon? par5463)
+		public static bool? poly_contain(NpgsqlPolygon? par5462, NpgsqlPolygon? par5463)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyContained
+		#region poly_contained
 
 		[Sql.Function(Name="pg_catalog.poly_contained", ServerSideOnly=true)]
-		public static bool? PolyContained(NpgsqlPolygon? par5465, NpgsqlPolygon? par5466)
+		public static bool? poly_contained(NpgsqlPolygon? par5465, NpgsqlPolygon? par5466)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyContainPt
+		#region poly_contain_pt
 
 		[Sql.Function(Name="pg_catalog.poly_contain_pt", ServerSideOnly=true)]
-		public static bool? PolyContainPt(NpgsqlPolygon? par5468, NpgsqlPoint? par5469)
+		public static bool? poly_contain_pt(NpgsqlPolygon? par5468, NpgsqlPoint? par5469)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyDistance
+		#region poly_distance
 
 		[Sql.Function(Name="pg_catalog.poly_distance", ServerSideOnly=true)]
-		public static double? PolyDistance(NpgsqlPolygon? par5471, NpgsqlPolygon? par5472)
+		public static double? poly_distance(NpgsqlPolygon? par5471, NpgsqlPolygon? par5472)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Polygon
+		#region polygon
 
 		[Sql.Function(Name="pg_catalog.polygon", ServerSideOnly=true)]
-		public static NpgsqlPolygon? Polygon(NpgsqlCircle? par5481)
+		public static NpgsqlPolygon? polygon(NpgsqlCircle? par5481)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyIn
+		#region poly_in
 
 		[Sql.Function(Name="pg_catalog.poly_in", ServerSideOnly=true)]
-		public static NpgsqlPolygon? PolyIn(object par5483)
+		public static NpgsqlPolygon? poly_in(object par5483)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyLeft
+		#region poly_left
 
 		[Sql.Function(Name="pg_catalog.poly_left", ServerSideOnly=true)]
-		public static bool? PolyLeft(NpgsqlPolygon? par5485, NpgsqlPolygon? par5486)
+		public static bool? poly_left(NpgsqlPolygon? par5485, NpgsqlPolygon? par5486)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyNpoints
+		#region poly_npoints
 
 		[Sql.Function(Name="pg_catalog.poly_npoints", ServerSideOnly=true)]
-		public static int? PolyNpoints(NpgsqlPolygon? par5488)
+		public static int? poly_npoints(NpgsqlPolygon? par5488)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOut
+		#region poly_out
 
 		[Sql.Function(Name="pg_catalog.poly_out", ServerSideOnly=true)]
-		public static object PolyOut(NpgsqlPolygon? par5490)
+		public static object poly_out(NpgsqlPolygon? par5490)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOverabove
+		#region poly_overabove
 
 		[Sql.Function(Name="pg_catalog.poly_overabove", ServerSideOnly=true)]
-		public static bool? PolyOverabove(NpgsqlPolygon? par5492, NpgsqlPolygon? par5493)
+		public static bool? poly_overabove(NpgsqlPolygon? par5492, NpgsqlPolygon? par5493)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOverbelow
+		#region poly_overbelow
 
 		[Sql.Function(Name="pg_catalog.poly_overbelow", ServerSideOnly=true)]
-		public static bool? PolyOverbelow(NpgsqlPolygon? par5495, NpgsqlPolygon? par5496)
+		public static bool? poly_overbelow(NpgsqlPolygon? par5495, NpgsqlPolygon? par5496)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOverlap
+		#region poly_overlap
 
 		[Sql.Function(Name="pg_catalog.poly_overlap", ServerSideOnly=true)]
-		public static bool? PolyOverlap(NpgsqlPolygon? par5498, NpgsqlPolygon? par5499)
+		public static bool? poly_overlap(NpgsqlPolygon? par5498, NpgsqlPolygon? par5499)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOverleft
+		#region poly_overleft
 
 		[Sql.Function(Name="pg_catalog.poly_overleft", ServerSideOnly=true)]
-		public static bool? PolyOverleft(NpgsqlPolygon? par5501, NpgsqlPolygon? par5502)
+		public static bool? poly_overleft(NpgsqlPolygon? par5501, NpgsqlPolygon? par5502)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyOverright
+		#region poly_overright
 
 		[Sql.Function(Name="pg_catalog.poly_overright", ServerSideOnly=true)]
-		public static bool? PolyOverright(NpgsqlPolygon? par5504, NpgsqlPolygon? par5505)
+		public static bool? poly_overright(NpgsqlPolygon? par5504, NpgsqlPolygon? par5505)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyRecv
+		#region poly_recv
 
 		[Sql.Function(Name="pg_catalog.poly_recv", ServerSideOnly=true)]
-		public static NpgsqlPolygon? PolyRecv(object par5507)
+		public static NpgsqlPolygon? poly_recv(object par5507)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolyRight
+		#region poly_right
 
 		[Sql.Function(Name="pg_catalog.poly_right", ServerSideOnly=true)]
-		public static bool? PolyRight(NpgsqlPolygon? par5509, NpgsqlPolygon? par5510)
+		public static bool? poly_right(NpgsqlPolygon? par5509, NpgsqlPolygon? par5510)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolySame
+		#region poly_same
 
 		[Sql.Function(Name="pg_catalog.poly_same", ServerSideOnly=true)]
-		public static bool? PolySame(NpgsqlPolygon? par5512, NpgsqlPolygon? par5513)
+		public static bool? poly_same(NpgsqlPolygon? par5512, NpgsqlPolygon? par5513)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PolySend
+		#region poly_send
 
 		[Sql.Function(Name="pg_catalog.poly_send", ServerSideOnly=true)]
-		public static byte[] PolySend(NpgsqlPolygon? par5515)
+		public static byte[] poly_send(NpgsqlPolygon? par5515)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Popen
+		#region popen
 
 		[Sql.Function(Name="pg_catalog.popen", ServerSideOnly=true)]
-		public static NpgsqlPath? Popen(NpgsqlPath? par5517)
+		public static NpgsqlPath? popen(NpgsqlPath? par5517)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Position
+		#region position
 
 		[Sql.Function(Name="pg_catalog.position", ServerSideOnly=true)]
-		public static int? Position(string par5525, string par5526)
+		public static int? position(string par5525, string par5526)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Positionjoinsel
+		#region positionjoinsel
 
 		[Sql.Function(Name="pg_catalog.positionjoinsel", ServerSideOnly=true)]
-		public static double? Positionjoinsel(object par5528, int? par5529, object par5530, short? par5531, object par5532)
+		public static double? positionjoinsel(object par5528, int? par5529, object par5530, short? par5531, object par5532)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Positionsel
+		#region positionsel
 
 		[Sql.Function(Name="pg_catalog.positionsel", ServerSideOnly=true)]
-		public static double? Positionsel(object par5534, int? par5535, object par5536, int? par5537)
+		public static double? positionsel(object par5534, int? par5535, object par5536, int? par5537)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PostgresqlFdwValidator
+		#region postgresql_fdw_validator
 
 		[Sql.Function(Name="pg_catalog.postgresql_fdw_validator", ServerSideOnly=true)]
-		public static bool? PostgresqlFdwValidator(object par5539, int? par5540)
+		public static bool? postgresql_fdw_validator(object par5539, int? par5540)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Pow
+		#region pow
 
 		[Sql.Function(Name="pg_catalog.pow", ServerSideOnly=true)]
-		public static decimal? Pow(decimal? par5545, decimal? par5546)
+		public static decimal? pow(decimal? par5545, decimal? par5546)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Power
+		#region power
 
 		[Sql.Function(Name="pg_catalog.power", ServerSideOnly=true)]
-		public static decimal? Power(decimal? par5551, decimal? par5552)
+		public static decimal? power(decimal? par5551, decimal? par5552)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PrsdEnd
+		#region prsd_end
 
 		[Sql.Function(Name="pg_catalog.prsd_end", ServerSideOnly=true)]
-		public static object PrsdEnd(object par5553)
+		public static object prsd_end(object par5553)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PrsdHeadline
+		#region prsd_headline
 
 		[Sql.Function(Name="pg_catalog.prsd_headline", ServerSideOnly=true)]
-		public static object PrsdHeadline(object par5555, object par5556, object par5557)
+		public static object prsd_headline(object par5555, object par5556, object par5557)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PrsdLextype
+		#region prsd_lextype
 
 		[Sql.Function(Name="pg_catalog.prsd_lextype", ServerSideOnly=true)]
-		public static object PrsdLextype(object par5559)
+		public static object prsd_lextype(object par5559)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PrsdNexttoken
+		#region prsd_nexttoken
 
 		[Sql.Function(Name="pg_catalog.prsd_nexttoken", ServerSideOnly=true)]
-		public static object PrsdNexttoken(object par5561, object par5562, object par5563)
+		public static object prsd_nexttoken(object par5561, object par5562, object par5563)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PrsdStart
+		#region prsd_start
 
 		[Sql.Function(Name="pg_catalog.prsd_start", ServerSideOnly=true)]
-		public static object PrsdStart(object par5565, int? par5566)
+		public static object prsd_start(object par5565, int? par5566)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PtContainedCircle
+		#region pt_contained_circle
 
 		[Sql.Function(Name="pg_catalog.pt_contained_circle", ServerSideOnly=true)]
-		public static bool? PtContainedCircle(NpgsqlPoint? par5568, NpgsqlCircle? par5569)
+		public static bool? pt_contained_circle(NpgsqlPoint? par5568, NpgsqlCircle? par5569)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region PtContainedPoly
+		#region pt_contained_poly
 
 		[Sql.Function(Name="pg_catalog.pt_contained_poly", ServerSideOnly=true)]
-		public static bool? PtContainedPoly(NpgsqlPoint? par5571, NpgsqlPolygon? par5572)
+		public static bool? pt_contained_poly(NpgsqlPoint? par5571, NpgsqlPolygon? par5572)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QueryToXml
+		#region query_to_xml
 
 		[Sql.Function(Name="pg_catalog.query_to_xml", ServerSideOnly=true)]
-		public static string QueryToXml(string query, bool? nulls, bool? tableforest, string targetns)
+		public static string query_to_xml(string query, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QueryToXmlAndXmlschema
+		#region query_to_xml_and_xmlschema
 
 		[Sql.Function(Name="pg_catalog.query_to_xml_and_xmlschema", ServerSideOnly=true)]
-		public static string QueryToXmlAndXmlschema(string query, bool? nulls, bool? tableforest, string targetns)
+		public static string query_to_xml_and_xmlschema(string query, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QueryToXmlschema
+		#region query_to_xmlschema
 
 		[Sql.Function(Name="pg_catalog.query_to_xmlschema", ServerSideOnly=true)]
-		public static string QueryToXmlschema(string query, bool? nulls, bool? tableforest, string targetns)
+		public static string query_to_xmlschema(string query, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Querytree
+		#region querytree
 
 		[Sql.Function(Name="pg_catalog.querytree", ServerSideOnly=true)]
-		public static string Querytree(object par5577)
+		public static string querytree(object par5577)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QuoteIdent
+		#region quote_ident
 
 		[Sql.Function(Name="pg_catalog.quote_ident", ServerSideOnly=true)]
-		public static string QuoteIdent(string par5579)
+		public static string quote_ident(string par5579)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QuoteLiteral
+		#region quote_literal
 
 		[Sql.Function(Name="pg_catalog.quote_literal", ServerSideOnly=true)]
-		public static string QuoteLiteral(object par5583)
+		public static string quote_literal(object par5583)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region QuoteNullable
+		#region quote_nullable
 
 		[Sql.Function(Name="pg_catalog.quote_nullable", ServerSideOnly=true)]
-		public static string QuoteNullable(object par5587)
+		public static string quote_nullable(object par5587)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Radians
+		#region radians
 
 		[Sql.Function(Name="pg_catalog.radians", ServerSideOnly=true)]
-		public static double? Radians(double? par5589)
+		public static double? radians(double? par5589)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Radius
+		#region radius
 
 		[Sql.Function(Name="pg_catalog.radius", ServerSideOnly=true)]
-		public static double? Radius(NpgsqlCircle? par5591)
+		public static double? radius(NpgsqlCircle? par5591)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Random
+		#region random
 
 		[Sql.Function(Name="pg_catalog.random", ServerSideOnly=true)]
-		public static double? Random()
+		public static double? random()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeAdjacent
+		#region range_adjacent
 
 		[Sql.Function(Name="pg_catalog.range_adjacent", ServerSideOnly=true)]
-		public static bool? RangeAdjacent(object par5594, object par5595)
+		public static bool? range_adjacent(object par5594, object par5595)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeAfter
+		#region range_after
 
 		[Sql.Function(Name="pg_catalog.range_after", ServerSideOnly=true)]
-		public static bool? RangeAfter(object par5597, object par5598)
+		public static bool? range_after(object par5597, object par5598)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeBefore
+		#region range_before
 
 		[Sql.Function(Name="pg_catalog.range_before", ServerSideOnly=true)]
-		public static bool? RangeBefore(object par5600, object par5601)
+		public static bool? range_before(object par5600, object par5601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeCmp
+		#region range_cmp
 
 		[Sql.Function(Name="pg_catalog.range_cmp", ServerSideOnly=true)]
-		public static int? RangeCmp(object par5603, object par5604)
+		public static int? range_cmp(object par5603, object par5604)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeContainedBy
+		#region range_contained_by
 
 		[Sql.Function(Name="pg_catalog.range_contained_by", ServerSideOnly=true)]
-		public static bool? RangeContainedBy(object par5606, object par5607)
+		public static bool? range_contained_by(object par5606, object par5607)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeContains
+		#region range_contains
 
 		[Sql.Function(Name="pg_catalog.range_contains", ServerSideOnly=true)]
-		public static bool? RangeContains(object par5609, object par5610)
+		public static bool? range_contains(object par5609, object par5610)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeContainsElem
+		#region range_contains_elem
 
 		[Sql.Function(Name="pg_catalog.range_contains_elem", ServerSideOnly=true)]
-		public static bool? RangeContainsElem(object par5612, object par5613)
+		public static bool? range_contains_elem(object par5612, object par5613)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeEq
+		#region range_eq
 
 		[Sql.Function(Name="pg_catalog.range_eq", ServerSideOnly=true)]
-		public static bool? RangeEq(object par5615, object par5616)
+		public static bool? range_eq(object par5615, object par5616)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGe
+		#region range_ge
 
 		[Sql.Function(Name="pg_catalog.range_ge", ServerSideOnly=true)]
-		public static bool? RangeGe(object par5618, object par5619)
+		public static bool? range_ge(object par5618, object par5619)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistCompress
+		#region range_gist_compress
 
 		[Sql.Function(Name="pg_catalog.range_gist_compress", ServerSideOnly=true)]
-		public static object RangeGistCompress(object par5621)
+		public static object range_gist_compress(object par5621)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistConsistent
+		#region range_gist_consistent
 
 		[Sql.Function(Name="pg_catalog.range_gist_consistent", ServerSideOnly=true)]
-		public static bool? RangeGistConsistent(object par5623, object par5624, short? par5625, int? par5626, object par5627)
+		public static bool? range_gist_consistent(object par5623, object par5624, short? par5625, int? par5626, object par5627)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistDecompress
+		#region range_gist_decompress
 
 		[Sql.Function(Name="pg_catalog.range_gist_decompress", ServerSideOnly=true)]
-		public static object RangeGistDecompress(object par5629)
+		public static object range_gist_decompress(object par5629)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistFetch
+		#region range_gist_fetch
 
 		[Sql.Function(Name="pg_catalog.range_gist_fetch", ServerSideOnly=true)]
-		public static object RangeGistFetch(object par5631)
+		public static object range_gist_fetch(object par5631)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistPenalty
+		#region range_gist_penalty
 
 		[Sql.Function(Name="pg_catalog.range_gist_penalty", ServerSideOnly=true)]
-		public static object RangeGistPenalty(object par5633, object par5634, object par5635)
+		public static object range_gist_penalty(object par5633, object par5634, object par5635)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistPicksplit
+		#region range_gist_picksplit
 
 		[Sql.Function(Name="pg_catalog.range_gist_picksplit", ServerSideOnly=true)]
-		public static object RangeGistPicksplit(object par5637, object par5638)
+		public static object range_gist_picksplit(object par5637, object par5638)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistSame
+		#region range_gist_same
 
 		[Sql.Function(Name="pg_catalog.range_gist_same", ServerSideOnly=true)]
-		public static object RangeGistSame(object par5640, object par5641, object par5642)
+		public static object range_gist_same(object par5640, object par5641, object par5642)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGistUnion
+		#region range_gist_union
 
 		[Sql.Function(Name="pg_catalog.range_gist_union", ServerSideOnly=true)]
-		public static object RangeGistUnion(object par5644, object par5645)
+		public static object range_gist_union(object par5644, object par5645)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeGt
+		#region range_gt
 
 		[Sql.Function(Name="pg_catalog.range_gt", ServerSideOnly=true)]
-		public static bool? RangeGt(object par5647, object par5648)
+		public static bool? range_gt(object par5647, object par5648)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeIn
+		#region range_in
 
 		[Sql.Function(Name="pg_catalog.range_in", ServerSideOnly=true)]
-		public static object RangeIn(object par5650, int? par5651, int? par5652)
+		public static object range_in(object par5650, int? par5651, int? par5652)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeIntersect
+		#region range_intersect
 
 		[Sql.Function(Name="pg_catalog.range_intersect", ServerSideOnly=true)]
-		public static object RangeIntersect(object par5654, object par5655)
+		public static object range_intersect(object par5654, object par5655)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeLe
+		#region range_le
 
 		[Sql.Function(Name="pg_catalog.range_le", ServerSideOnly=true)]
-		public static bool? RangeLe(object par5657, object par5658)
+		public static bool? range_le(object par5657, object par5658)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeLt
+		#region range_lt
 
 		[Sql.Function(Name="pg_catalog.range_lt", ServerSideOnly=true)]
-		public static bool? RangeLt(object par5660, object par5661)
+		public static bool? range_lt(object par5660, object par5661)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeMerge
+		#region range_merge
 
 		[Sql.Function(Name="pg_catalog.range_merge", ServerSideOnly=true)]
-		public static object RangeMerge(object par5663, object par5664)
+		public static object range_merge(object par5663, object par5664)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeMinus
+		#region range_minus
 
 		[Sql.Function(Name="pg_catalog.range_minus", ServerSideOnly=true)]
-		public static object RangeMinus(object par5666, object par5667)
+		public static object range_minus(object par5666, object par5667)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeNe
+		#region range_ne
 
 		[Sql.Function(Name="pg_catalog.range_ne", ServerSideOnly=true)]
-		public static bool? RangeNe(object par5669, object par5670)
+		public static bool? range_ne(object par5669, object par5670)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeOut
+		#region range_out
 
 		[Sql.Function(Name="pg_catalog.range_out", ServerSideOnly=true)]
-		public static object RangeOut(object par5672)
+		public static object range_out(object par5672)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeOverlaps
+		#region range_overlaps
 
 		[Sql.Function(Name="pg_catalog.range_overlaps", ServerSideOnly=true)]
-		public static bool? RangeOverlaps(object par5674, object par5675)
+		public static bool? range_overlaps(object par5674, object par5675)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeOverleft
+		#region range_overleft
 
 		[Sql.Function(Name="pg_catalog.range_overleft", ServerSideOnly=true)]
-		public static bool? RangeOverleft(object par5677, object par5678)
+		public static bool? range_overleft(object par5677, object par5678)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeOverright
+		#region range_overright
 
 		[Sql.Function(Name="pg_catalog.range_overright", ServerSideOnly=true)]
-		public static bool? RangeOverright(object par5680, object par5681)
+		public static bool? range_overright(object par5680, object par5681)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeRecv
+		#region range_recv
 
 		[Sql.Function(Name="pg_catalog.range_recv", ServerSideOnly=true)]
-		public static object RangeRecv(object par5683, int? par5684, int? par5685)
+		public static object range_recv(object par5683, int? par5684, int? par5685)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Rangesel
+		#region rangesel
 
 		[Sql.Function(Name="pg_catalog.rangesel", ServerSideOnly=true)]
-		public static double? Rangesel(object par5687, int? par5688, object par5689, int? par5690)
+		public static double? rangesel(object par5687, int? par5688, object par5689, int? par5690)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeSend
+		#region range_send
 
 		[Sql.Function(Name="pg_catalog.range_send", ServerSideOnly=true)]
-		public static byte[] RangeSend(object par5692)
+		public static byte[] range_send(object par5692)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeTypanalyze
+		#region range_typanalyze
 
 		[Sql.Function(Name="pg_catalog.range_typanalyze", ServerSideOnly=true)]
-		public static bool? RangeTypanalyze(object par5694)
+		public static bool? range_typanalyze(object par5694)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RangeUnion
+		#region range_union
 
 		[Sql.Function(Name="pg_catalog.range_union", ServerSideOnly=true)]
-		public static object RangeUnion(object par5696, object par5697)
+		public static object range_union(object par5696, object par5697)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Rank
+		#region rank
 
 		[Sql.Function(Name="pg_catalog.rank", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static long? Rank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par5700)
+		public static long? rank<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, object>> par5700)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RankFinal
+		#region rank_final
 
 		[Sql.Function(Name="pg_catalog.rank_final", ServerSideOnly=true)]
-		public static long? RankFinal(object par5702, object par5703)
+		public static long? rank_final(object par5702, object par5703)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordEq
+		#region record_eq
 
 		[Sql.Function(Name="pg_catalog.record_eq", ServerSideOnly=true)]
-		public static bool? RecordEq(object par5705, object par5706)
+		public static bool? record_eq(object par5705, object par5706)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordGe
+		#region record_ge
 
 		[Sql.Function(Name="pg_catalog.record_ge", ServerSideOnly=true)]
-		public static bool? RecordGe(object par5708, object par5709)
+		public static bool? record_ge(object par5708, object par5709)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordGt
+		#region record_gt
 
 		[Sql.Function(Name="pg_catalog.record_gt", ServerSideOnly=true)]
-		public static bool? RecordGt(object par5711, object par5712)
+		public static bool? record_gt(object par5711, object par5712)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageEq
+		#region record_image_eq
 
 		[Sql.Function(Name="pg_catalog.record_image_eq", ServerSideOnly=true)]
-		public static bool? RecordImageEq(object par5714, object par5715)
+		public static bool? record_image_eq(object par5714, object par5715)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageGe
+		#region record_image_ge
 
 		[Sql.Function(Name="pg_catalog.record_image_ge", ServerSideOnly=true)]
-		public static bool? RecordImageGe(object par5717, object par5718)
+		public static bool? record_image_ge(object par5717, object par5718)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageGt
+		#region record_image_gt
 
 		[Sql.Function(Name="pg_catalog.record_image_gt", ServerSideOnly=true)]
-		public static bool? RecordImageGt(object par5720, object par5721)
+		public static bool? record_image_gt(object par5720, object par5721)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageLe
+		#region record_image_le
 
 		[Sql.Function(Name="pg_catalog.record_image_le", ServerSideOnly=true)]
-		public static bool? RecordImageLe(object par5723, object par5724)
+		public static bool? record_image_le(object par5723, object par5724)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageLt
+		#region record_image_lt
 
 		[Sql.Function(Name="pg_catalog.record_image_lt", ServerSideOnly=true)]
-		public static bool? RecordImageLt(object par5726, object par5727)
+		public static bool? record_image_lt(object par5726, object par5727)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordImageNe
+		#region record_image_ne
 
 		[Sql.Function(Name="pg_catalog.record_image_ne", ServerSideOnly=true)]
-		public static bool? RecordImageNe(object par5729, object par5730)
+		public static bool? record_image_ne(object par5729, object par5730)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordIn
+		#region record_in
 
 		[Sql.Function(Name="pg_catalog.record_in", ServerSideOnly=true)]
-		public static object RecordIn(object par5731, int? par5732, int? par5733)
+		public static object record_in(object par5731, int? par5732, int? par5733)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordLe
+		#region record_le
 
 		[Sql.Function(Name="pg_catalog.record_le", ServerSideOnly=true)]
-		public static bool? RecordLe(object par5735, object par5736)
+		public static bool? record_le(object par5735, object par5736)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordLt
+		#region record_lt
 
 		[Sql.Function(Name="pg_catalog.record_lt", ServerSideOnly=true)]
-		public static bool? RecordLt(object par5738, object par5739)
+		public static bool? record_lt(object par5738, object par5739)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordNe
+		#region record_ne
 
 		[Sql.Function(Name="pg_catalog.record_ne", ServerSideOnly=true)]
-		public static bool? RecordNe(object par5741, object par5742)
+		public static bool? record_ne(object par5741, object par5742)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordOut
+		#region record_out
 
 		[Sql.Function(Name="pg_catalog.record_out", ServerSideOnly=true)]
-		public static object RecordOut(object par5744)
+		public static object record_out(object par5744)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordRecv
+		#region record_recv
 
 		[Sql.Function(Name="pg_catalog.record_recv", ServerSideOnly=true)]
-		public static object RecordRecv(object par5745, int? par5746, int? par5747)
+		public static object record_recv(object par5745, int? par5746, int? par5747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RecordSend
+		#region record_send
 
 		[Sql.Function(Name="pg_catalog.record_send", ServerSideOnly=true)]
-		public static byte[] RecordSend(object par5749)
+		public static byte[] record_send(object par5749)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regclass
+		#region regclass
 
 		[Sql.Function(Name="pg_catalog.regclass", ServerSideOnly=true)]
-		public static object Regclass(string par5751)
+		public static object regclass(string par5751)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regclassin
+		#region regclassin
 
 		[Sql.Function(Name="pg_catalog.regclassin", ServerSideOnly=true)]
-		public static object Regclassin(object par5753)
+		public static object regclassin(object par5753)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regclassout
+		#region regclassout
 
 		[Sql.Function(Name="pg_catalog.regclassout", ServerSideOnly=true)]
-		public static object Regclassout(object par5755)
+		public static object regclassout(object par5755)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regclassrecv
+		#region regclassrecv
 
 		[Sql.Function(Name="pg_catalog.regclassrecv", ServerSideOnly=true)]
-		public static object Regclassrecv(object par5757)
+		public static object regclassrecv(object par5757)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regclasssend
+		#region regclasssend
 
 		[Sql.Function(Name="pg_catalog.regclasssend", ServerSideOnly=true)]
-		public static byte[] Regclasssend(object par5759)
+		public static byte[] regclasssend(object par5759)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regconfigin
+		#region regconfigin
 
 		[Sql.Function(Name="pg_catalog.regconfigin", ServerSideOnly=true)]
-		public static object Regconfigin(object par5761)
+		public static object regconfigin(object par5761)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regconfigout
+		#region regconfigout
 
 		[Sql.Function(Name="pg_catalog.regconfigout", ServerSideOnly=true)]
-		public static object Regconfigout(object par5763)
+		public static object regconfigout(object par5763)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regconfigrecv
+		#region regconfigrecv
 
 		[Sql.Function(Name="pg_catalog.regconfigrecv", ServerSideOnly=true)]
-		public static object Regconfigrecv(object par5765)
+		public static object regconfigrecv(object par5765)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regconfigsend
+		#region regconfigsend
 
 		[Sql.Function(Name="pg_catalog.regconfigsend", ServerSideOnly=true)]
-		public static byte[] Regconfigsend(object par5767)
+		public static byte[] regconfigsend(object par5767)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regdictionaryin
+		#region regdictionaryin
 
 		[Sql.Function(Name="pg_catalog.regdictionaryin", ServerSideOnly=true)]
-		public static object Regdictionaryin(object par5769)
+		public static object regdictionaryin(object par5769)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regdictionaryout
+		#region regdictionaryout
 
 		[Sql.Function(Name="pg_catalog.regdictionaryout", ServerSideOnly=true)]
-		public static object Regdictionaryout(object par5771)
+		public static object regdictionaryout(object par5771)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regdictionaryrecv
+		#region regdictionaryrecv
 
 		[Sql.Function(Name="pg_catalog.regdictionaryrecv", ServerSideOnly=true)]
-		public static object Regdictionaryrecv(object par5773)
+		public static object regdictionaryrecv(object par5773)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regdictionarysend
+		#region regdictionarysend
 
 		[Sql.Function(Name="pg_catalog.regdictionarysend", ServerSideOnly=true)]
-		public static byte[] Regdictionarysend(object par5775)
+		public static byte[] regdictionarysend(object par5775)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regexeqjoinsel
+		#region regexeqjoinsel
 
 		[Sql.Function(Name="pg_catalog.regexeqjoinsel", ServerSideOnly=true)]
-		public static double? Regexeqjoinsel(object par5777, int? par5778, object par5779, short? par5780, object par5781)
+		public static double? regexeqjoinsel(object par5777, int? par5778, object par5779, short? par5780, object par5781)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regexeqsel
+		#region regexeqsel
 
 		[Sql.Function(Name="pg_catalog.regexeqsel", ServerSideOnly=true)]
-		public static double? Regexeqsel(object par5783, int? par5784, object par5785, int? par5786)
+		public static double? regexeqsel(object par5783, int? par5784, object par5785, int? par5786)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regexnejoinsel
+		#region regexnejoinsel
 
 		[Sql.Function(Name="pg_catalog.regexnejoinsel", ServerSideOnly=true)]
-		public static double? Regexnejoinsel(object par5788, int? par5789, object par5790, short? par5791, object par5792)
+		public static double? regexnejoinsel(object par5788, int? par5789, object par5790, short? par5791, object par5792)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regexnesel
+		#region regexnesel
 
 		[Sql.Function(Name="pg_catalog.regexnesel", ServerSideOnly=true)]
-		public static double? Regexnesel(object par5794, int? par5795, object par5796, int? par5797)
+		public static double? regexnesel(object par5794, int? par5795, object par5796, int? par5797)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegexpMatch
+		#region regexp_match
 
 		[Sql.Function(Name="pg_catalog.regexp_match", ServerSideOnly=true)]
-		public static object RegexpMatch(string par5802, string par5803, string par5804)
+		public static object regexp_match(string par5802, string par5803, string par5804)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegexpReplace
+		#region regexp_replace
 
 		[Sql.Function(Name="pg_catalog.regexp_replace", ServerSideOnly=true)]
-		public static string RegexpReplace(string par5815, string par5816, string par5817, string par5818)
+		public static string regexp_replace(string par5815, string par5816, string par5817, string par5818)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegexpSplitToArray
+		#region regexp_split_to_array
 
 		[Sql.Function(Name="pg_catalog.regexp_split_to_array", ServerSideOnly=true)]
-		public static object RegexpSplitToArray(string par5823, string par5824, string par5825)
+		public static object regexp_split_to_array(string par5823, string par5824, string par5825)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regnamespacein
+		#region regnamespacein
 
 		[Sql.Function(Name="pg_catalog.regnamespacein", ServerSideOnly=true)]
-		public static object Regnamespacein(object par5832)
+		public static object regnamespacein(object par5832)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regnamespaceout
+		#region regnamespaceout
 
 		[Sql.Function(Name="pg_catalog.regnamespaceout", ServerSideOnly=true)]
-		public static object Regnamespaceout(object par5834)
+		public static object regnamespaceout(object par5834)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regnamespacerecv
+		#region regnamespacerecv
 
 		[Sql.Function(Name="pg_catalog.regnamespacerecv", ServerSideOnly=true)]
-		public static object Regnamespacerecv(object par5836)
+		public static object regnamespacerecv(object par5836)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regnamespacesend
+		#region regnamespacesend
 
 		[Sql.Function(Name="pg_catalog.regnamespacesend", ServerSideOnly=true)]
-		public static byte[] Regnamespacesend(object par5838)
+		public static byte[] regnamespacesend(object par5838)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperatorin
+		#region regoperatorin
 
 		[Sql.Function(Name="pg_catalog.regoperatorin", ServerSideOnly=true)]
-		public static object Regoperatorin(object par5840)
+		public static object regoperatorin(object par5840)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperatorout
+		#region regoperatorout
 
 		[Sql.Function(Name="pg_catalog.regoperatorout", ServerSideOnly=true)]
-		public static object Regoperatorout(object par5842)
+		public static object regoperatorout(object par5842)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperatorrecv
+		#region regoperatorrecv
 
 		[Sql.Function(Name="pg_catalog.regoperatorrecv", ServerSideOnly=true)]
-		public static object Regoperatorrecv(object par5844)
+		public static object regoperatorrecv(object par5844)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperatorsend
+		#region regoperatorsend
 
 		[Sql.Function(Name="pg_catalog.regoperatorsend", ServerSideOnly=true)]
-		public static byte[] Regoperatorsend(object par5846)
+		public static byte[] regoperatorsend(object par5846)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperin
+		#region regoperin
 
 		[Sql.Function(Name="pg_catalog.regoperin", ServerSideOnly=true)]
-		public static object Regoperin(object par5848)
+		public static object regoperin(object par5848)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperout
+		#region regoperout
 
 		[Sql.Function(Name="pg_catalog.regoperout", ServerSideOnly=true)]
-		public static object Regoperout(object par5850)
+		public static object regoperout(object par5850)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regoperrecv
+		#region regoperrecv
 
 		[Sql.Function(Name="pg_catalog.regoperrecv", ServerSideOnly=true)]
-		public static object Regoperrecv(object par5852)
+		public static object regoperrecv(object par5852)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regopersend
+		#region regopersend
 
 		[Sql.Function(Name="pg_catalog.regopersend", ServerSideOnly=true)]
-		public static byte[] Regopersend(object par5854)
+		public static byte[] regopersend(object par5854)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocedurein
+		#region regprocedurein
 
 		[Sql.Function(Name="pg_catalog.regprocedurein", ServerSideOnly=true)]
-		public static object Regprocedurein(object par5856)
+		public static object regprocedurein(object par5856)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocedureout
+		#region regprocedureout
 
 		[Sql.Function(Name="pg_catalog.regprocedureout", ServerSideOnly=true)]
-		public static object Regprocedureout(object par5858)
+		public static object regprocedureout(object par5858)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocedurerecv
+		#region regprocedurerecv
 
 		[Sql.Function(Name="pg_catalog.regprocedurerecv", ServerSideOnly=true)]
-		public static object Regprocedurerecv(object par5860)
+		public static object regprocedurerecv(object par5860)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regproceduresend
+		#region regproceduresend
 
 		[Sql.Function(Name="pg_catalog.regproceduresend", ServerSideOnly=true)]
-		public static byte[] Regproceduresend(object par5862)
+		public static byte[] regproceduresend(object par5862)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocin
+		#region regprocin
 
 		[Sql.Function(Name="pg_catalog.regprocin", ServerSideOnly=true)]
-		public static object Regprocin(object par5864)
+		public static object regprocin(object par5864)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocout
+		#region regprocout
 
 		[Sql.Function(Name="pg_catalog.regprocout", ServerSideOnly=true)]
-		public static object Regprocout(object par5866)
+		public static object regprocout(object par5866)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocrecv
+		#region regprocrecv
 
 		[Sql.Function(Name="pg_catalog.regprocrecv", ServerSideOnly=true)]
-		public static object Regprocrecv(object par5868)
+		public static object regprocrecv(object par5868)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regprocsend
+		#region regprocsend
 
 		[Sql.Function(Name="pg_catalog.regprocsend", ServerSideOnly=true)]
-		public static byte[] Regprocsend(object par5870)
+		public static byte[] regprocsend(object par5870)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrAvgx
+		#region regr_avgx
 
 		[Sql.Function(Name="pg_catalog.regr_avgx", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrAvgx<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5872, Expression<Func<TSource, double?>> par5873)
+		public static double? regr_avgx<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5872, Expression<Func<TSource, double?>> par5873)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrAvgy
+		#region regr_avgy
 
 		[Sql.Function(Name="pg_catalog.regr_avgy", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrAvgy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5875, Expression<Func<TSource, double?>> par5876)
+		public static double? regr_avgy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5875, Expression<Func<TSource, double?>> par5876)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrCount
+		#region regr_count
 
 		[Sql.Function(Name="pg_catalog.regr_count", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static long? RegrCount<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5878, Expression<Func<TSource, double?>> par5879)
+		public static long? regr_count<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5878, Expression<Func<TSource, double?>> par5879)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrIntercept
+		#region regr_intercept
 
 		[Sql.Function(Name="pg_catalog.regr_intercept", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrIntercept<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5881, Expression<Func<TSource, double?>> par5882)
+		public static double? regr_intercept<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5881, Expression<Func<TSource, double?>> par5882)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regrolein
+		#region regrolein
 
 		[Sql.Function(Name="pg_catalog.regrolein", ServerSideOnly=true)]
-		public static object Regrolein(object par5884)
+		public static object regrolein(object par5884)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regroleout
+		#region regroleout
 
 		[Sql.Function(Name="pg_catalog.regroleout", ServerSideOnly=true)]
-		public static object Regroleout(object par5886)
+		public static object regroleout(object par5886)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regrolerecv
+		#region regrolerecv
 
 		[Sql.Function(Name="pg_catalog.regrolerecv", ServerSideOnly=true)]
-		public static object Regrolerecv(object par5888)
+		public static object regrolerecv(object par5888)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regrolesend
+		#region regrolesend
 
 		[Sql.Function(Name="pg_catalog.regrolesend", ServerSideOnly=true)]
-		public static byte[] Regrolesend(object par5890)
+		public static byte[] regrolesend(object par5890)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrR2
+		#region regr_r2
 
 		[Sql.Function(Name="pg_catalog.regr_r2", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrR2<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5892, Expression<Func<TSource, double?>> par5893)
+		public static double? regr_r2<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5892, Expression<Func<TSource, double?>> par5893)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrSlope
+		#region regr_slope
 
 		[Sql.Function(Name="pg_catalog.regr_slope", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrSlope<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5895, Expression<Func<TSource, double?>> par5896)
+		public static double? regr_slope<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5895, Expression<Func<TSource, double?>> par5896)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrSxx
+		#region regr_sxx
 
 		[Sql.Function(Name="pg_catalog.regr_sxx", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrSxx<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5898, Expression<Func<TSource, double?>> par5899)
+		public static double? regr_sxx<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5898, Expression<Func<TSource, double?>> par5899)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrSxy
+		#region regr_sxy
 
 		[Sql.Function(Name="pg_catalog.regr_sxy", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrSxy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5901, Expression<Func<TSource, double?>> par5902)
+		public static double? regr_sxy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5901, Expression<Func<TSource, double?>> par5902)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RegrSyy
+		#region regr_syy
 
 		[Sql.Function(Name="pg_catalog.regr_syy", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static double? RegrSyy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5904, Expression<Func<TSource, double?>> par5905)
+		public static double? regr_syy<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, double?>> par5904, Expression<Func<TSource, double?>> par5905)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regtypein
+		#region regtypein
 
 		[Sql.Function(Name="pg_catalog.regtypein", ServerSideOnly=true)]
-		public static object Regtypein(object par5907)
+		public static object regtypein(object par5907)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regtypeout
+		#region regtypeout
 
 		[Sql.Function(Name="pg_catalog.regtypeout", ServerSideOnly=true)]
-		public static object Regtypeout(object par5909)
+		public static object regtypeout(object par5909)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regtyperecv
+		#region regtyperecv
 
 		[Sql.Function(Name="pg_catalog.regtyperecv", ServerSideOnly=true)]
-		public static object Regtyperecv(object par5911)
+		public static object regtyperecv(object par5911)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Regtypesend
+		#region regtypesend
 
 		[Sql.Function(Name="pg_catalog.regtypesend", ServerSideOnly=true)]
-		public static byte[] Regtypesend(object par5913)
+		public static byte[] regtypesend(object par5913)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltime
+		#region reltime
 
 		[Sql.Function(Name="pg_catalog.reltime", ServerSideOnly=true)]
-		public static object Reltime(NpgsqlTimeSpan? par5915)
+		public static object reltime(NpgsqlTimeSpan? par5915)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimeeq
+		#region reltimeeq
 
 		[Sql.Function(Name="pg_catalog.reltimeeq", ServerSideOnly=true)]
-		public static bool? Reltimeeq(object par5917, object par5918)
+		public static bool? reltimeeq(object par5917, object par5918)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimege
+		#region reltimege
 
 		[Sql.Function(Name="pg_catalog.reltimege", ServerSideOnly=true)]
-		public static bool? Reltimege(object par5920, object par5921)
+		public static bool? reltimege(object par5920, object par5921)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimegt
+		#region reltimegt
 
 		[Sql.Function(Name="pg_catalog.reltimegt", ServerSideOnly=true)]
-		public static bool? Reltimegt(object par5923, object par5924)
+		public static bool? reltimegt(object par5923, object par5924)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimein
+		#region reltimein
 
 		[Sql.Function(Name="pg_catalog.reltimein", ServerSideOnly=true)]
-		public static object Reltimein(object par5926)
+		public static object reltimein(object par5926)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimele
+		#region reltimele
 
 		[Sql.Function(Name="pg_catalog.reltimele", ServerSideOnly=true)]
-		public static bool? Reltimele(object par5928, object par5929)
+		public static bool? reltimele(object par5928, object par5929)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimelt
+		#region reltimelt
 
 		[Sql.Function(Name="pg_catalog.reltimelt", ServerSideOnly=true)]
-		public static bool? Reltimelt(object par5931, object par5932)
+		public static bool? reltimelt(object par5931, object par5932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimene
+		#region reltimene
 
 		[Sql.Function(Name="pg_catalog.reltimene", ServerSideOnly=true)]
-		public static bool? Reltimene(object par5934, object par5935)
+		public static bool? reltimene(object par5934, object par5935)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimeout
+		#region reltimeout
 
 		[Sql.Function(Name="pg_catalog.reltimeout", ServerSideOnly=true)]
-		public static object Reltimeout(object par5937)
+		public static object reltimeout(object par5937)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimerecv
+		#region reltimerecv
 
 		[Sql.Function(Name="pg_catalog.reltimerecv", ServerSideOnly=true)]
-		public static object Reltimerecv(object par5939)
+		public static object reltimerecv(object par5939)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reltimesend
+		#region reltimesend
 
 		[Sql.Function(Name="pg_catalog.reltimesend", ServerSideOnly=true)]
-		public static byte[] Reltimesend(object par5941)
+		public static byte[] reltimesend(object par5941)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Repeat
+		#region repeat
 
 		[Sql.Function(Name="pg_catalog.repeat", ServerSideOnly=true)]
-		public static string Repeat(string par5943, int? par5944)
+		public static string repeat(string par5943, int? par5944)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Replace
+		#region replace
 
 		[Sql.Function(Name="pg_catalog.replace", ServerSideOnly=true)]
-		public static string Replace(string par5946, string par5947, string par5948)
+		public static string replace(string par5946, string par5947, string par5948)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Reverse
+		#region reverse
 
 		[Sql.Function(Name="pg_catalog.reverse", ServerSideOnly=true)]
-		public static string Reverse(string par5950)
+		public static string reverse(string par5950)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyCascadeDel
+		#region RI_FKey_cascade_del
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_cascade_del\"", ServerSideOnly=true)]
-		public static object RiFKeyCascadeDel()
+		public static object RI_FKey_cascade_del()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyCascadeUpd
+		#region RI_FKey_cascade_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_cascade_upd\"", ServerSideOnly=true)]
-		public static object RiFKeyCascadeUpd()
+		public static object RI_FKey_cascade_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyCheckIns
+		#region RI_FKey_check_ins
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_check_ins\"", ServerSideOnly=true)]
-		public static object RiFKeyCheckIns()
+		public static object RI_FKey_check_ins()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyCheckUpd
+		#region RI_FKey_check_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_check_upd\"", ServerSideOnly=true)]
-		public static object RiFKeyCheckUpd()
+		public static object RI_FKey_check_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyNoactionDel
+		#region RI_FKey_noaction_del
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_noaction_del\"", ServerSideOnly=true)]
-		public static object RiFKeyNoactionDel()
+		public static object RI_FKey_noaction_del()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyNoactionUpd
+		#region RI_FKey_noaction_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_noaction_upd\"", ServerSideOnly=true)]
-		public static object RiFKeyNoactionUpd()
+		public static object RI_FKey_noaction_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyRestrictDel
+		#region RI_FKey_restrict_del
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_restrict_del\"", ServerSideOnly=true)]
-		public static object RiFKeyRestrictDel()
+		public static object RI_FKey_restrict_del()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeyRestrictUpd
+		#region RI_FKey_restrict_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_restrict_upd\"", ServerSideOnly=true)]
-		public static object RiFKeyRestrictUpd()
+		public static object RI_FKey_restrict_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeySetdefaultDel
+		#region RI_FKey_setdefault_del
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_setdefault_del\"", ServerSideOnly=true)]
-		public static object RiFKeySetdefaultDel()
+		public static object RI_FKey_setdefault_del()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeySetdefaultUpd
+		#region RI_FKey_setdefault_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_setdefault_upd\"", ServerSideOnly=true)]
-		public static object RiFKeySetdefaultUpd()
+		public static object RI_FKey_setdefault_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeySetnullDel
+		#region RI_FKey_setnull_del
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_setnull_del\"", ServerSideOnly=true)]
-		public static object RiFKeySetnullDel()
+		public static object RI_FKey_setnull_del()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RiFKeySetnullUpd
+		#region RI_FKey_setnull_upd
 
 		[Sql.Function(Name="pg_catalog.\"RI_FKey_setnull_upd\"", ServerSideOnly=true)]
-		public static object RiFKeySetnullUpd()
+		public static object RI_FKey_setnull_upd()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Right
+		#region right
 
 		[Sql.Function(Name="pg_catalog.right", ServerSideOnly=true)]
-		public static string Right(string par5964, int? par5965)
+		public static string right(string par5964, int? par5965)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Round
+		#region round
 
 		[Sql.Function(Name="pg_catalog.round", ServerSideOnly=true)]
-		public static decimal? Round(decimal? par5972)
+		public static decimal? round(decimal? par5972)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RowNumber
+		#region row_number
 
 		[Sql.Function(Name="pg_catalog.row_number", ServerSideOnly=true)]
-		public static long? RowNumber()
+		public static long? row_number()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RowSecurityActive
+		#region row_security_active
 
 		[Sql.Function(Name="pg_catalog.row_security_active", ServerSideOnly=true)]
-		public static bool? RowSecurityActive(string par5977)
+		public static bool? row_security_active(string par5977)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region RowToJson
+		#region row_to_json
 
 		[Sql.Function(Name="pg_catalog.row_to_json", ServerSideOnly=true)]
-		public static string RowToJson(object par5981, bool? par5982)
+		public static string row_to_json(object par5981, bool? par5982)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Rpad
+		#region rpad
 
 		[Sql.Function(Name="pg_catalog.rpad", ServerSideOnly=true)]
-		public static string Rpad(string par5988, int? par5989)
+		public static string rpad(string par5988, int? par5989)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Rtrim
+		#region rtrim
 
 		[Sql.Function(Name="pg_catalog.rtrim", ServerSideOnly=true)]
-		public static string Rtrim(string par5994)
+		public static string rtrim(string par5994)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Scalargtjoinsel
+		#region scalargtjoinsel
 
 		[Sql.Function(Name="pg_catalog.scalargtjoinsel", ServerSideOnly=true)]
-		public static double? Scalargtjoinsel(object par5996, int? par5997, object par5998, short? par5999, object par6000)
+		public static double? scalargtjoinsel(object par5996, int? par5997, object par5998, short? par5999, object par6000)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Scalargtsel
+		#region scalargtsel
 
 		[Sql.Function(Name="pg_catalog.scalargtsel", ServerSideOnly=true)]
-		public static double? Scalargtsel(object par6002, int? par6003, object par6004, int? par6005)
+		public static double? scalargtsel(object par6002, int? par6003, object par6004, int? par6005)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Scalarltjoinsel
+		#region scalarltjoinsel
 
 		[Sql.Function(Name="pg_catalog.scalarltjoinsel", ServerSideOnly=true)]
-		public static double? Scalarltjoinsel(object par6007, int? par6008, object par6009, short? par6010, object par6011)
+		public static double? scalarltjoinsel(object par6007, int? par6008, object par6009, short? par6010, object par6011)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Scalarltsel
+		#region scalarltsel
 
 		[Sql.Function(Name="pg_catalog.scalarltsel", ServerSideOnly=true)]
-		public static double? Scalarltsel(object par6013, int? par6014, object par6015, int? par6016)
+		public static double? scalarltsel(object par6013, int? par6014, object par6015, int? par6016)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Scale
+		#region scale
 
 		[Sql.Function(Name="pg_catalog.scale", ServerSideOnly=true)]
-		public static int? Scale(decimal? par6018)
+		public static int? scale(decimal? par6018)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SchemaToXml
+		#region schema_to_xml
 
 		[Sql.Function(Name="pg_catalog.schema_to_xml", ServerSideOnly=true)]
-		public static string SchemaToXml(string schema, bool? nulls, bool? tableforest, string targetns)
+		public static string schema_to_xml(string schema, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SchemaToXmlAndXmlschema
+		#region schema_to_xml_and_xmlschema
 
 		[Sql.Function(Name="pg_catalog.schema_to_xml_and_xmlschema", ServerSideOnly=true)]
-		public static string SchemaToXmlAndXmlschema(string schema, bool? nulls, bool? tableforest, string targetns)
+		public static string schema_to_xml_and_xmlschema(string schema, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SchemaToXmlschema
+		#region schema_to_xmlschema
 
 		[Sql.Function(Name="pg_catalog.schema_to_xmlschema", ServerSideOnly=true)]
-		public static string SchemaToXmlschema(string schema, bool? nulls, bool? tableforest, string targetns)
+		public static string schema_to_xmlschema(string schema, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SessionUser
+		#region session_user
 
 		[Sql.Function(Name="pg_catalog.session_user", ServerSideOnly=true)]
-		public static string SessionUser()
+		public static string session_user()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SetBit
+		#region set_bit
 
 		[Sql.Function(Name="pg_catalog.set_bit", ServerSideOnly=true)]
-		public static byte[] SetBit(byte[] par6028, int? par6029, int? par6030)
+		public static byte[] set_bit(byte[] par6028, int? par6029, int? par6030)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SetByte
+		#region set_byte
 
 		[Sql.Function(Name="pg_catalog.set_byte", ServerSideOnly=true)]
-		public static byte[] SetByte(byte[] par6032, int? par6033, int? par6034)
+		public static byte[] set_byte(byte[] par6032, int? par6033, int? par6034)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SetConfig
+		#region set_config
 
 		[Sql.Function(Name="pg_catalog.set_config", ServerSideOnly=true)]
-		public static string SetConfig(string par6036, string par6037, bool? par6038)
+		public static string set_config(string par6036, string par6037, bool? par6038)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SetMasklen
+		#region set_masklen
 
 		[Sql.Function(Name="pg_catalog.set_masklen", ServerSideOnly=true)]
-		public static NpgsqlInet? SetMasklen(NpgsqlInet? par6043, int? par6044)
+		public static NpgsqlInet? set_masklen(NpgsqlInet? par6043, int? par6044)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Setseed
+		#region setseed
 
 		[Sql.Function(Name="pg_catalog.setseed", ServerSideOnly=true)]
-		public static object Setseed(double? par6045)
+		public static object setseed(double? par6045)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Setval
+		#region setval
 
 		[Sql.Function(Name="pg_catalog.setval", ServerSideOnly=true)]
-		public static long? Setval(object par6050, long? par6051, bool? par6052)
+		public static long? setval(object par6050, long? par6051, bool? par6052)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Setweight
+		#region setweight
 
 		[Sql.Function(Name="pg_catalog.setweight", ServerSideOnly=true)]
-		public static object Setweight(object par6058, object par6059)
+		public static object setweight(object par6058, object par6059)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ShellIn
+		#region shell_in
 
 		[Sql.Function(Name="pg_catalog.shell_in", ServerSideOnly=true)]
-		public static object ShellIn(object par6061)
+		public static object shell_in(object par6061)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ShellOut
+		#region shell_out
 
 		[Sql.Function(Name="pg_catalog.shell_out", ServerSideOnly=true)]
-		public static object ShellOut(object par6063)
+		public static object shell_out(object par6063)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ShiftJis2004ToEucJis2004
+		#region shift_jis_2004_to_euc_jis_2004
 
 		[Sql.Function(Name="pg_catalog.shift_jis_2004_to_euc_jis_2004", ServerSideOnly=true)]
-		public static object ShiftJis2004ToEucJis2004(int? par6064, int? par6065, object par6066, object par6067, int? par6068)
+		public static object shift_jis_2004_to_euc_jis_2004(int? par6064, int? par6065, object par6066, object par6067, int? par6068)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ShiftJis2004ToUtf8
+		#region shift_jis_2004_to_utf8
 
 		[Sql.Function(Name="pg_catalog.shift_jis_2004_to_utf8", ServerSideOnly=true)]
-		public static object ShiftJis2004ToUtf8(int? par6069, int? par6070, object par6071, object par6072, int? par6073)
+		public static object shift_jis_2004_to_utf8(int? par6069, int? par6070, object par6071, object par6072, int? par6073)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ShobjDescription
+		#region shobj_description
 
 		[Sql.Function(Name="pg_catalog.shobj_description", ServerSideOnly=true)]
-		public static string ShobjDescription(int? par6075, string par6076)
+		public static string shobj_description(int? par6075, string par6076)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Sign
+		#region sign
 
 		[Sql.Function(Name="pg_catalog.sign", ServerSideOnly=true)]
-		public static double? Sign(double? par6080)
+		public static double? sign(double? par6080)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SimilarEscape
+		#region similar_escape
 
 		[Sql.Function(Name="pg_catalog.similar_escape", ServerSideOnly=true)]
-		public static string SimilarEscape(string par6082, string par6083)
+		public static string similar_escape(string par6082, string par6083)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Sin
+		#region sin
 
 		[Sql.Function(Name="pg_catalog.sin", ServerSideOnly=true)]
-		public static double? Sin(double? par6085)
+		public static double? sin(double? par6085)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Sind
+		#region sind
 
 		[Sql.Function(Name="pg_catalog.sind", ServerSideOnly=true)]
-		public static double? Sind(double? par6087)
+		public static double? sind(double? par6087)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SjisToEucJp
+		#region sjis_to_euc_jp
 
 		[Sql.Function(Name="pg_catalog.sjis_to_euc_jp", ServerSideOnly=true)]
-		public static object SjisToEucJp(int? par6088, int? par6089, object par6090, object par6091, int? par6092)
+		public static object sjis_to_euc_jp(int? par6088, int? par6089, object par6090, object par6091, int? par6092)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SjisToMic
+		#region sjis_to_mic
 
 		[Sql.Function(Name="pg_catalog.sjis_to_mic", ServerSideOnly=true)]
-		public static object SjisToMic(int? par6093, int? par6094, object par6095, object par6096, int? par6097)
+		public static object sjis_to_mic(int? par6093, int? par6094, object par6095, object par6096, int? par6097)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SjisToUtf8
+		#region sjis_to_utf8
 
 		[Sql.Function(Name="pg_catalog.sjis_to_utf8", ServerSideOnly=true)]
-		public static object SjisToUtf8(int? par6098, int? par6099, object par6100, object par6101, int? par6102)
+		public static object sjis_to_utf8(int? par6098, int? par6099, object par6100, object par6101, int? par6102)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Slope
+		#region slope
 
 		[Sql.Function(Name="pg_catalog.slope", ServerSideOnly=true)]
-		public static double? Slope(NpgsqlPoint? par6104, NpgsqlPoint? par6105)
+		public static double? slope(NpgsqlPoint? par6104, NpgsqlPoint? par6105)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Smgreq
+		#region smgreq
 
 		[Sql.Function(Name="pg_catalog.smgreq", ServerSideOnly=true)]
-		public static bool? Smgreq(object par6107, object par6108)
+		public static bool? smgreq(object par6107, object par6108)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Smgrin
+		#region smgrin
 
 		[Sql.Function(Name="pg_catalog.smgrin", ServerSideOnly=true)]
-		public static object Smgrin(object par6110)
+		public static object smgrin(object par6110)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Smgrne
+		#region smgrne
 
 		[Sql.Function(Name="pg_catalog.smgrne", ServerSideOnly=true)]
-		public static bool? Smgrne(object par6112, object par6113)
+		public static bool? smgrne(object par6112, object par6113)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Smgrout
+		#region smgrout
 
 		[Sql.Function(Name="pg_catalog.smgrout", ServerSideOnly=true)]
-		public static object Smgrout(object par6115)
+		public static object smgrout(object par6115)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgBoxQuadChoose
+		#region spg_box_quad_choose
 
 		[Sql.Function(Name="pg_catalog.spg_box_quad_choose", ServerSideOnly=true)]
-		public static object SpgBoxQuadChoose(object par6116, object par6117)
+		public static object spg_box_quad_choose(object par6116, object par6117)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgBoxQuadConfig
+		#region spg_box_quad_config
 
 		[Sql.Function(Name="pg_catalog.spg_box_quad_config", ServerSideOnly=true)]
-		public static object SpgBoxQuadConfig(object par6118, object par6119)
+		public static object spg_box_quad_config(object par6118, object par6119)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgBoxQuadInnerConsistent
+		#region spg_box_quad_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_box_quad_inner_consistent", ServerSideOnly=true)]
-		public static object SpgBoxQuadInnerConsistent(object par6120, object par6121)
+		public static object spg_box_quad_inner_consistent(object par6120, object par6121)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgBoxQuadLeafConsistent
+		#region spg_box_quad_leaf_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_box_quad_leaf_consistent", ServerSideOnly=true)]
-		public static bool? SpgBoxQuadLeafConsistent(object par6123, object par6124)
+		public static bool? spg_box_quad_leaf_consistent(object par6123, object par6124)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgBoxQuadPicksplit
+		#region spg_box_quad_picksplit
 
 		[Sql.Function(Name="pg_catalog.spg_box_quad_picksplit", ServerSideOnly=true)]
-		public static object SpgBoxQuadPicksplit(object par6125, object par6126)
+		public static object spg_box_quad_picksplit(object par6125, object par6126)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Spghandler
+		#region spghandler
 
 		[Sql.Function(Name="pg_catalog.spghandler", ServerSideOnly=true)]
-		public static object Spghandler(object par6128)
+		public static object spghandler(object par6128)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgKdChoose
+		#region spg_kd_choose
 
 		[Sql.Function(Name="pg_catalog.spg_kd_choose", ServerSideOnly=true)]
-		public static object SpgKdChoose(object par6129, object par6130)
+		public static object spg_kd_choose(object par6129, object par6130)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgKdConfig
+		#region spg_kd_config
 
 		[Sql.Function(Name="pg_catalog.spg_kd_config", ServerSideOnly=true)]
-		public static object SpgKdConfig(object par6131, object par6132)
+		public static object spg_kd_config(object par6131, object par6132)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgKdInnerConsistent
+		#region spg_kd_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_kd_inner_consistent", ServerSideOnly=true)]
-		public static object SpgKdInnerConsistent(object par6133, object par6134)
+		public static object spg_kd_inner_consistent(object par6133, object par6134)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgKdPicksplit
+		#region spg_kd_picksplit
 
 		[Sql.Function(Name="pg_catalog.spg_kd_picksplit", ServerSideOnly=true)]
-		public static object SpgKdPicksplit(object par6135, object par6136)
+		public static object spg_kd_picksplit(object par6135, object par6136)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgQuadChoose
+		#region spg_quad_choose
 
 		[Sql.Function(Name="pg_catalog.spg_quad_choose", ServerSideOnly=true)]
-		public static object SpgQuadChoose(object par6137, object par6138)
+		public static object spg_quad_choose(object par6137, object par6138)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgQuadConfig
+		#region spg_quad_config
 
 		[Sql.Function(Name="pg_catalog.spg_quad_config", ServerSideOnly=true)]
-		public static object SpgQuadConfig(object par6139, object par6140)
+		public static object spg_quad_config(object par6139, object par6140)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgQuadInnerConsistent
+		#region spg_quad_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_quad_inner_consistent", ServerSideOnly=true)]
-		public static object SpgQuadInnerConsistent(object par6141, object par6142)
+		public static object spg_quad_inner_consistent(object par6141, object par6142)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgQuadLeafConsistent
+		#region spg_quad_leaf_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_quad_leaf_consistent", ServerSideOnly=true)]
-		public static bool? SpgQuadLeafConsistent(object par6144, object par6145)
+		public static bool? spg_quad_leaf_consistent(object par6144, object par6145)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgQuadPicksplit
+		#region spg_quad_picksplit
 
 		[Sql.Function(Name="pg_catalog.spg_quad_picksplit", ServerSideOnly=true)]
-		public static object SpgQuadPicksplit(object par6146, object par6147)
+		public static object spg_quad_picksplit(object par6146, object par6147)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgRangeQuadChoose
+		#region spg_range_quad_choose
 
 		[Sql.Function(Name="pg_catalog.spg_range_quad_choose", ServerSideOnly=true)]
-		public static object SpgRangeQuadChoose(object par6148, object par6149)
+		public static object spg_range_quad_choose(object par6148, object par6149)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgRangeQuadConfig
+		#region spg_range_quad_config
 
 		[Sql.Function(Name="pg_catalog.spg_range_quad_config", ServerSideOnly=true)]
-		public static object SpgRangeQuadConfig(object par6150, object par6151)
+		public static object spg_range_quad_config(object par6150, object par6151)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgRangeQuadInnerConsistent
+		#region spg_range_quad_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_range_quad_inner_consistent", ServerSideOnly=true)]
-		public static object SpgRangeQuadInnerConsistent(object par6152, object par6153)
+		public static object spg_range_quad_inner_consistent(object par6152, object par6153)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgRangeQuadLeafConsistent
+		#region spg_range_quad_leaf_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_range_quad_leaf_consistent", ServerSideOnly=true)]
-		public static bool? SpgRangeQuadLeafConsistent(object par6155, object par6156)
+		public static bool? spg_range_quad_leaf_consistent(object par6155, object par6156)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgRangeQuadPicksplit
+		#region spg_range_quad_picksplit
 
 		[Sql.Function(Name="pg_catalog.spg_range_quad_picksplit", ServerSideOnly=true)]
-		public static object SpgRangeQuadPicksplit(object par6157, object par6158)
+		public static object spg_range_quad_picksplit(object par6157, object par6158)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgTextChoose
+		#region spg_text_choose
 
 		[Sql.Function(Name="pg_catalog.spg_text_choose", ServerSideOnly=true)]
-		public static object SpgTextChoose(object par6159, object par6160)
+		public static object spg_text_choose(object par6159, object par6160)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgTextConfig
+		#region spg_text_config
 
 		[Sql.Function(Name="pg_catalog.spg_text_config", ServerSideOnly=true)]
-		public static object SpgTextConfig(object par6161, object par6162)
+		public static object spg_text_config(object par6161, object par6162)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgTextInnerConsistent
+		#region spg_text_inner_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_text_inner_consistent", ServerSideOnly=true)]
-		public static object SpgTextInnerConsistent(object par6163, object par6164)
+		public static object spg_text_inner_consistent(object par6163, object par6164)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgTextLeafConsistent
+		#region spg_text_leaf_consistent
 
 		[Sql.Function(Name="pg_catalog.spg_text_leaf_consistent", ServerSideOnly=true)]
-		public static bool? SpgTextLeafConsistent(object par6166, object par6167)
+		public static bool? spg_text_leaf_consistent(object par6166, object par6167)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SpgTextPicksplit
+		#region spg_text_picksplit
 
 		[Sql.Function(Name="pg_catalog.spg_text_picksplit", ServerSideOnly=true)]
-		public static object SpgTextPicksplit(object par6168, object par6169)
+		public static object spg_text_picksplit(object par6168, object par6169)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SplitPart
+		#region split_part
 
 		[Sql.Function(Name="pg_catalog.split_part", ServerSideOnly=true)]
-		public static string SplitPart(string par6171, string par6172, int? par6173)
+		public static string split_part(string par6171, string par6172, int? par6173)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Sqrt
+		#region sqrt
 
 		[Sql.Function(Name="pg_catalog.sqrt", ServerSideOnly=true)]
-		public static decimal? Sqrt(decimal? par6177)
+		public static decimal? sqrt(decimal? par6177)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StatementTimestamp
+		#region statement_timestamp
 
 		[Sql.Function(Name="pg_catalog.statement_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? StatementTimestamp()
+		public static DateTimeOffset? statement_timestamp()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Stddev
+		#region stddev
 
 		[Sql.Function(Name="pg_catalog.stddev", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? Stddev<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6190)
+		public static decimal? stddev<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6190)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StddevPop
+		#region stddev_pop
 
 		[Sql.Function(Name="pg_catalog.stddev_pop", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? StddevPop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6202)
+		public static decimal? stddev_pop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6202)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StddevSamp
+		#region stddev_samp
 
 		[Sql.Function(Name="pg_catalog.stddev_samp", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? StddevSamp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6214)
+		public static decimal? stddev_samp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6214)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StringAgg
+		#region string_agg
 
 		[Sql.Function(Name="pg_catalog.string_agg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0, 1 })]
-		public static byte[] StringAgg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, byte[]>> par6219, Expression<Func<TSource, byte[]>> par6220)
+		public static byte[] string_agg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, byte[]>> par6219, Expression<Func<TSource, byte[]>> par6220)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StringAggFinalfn
+		#region string_agg_finalfn
 
 		[Sql.Function(Name="pg_catalog.string_agg_finalfn", ServerSideOnly=true)]
-		public static string StringAggFinalfn(object par6222)
+		public static string string_agg_finalfn(object par6222)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StringAggTransfn
+		#region string_agg_transfn
 
 		[Sql.Function(Name="pg_catalog.string_agg_transfn", ServerSideOnly=true)]
-		public static object StringAggTransfn(object par6224, string par6225, string par6226)
+		public static object string_agg_transfn(object par6224, string par6225, string par6226)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region StringToArray
+		#region string_to_array
 
 		[Sql.Function(Name="pg_catalog.string_to_array", ServerSideOnly=true)]
-		public static object StringToArray(string par6232, string par6233)
+		public static object string_to_array(string par6232, string par6233)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Strip
+		#region strip
 
 		[Sql.Function(Name="pg_catalog.strip", ServerSideOnly=true)]
-		public static object Strip(object par6235)
+		public static object strip(object par6235)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Strpos
+		#region strpos
 
 		[Sql.Function(Name="pg_catalog.strpos", ServerSideOnly=true)]
-		public static int? Strpos(string par6237, string par6238)
+		public static int? strpos(string par6237, string par6238)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Substr
+		#region substr
 
 		[Sql.Function(Name="pg_catalog.substr", ServerSideOnly=true)]
-		public static string Substr(string par6251, int? par6252)
+		public static string substr(string par6251, int? par6252)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Substring
+		#region substring
 
 		[Sql.Function(Name="pg_catalog.substring", ServerSideOnly=true)]
-		public static string Substring(string par6279, int? par6280)
+		public static string substring(string par6279, int? par6280)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Sum
+		#region sum
 
 		[Sql.Function(Name="pg_catalog.sum", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? Sum<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6296)
+		public static decimal? sum<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par6296)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region SuppressRedundantUpdatesTrigger
+		#region suppress_redundant_updates_trigger
 
 		[Sql.Function(Name="pg_catalog.suppress_redundant_updates_trigger", ServerSideOnly=true)]
-		public static object SuppressRedundantUpdatesTrigger()
+		public static object suppress_redundant_updates_trigger()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region System
+		#region system
 
 		[Sql.Function(Name="pg_catalog.system", ServerSideOnly=true)]
-		public static object System(object par6299)
+		public static object system(object par6299)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TableToXml
+		#region table_to_xml
 
 		[Sql.Function(Name="pg_catalog.table_to_xml", ServerSideOnly=true)]
-		public static string TableToXml(object tbl, bool? nulls, bool? tableforest, string targetns)
+		public static string table_to_xml(object tbl, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TableToXmlAndXmlschema
+		#region table_to_xml_and_xmlschema
 
 		[Sql.Function(Name="pg_catalog.table_to_xml_and_xmlschema", ServerSideOnly=true)]
-		public static string TableToXmlAndXmlschema(object tbl, bool? nulls, bool? tableforest, string targetns)
+		public static string table_to_xml_and_xmlschema(object tbl, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TableToXmlschema
+		#region table_to_xmlschema
 
 		[Sql.Function(Name="pg_catalog.table_to_xmlschema", ServerSideOnly=true)]
-		public static string TableToXmlschema(object tbl, bool? nulls, bool? tableforest, string targetns)
+		public static string table_to_xmlschema(object tbl, bool? nulls, bool? tableforest, string targetns)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tan
+		#region tan
 
 		[Sql.Function(Name="pg_catalog.tan", ServerSideOnly=true)]
-		public static double? Tan(double? par6304)
+		public static double? tan(double? par6304)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tand
+		#region tand
 
 		[Sql.Function(Name="pg_catalog.tand", ServerSideOnly=true)]
-		public static double? Tand(double? par6306)
+		public static double? tand(double? par6306)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Text
+		#region text
 
 		[Sql.Function(Name="pg_catalog.text", ServerSideOnly=true)]
-		public static string Text(object par6318)
+		public static string text(object par6318)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textanycat
+		#region textanycat
 
 		[Sql.Function(Name="pg_catalog.textanycat", ServerSideOnly=true)]
-		public static string Textanycat(string par6320, object par6321)
+		public static string textanycat(string par6320, object par6321)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textcat
+		#region textcat
 
 		[Sql.Function(Name="pg_catalog.textcat", ServerSideOnly=true)]
-		public static string Textcat(string par6323, string par6324)
+		public static string textcat(string par6323, string par6324)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Texteq
+		#region texteq
 
 		[Sql.Function(Name="pg_catalog.texteq", ServerSideOnly=true)]
-		public static bool? Texteq(string par6326, string par6327)
+		public static bool? texteq(string par6326, string par6327)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextGe
+		#region text_ge
 
 		[Sql.Function(Name="pg_catalog.text_ge", ServerSideOnly=true)]
-		public static bool? TextGe(string par6329, string par6330)
+		public static bool? text_ge(string par6329, string par6330)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextGt
+		#region text_gt
 
 		[Sql.Function(Name="pg_catalog.text_gt", ServerSideOnly=true)]
-		public static bool? TextGt(string par6332, string par6333)
+		public static bool? text_gt(string par6332, string par6333)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Texticlike
+		#region texticlike
 
 		[Sql.Function(Name="pg_catalog.texticlike", ServerSideOnly=true)]
-		public static bool? Texticlike(string par6335, string par6336)
+		public static bool? texticlike(string par6335, string par6336)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Texticnlike
+		#region texticnlike
 
 		[Sql.Function(Name="pg_catalog.texticnlike", ServerSideOnly=true)]
-		public static bool? Texticnlike(string par6338, string par6339)
+		public static bool? texticnlike(string par6338, string par6339)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Texticregexeq
+		#region texticregexeq
 
 		[Sql.Function(Name="pg_catalog.texticregexeq", ServerSideOnly=true)]
-		public static bool? Texticregexeq(string par6341, string par6342)
+		public static bool? texticregexeq(string par6341, string par6342)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Texticregexne
+		#region texticregexne
 
 		[Sql.Function(Name="pg_catalog.texticregexne", ServerSideOnly=true)]
-		public static bool? Texticregexne(string par6344, string par6345)
+		public static bool? texticregexne(string par6344, string par6345)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textin
+		#region textin
 
 		[Sql.Function(Name="pg_catalog.textin", ServerSideOnly=true)]
-		public static string Textin(object par6347)
+		public static string textin(object par6347)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextLarger
+		#region text_larger
 
 		[Sql.Function(Name="pg_catalog.text_larger", ServerSideOnly=true)]
-		public static string TextLarger(string par6349, string par6350)
+		public static string text_larger(string par6349, string par6350)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextLe
+		#region text_le
 
 		[Sql.Function(Name="pg_catalog.text_le", ServerSideOnly=true)]
-		public static bool? TextLe(string par6352, string par6353)
+		public static bool? text_le(string par6352, string par6353)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textlen
+		#region textlen
 
 		[Sql.Function(Name="pg_catalog.textlen", ServerSideOnly=true)]
-		public static int? Textlen(string par6355)
+		public static int? textlen(string par6355)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textlike
+		#region textlike
 
 		[Sql.Function(Name="pg_catalog.textlike", ServerSideOnly=true)]
-		public static bool? Textlike(string par6357, string par6358)
+		public static bool? textlike(string par6357, string par6358)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextLt
+		#region text_lt
 
 		[Sql.Function(Name="pg_catalog.text_lt", ServerSideOnly=true)]
-		public static bool? TextLt(string par6360, string par6361)
+		public static bool? text_lt(string par6360, string par6361)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textne
+		#region textne
 
 		[Sql.Function(Name="pg_catalog.textne", ServerSideOnly=true)]
-		public static bool? Textne(string par6363, string par6364)
+		public static bool? textne(string par6363, string par6364)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textnlike
+		#region textnlike
 
 		[Sql.Function(Name="pg_catalog.textnlike", ServerSideOnly=true)]
-		public static bool? Textnlike(string par6366, string par6367)
+		public static bool? textnlike(string par6366, string par6367)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textout
+		#region textout
 
 		[Sql.Function(Name="pg_catalog.textout", ServerSideOnly=true)]
-		public static object Textout(string par6369)
+		public static object textout(string par6369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextPatternGe
+		#region text_pattern_ge
 
 		[Sql.Function(Name="pg_catalog.text_pattern_ge", ServerSideOnly=true)]
-		public static bool? TextPatternGe(string par6371, string par6372)
+		public static bool? text_pattern_ge(string par6371, string par6372)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextPatternGt
+		#region text_pattern_gt
 
 		[Sql.Function(Name="pg_catalog.text_pattern_gt", ServerSideOnly=true)]
-		public static bool? TextPatternGt(string par6374, string par6375)
+		public static bool? text_pattern_gt(string par6374, string par6375)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextPatternLe
+		#region text_pattern_le
 
 		[Sql.Function(Name="pg_catalog.text_pattern_le", ServerSideOnly=true)]
-		public static bool? TextPatternLe(string par6377, string par6378)
+		public static bool? text_pattern_le(string par6377, string par6378)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextPatternLt
+		#region text_pattern_lt
 
 		[Sql.Function(Name="pg_catalog.text_pattern_lt", ServerSideOnly=true)]
-		public static bool? TextPatternLt(string par6380, string par6381)
+		public static bool? text_pattern_lt(string par6380, string par6381)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textrecv
+		#region textrecv
 
 		[Sql.Function(Name="pg_catalog.textrecv", ServerSideOnly=true)]
-		public static string Textrecv(object par6383)
+		public static string textrecv(object par6383)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textregexeq
+		#region textregexeq
 
 		[Sql.Function(Name="pg_catalog.textregexeq", ServerSideOnly=true)]
-		public static bool? Textregexeq(string par6385, string par6386)
+		public static bool? textregexeq(string par6385, string par6386)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textregexne
+		#region textregexne
 
 		[Sql.Function(Name="pg_catalog.textregexne", ServerSideOnly=true)]
-		public static bool? Textregexne(string par6388, string par6389)
+		public static bool? textregexne(string par6388, string par6389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Textsend
+		#region textsend
 
 		[Sql.Function(Name="pg_catalog.textsend", ServerSideOnly=true)]
-		public static byte[] Textsend(string par6391)
+		public static byte[] textsend(string par6391)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TextSmaller
+		#region text_smaller
 
 		[Sql.Function(Name="pg_catalog.text_smaller", ServerSideOnly=true)]
-		public static string TextSmaller(string par6393, string par6394)
+		public static string text_smaller(string par6393, string par6394)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ThesaurusInit
+		#region thesaurus_init
 
 		[Sql.Function(Name="pg_catalog.thesaurus_init", ServerSideOnly=true)]
-		public static object ThesaurusInit(object par6396)
+		public static object thesaurus_init(object par6396)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ThesaurusLexize
+		#region thesaurus_lexize
 
 		[Sql.Function(Name="pg_catalog.thesaurus_lexize", ServerSideOnly=true)]
-		public static object ThesaurusLexize(object par6398, object par6399, object par6400, object par6401)
+		public static object thesaurus_lexize(object par6398, object par6399, object par6400, object par6401)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tideq
+		#region tideq
 
 		[Sql.Function(Name="pg_catalog.tideq", ServerSideOnly=true)]
-		public static bool? Tideq(object par6403, object par6404)
+		public static bool? tideq(object par6403, object par6404)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidge
+		#region tidge
 
 		[Sql.Function(Name="pg_catalog.tidge", ServerSideOnly=true)]
-		public static bool? Tidge(object par6406, object par6407)
+		public static bool? tidge(object par6406, object par6407)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidgt
+		#region tidgt
 
 		[Sql.Function(Name="pg_catalog.tidgt", ServerSideOnly=true)]
-		public static bool? Tidgt(object par6409, object par6410)
+		public static bool? tidgt(object par6409, object par6410)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidin
+		#region tidin
 
 		[Sql.Function(Name="pg_catalog.tidin", ServerSideOnly=true)]
-		public static object Tidin(object par6412)
+		public static object tidin(object par6412)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidlarger
+		#region tidlarger
 
 		[Sql.Function(Name="pg_catalog.tidlarger", ServerSideOnly=true)]
-		public static object Tidlarger(object par6414, object par6415)
+		public static object tidlarger(object par6414, object par6415)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidle
+		#region tidle
 
 		[Sql.Function(Name="pg_catalog.tidle", ServerSideOnly=true)]
-		public static bool? Tidle(object par6417, object par6418)
+		public static bool? tidle(object par6417, object par6418)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidlt
+		#region tidlt
 
 		[Sql.Function(Name="pg_catalog.tidlt", ServerSideOnly=true)]
-		public static bool? Tidlt(object par6420, object par6421)
+		public static bool? tidlt(object par6420, object par6421)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidne
+		#region tidne
 
 		[Sql.Function(Name="pg_catalog.tidne", ServerSideOnly=true)]
-		public static bool? Tidne(object par6423, object par6424)
+		public static bool? tidne(object par6423, object par6424)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidout
+		#region tidout
 
 		[Sql.Function(Name="pg_catalog.tidout", ServerSideOnly=true)]
-		public static object Tidout(object par6426)
+		public static object tidout(object par6426)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidrecv
+		#region tidrecv
 
 		[Sql.Function(Name="pg_catalog.tidrecv", ServerSideOnly=true)]
-		public static object Tidrecv(object par6428)
+		public static object tidrecv(object par6428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidsend
+		#region tidsend
 
 		[Sql.Function(Name="pg_catalog.tidsend", ServerSideOnly=true)]
-		public static byte[] Tidsend(object par6430)
+		public static byte[] tidsend(object par6430)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tidsmaller
+		#region tidsmaller
 
 		[Sql.Function(Name="pg_catalog.tidsmaller", ServerSideOnly=true)]
-		public static object Tidsmaller(object par6432, object par6433)
+		public static object tidsmaller(object par6432, object par6433)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Time
+		#region time
 
 		[Sql.Function(Name="pg_catalog.time", ServerSideOnly=true)]
-		public static TimeSpan? Time(DateTimeOffset? par6446)
+		public static TimeSpan? time(DateTimeOffset? par6446)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeCmp
+		#region time_cmp
 
 		[Sql.Function(Name="pg_catalog.time_cmp", ServerSideOnly=true)]
-		public static int? TimeCmp(TimeSpan? par6448, TimeSpan? par6449)
+		public static int? time_cmp(TimeSpan? par6448, TimeSpan? par6449)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimedatePl
+		#region timedate_pl
 
 		[Sql.Function(Name="pg_catalog.timedate_pl", ServerSideOnly=true)]
-		public static DateTime? TimedatePl(TimeSpan? par6451, NpgsqlDate? par6452)
+		public static DateTime? timedate_pl(TimeSpan? par6451, NpgsqlDate? par6452)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeEq
+		#region time_eq
 
 		[Sql.Function(Name="pg_catalog.time_eq", ServerSideOnly=true)]
-		public static bool? TimeEq(TimeSpan? par6454, TimeSpan? par6455)
+		public static bool? time_eq(TimeSpan? par6454, TimeSpan? par6455)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeGe
+		#region time_ge
 
 		[Sql.Function(Name="pg_catalog.time_ge", ServerSideOnly=true)]
-		public static bool? TimeGe(TimeSpan? par6457, TimeSpan? par6458)
+		public static bool? time_ge(TimeSpan? par6457, TimeSpan? par6458)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeGt
+		#region time_gt
 
 		[Sql.Function(Name="pg_catalog.time_gt", ServerSideOnly=true)]
-		public static bool? TimeGt(TimeSpan? par6460, TimeSpan? par6461)
+		public static bool? time_gt(TimeSpan? par6460, TimeSpan? par6461)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeHash
+		#region time_hash
 
 		[Sql.Function(Name="pg_catalog.time_hash", ServerSideOnly=true)]
-		public static int? TimeHash(TimeSpan? par6463)
+		public static int? time_hash(TimeSpan? par6463)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeIn
+		#region time_in
 
 		[Sql.Function(Name="pg_catalog.time_in", ServerSideOnly=true)]
-		public static TimeSpan? TimeIn(object par6465, int? par6466, int? par6467)
+		public static TimeSpan? time_in(object par6465, int? par6466, int? par6467)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeLarger
+		#region time_larger
 
 		[Sql.Function(Name="pg_catalog.time_larger", ServerSideOnly=true)]
-		public static TimeSpan? TimeLarger(TimeSpan? par6469, TimeSpan? par6470)
+		public static TimeSpan? time_larger(TimeSpan? par6469, TimeSpan? par6470)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeLe
+		#region time_le
 
 		[Sql.Function(Name="pg_catalog.time_le", ServerSideOnly=true)]
-		public static bool? TimeLe(TimeSpan? par6472, TimeSpan? par6473)
+		public static bool? time_le(TimeSpan? par6472, TimeSpan? par6473)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeLt
+		#region time_lt
 
 		[Sql.Function(Name="pg_catalog.time_lt", ServerSideOnly=true)]
-		public static bool? TimeLt(TimeSpan? par6475, TimeSpan? par6476)
+		public static bool? time_lt(TimeSpan? par6475, TimeSpan? par6476)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timemi
+		#region timemi
 
 		[Sql.Function(Name="pg_catalog.timemi", ServerSideOnly=true)]
-		public static object Timemi(object par6478, object par6479)
+		public static object timemi(object par6478, object par6479)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeMiInterval
+		#region time_mi_interval
 
 		[Sql.Function(Name="pg_catalog.time_mi_interval", ServerSideOnly=true)]
-		public static TimeSpan? TimeMiInterval(TimeSpan? par6481, NpgsqlTimeSpan? par6482)
+		public static TimeSpan? time_mi_interval(TimeSpan? par6481, NpgsqlTimeSpan? par6482)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeMiTime
+		#region time_mi_time
 
 		[Sql.Function(Name="pg_catalog.time_mi_time", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? TimeMiTime(TimeSpan? par6484, TimeSpan? par6485)
+		public static NpgsqlTimeSpan? time_mi_time(TimeSpan? par6484, TimeSpan? par6485)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeNe
+		#region time_ne
 
 		[Sql.Function(Name="pg_catalog.time_ne", ServerSideOnly=true)]
-		public static bool? TimeNe(TimeSpan? par6487, TimeSpan? par6488)
+		public static bool? time_ne(TimeSpan? par6487, TimeSpan? par6488)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timenow
+		#region timenow
 
 		[Sql.Function(Name="pg_catalog.timenow", ServerSideOnly=true)]
-		public static object Timenow()
+		public static object timenow()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timeofday
+		#region timeofday
 
 		[Sql.Function(Name="pg_catalog.timeofday", ServerSideOnly=true)]
-		public static string Timeofday()
+		public static string timeofday()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeOut
+		#region time_out
 
 		[Sql.Function(Name="pg_catalog.time_out", ServerSideOnly=true)]
-		public static object TimeOut(TimeSpan? par6492)
+		public static object time_out(TimeSpan? par6492)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timepl
+		#region timepl
 
 		[Sql.Function(Name="pg_catalog.timepl", ServerSideOnly=true)]
-		public static object Timepl(object par6494, object par6495)
+		public static object timepl(object par6494, object par6495)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimePlInterval
+		#region time_pl_interval
 
 		[Sql.Function(Name="pg_catalog.time_pl_interval", ServerSideOnly=true)]
-		public static TimeSpan? TimePlInterval(TimeSpan? par6497, NpgsqlTimeSpan? par6498)
+		public static TimeSpan? time_pl_interval(TimeSpan? par6497, NpgsqlTimeSpan? par6498)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeRecv
+		#region time_recv
 
 		[Sql.Function(Name="pg_catalog.time_recv", ServerSideOnly=true)]
-		public static TimeSpan? TimeRecv(object par6500, int? par6501, int? par6502)
+		public static TimeSpan? time_recv(object par6500, int? par6501, int? par6502)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeSend
+		#region time_send
 
 		[Sql.Function(Name="pg_catalog.time_send", ServerSideOnly=true)]
-		public static byte[] TimeSend(TimeSpan? par6504)
+		public static byte[] time_send(TimeSpan? par6504)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeSmaller
+		#region time_smaller
 
 		[Sql.Function(Name="pg_catalog.time_smaller", ServerSideOnly=true)]
-		public static TimeSpan? TimeSmaller(TimeSpan? par6506, TimeSpan? par6507)
+		public static TimeSpan? time_smaller(TimeSpan? par6506, TimeSpan? par6507)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamp
+		#region timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamp", ServerSideOnly=true)]
-		public static DateTime? Timestamp(DateTimeOffset? par6519)
+		public static DateTime? timestamp(DateTimeOffset? par6519)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampCmp
+		#region timestamp_cmp
 
 		[Sql.Function(Name="pg_catalog.timestamp_cmp", ServerSideOnly=true)]
-		public static int? TimestampCmp(DateTime? par6521, DateTime? par6522)
+		public static int? timestamp_cmp(DateTime? par6521, DateTime? par6522)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampCmpDate
+		#region timestamp_cmp_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_cmp_date", ServerSideOnly=true)]
-		public static int? TimestampCmpDate(DateTime? par6524, NpgsqlDate? par6525)
+		public static int? timestamp_cmp_date(DateTime? par6524, NpgsqlDate? par6525)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampCmpTimestamptz
+		#region timestamp_cmp_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_cmp_timestamptz", ServerSideOnly=true)]
-		public static int? TimestampCmpTimestamptz(DateTime? par6527, DateTimeOffset? par6528)
+		public static int? timestamp_cmp_timestamptz(DateTime? par6527, DateTimeOffset? par6528)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampEq
+		#region timestamp_eq
 
 		[Sql.Function(Name="pg_catalog.timestamp_eq", ServerSideOnly=true)]
-		public static bool? TimestampEq(DateTime? par6530, DateTime? par6531)
+		public static bool? timestamp_eq(DateTime? par6530, DateTime? par6531)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampEqDate
+		#region timestamp_eq_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_eq_date", ServerSideOnly=true)]
-		public static bool? TimestampEqDate(DateTime? par6533, NpgsqlDate? par6534)
+		public static bool? timestamp_eq_date(DateTime? par6533, NpgsqlDate? par6534)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampEqTimestamptz
+		#region timestamp_eq_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_eq_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampEqTimestamptz(DateTime? par6536, DateTimeOffset? par6537)
+		public static bool? timestamp_eq_timestamptz(DateTime? par6536, DateTimeOffset? par6537)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGe
+		#region timestamp_ge
 
 		[Sql.Function(Name="pg_catalog.timestamp_ge", ServerSideOnly=true)]
-		public static bool? TimestampGe(DateTime? par6539, DateTime? par6540)
+		public static bool? timestamp_ge(DateTime? par6539, DateTime? par6540)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGeDate
+		#region timestamp_ge_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_ge_date", ServerSideOnly=true)]
-		public static bool? TimestampGeDate(DateTime? par6542, NpgsqlDate? par6543)
+		public static bool? timestamp_ge_date(DateTime? par6542, NpgsqlDate? par6543)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGeTimestamptz
+		#region timestamp_ge_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_ge_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampGeTimestamptz(DateTime? par6545, DateTimeOffset? par6546)
+		public static bool? timestamp_ge_timestamptz(DateTime? par6545, DateTimeOffset? par6546)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGt
+		#region timestamp_gt
 
 		[Sql.Function(Name="pg_catalog.timestamp_gt", ServerSideOnly=true)]
-		public static bool? TimestampGt(DateTime? par6548, DateTime? par6549)
+		public static bool? timestamp_gt(DateTime? par6548, DateTime? par6549)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGtDate
+		#region timestamp_gt_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_gt_date", ServerSideOnly=true)]
-		public static bool? TimestampGtDate(DateTime? par6551, NpgsqlDate? par6552)
+		public static bool? timestamp_gt_date(DateTime? par6551, NpgsqlDate? par6552)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampGtTimestamptz
+		#region timestamp_gt_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_gt_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampGtTimestamptz(DateTime? par6554, DateTimeOffset? par6555)
+		public static bool? timestamp_gt_timestamptz(DateTime? par6554, DateTimeOffset? par6555)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampHash
+		#region timestamp_hash
 
 		[Sql.Function(Name="pg_catalog.timestamp_hash", ServerSideOnly=true)]
-		public static int? TimestampHash(DateTime? par6557)
+		public static int? timestamp_hash(DateTime? par6557)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampIn
+		#region timestamp_in
 
 		[Sql.Function(Name="pg_catalog.timestamp_in", ServerSideOnly=true)]
-		public static DateTime? TimestampIn(object par6559, int? par6560, int? par6561)
+		public static DateTime? timestamp_in(object par6559, int? par6560, int? par6561)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampIzoneTransform
+		#region timestamp_izone_transform
 
 		[Sql.Function(Name="pg_catalog.timestamp_izone_transform", ServerSideOnly=true)]
-		public static object TimestampIzoneTransform(object par6563)
+		public static object timestamp_izone_transform(object par6563)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLarger
+		#region timestamp_larger
 
 		[Sql.Function(Name="pg_catalog.timestamp_larger", ServerSideOnly=true)]
-		public static DateTime? TimestampLarger(DateTime? par6565, DateTime? par6566)
+		public static DateTime? timestamp_larger(DateTime? par6565, DateTime? par6566)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLe
+		#region timestamp_le
 
 		[Sql.Function(Name="pg_catalog.timestamp_le", ServerSideOnly=true)]
-		public static bool? TimestampLe(DateTime? par6568, DateTime? par6569)
+		public static bool? timestamp_le(DateTime? par6568, DateTime? par6569)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLeDate
+		#region timestamp_le_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_le_date", ServerSideOnly=true)]
-		public static bool? TimestampLeDate(DateTime? par6571, NpgsqlDate? par6572)
+		public static bool? timestamp_le_date(DateTime? par6571, NpgsqlDate? par6572)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLeTimestamptz
+		#region timestamp_le_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_le_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampLeTimestamptz(DateTime? par6574, DateTimeOffset? par6575)
+		public static bool? timestamp_le_timestamptz(DateTime? par6574, DateTimeOffset? par6575)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLt
+		#region timestamp_lt
 
 		[Sql.Function(Name="pg_catalog.timestamp_lt", ServerSideOnly=true)]
-		public static bool? TimestampLt(DateTime? par6577, DateTime? par6578)
+		public static bool? timestamp_lt(DateTime? par6577, DateTime? par6578)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLtDate
+		#region timestamp_lt_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_lt_date", ServerSideOnly=true)]
-		public static bool? TimestampLtDate(DateTime? par6580, NpgsqlDate? par6581)
+		public static bool? timestamp_lt_date(DateTime? par6580, NpgsqlDate? par6581)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampLtTimestamptz
+		#region timestamp_lt_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_lt_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampLtTimestamptz(DateTime? par6583, DateTimeOffset? par6584)
+		public static bool? timestamp_lt_timestamptz(DateTime? par6583, DateTimeOffset? par6584)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampMi
+		#region timestamp_mi
 
 		[Sql.Function(Name="pg_catalog.timestamp_mi", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? TimestampMi(DateTime? par6586, DateTime? par6587)
+		public static NpgsqlTimeSpan? timestamp_mi(DateTime? par6586, DateTime? par6587)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampMiInterval
+		#region timestamp_mi_interval
 
 		[Sql.Function(Name="pg_catalog.timestamp_mi_interval", ServerSideOnly=true)]
-		public static DateTime? TimestampMiInterval(DateTime? par6589, NpgsqlTimeSpan? par6590)
+		public static DateTime? timestamp_mi_interval(DateTime? par6589, NpgsqlTimeSpan? par6590)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampNe
+		#region timestamp_ne
 
 		[Sql.Function(Name="pg_catalog.timestamp_ne", ServerSideOnly=true)]
-		public static bool? TimestampNe(DateTime? par6592, DateTime? par6593)
+		public static bool? timestamp_ne(DateTime? par6592, DateTime? par6593)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampNeDate
+		#region timestamp_ne_date
 
 		[Sql.Function(Name="pg_catalog.timestamp_ne_date", ServerSideOnly=true)]
-		public static bool? TimestampNeDate(DateTime? par6595, NpgsqlDate? par6596)
+		public static bool? timestamp_ne_date(DateTime? par6595, NpgsqlDate? par6596)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampNeTimestamptz
+		#region timestamp_ne_timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamp_ne_timestamptz", ServerSideOnly=true)]
-		public static bool? TimestampNeTimestamptz(DateTime? par6598, DateTimeOffset? par6599)
+		public static bool? timestamp_ne_timestamptz(DateTime? par6598, DateTimeOffset? par6599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampOut
+		#region timestamp_out
 
 		[Sql.Function(Name="pg_catalog.timestamp_out", ServerSideOnly=true)]
-		public static object TimestampOut(DateTime? par6601)
+		public static object timestamp_out(DateTime? par6601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampPlInterval
+		#region timestamp_pl_interval
 
 		[Sql.Function(Name="pg_catalog.timestamp_pl_interval", ServerSideOnly=true)]
-		public static DateTime? TimestampPlInterval(DateTime? par6603, NpgsqlTimeSpan? par6604)
+		public static DateTime? timestamp_pl_interval(DateTime? par6603, NpgsqlTimeSpan? par6604)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampRecv
+		#region timestamp_recv
 
 		[Sql.Function(Name="pg_catalog.timestamp_recv", ServerSideOnly=true)]
-		public static DateTime? TimestampRecv(object par6606, int? par6607, int? par6608)
+		public static DateTime? timestamp_recv(object par6606, int? par6607, int? par6608)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampSend
+		#region timestamp_send
 
 		[Sql.Function(Name="pg_catalog.timestamp_send", ServerSideOnly=true)]
-		public static byte[] TimestampSend(DateTime? par6610)
+		public static byte[] timestamp_send(DateTime? par6610)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampSmaller
+		#region timestamp_smaller
 
 		[Sql.Function(Name="pg_catalog.timestamp_smaller", ServerSideOnly=true)]
-		public static DateTime? TimestampSmaller(DateTime? par6612, DateTime? par6613)
+		public static DateTime? timestamp_smaller(DateTime? par6612, DateTime? par6613)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampSortsupport
+		#region timestamp_sortsupport
 
 		[Sql.Function(Name="pg_catalog.timestamp_sortsupport", ServerSideOnly=true)]
-		public static object TimestampSortsupport(object par6614)
+		public static object timestamp_sortsupport(object par6614)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampTransform
+		#region timestamp_transform
 
 		[Sql.Function(Name="pg_catalog.timestamp_transform", ServerSideOnly=true)]
-		public static object TimestampTransform(object par6616)
+		public static object timestamp_transform(object par6616)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamptypmodin
+		#region timestamptypmodin
 
 		[Sql.Function(Name="pg_catalog.timestamptypmodin", ServerSideOnly=true)]
-		public static int? Timestamptypmodin(object par6618)
+		public static int? timestamptypmodin(object par6618)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamptypmodout
+		#region timestamptypmodout
 
 		[Sql.Function(Name="pg_catalog.timestamptypmodout", ServerSideOnly=true)]
-		public static object Timestamptypmodout(int? par6620)
+		public static object timestamptypmodout(int? par6620)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamptz
+		#region timestamptz
 
 		[Sql.Function(Name="pg_catalog.timestamptz", ServerSideOnly=true)]
-		public static DateTimeOffset? Timestamptz(DateTime? par6635)
+		public static DateTimeOffset? timestamptz(DateTime? par6635)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzCmp
+		#region timestamptz_cmp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_cmp", ServerSideOnly=true)]
-		public static int? TimestamptzCmp(DateTimeOffset? par6637, DateTimeOffset? par6638)
+		public static int? timestamptz_cmp(DateTimeOffset? par6637, DateTimeOffset? par6638)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzCmpDate
+		#region timestamptz_cmp_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_cmp_date", ServerSideOnly=true)]
-		public static int? TimestamptzCmpDate(DateTimeOffset? par6640, NpgsqlDate? par6641)
+		public static int? timestamptz_cmp_date(DateTimeOffset? par6640, NpgsqlDate? par6641)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzCmpTimestamp
+		#region timestamptz_cmp_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_cmp_timestamp", ServerSideOnly=true)]
-		public static int? TimestamptzCmpTimestamp(DateTimeOffset? par6643, DateTime? par6644)
+		public static int? timestamptz_cmp_timestamp(DateTimeOffset? par6643, DateTime? par6644)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzEq
+		#region timestamptz_eq
 
 		[Sql.Function(Name="pg_catalog.timestamptz_eq", ServerSideOnly=true)]
-		public static bool? TimestamptzEq(DateTimeOffset? par6646, DateTimeOffset? par6647)
+		public static bool? timestamptz_eq(DateTimeOffset? par6646, DateTimeOffset? par6647)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzEqDate
+		#region timestamptz_eq_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_eq_date", ServerSideOnly=true)]
-		public static bool? TimestamptzEqDate(DateTimeOffset? par6649, NpgsqlDate? par6650)
+		public static bool? timestamptz_eq_date(DateTimeOffset? par6649, NpgsqlDate? par6650)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzEqTimestamp
+		#region timestamptz_eq_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_eq_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzEqTimestamp(DateTimeOffset? par6652, DateTime? par6653)
+		public static bool? timestamptz_eq_timestamp(DateTimeOffset? par6652, DateTime? par6653)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGe
+		#region timestamptz_ge
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ge", ServerSideOnly=true)]
-		public static bool? TimestamptzGe(DateTimeOffset? par6655, DateTimeOffset? par6656)
+		public static bool? timestamptz_ge(DateTimeOffset? par6655, DateTimeOffset? par6656)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGeDate
+		#region timestamptz_ge_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ge_date", ServerSideOnly=true)]
-		public static bool? TimestamptzGeDate(DateTimeOffset? par6658, NpgsqlDate? par6659)
+		public static bool? timestamptz_ge_date(DateTimeOffset? par6658, NpgsqlDate? par6659)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGeTimestamp
+		#region timestamptz_ge_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ge_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzGeTimestamp(DateTimeOffset? par6661, DateTime? par6662)
+		public static bool? timestamptz_ge_timestamp(DateTimeOffset? par6661, DateTime? par6662)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGt
+		#region timestamptz_gt
 
 		[Sql.Function(Name="pg_catalog.timestamptz_gt", ServerSideOnly=true)]
-		public static bool? TimestamptzGt(DateTimeOffset? par6664, DateTimeOffset? par6665)
+		public static bool? timestamptz_gt(DateTimeOffset? par6664, DateTimeOffset? par6665)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGtDate
+		#region timestamptz_gt_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_gt_date", ServerSideOnly=true)]
-		public static bool? TimestamptzGtDate(DateTimeOffset? par6667, NpgsqlDate? par6668)
+		public static bool? timestamptz_gt_date(DateTimeOffset? par6667, NpgsqlDate? par6668)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzGtTimestamp
+		#region timestamptz_gt_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_gt_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzGtTimestamp(DateTimeOffset? par6670, DateTime? par6671)
+		public static bool? timestamptz_gt_timestamp(DateTimeOffset? par6670, DateTime? par6671)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzIn
+		#region timestamptz_in
 
 		[Sql.Function(Name="pg_catalog.timestamptz_in", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzIn(object par6673, int? par6674, int? par6675)
+		public static DateTimeOffset? timestamptz_in(object par6673, int? par6674, int? par6675)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLarger
+		#region timestamptz_larger
 
 		[Sql.Function(Name="pg_catalog.timestamptz_larger", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzLarger(DateTimeOffset? par6677, DateTimeOffset? par6678)
+		public static DateTimeOffset? timestamptz_larger(DateTimeOffset? par6677, DateTimeOffset? par6678)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLe
+		#region timestamptz_le
 
 		[Sql.Function(Name="pg_catalog.timestamptz_le", ServerSideOnly=true)]
-		public static bool? TimestamptzLe(DateTimeOffset? par6680, DateTimeOffset? par6681)
+		public static bool? timestamptz_le(DateTimeOffset? par6680, DateTimeOffset? par6681)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLeDate
+		#region timestamptz_le_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_le_date", ServerSideOnly=true)]
-		public static bool? TimestamptzLeDate(DateTimeOffset? par6683, NpgsqlDate? par6684)
+		public static bool? timestamptz_le_date(DateTimeOffset? par6683, NpgsqlDate? par6684)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLeTimestamp
+		#region timestamptz_le_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_le_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzLeTimestamp(DateTimeOffset? par6686, DateTime? par6687)
+		public static bool? timestamptz_le_timestamp(DateTimeOffset? par6686, DateTime? par6687)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLt
+		#region timestamptz_lt
 
 		[Sql.Function(Name="pg_catalog.timestamptz_lt", ServerSideOnly=true)]
-		public static bool? TimestamptzLt(DateTimeOffset? par6689, DateTimeOffset? par6690)
+		public static bool? timestamptz_lt(DateTimeOffset? par6689, DateTimeOffset? par6690)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLtDate
+		#region timestamptz_lt_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_lt_date", ServerSideOnly=true)]
-		public static bool? TimestamptzLtDate(DateTimeOffset? par6692, NpgsqlDate? par6693)
+		public static bool? timestamptz_lt_date(DateTimeOffset? par6692, NpgsqlDate? par6693)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzLtTimestamp
+		#region timestamptz_lt_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_lt_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzLtTimestamp(DateTimeOffset? par6695, DateTime? par6696)
+		public static bool? timestamptz_lt_timestamp(DateTimeOffset? par6695, DateTime? par6696)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzMi
+		#region timestamptz_mi
 
 		[Sql.Function(Name="pg_catalog.timestamptz_mi", ServerSideOnly=true)]
-		public static NpgsqlTimeSpan? TimestamptzMi(DateTimeOffset? par6698, DateTimeOffset? par6699)
+		public static NpgsqlTimeSpan? timestamptz_mi(DateTimeOffset? par6698, DateTimeOffset? par6699)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzMiInterval
+		#region timestamptz_mi_interval
 
 		[Sql.Function(Name="pg_catalog.timestamptz_mi_interval", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzMiInterval(DateTimeOffset? par6701, NpgsqlTimeSpan? par6702)
+		public static DateTimeOffset? timestamptz_mi_interval(DateTimeOffset? par6701, NpgsqlTimeSpan? par6702)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzNe
+		#region timestamptz_ne
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ne", ServerSideOnly=true)]
-		public static bool? TimestamptzNe(DateTimeOffset? par6704, DateTimeOffset? par6705)
+		public static bool? timestamptz_ne(DateTimeOffset? par6704, DateTimeOffset? par6705)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzNeDate
+		#region timestamptz_ne_date
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ne_date", ServerSideOnly=true)]
-		public static bool? TimestamptzNeDate(DateTimeOffset? par6707, NpgsqlDate? par6708)
+		public static bool? timestamptz_ne_date(DateTimeOffset? par6707, NpgsqlDate? par6708)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzNeTimestamp
+		#region timestamptz_ne_timestamp
 
 		[Sql.Function(Name="pg_catalog.timestamptz_ne_timestamp", ServerSideOnly=true)]
-		public static bool? TimestamptzNeTimestamp(DateTimeOffset? par6710, DateTime? par6711)
+		public static bool? timestamptz_ne_timestamp(DateTimeOffset? par6710, DateTime? par6711)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzOut
+		#region timestamptz_out
 
 		[Sql.Function(Name="pg_catalog.timestamptz_out", ServerSideOnly=true)]
-		public static object TimestamptzOut(DateTimeOffset? par6713)
+		public static object timestamptz_out(DateTimeOffset? par6713)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzPlInterval
+		#region timestamptz_pl_interval
 
 		[Sql.Function(Name="pg_catalog.timestamptz_pl_interval", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzPlInterval(DateTimeOffset? par6715, NpgsqlTimeSpan? par6716)
+		public static DateTimeOffset? timestamptz_pl_interval(DateTimeOffset? par6715, NpgsqlTimeSpan? par6716)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzRecv
+		#region timestamptz_recv
 
 		[Sql.Function(Name="pg_catalog.timestamptz_recv", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzRecv(object par6718, int? par6719, int? par6720)
+		public static DateTimeOffset? timestamptz_recv(object par6718, int? par6719, int? par6720)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzSend
+		#region timestamptz_send
 
 		[Sql.Function(Name="pg_catalog.timestamptz_send", ServerSideOnly=true)]
-		public static byte[] TimestamptzSend(DateTimeOffset? par6722)
+		public static byte[] timestamptz_send(DateTimeOffset? par6722)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestamptzSmaller
+		#region timestamptz_smaller
 
 		[Sql.Function(Name="pg_catalog.timestamptz_smaller", ServerSideOnly=true)]
-		public static DateTimeOffset? TimestamptzSmaller(DateTimeOffset? par6724, DateTimeOffset? par6725)
+		public static DateTimeOffset? timestamptz_smaller(DateTimeOffset? par6724, DateTimeOffset? par6725)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamptztypmodin
+		#region timestamptztypmodin
 
 		[Sql.Function(Name="pg_catalog.timestamptztypmodin", ServerSideOnly=true)]
-		public static int? Timestamptztypmodin(object par6727)
+		public static int? timestamptztypmodin(object par6727)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timestamptztypmodout
+		#region timestamptztypmodout
 
 		[Sql.Function(Name="pg_catalog.timestamptztypmodout", ServerSideOnly=true)]
-		public static object Timestamptztypmodout(int? par6729)
+		public static object timestamptztypmodout(int? par6729)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimestampZoneTransform
+		#region timestamp_zone_transform
 
 		[Sql.Function(Name="pg_catalog.timestamp_zone_transform", ServerSideOnly=true)]
-		public static object TimestampZoneTransform(object par6731)
+		public static object timestamp_zone_transform(object par6731)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimeTransform
+		#region time_transform
 
 		[Sql.Function(Name="pg_catalog.time_transform", ServerSideOnly=true)]
-		public static object TimeTransform(object par6733)
+		public static object time_transform(object par6733)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timetypmodin
+		#region timetypmodin
 
 		[Sql.Function(Name="pg_catalog.timetypmodin", ServerSideOnly=true)]
-		public static int? Timetypmodin(object par6735)
+		public static int? timetypmodin(object par6735)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timetypmodout
+		#region timetypmodout
 
 		[Sql.Function(Name="pg_catalog.timetypmodout", ServerSideOnly=true)]
-		public static object Timetypmodout(int? par6737)
+		public static object timetypmodout(int? par6737)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timetz
+		#region timetz
 
 		[Sql.Function(Name="pg_catalog.timetz", ServerSideOnly=true)]
-		public static DateTimeOffset? Timetz(TimeSpan? par6744)
+		public static DateTimeOffset? timetz(TimeSpan? par6744)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzCmp
+		#region timetz_cmp
 
 		[Sql.Function(Name="pg_catalog.timetz_cmp", ServerSideOnly=true)]
-		public static int? TimetzCmp(DateTimeOffset? par6746, DateTimeOffset? par6747)
+		public static int? timetz_cmp(DateTimeOffset? par6746, DateTimeOffset? par6747)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzdatePl
+		#region timetzdate_pl
 
 		[Sql.Function(Name="pg_catalog.timetzdate_pl", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzdatePl(DateTimeOffset? par6749, NpgsqlDate? par6750)
+		public static DateTimeOffset? timetzdate_pl(DateTimeOffset? par6749, NpgsqlDate? par6750)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzEq
+		#region timetz_eq
 
 		[Sql.Function(Name="pg_catalog.timetz_eq", ServerSideOnly=true)]
-		public static bool? TimetzEq(DateTimeOffset? par6752, DateTimeOffset? par6753)
+		public static bool? timetz_eq(DateTimeOffset? par6752, DateTimeOffset? par6753)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzGe
+		#region timetz_ge
 
 		[Sql.Function(Name="pg_catalog.timetz_ge", ServerSideOnly=true)]
-		public static bool? TimetzGe(DateTimeOffset? par6755, DateTimeOffset? par6756)
+		public static bool? timetz_ge(DateTimeOffset? par6755, DateTimeOffset? par6756)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzGt
+		#region timetz_gt
 
 		[Sql.Function(Name="pg_catalog.timetz_gt", ServerSideOnly=true)]
-		public static bool? TimetzGt(DateTimeOffset? par6758, DateTimeOffset? par6759)
+		public static bool? timetz_gt(DateTimeOffset? par6758, DateTimeOffset? par6759)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzHash
+		#region timetz_hash
 
 		[Sql.Function(Name="pg_catalog.timetz_hash", ServerSideOnly=true)]
-		public static int? TimetzHash(DateTimeOffset? par6761)
+		public static int? timetz_hash(DateTimeOffset? par6761)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzIn
+		#region timetz_in
 
 		[Sql.Function(Name="pg_catalog.timetz_in", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzIn(object par6763, int? par6764, int? par6765)
+		public static DateTimeOffset? timetz_in(object par6763, int? par6764, int? par6765)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzLarger
+		#region timetz_larger
 
 		[Sql.Function(Name="pg_catalog.timetz_larger", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzLarger(DateTimeOffset? par6767, DateTimeOffset? par6768)
+		public static DateTimeOffset? timetz_larger(DateTimeOffset? par6767, DateTimeOffset? par6768)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzLe
+		#region timetz_le
 
 		[Sql.Function(Name="pg_catalog.timetz_le", ServerSideOnly=true)]
-		public static bool? TimetzLe(DateTimeOffset? par6770, DateTimeOffset? par6771)
+		public static bool? timetz_le(DateTimeOffset? par6770, DateTimeOffset? par6771)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzLt
+		#region timetz_lt
 
 		[Sql.Function(Name="pg_catalog.timetz_lt", ServerSideOnly=true)]
-		public static bool? TimetzLt(DateTimeOffset? par6773, DateTimeOffset? par6774)
+		public static bool? timetz_lt(DateTimeOffset? par6773, DateTimeOffset? par6774)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzMiInterval
+		#region timetz_mi_interval
 
 		[Sql.Function(Name="pg_catalog.timetz_mi_interval", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzMiInterval(DateTimeOffset? par6776, NpgsqlTimeSpan? par6777)
+		public static DateTimeOffset? timetz_mi_interval(DateTimeOffset? par6776, NpgsqlTimeSpan? par6777)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzNe
+		#region timetz_ne
 
 		[Sql.Function(Name="pg_catalog.timetz_ne", ServerSideOnly=true)]
-		public static bool? TimetzNe(DateTimeOffset? par6779, DateTimeOffset? par6780)
+		public static bool? timetz_ne(DateTimeOffset? par6779, DateTimeOffset? par6780)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzOut
+		#region timetz_out
 
 		[Sql.Function(Name="pg_catalog.timetz_out", ServerSideOnly=true)]
-		public static object TimetzOut(DateTimeOffset? par6782)
+		public static object timetz_out(DateTimeOffset? par6782)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzPlInterval
+		#region timetz_pl_interval
 
 		[Sql.Function(Name="pg_catalog.timetz_pl_interval", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzPlInterval(DateTimeOffset? par6784, NpgsqlTimeSpan? par6785)
+		public static DateTimeOffset? timetz_pl_interval(DateTimeOffset? par6784, NpgsqlTimeSpan? par6785)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzRecv
+		#region timetz_recv
 
 		[Sql.Function(Name="pg_catalog.timetz_recv", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzRecv(object par6787, int? par6788, int? par6789)
+		public static DateTimeOffset? timetz_recv(object par6787, int? par6788, int? par6789)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzSend
+		#region timetz_send
 
 		[Sql.Function(Name="pg_catalog.timetz_send", ServerSideOnly=true)]
-		public static byte[] TimetzSend(DateTimeOffset? par6791)
+		public static byte[] timetz_send(DateTimeOffset? par6791)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TimetzSmaller
+		#region timetz_smaller
 
 		[Sql.Function(Name="pg_catalog.timetz_smaller", ServerSideOnly=true)]
-		public static DateTimeOffset? TimetzSmaller(DateTimeOffset? par6793, DateTimeOffset? par6794)
+		public static DateTimeOffset? timetz_smaller(DateTimeOffset? par6793, DateTimeOffset? par6794)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timetztypmodin
+		#region timetztypmodin
 
 		[Sql.Function(Name="pg_catalog.timetztypmodin", ServerSideOnly=true)]
-		public static int? Timetztypmodin(object par6796)
+		public static int? timetztypmodin(object par6796)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timetztypmodout
+		#region timetztypmodout
 
 		[Sql.Function(Name="pg_catalog.timetztypmodout", ServerSideOnly=true)]
-		public static object Timetztypmodout(int? par6798)
+		public static object timetztypmodout(int? par6798)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Timezone
+		#region timezone
 
 		[Sql.Function(Name="pg_catalog.timezone", ServerSideOnly=true)]
-		public static DateTimeOffset? Timezone(NpgsqlTimeSpan? par6815, DateTime? par6816)
+		public static DateTimeOffset? timezone(NpgsqlTimeSpan? par6815, DateTime? par6816)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tinterval
+		#region tinterval
 
 		[Sql.Function(Name="pg_catalog.tinterval", ServerSideOnly=true)]
-		public static object Tinterval(object par6818, object par6819)
+		public static object tinterval(object par6818, object par6819)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalct
+		#region tintervalct
 
 		[Sql.Function(Name="pg_catalog.tintervalct", ServerSideOnly=true)]
-		public static bool? Tintervalct(object par6821, object par6822)
+		public static bool? tintervalct(object par6821, object par6822)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalend
+		#region tintervalend
 
 		[Sql.Function(Name="pg_catalog.tintervalend", ServerSideOnly=true)]
-		public static object Tintervalend(object par6824)
+		public static object tintervalend(object par6824)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervaleq
+		#region tintervaleq
 
 		[Sql.Function(Name="pg_catalog.tintervaleq", ServerSideOnly=true)]
-		public static bool? Tintervaleq(object par6826, object par6827)
+		public static bool? tintervaleq(object par6826, object par6827)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalge
+		#region tintervalge
 
 		[Sql.Function(Name="pg_catalog.tintervalge", ServerSideOnly=true)]
-		public static bool? Tintervalge(object par6829, object par6830)
+		public static bool? tintervalge(object par6829, object par6830)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalgt
+		#region tintervalgt
 
 		[Sql.Function(Name="pg_catalog.tintervalgt", ServerSideOnly=true)]
-		public static bool? Tintervalgt(object par6832, object par6833)
+		public static bool? tintervalgt(object par6832, object par6833)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalin
+		#region tintervalin
 
 		[Sql.Function(Name="pg_catalog.tintervalin", ServerSideOnly=true)]
-		public static object Tintervalin(object par6835)
+		public static object tintervalin(object par6835)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalle
+		#region tintervalle
 
 		[Sql.Function(Name="pg_catalog.tintervalle", ServerSideOnly=true)]
-		public static bool? Tintervalle(object par6837, object par6838)
+		public static bool? tintervalle(object par6837, object par6838)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalleneq
+		#region tintervalleneq
 
 		[Sql.Function(Name="pg_catalog.tintervalleneq", ServerSideOnly=true)]
-		public static bool? Tintervalleneq(object par6840, object par6841)
+		public static bool? tintervalleneq(object par6840, object par6841)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallenge
+		#region tintervallenge
 
 		[Sql.Function(Name="pg_catalog.tintervallenge", ServerSideOnly=true)]
-		public static bool? Tintervallenge(object par6843, object par6844)
+		public static bool? tintervallenge(object par6843, object par6844)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallengt
+		#region tintervallengt
 
 		[Sql.Function(Name="pg_catalog.tintervallengt", ServerSideOnly=true)]
-		public static bool? Tintervallengt(object par6846, object par6847)
+		public static bool? tintervallengt(object par6846, object par6847)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallenle
+		#region tintervallenle
 
 		[Sql.Function(Name="pg_catalog.tintervallenle", ServerSideOnly=true)]
-		public static bool? Tintervallenle(object par6849, object par6850)
+		public static bool? tintervallenle(object par6849, object par6850)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallenlt
+		#region tintervallenlt
 
 		[Sql.Function(Name="pg_catalog.tintervallenlt", ServerSideOnly=true)]
-		public static bool? Tintervallenlt(object par6852, object par6853)
+		public static bool? tintervallenlt(object par6852, object par6853)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallenne
+		#region tintervallenne
 
 		[Sql.Function(Name="pg_catalog.tintervallenne", ServerSideOnly=true)]
-		public static bool? Tintervallenne(object par6855, object par6856)
+		public static bool? tintervallenne(object par6855, object par6856)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervallt
+		#region tintervallt
 
 		[Sql.Function(Name="pg_catalog.tintervallt", ServerSideOnly=true)]
-		public static bool? Tintervallt(object par6858, object par6859)
+		public static bool? tintervallt(object par6858, object par6859)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalne
+		#region tintervalne
 
 		[Sql.Function(Name="pg_catalog.tintervalne", ServerSideOnly=true)]
-		public static bool? Tintervalne(object par6861, object par6862)
+		public static bool? tintervalne(object par6861, object par6862)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalout
+		#region tintervalout
 
 		[Sql.Function(Name="pg_catalog.tintervalout", ServerSideOnly=true)]
-		public static object Tintervalout(object par6864)
+		public static object tintervalout(object par6864)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalov
+		#region tintervalov
 
 		[Sql.Function(Name="pg_catalog.tintervalov", ServerSideOnly=true)]
-		public static bool? Tintervalov(object par6866, object par6867)
+		public static bool? tintervalov(object par6866, object par6867)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalrecv
+		#region tintervalrecv
 
 		[Sql.Function(Name="pg_catalog.tintervalrecv", ServerSideOnly=true)]
-		public static object Tintervalrecv(object par6869)
+		public static object tintervalrecv(object par6869)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalrel
+		#region tintervalrel
 
 		[Sql.Function(Name="pg_catalog.tintervalrel", ServerSideOnly=true)]
-		public static object Tintervalrel(object par6871)
+		public static object tintervalrel(object par6871)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalsame
+		#region tintervalsame
 
 		[Sql.Function(Name="pg_catalog.tintervalsame", ServerSideOnly=true)]
-		public static bool? Tintervalsame(object par6873, object par6874)
+		public static bool? tintervalsame(object par6873, object par6874)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalsend
+		#region tintervalsend
 
 		[Sql.Function(Name="pg_catalog.tintervalsend", ServerSideOnly=true)]
-		public static byte[] Tintervalsend(object par6876)
+		public static byte[] tintervalsend(object par6876)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tintervalstart
+		#region tintervalstart
 
 		[Sql.Function(Name="pg_catalog.tintervalstart", ServerSideOnly=true)]
-		public static object Tintervalstart(object par6878)
+		public static object tintervalstart(object par6878)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToAscii
+		#region to_ascii
 
 		[Sql.Function(Name="pg_catalog.to_ascii", ServerSideOnly=true)]
-		public static string ToAscii(string par6885, string par6886)
+		public static string to_ascii(string par6885, string par6886)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToChar
+		#region to_char
 
 		[Sql.Function(Name="pg_catalog.to_char", ServerSideOnly=true)]
-		public static string ToChar(DateTime? par6909, string par6910)
+		public static string to_char(DateTime? par6909, string par6910)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToDate
+		#region to_date
 
 		[Sql.Function(Name="pg_catalog.to_date", ServerSideOnly=true)]
-		public static NpgsqlDate? ToDate(string par6912, string par6913)
+		public static NpgsqlDate? to_date(string par6912, string par6913)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToHex
+		#region to_hex
 
 		[Sql.Function(Name="pg_catalog.to_hex", ServerSideOnly=true)]
-		public static string ToHex(long? par6917)
+		public static string to_hex(long? par6917)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToJson
+		#region to_json
 
 		[Sql.Function(Name="pg_catalog.to_json", ServerSideOnly=true)]
-		public static string ToJson(object par6919)
+		public static string to_json(object par6919)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToJsonb
+		#region to_jsonb
 
 		[Sql.Function(Name="pg_catalog.to_jsonb", ServerSideOnly=true)]
-		public static string ToJsonb(object par6921)
+		public static string to_jsonb(object par6921)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToNumber
+		#region to_number
 
 		[Sql.Function(Name="pg_catalog.to_number", ServerSideOnly=true)]
-		public static decimal? ToNumber(string par6923, string par6924)
+		public static decimal? to_number(string par6923, string par6924)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegclass
+		#region to_regclass
 
 		[Sql.Function(Name="pg_catalog.to_regclass", ServerSideOnly=true)]
-		public static object ToRegclass(string par6926)
+		public static object to_regclass(string par6926)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegnamespace
+		#region to_regnamespace
 
 		[Sql.Function(Name="pg_catalog.to_regnamespace", ServerSideOnly=true)]
-		public static object ToRegnamespace(string par6928)
+		public static object to_regnamespace(string par6928)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegoper
+		#region to_regoper
 
 		[Sql.Function(Name="pg_catalog.to_regoper", ServerSideOnly=true)]
-		public static object ToRegoper(string par6930)
+		public static object to_regoper(string par6930)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegoperator
+		#region to_regoperator
 
 		[Sql.Function(Name="pg_catalog.to_regoperator", ServerSideOnly=true)]
-		public static object ToRegoperator(string par6932)
+		public static object to_regoperator(string par6932)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegproc
+		#region to_regproc
 
 		[Sql.Function(Name="pg_catalog.to_regproc", ServerSideOnly=true)]
-		public static object ToRegproc(string par6934)
+		public static object to_regproc(string par6934)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegprocedure
+		#region to_regprocedure
 
 		[Sql.Function(Name="pg_catalog.to_regprocedure", ServerSideOnly=true)]
-		public static object ToRegprocedure(string par6936)
+		public static object to_regprocedure(string par6936)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegrole
+		#region to_regrole
 
 		[Sql.Function(Name="pg_catalog.to_regrole", ServerSideOnly=true)]
-		public static object ToRegrole(string par6938)
+		public static object to_regrole(string par6938)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToRegtype
+		#region to_regtype
 
 		[Sql.Function(Name="pg_catalog.to_regtype", ServerSideOnly=true)]
-		public static object ToRegtype(string par6940)
+		public static object to_regtype(string par6940)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToTimestamp
+		#region to_timestamp
 
 		[Sql.Function(Name="pg_catalog.to_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? ToTimestamp(string par6944, string par6945)
+		public static DateTimeOffset? to_timestamp(string par6944, string par6945)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToTsquery
+		#region to_tsquery
 
 		[Sql.Function(Name="pg_catalog.to_tsquery", ServerSideOnly=true)]
-		public static object ToTsquery(string par6950)
+		public static object to_tsquery(string par6950)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region ToTsvector
+		#region to_tsvector
 
 		[Sql.Function(Name="pg_catalog.to_tsvector", ServerSideOnly=true)]
-		public static object ToTsvector(object par6964, string par6965)
+		public static object to_tsvector(object par6964, string par6965)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TransactionTimestamp
+		#region transaction_timestamp
 
 		[Sql.Function(Name="pg_catalog.transaction_timestamp", ServerSideOnly=true)]
-		public static DateTimeOffset? TransactionTimestamp()
+		public static DateTimeOffset? transaction_timestamp()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Translate
+		#region translate
 
 		[Sql.Function(Name="pg_catalog.translate", ServerSideOnly=true)]
-		public static string Translate(string par6968, string par6969, string par6970)
+		public static string translate(string par6968, string par6969, string par6970)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TriggerIn
+		#region trigger_in
 
 		[Sql.Function(Name="pg_catalog.trigger_in", ServerSideOnly=true)]
-		public static object TriggerIn(object par6972)
+		public static object trigger_in(object par6972)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TriggerOut
+		#region trigger_out
 
 		[Sql.Function(Name="pg_catalog.trigger_out", ServerSideOnly=true)]
-		public static object TriggerOut(object par6974)
+		public static object trigger_out(object par6974)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Trunc
+		#region trunc
 
 		[Sql.Function(Name="pg_catalog.trunc", ServerSideOnly=true)]
-		public static PhysicalAddress Trunc(PhysicalAddress par6985)
+		public static PhysicalAddress trunc(PhysicalAddress par6985)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsDelete
+		#region ts_delete
 
 		[Sql.Function(Name="pg_catalog.ts_delete", ServerSideOnly=true)]
-		public static object TsDelete(object par6990, object par6991)
+		public static object ts_delete(object par6990, object par6991)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsFilter
+		#region ts_filter
 
 		[Sql.Function(Name="pg_catalog.ts_filter", ServerSideOnly=true)]
-		public static object TsFilter(object par6993, object par6994)
+		public static object ts_filter(object par6993, object par6994)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsHeadline
+		#region ts_headline
 
 		[Sql.Function(Name="pg_catalog.ts_headline", ServerSideOnly=true)]
-		public static string TsHeadline(string par7041, object par7042)
+		public static string ts_headline(string par7041, object par7042)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsLexize
+		#region ts_lexize
 
 		[Sql.Function(Name="pg_catalog.ts_lexize", ServerSideOnly=true)]
-		public static object TsLexize(object par7044, string par7045)
+		public static object ts_lexize(object par7044, string par7045)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsmatchjoinsel
+		#region tsmatchjoinsel
 
 		[Sql.Function(Name="pg_catalog.tsmatchjoinsel", ServerSideOnly=true)]
-		public static double? Tsmatchjoinsel(object par7047, int? par7048, object par7049, short? par7050, object par7051)
+		public static double? tsmatchjoinsel(object par7047, int? par7048, object par7049, short? par7050, object par7051)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsMatchQv
+		#region ts_match_qv
 
 		[Sql.Function(Name="pg_catalog.ts_match_qv", ServerSideOnly=true)]
-		public static bool? TsMatchQv(object par7053, object par7054)
+		public static bool? ts_match_qv(object par7053, object par7054)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsmatchsel
+		#region tsmatchsel
 
 		[Sql.Function(Name="pg_catalog.tsmatchsel", ServerSideOnly=true)]
-		public static double? Tsmatchsel(object par7056, int? par7057, object par7058, int? par7059)
+		public static double? tsmatchsel(object par7056, int? par7057, object par7058, int? par7059)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsMatchTq
+		#region ts_match_tq
 
 		[Sql.Function(Name="pg_catalog.ts_match_tq", ServerSideOnly=true)]
-		public static bool? TsMatchTq(string par7061, object par7062)
+		public static bool? ts_match_tq(string par7061, object par7062)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsMatchTt
+		#region ts_match_tt
 
 		[Sql.Function(Name="pg_catalog.ts_match_tt", ServerSideOnly=true)]
-		public static bool? TsMatchTt(string par7064, string par7065)
+		public static bool? ts_match_tt(string par7064, string par7065)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsMatchVq
+		#region ts_match_vq
 
 		[Sql.Function(Name="pg_catalog.ts_match_vq", ServerSideOnly=true)]
-		public static bool? TsMatchVq(object par7067, object par7068)
+		public static bool? ts_match_vq(object par7067, object par7068)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsmHandlerIn
+		#region tsm_handler_in
 
 		[Sql.Function(Name="pg_catalog.tsm_handler_in", ServerSideOnly=true)]
-		public static object TsmHandlerIn(object par7070)
+		public static object tsm_handler_in(object par7070)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsmHandlerOut
+		#region tsm_handler_out
 
 		[Sql.Function(Name="pg_catalog.tsm_handler_out", ServerSideOnly=true)]
-		public static object TsmHandlerOut(object par7072)
+		public static object tsm_handler_out(object par7072)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqMcontained
+		#region tsq_mcontained
 
 		[Sql.Function(Name="pg_catalog.tsq_mcontained", ServerSideOnly=true)]
-		public static bool? TsqMcontained(object par7074, object par7075)
+		public static bool? tsq_mcontained(object par7074, object par7075)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqMcontains
+		#region tsq_mcontains
 
 		[Sql.Function(Name="pg_catalog.tsq_mcontains", ServerSideOnly=true)]
-		public static bool? TsqMcontains(object par7077, object par7078)
+		public static bool? tsq_mcontains(object par7077, object par7078)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryAnd
+		#region tsquery_and
 
 		[Sql.Function(Name="pg_catalog.tsquery_and", ServerSideOnly=true)]
-		public static object TsqueryAnd(object par7080, object par7081)
+		public static object tsquery_and(object par7080, object par7081)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryCmp
+		#region tsquery_cmp
 
 		[Sql.Function(Name="pg_catalog.tsquery_cmp", ServerSideOnly=true)]
-		public static int? TsqueryCmp(object par7083, object par7084)
+		public static int? tsquery_cmp(object par7083, object par7084)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryEq
+		#region tsquery_eq
 
 		[Sql.Function(Name="pg_catalog.tsquery_eq", ServerSideOnly=true)]
-		public static bool? TsqueryEq(object par7086, object par7087)
+		public static bool? tsquery_eq(object par7086, object par7087)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryGe
+		#region tsquery_ge
 
 		[Sql.Function(Name="pg_catalog.tsquery_ge", ServerSideOnly=true)]
-		public static bool? TsqueryGe(object par7089, object par7090)
+		public static bool? tsquery_ge(object par7089, object par7090)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryGt
+		#region tsquery_gt
 
 		[Sql.Function(Name="pg_catalog.tsquery_gt", ServerSideOnly=true)]
-		public static bool? TsqueryGt(object par7092, object par7093)
+		public static bool? tsquery_gt(object par7092, object par7093)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsqueryin
+		#region tsqueryin
 
 		[Sql.Function(Name="pg_catalog.tsqueryin", ServerSideOnly=true)]
-		public static object Tsqueryin(object par7095)
+		public static object tsqueryin(object par7095)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryLe
+		#region tsquery_le
 
 		[Sql.Function(Name="pg_catalog.tsquery_le", ServerSideOnly=true)]
-		public static bool? TsqueryLe(object par7097, object par7098)
+		public static bool? tsquery_le(object par7097, object par7098)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryLt
+		#region tsquery_lt
 
 		[Sql.Function(Name="pg_catalog.tsquery_lt", ServerSideOnly=true)]
-		public static bool? TsqueryLt(object par7100, object par7101)
+		public static bool? tsquery_lt(object par7100, object par7101)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryNe
+		#region tsquery_ne
 
 		[Sql.Function(Name="pg_catalog.tsquery_ne", ServerSideOnly=true)]
-		public static bool? TsqueryNe(object par7103, object par7104)
+		public static bool? tsquery_ne(object par7103, object par7104)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryNot
+		#region tsquery_not
 
 		[Sql.Function(Name="pg_catalog.tsquery_not", ServerSideOnly=true)]
-		public static object TsqueryNot(object par7106)
+		public static object tsquery_not(object par7106)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryOr
+		#region tsquery_or
 
 		[Sql.Function(Name="pg_catalog.tsquery_or", ServerSideOnly=true)]
-		public static object TsqueryOr(object par7108, object par7109)
+		public static object tsquery_or(object par7108, object par7109)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsqueryout
+		#region tsqueryout
 
 		[Sql.Function(Name="pg_catalog.tsqueryout", ServerSideOnly=true)]
-		public static object Tsqueryout(object par7111)
+		public static object tsqueryout(object par7111)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsqueryPhrase
+		#region tsquery_phrase
 
 		[Sql.Function(Name="pg_catalog.tsquery_phrase", ServerSideOnly=true)]
-		public static object TsqueryPhrase(object par7116, object par7117, int? par7118)
+		public static object tsquery_phrase(object par7116, object par7117, int? par7118)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsqueryrecv
+		#region tsqueryrecv
 
 		[Sql.Function(Name="pg_catalog.tsqueryrecv", ServerSideOnly=true)]
-		public static object Tsqueryrecv(object par7120)
+		public static object tsqueryrecv(object par7120)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsquerysend
+		#region tsquerysend
 
 		[Sql.Function(Name="pg_catalog.tsquerysend", ServerSideOnly=true)]
-		public static byte[] Tsquerysend(object par7122)
+		public static byte[] tsquerysend(object par7122)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsrange
+		#region tsrange
 
 		[Sql.Function(Name="pg_catalog.tsrange", ServerSideOnly=true)]
-		public static object Tsrange(DateTime? par7127, DateTime? par7128, string par7129)
+		public static object tsrange(DateTime? par7127, DateTime? par7128, string par7129)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsrangeSubdiff
+		#region tsrange_subdiff
 
 		[Sql.Function(Name="pg_catalog.tsrange_subdiff", ServerSideOnly=true)]
-		public static double? TsrangeSubdiff(DateTime? par7131, DateTime? par7132)
+		public static double? tsrange_subdiff(DateTime? par7131, DateTime? par7132)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsRank
+		#region ts_rank
 
 		[Sql.Function(Name="pg_catalog.ts_rank", ServerSideOnly=true)]
-		public static float? TsRank(object par7147, object par7148)
+		public static float? ts_rank(object par7147, object par7148)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsRankCd
+		#region ts_rank_cd
 
 		[Sql.Function(Name="pg_catalog.ts_rank_cd", ServerSideOnly=true)]
-		public static float? TsRankCd(object par7163, object par7164)
+		public static float? ts_rank_cd(object par7163, object par7164)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsRewrite
+		#region ts_rewrite
 
 		[Sql.Function(Name="pg_catalog.ts_rewrite", ServerSideOnly=true)]
-		public static object TsRewrite(object par7170, string par7171)
+		public static object ts_rewrite(object par7170, string par7171)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsTypanalyze
+		#region ts_typanalyze
 
 		[Sql.Function(Name="pg_catalog.ts_typanalyze", ServerSideOnly=true)]
-		public static bool? TsTypanalyze(object par7173)
+		public static bool? ts_typanalyze(object par7173)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tstzrange
+		#region tstzrange
 
 		[Sql.Function(Name="pg_catalog.tstzrange", ServerSideOnly=true)]
-		public static object Tstzrange(DateTimeOffset? par7178, DateTimeOffset? par7179, string par7180)
+		public static object tstzrange(DateTimeOffset? par7178, DateTimeOffset? par7179, string par7180)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TstzrangeSubdiff
+		#region tstzrange_subdiff
 
 		[Sql.Function(Name="pg_catalog.tstzrange_subdiff", ServerSideOnly=true)]
-		public static double? TstzrangeSubdiff(DateTimeOffset? par7182, DateTimeOffset? par7183)
+		public static double? tstzrange_subdiff(DateTimeOffset? par7182, DateTimeOffset? par7183)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorCmp
+		#region tsvector_cmp
 
 		[Sql.Function(Name="pg_catalog.tsvector_cmp", ServerSideOnly=true)]
-		public static int? TsvectorCmp(object par7185, object par7186)
+		public static int? tsvector_cmp(object par7185, object par7186)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorConcat
+		#region tsvector_concat
 
 		[Sql.Function(Name="pg_catalog.tsvector_concat", ServerSideOnly=true)]
-		public static object TsvectorConcat(object par7188, object par7189)
+		public static object tsvector_concat(object par7188, object par7189)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorEq
+		#region tsvector_eq
 
 		[Sql.Function(Name="pg_catalog.tsvector_eq", ServerSideOnly=true)]
-		public static bool? TsvectorEq(object par7191, object par7192)
+		public static bool? tsvector_eq(object par7191, object par7192)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorGe
+		#region tsvector_ge
 
 		[Sql.Function(Name="pg_catalog.tsvector_ge", ServerSideOnly=true)]
-		public static bool? TsvectorGe(object par7194, object par7195)
+		public static bool? tsvector_ge(object par7194, object par7195)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorGt
+		#region tsvector_gt
 
 		[Sql.Function(Name="pg_catalog.tsvector_gt", ServerSideOnly=true)]
-		public static bool? TsvectorGt(object par7197, object par7198)
+		public static bool? tsvector_gt(object par7197, object par7198)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsvectorin
+		#region tsvectorin
 
 		[Sql.Function(Name="pg_catalog.tsvectorin", ServerSideOnly=true)]
-		public static object Tsvectorin(object par7200)
+		public static object tsvectorin(object par7200)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorLe
+		#region tsvector_le
 
 		[Sql.Function(Name="pg_catalog.tsvector_le", ServerSideOnly=true)]
-		public static bool? TsvectorLe(object par7202, object par7203)
+		public static bool? tsvector_le(object par7202, object par7203)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorLt
+		#region tsvector_lt
 
 		[Sql.Function(Name="pg_catalog.tsvector_lt", ServerSideOnly=true)]
-		public static bool? TsvectorLt(object par7205, object par7206)
+		public static bool? tsvector_lt(object par7205, object par7206)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorNe
+		#region tsvector_ne
 
 		[Sql.Function(Name="pg_catalog.tsvector_ne", ServerSideOnly=true)]
-		public static bool? TsvectorNe(object par7208, object par7209)
+		public static bool? tsvector_ne(object par7208, object par7209)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsvectorout
+		#region tsvectorout
 
 		[Sql.Function(Name="pg_catalog.tsvectorout", ServerSideOnly=true)]
-		public static object Tsvectorout(object par7211)
+		public static object tsvectorout(object par7211)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsvectorrecv
+		#region tsvectorrecv
 
 		[Sql.Function(Name="pg_catalog.tsvectorrecv", ServerSideOnly=true)]
-		public static object Tsvectorrecv(object par7213)
+		public static object tsvectorrecv(object par7213)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Tsvectorsend
+		#region tsvectorsend
 
 		[Sql.Function(Name="pg_catalog.tsvectorsend", ServerSideOnly=true)]
-		public static byte[] Tsvectorsend(object par7215)
+		public static byte[] tsvectorsend(object par7215)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorToArray
+		#region tsvector_to_array
 
 		[Sql.Function(Name="pg_catalog.tsvector_to_array", ServerSideOnly=true)]
-		public static object TsvectorToArray(object par7217)
+		public static object tsvector_to_array(object par7217)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorUpdateTrigger
+		#region tsvector_update_trigger
 
 		[Sql.Function(Name="pg_catalog.tsvector_update_trigger", ServerSideOnly=true)]
-		public static object TsvectorUpdateTrigger()
+		public static object tsvector_update_trigger()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TsvectorUpdateTriggerColumn
+		#region tsvector_update_trigger_column
 
 		[Sql.Function(Name="pg_catalog.tsvector_update_trigger_column", ServerSideOnly=true)]
-		public static object TsvectorUpdateTriggerColumn()
+		public static object tsvector_update_trigger_column()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidCurrent
+		#region txid_current
 
 		[Sql.Function(Name="pg_catalog.txid_current", ServerSideOnly=true)]
-		public static long? TxidCurrent()
+		public static long? txid_current()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidCurrentIfAssigned
+		#region txid_current_if_assigned
 
 		[Sql.Function(Name="pg_catalog.txid_current_if_assigned", ServerSideOnly=true)]
-		public static long? TxidCurrentIfAssigned()
+		public static long? txid_current_if_assigned()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidCurrentSnapshot
+		#region txid_current_snapshot
 
 		[Sql.Function(Name="pg_catalog.txid_current_snapshot", ServerSideOnly=true)]
-		public static object TxidCurrentSnapshot()
+		public static object txid_current_snapshot()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotIn
+		#region txid_snapshot_in
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_in", ServerSideOnly=true)]
-		public static object TxidSnapshotIn(object par7224)
+		public static object txid_snapshot_in(object par7224)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotOut
+		#region txid_snapshot_out
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_out", ServerSideOnly=true)]
-		public static object TxidSnapshotOut(object par7226)
+		public static object txid_snapshot_out(object par7226)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotRecv
+		#region txid_snapshot_recv
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_recv", ServerSideOnly=true)]
-		public static object TxidSnapshotRecv(object par7228)
+		public static object txid_snapshot_recv(object par7228)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotSend
+		#region txid_snapshot_send
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_send", ServerSideOnly=true)]
-		public static byte[] TxidSnapshotSend(object par7230)
+		public static byte[] txid_snapshot_send(object par7230)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotXmax
+		#region txid_snapshot_xmax
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_xmax", ServerSideOnly=true)]
-		public static long? TxidSnapshotXmax(object par7233)
+		public static long? txid_snapshot_xmax(object par7233)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidSnapshotXmin
+		#region txid_snapshot_xmin
 
 		[Sql.Function(Name="pg_catalog.txid_snapshot_xmin", ServerSideOnly=true)]
-		public static long? TxidSnapshotXmin(object par7235)
+		public static long? txid_snapshot_xmin(object par7235)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidStatus
+		#region txid_status
 
 		[Sql.Function(Name="pg_catalog.txid_status", ServerSideOnly=true)]
-		public static string TxidStatus(long? par7237)
+		public static string txid_status(long? par7237)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region TxidVisibleInSnapshot
+		#region txid_visible_in_snapshot
 
 		[Sql.Function(Name="pg_catalog.txid_visible_in_snapshot", ServerSideOnly=true)]
-		public static bool? TxidVisibleInSnapshot(long? par7239, object par7240)
+		public static bool? txid_visible_in_snapshot(long? par7239, object par7240)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UhcToUtf8
+		#region uhc_to_utf8
 
 		[Sql.Function(Name="pg_catalog.uhc_to_utf8", ServerSideOnly=true)]
-		public static object UhcToUtf8(int? par7241, int? par7242, object par7243, object par7244, int? par7245)
+		public static object uhc_to_utf8(int? par7241, int? par7242, object par7243, object par7244, int? par7245)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UniqueKeyRecheck
+		#region unique_key_recheck
 
 		[Sql.Function(Name="pg_catalog.unique_key_recheck", ServerSideOnly=true)]
-		public static object UniqueKeyRecheck()
+		public static object unique_key_recheck()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Unknownin
+		#region unknownin
 
 		[Sql.Function(Name="pg_catalog.unknownin", ServerSideOnly=true)]
-		public static object Unknownin(object par7248)
+		public static object unknownin(object par7248)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Unknownout
+		#region unknownout
 
 		[Sql.Function(Name="pg_catalog.unknownout", ServerSideOnly=true)]
-		public static object Unknownout(object par7250)
+		public static object unknownout(object par7250)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Unknownrecv
+		#region unknownrecv
 
 		[Sql.Function(Name="pg_catalog.unknownrecv", ServerSideOnly=true)]
-		public static object Unknownrecv(object par7252)
+		public static object unknownrecv(object par7252)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Unknownsend
+		#region unknownsend
 
 		[Sql.Function(Name="pg_catalog.unknownsend", ServerSideOnly=true)]
-		public static byte[] Unknownsend(object par7254)
+		public static byte[] unknownsend(object par7254)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Upper
+		#region upper
 
 		[Sql.Function(Name="pg_catalog.upper", ServerSideOnly=true)]
-		public static string Upper(string par7259)
+		public static string upper(string par7259)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UpperInc
+		#region upper_inc
 
 		[Sql.Function(Name="pg_catalog.upper_inc", ServerSideOnly=true)]
-		public static bool? UpperInc(object par7261)
+		public static bool? upper_inc(object par7261)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UpperInf
+		#region upper_inf
 
 		[Sql.Function(Name="pg_catalog.upper_inf", ServerSideOnly=true)]
-		public static bool? UpperInf(object par7263)
+		public static bool? upper_inf(object par7263)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToAscii
+		#region utf8_to_ascii
 
 		[Sql.Function(Name="pg_catalog.utf8_to_ascii", ServerSideOnly=true)]
-		public static object Utf8ToAscii(int? par7264, int? par7265, object par7266, object par7267, int? par7268)
+		public static object utf8_to_ascii(int? par7264, int? par7265, object par7266, object par7267, int? par7268)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToBig5
+		#region utf8_to_big5
 
 		[Sql.Function(Name="pg_catalog.utf8_to_big5", ServerSideOnly=true)]
-		public static object Utf8ToBig5(int? par7269, int? par7270, object par7271, object par7272, int? par7273)
+		public static object utf8_to_big5(int? par7269, int? par7270, object par7271, object par7272, int? par7273)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToEucCn
+		#region utf8_to_euc_cn
 
 		[Sql.Function(Name="pg_catalog.utf8_to_euc_cn", ServerSideOnly=true)]
-		public static object Utf8ToEucCn(int? par7274, int? par7275, object par7276, object par7277, int? par7278)
+		public static object utf8_to_euc_cn(int? par7274, int? par7275, object par7276, object par7277, int? par7278)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToEucJis2004
+		#region utf8_to_euc_jis_2004
 
 		[Sql.Function(Name="pg_catalog.utf8_to_euc_jis_2004", ServerSideOnly=true)]
-		public static object Utf8ToEucJis2004(int? par7279, int? par7280, object par7281, object par7282, int? par7283)
+		public static object utf8_to_euc_jis_2004(int? par7279, int? par7280, object par7281, object par7282, int? par7283)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToEucJp
+		#region utf8_to_euc_jp
 
 		[Sql.Function(Name="pg_catalog.utf8_to_euc_jp", ServerSideOnly=true)]
-		public static object Utf8ToEucJp(int? par7284, int? par7285, object par7286, object par7287, int? par7288)
+		public static object utf8_to_euc_jp(int? par7284, int? par7285, object par7286, object par7287, int? par7288)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToEucKr
+		#region utf8_to_euc_kr
 
 		[Sql.Function(Name="pg_catalog.utf8_to_euc_kr", ServerSideOnly=true)]
-		public static object Utf8ToEucKr(int? par7289, int? par7290, object par7291, object par7292, int? par7293)
+		public static object utf8_to_euc_kr(int? par7289, int? par7290, object par7291, object par7292, int? par7293)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToEucTw
+		#region utf8_to_euc_tw
 
 		[Sql.Function(Name="pg_catalog.utf8_to_euc_tw", ServerSideOnly=true)]
-		public static object Utf8ToEucTw(int? par7294, int? par7295, object par7296, object par7297, int? par7298)
+		public static object utf8_to_euc_tw(int? par7294, int? par7295, object par7296, object par7297, int? par7298)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToGb18030
+		#region utf8_to_gb18030
 
 		[Sql.Function(Name="pg_catalog.utf8_to_gb18030", ServerSideOnly=true)]
-		public static object Utf8ToGb18030(int? par7299, int? par7300, object par7301, object par7302, int? par7303)
+		public static object utf8_to_gb18030(int? par7299, int? par7300, object par7301, object par7302, int? par7303)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToGbk
+		#region utf8_to_gbk
 
 		[Sql.Function(Name="pg_catalog.utf8_to_gbk", ServerSideOnly=true)]
-		public static object Utf8ToGbk(int? par7304, int? par7305, object par7306, object par7307, int? par7308)
+		public static object utf8_to_gbk(int? par7304, int? par7305, object par7306, object par7307, int? par7308)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToIso88591
+		#region utf8_to_iso8859_1
 
 		[Sql.Function(Name="pg_catalog.utf8_to_iso8859_1", ServerSideOnly=true)]
-		public static object Utf8ToIso88591(int? par7309, int? par7310, object par7311, object par7312, int? par7313)
+		public static object utf8_to_iso8859_1(int? par7309, int? par7310, object par7311, object par7312, int? par7313)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToIso8859
+		#region utf8_to_iso8859
 
 		[Sql.Function(Name="pg_catalog.utf8_to_iso8859", ServerSideOnly=true)]
-		public static object Utf8ToIso8859(int? par7314, int? par7315, object par7316, object par7317, int? par7318)
+		public static object utf8_to_iso8859(int? par7314, int? par7315, object par7316, object par7317, int? par7318)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToJohab
+		#region utf8_to_johab
 
 		[Sql.Function(Name="pg_catalog.utf8_to_johab", ServerSideOnly=true)]
-		public static object Utf8ToJohab(int? par7319, int? par7320, object par7321, object par7322, int? par7323)
+		public static object utf8_to_johab(int? par7319, int? par7320, object par7321, object par7322, int? par7323)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToKoi8r
+		#region utf8_to_koi8r
 
 		[Sql.Function(Name="pg_catalog.utf8_to_koi8r", ServerSideOnly=true)]
-		public static object Utf8ToKoi8r(int? par7324, int? par7325, object par7326, object par7327, int? par7328)
+		public static object utf8_to_koi8r(int? par7324, int? par7325, object par7326, object par7327, int? par7328)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToKoi8u
+		#region utf8_to_koi8u
 
 		[Sql.Function(Name="pg_catalog.utf8_to_koi8u", ServerSideOnly=true)]
-		public static object Utf8ToKoi8u(int? par7329, int? par7330, object par7331, object par7332, int? par7333)
+		public static object utf8_to_koi8u(int? par7329, int? par7330, object par7331, object par7332, int? par7333)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToShiftJis2004
+		#region utf8_to_shift_jis_2004
 
 		[Sql.Function(Name="pg_catalog.utf8_to_shift_jis_2004", ServerSideOnly=true)]
-		public static object Utf8ToShiftJis2004(int? par7334, int? par7335, object par7336, object par7337, int? par7338)
+		public static object utf8_to_shift_jis_2004(int? par7334, int? par7335, object par7336, object par7337, int? par7338)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToSjis
+		#region utf8_to_sjis
 
 		[Sql.Function(Name="pg_catalog.utf8_to_sjis", ServerSideOnly=true)]
-		public static object Utf8ToSjis(int? par7339, int? par7340, object par7341, object par7342, int? par7343)
+		public static object utf8_to_sjis(int? par7339, int? par7340, object par7341, object par7342, int? par7343)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToUhc
+		#region utf8_to_uhc
 
 		[Sql.Function(Name="pg_catalog.utf8_to_uhc", ServerSideOnly=true)]
-		public static object Utf8ToUhc(int? par7344, int? par7345, object par7346, object par7347, int? par7348)
+		public static object utf8_to_uhc(int? par7344, int? par7345, object par7346, object par7347, int? par7348)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Utf8ToWin
+		#region utf8_to_win
 
 		[Sql.Function(Name="pg_catalog.utf8_to_win", ServerSideOnly=true)]
-		public static object Utf8ToWin(int? par7349, int? par7350, object par7351, object par7352, int? par7353)
+		public static object utf8_to_win(int? par7349, int? par7350, object par7351, object par7352, int? par7353)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidCmp
+		#region uuid_cmp
 
 		[Sql.Function(Name="pg_catalog.uuid_cmp", ServerSideOnly=true)]
-		public static int? UuidCmp(Guid? par7355, Guid? par7356)
+		public static int? uuid_cmp(Guid? par7355, Guid? par7356)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidEq
+		#region uuid_eq
 
 		[Sql.Function(Name="pg_catalog.uuid_eq", ServerSideOnly=true)]
-		public static bool? UuidEq(Guid? par7358, Guid? par7359)
+		public static bool? uuid_eq(Guid? par7358, Guid? par7359)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidGe
+		#region uuid_ge
 
 		[Sql.Function(Name="pg_catalog.uuid_ge", ServerSideOnly=true)]
-		public static bool? UuidGe(Guid? par7361, Guid? par7362)
+		public static bool? uuid_ge(Guid? par7361, Guid? par7362)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidGt
+		#region uuid_gt
 
 		[Sql.Function(Name="pg_catalog.uuid_gt", ServerSideOnly=true)]
-		public static bool? UuidGt(Guid? par7364, Guid? par7365)
+		public static bool? uuid_gt(Guid? par7364, Guid? par7365)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidHash
+		#region uuid_hash
 
 		[Sql.Function(Name="pg_catalog.uuid_hash", ServerSideOnly=true)]
-		public static int? UuidHash(Guid? par7367)
+		public static int? uuid_hash(Guid? par7367)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidIn
+		#region uuid_in
 
 		[Sql.Function(Name="pg_catalog.uuid_in", ServerSideOnly=true)]
-		public static Guid? UuidIn(object par7369)
+		public static Guid? uuid_in(object par7369)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidLe
+		#region uuid_le
 
 		[Sql.Function(Name="pg_catalog.uuid_le", ServerSideOnly=true)]
-		public static bool? UuidLe(Guid? par7371, Guid? par7372)
+		public static bool? uuid_le(Guid? par7371, Guid? par7372)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidLt
+		#region uuid_lt
 
 		[Sql.Function(Name="pg_catalog.uuid_lt", ServerSideOnly=true)]
-		public static bool? UuidLt(Guid? par7374, Guid? par7375)
+		public static bool? uuid_lt(Guid? par7374, Guid? par7375)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidNe
+		#region uuid_ne
 
 		[Sql.Function(Name="pg_catalog.uuid_ne", ServerSideOnly=true)]
-		public static bool? UuidNe(Guid? par7377, Guid? par7378)
+		public static bool? uuid_ne(Guid? par7377, Guid? par7378)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidOut
+		#region uuid_out
 
 		[Sql.Function(Name="pg_catalog.uuid_out", ServerSideOnly=true)]
-		public static object UuidOut(Guid? par7380)
+		public static object uuid_out(Guid? par7380)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidRecv
+		#region uuid_recv
 
 		[Sql.Function(Name="pg_catalog.uuid_recv", ServerSideOnly=true)]
-		public static Guid? UuidRecv(object par7382)
+		public static Guid? uuid_recv(object par7382)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidSend
+		#region uuid_send
 
 		[Sql.Function(Name="pg_catalog.uuid_send", ServerSideOnly=true)]
-		public static byte[] UuidSend(Guid? par7384)
+		public static byte[] uuid_send(Guid? par7384)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region UuidSortsupport
+		#region uuid_sortsupport
 
 		[Sql.Function(Name="pg_catalog.uuid_sortsupport", ServerSideOnly=true)]
-		public static object UuidSortsupport(object par7385)
+		public static object uuid_sortsupport(object par7385)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbit
+		#region varbit
 
 		[Sql.Function(Name="pg_catalog.varbit", ServerSideOnly=true)]
-		public static BitArray Varbit(BitArray par7387, int? par7388, bool? par7389)
+		public static BitArray varbit(BitArray par7387, int? par7388, bool? par7389)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitcmp
+		#region varbitcmp
 
 		[Sql.Function(Name="pg_catalog.varbitcmp", ServerSideOnly=true)]
-		public static int? Varbitcmp(BitArray par7391, BitArray par7392)
+		public static int? varbitcmp(BitArray par7391, BitArray par7392)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbiteq
+		#region varbiteq
 
 		[Sql.Function(Name="pg_catalog.varbiteq", ServerSideOnly=true)]
-		public static bool? Varbiteq(BitArray par7394, BitArray par7395)
+		public static bool? varbiteq(BitArray par7394, BitArray par7395)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitge
+		#region varbitge
 
 		[Sql.Function(Name="pg_catalog.varbitge", ServerSideOnly=true)]
-		public static bool? Varbitge(BitArray par7397, BitArray par7398)
+		public static bool? varbitge(BitArray par7397, BitArray par7398)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitgt
+		#region varbitgt
 
 		[Sql.Function(Name="pg_catalog.varbitgt", ServerSideOnly=true)]
-		public static bool? Varbitgt(BitArray par7400, BitArray par7401)
+		public static bool? varbitgt(BitArray par7400, BitArray par7401)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarbitIn
+		#region varbit_in
 
 		[Sql.Function(Name="pg_catalog.varbit_in", ServerSideOnly=true)]
-		public static BitArray VarbitIn(object par7403, int? par7404, int? par7405)
+		public static BitArray varbit_in(object par7403, int? par7404, int? par7405)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitle
+		#region varbitle
 
 		[Sql.Function(Name="pg_catalog.varbitle", ServerSideOnly=true)]
-		public static bool? Varbitle(BitArray par7407, BitArray par7408)
+		public static bool? varbitle(BitArray par7407, BitArray par7408)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitlt
+		#region varbitlt
 
 		[Sql.Function(Name="pg_catalog.varbitlt", ServerSideOnly=true)]
-		public static bool? Varbitlt(BitArray par7410, BitArray par7411)
+		public static bool? varbitlt(BitArray par7410, BitArray par7411)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbitne
+		#region varbitne
 
 		[Sql.Function(Name="pg_catalog.varbitne", ServerSideOnly=true)]
-		public static bool? Varbitne(BitArray par7413, BitArray par7414)
+		public static bool? varbitne(BitArray par7413, BitArray par7414)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarbitOut
+		#region varbit_out
 
 		[Sql.Function(Name="pg_catalog.varbit_out", ServerSideOnly=true)]
-		public static object VarbitOut(BitArray par7416)
+		public static object varbit_out(BitArray par7416)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarbitRecv
+		#region varbit_recv
 
 		[Sql.Function(Name="pg_catalog.varbit_recv", ServerSideOnly=true)]
-		public static BitArray VarbitRecv(object par7418, int? par7419, int? par7420)
+		public static BitArray varbit_recv(object par7418, int? par7419, int? par7420)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarbitSend
+		#region varbit_send
 
 		[Sql.Function(Name="pg_catalog.varbit_send", ServerSideOnly=true)]
-		public static byte[] VarbitSend(BitArray par7422)
+		public static byte[] varbit_send(BitArray par7422)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarbitTransform
+		#region varbit_transform
 
 		[Sql.Function(Name="pg_catalog.varbit_transform", ServerSideOnly=true)]
-		public static object VarbitTransform(object par7424)
+		public static object varbit_transform(object par7424)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbittypmodin
+		#region varbittypmodin
 
 		[Sql.Function(Name="pg_catalog.varbittypmodin", ServerSideOnly=true)]
-		public static int? Varbittypmodin(object par7426)
+		public static int? varbittypmodin(object par7426)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varbittypmodout
+		#region varbittypmodout
 
 		[Sql.Function(Name="pg_catalog.varbittypmodout", ServerSideOnly=true)]
-		public static object Varbittypmodout(int? par7428)
+		public static object varbittypmodout(int? par7428)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varchar
+		#region varchar
 
 		[Sql.Function(Name="pg_catalog.varchar", ServerSideOnly=true)]
-		public static string Varchar(string par7432, int? par7433, bool? par7434)
+		public static string varchar(string par7432, int? par7433, bool? par7434)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varcharin
+		#region varcharin
 
 		[Sql.Function(Name="pg_catalog.varcharin", ServerSideOnly=true)]
-		public static string Varcharin(object par7436, int? par7437, int? par7438)
+		public static string varcharin(object par7436, int? par7437, int? par7438)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varcharout
+		#region varcharout
 
 		[Sql.Function(Name="pg_catalog.varcharout", ServerSideOnly=true)]
-		public static object Varcharout(string par7440)
+		public static object varcharout(string par7440)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varcharrecv
+		#region varcharrecv
 
 		[Sql.Function(Name="pg_catalog.varcharrecv", ServerSideOnly=true)]
-		public static string Varcharrecv(object par7442, int? par7443, int? par7444)
+		public static string varcharrecv(object par7442, int? par7443, int? par7444)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varcharsend
+		#region varcharsend
 
 		[Sql.Function(Name="pg_catalog.varcharsend", ServerSideOnly=true)]
-		public static byte[] Varcharsend(string par7446)
+		public static byte[] varcharsend(string par7446)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarcharTransform
+		#region varchar_transform
 
 		[Sql.Function(Name="pg_catalog.varchar_transform", ServerSideOnly=true)]
-		public static object VarcharTransform(object par7448)
+		public static object varchar_transform(object par7448)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varchartypmodin
+		#region varchartypmodin
 
 		[Sql.Function(Name="pg_catalog.varchartypmodin", ServerSideOnly=true)]
-		public static int? Varchartypmodin(object par7450)
+		public static int? varchartypmodin(object par7450)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Varchartypmodout
+		#region varchartypmodout
 
 		[Sql.Function(Name="pg_catalog.varchartypmodout", ServerSideOnly=true)]
-		public static object Varchartypmodout(int? par7452)
+		public static object varchartypmodout(int? par7452)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Variance
+		#region variance
 
 		[Sql.Function(Name="pg_catalog.variance", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? Variance<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7464)
+		public static decimal? variance<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7464)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarPop
+		#region var_pop
 
 		[Sql.Function(Name="pg_catalog.var_pop", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? VarPop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7476)
+		public static decimal? var_pop<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7476)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VarSamp
+		#region var_samp
 
 		[Sql.Function(Name="pg_catalog.var_samp", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static decimal? VarSamp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7488)
+		public static decimal? var_samp<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, decimal?>> par7488)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Version
+		#region version
 
 		[Sql.Function(Name="pg_catalog.version", ServerSideOnly=true)]
-		public static string Version()
+		public static string version()
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VoidIn
+		#region void_in
 
 		[Sql.Function(Name="pg_catalog.void_in", ServerSideOnly=true)]
-		public static object VoidIn(object par7490)
+		public static object void_in(object par7490)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VoidOut
+		#region void_out
 
 		[Sql.Function(Name="pg_catalog.void_out", ServerSideOnly=true)]
-		public static object VoidOut(object par7492)
+		public static object void_out(object par7492)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VoidRecv
+		#region void_recv
 
 		[Sql.Function(Name="pg_catalog.void_recv", ServerSideOnly=true)]
-		public static object VoidRecv(object par7493)
+		public static object void_recv(object par7493)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region VoidSend
+		#region void_send
 
 		[Sql.Function(Name="pg_catalog.void_send", ServerSideOnly=true)]
-		public static byte[] VoidSend(object par7495)
+		public static byte[] void_send(object par7495)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Width
+		#region width
 
 		[Sql.Function(Name="pg_catalog.width", ServerSideOnly=true)]
-		public static double? Width(NpgsqlBox? par7497)
+		public static double? width(NpgsqlBox? par7497)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region WidthBucket
+		#region width_bucket
 
 		[Sql.Function(Name="pg_catalog.width_bucket", ServerSideOnly=true)]
-		public static int? WidthBucket(object par7509, object par7510)
+		public static int? width_bucket(object par7509, object par7510)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1250ToLatin2
+		#region win1250_to_latin2
 
 		[Sql.Function(Name="pg_catalog.win1250_to_latin2", ServerSideOnly=true)]
-		public static object Win1250ToLatin2(int? par7511, int? par7512, object par7513, object par7514, int? par7515)
+		public static object win1250_to_latin2(int? par7511, int? par7512, object par7513, object par7514, int? par7515)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1250ToMic
+		#region win1250_to_mic
 
 		[Sql.Function(Name="pg_catalog.win1250_to_mic", ServerSideOnly=true)]
-		public static object Win1250ToMic(int? par7516, int? par7517, object par7518, object par7519, int? par7520)
+		public static object win1250_to_mic(int? par7516, int? par7517, object par7518, object par7519, int? par7520)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1251ToIso
+		#region win1251_to_iso
 
 		[Sql.Function(Name="pg_catalog.win1251_to_iso", ServerSideOnly=true)]
-		public static object Win1251ToIso(int? par7521, int? par7522, object par7523, object par7524, int? par7525)
+		public static object win1251_to_iso(int? par7521, int? par7522, object par7523, object par7524, int? par7525)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1251ToKoi8r
+		#region win1251_to_koi8r
 
 		[Sql.Function(Name="pg_catalog.win1251_to_koi8r", ServerSideOnly=true)]
-		public static object Win1251ToKoi8r(int? par7526, int? par7527, object par7528, object par7529, int? par7530)
+		public static object win1251_to_koi8r(int? par7526, int? par7527, object par7528, object par7529, int? par7530)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1251ToMic
+		#region win1251_to_mic
 
 		[Sql.Function(Name="pg_catalog.win1251_to_mic", ServerSideOnly=true)]
-		public static object Win1251ToMic(int? par7531, int? par7532, object par7533, object par7534, int? par7535)
+		public static object win1251_to_mic(int? par7531, int? par7532, object par7533, object par7534, int? par7535)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win1251ToWin866
+		#region win1251_to_win866
 
 		[Sql.Function(Name="pg_catalog.win1251_to_win866", ServerSideOnly=true)]
-		public static object Win1251ToWin866(int? par7536, int? par7537, object par7538, object par7539, int? par7540)
+		public static object win1251_to_win866(int? par7536, int? par7537, object par7538, object par7539, int? par7540)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win866ToIso
+		#region win866_to_iso
 
 		[Sql.Function(Name="pg_catalog.win866_to_iso", ServerSideOnly=true)]
-		public static object Win866ToIso(int? par7541, int? par7542, object par7543, object par7544, int? par7545)
+		public static object win866_to_iso(int? par7541, int? par7542, object par7543, object par7544, int? par7545)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win866ToKoi8r
+		#region win866_to_koi8r
 
 		[Sql.Function(Name="pg_catalog.win866_to_koi8r", ServerSideOnly=true)]
-		public static object Win866ToKoi8r(int? par7546, int? par7547, object par7548, object par7549, int? par7550)
+		public static object win866_to_koi8r(int? par7546, int? par7547, object par7548, object par7549, int? par7550)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win866ToMic
+		#region win866_to_mic
 
 		[Sql.Function(Name="pg_catalog.win866_to_mic", ServerSideOnly=true)]
-		public static object Win866ToMic(int? par7551, int? par7552, object par7553, object par7554, int? par7555)
+		public static object win866_to_mic(int? par7551, int? par7552, object par7553, object par7554, int? par7555)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Win866ToWin1251
+		#region win866_to_win1251
 
 		[Sql.Function(Name="pg_catalog.win866_to_win1251", ServerSideOnly=true)]
-		public static object Win866ToWin1251(int? par7556, int? par7557, object par7558, object par7559, int? par7560)
+		public static object win866_to_win1251(int? par7556, int? par7557, object par7558, object par7559, int? par7560)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region WinToUtf8
+		#region win_to_utf8
 
 		[Sql.Function(Name="pg_catalog.win_to_utf8", ServerSideOnly=true)]
-		public static object WinToUtf8(int? par7561, int? par7562, object par7563, object par7564, int? par7565)
+		public static object win_to_utf8(int? par7561, int? par7562, object par7563, object par7564, int? par7565)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xideq
+		#region xideq
 
 		[Sql.Function(Name="pg_catalog.xideq", ServerSideOnly=true)]
-		public static bool? Xideq(int? par7567, int? par7568)
+		public static bool? xideq(int? par7567, int? par7568)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xideqint4
+		#region xideqint4
 
 		[Sql.Function(Name="pg_catalog.xideqint4", ServerSideOnly=true)]
-		public static bool? Xideqint4(int? par7570, int? par7571)
+		public static bool? xideqint4(int? par7570, int? par7571)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidin
+		#region xidin
 
 		[Sql.Function(Name="pg_catalog.xidin", ServerSideOnly=true)]
-		public static int? Xidin(object par7573)
+		public static int? xidin(object par7573)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidneq
+		#region xidneq
 
 		[Sql.Function(Name="pg_catalog.xidneq", ServerSideOnly=true)]
-		public static bool? Xidneq(int? par7575, int? par7576)
+		public static bool? xidneq(int? par7575, int? par7576)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidneqint4
+		#region xidneqint4
 
 		[Sql.Function(Name="pg_catalog.xidneqint4", ServerSideOnly=true)]
-		public static bool? Xidneqint4(int? par7578, int? par7579)
+		public static bool? xidneqint4(int? par7578, int? par7579)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidout
+		#region xidout
 
 		[Sql.Function(Name="pg_catalog.xidout", ServerSideOnly=true)]
-		public static object Xidout(int? par7581)
+		public static object xidout(int? par7581)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidrecv
+		#region xidrecv
 
 		[Sql.Function(Name="pg_catalog.xidrecv", ServerSideOnly=true)]
-		public static int? Xidrecv(object par7583)
+		public static int? xidrecv(object par7583)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xidsend
+		#region xidsend
 
 		[Sql.Function(Name="pg_catalog.xidsend", ServerSideOnly=true)]
-		public static byte[] Xidsend(int? par7585)
+		public static byte[] xidsend(int? par7585)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xml
+		#region xml
 
 		[Sql.Function(Name="pg_catalog.xml", ServerSideOnly=true)]
-		public static string Xml(string par7587)
+		public static string xml(string par7587)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xmlagg
+		#region xmlagg
 
 		[Sql.Function(Name="pg_catalog.xmlagg", ServerSideOnly=true, IsAggregate = true, ArgIndices = new[] { 0 })]
-		public static string Xmlagg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, string>> par7589)
+		public static string xmlagg<TSource>(this IEnumerable<TSource> src, Expression<Func<TSource, string>> par7589)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xmlcomment
+		#region xmlcomment
 
 		[Sql.Function(Name="pg_catalog.xmlcomment", ServerSideOnly=true)]
-		public static string Xmlcomment(string par7591)
+		public static string xmlcomment(string par7591)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xmlconcat2
+		#region xmlconcat2
 
 		[Sql.Function(Name="pg_catalog.xmlconcat2", ServerSideOnly=true)]
-		public static string Xmlconcat2(string par7593, string par7594)
+		public static string xmlconcat2(string par7593, string par7594)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xmlexists
+		#region xmlexists
 
 		[Sql.Function(Name="pg_catalog.xmlexists", ServerSideOnly=true)]
-		public static bool? Xmlexists(string par7596, string par7597)
+		public static bool? xmlexists(string par7596, string par7597)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlIn
+		#region xml_in
 
 		[Sql.Function(Name="pg_catalog.xml_in", ServerSideOnly=true)]
-		public static string XmlIn(object par7599)
+		public static string xml_in(object par7599)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlIsWellFormed
+		#region xml_is_well_formed
 
 		[Sql.Function(Name="pg_catalog.xml_is_well_formed", ServerSideOnly=true)]
-		public static bool? XmlIsWellFormed(string par7601)
+		public static bool? xml_is_well_formed(string par7601)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlIsWellFormedContent
+		#region xml_is_well_formed_content
 
 		[Sql.Function(Name="pg_catalog.xml_is_well_formed_content", ServerSideOnly=true)]
-		public static bool? XmlIsWellFormedContent(string par7603)
+		public static bool? xml_is_well_formed_content(string par7603)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlIsWellFormedDocument
+		#region xml_is_well_formed_document
 
 		[Sql.Function(Name="pg_catalog.xml_is_well_formed_document", ServerSideOnly=true)]
-		public static bool? XmlIsWellFormedDocument(string par7605)
+		public static bool? xml_is_well_formed_document(string par7605)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlOut
+		#region xml_out
 
 		[Sql.Function(Name="pg_catalog.xml_out", ServerSideOnly=true)]
-		public static object XmlOut(string par7607)
+		public static object xml_out(string par7607)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlRecv
+		#region xml_recv
 
 		[Sql.Function(Name="pg_catalog.xml_recv", ServerSideOnly=true)]
-		public static string XmlRecv(object par7609)
+		public static string xml_recv(object par7609)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XmlSend
+		#region xml_send
 
 		[Sql.Function(Name="pg_catalog.xml_send", ServerSideOnly=true)]
-		public static byte[] XmlSend(string par7611)
+		public static byte[] xml_send(string par7611)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xmlvalidate
+		#region xmlvalidate
 
 		[Sql.Function(Name="pg_catalog.xmlvalidate", ServerSideOnly=true)]
-		public static bool? Xmlvalidate(string par7613, string par7614)
+		public static bool? xmlvalidate(string par7613, string par7614)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region Xpath
+		#region xpath
 
 		[Sql.Function(Name="pg_catalog.xpath", ServerSideOnly=true)]
-		public static object Xpath(string par7620, string par7621)
+		public static object xpath(string par7620, string par7621)
 		{
 			throw new InvalidOperationException();
 		}
 
 		#endregion
 
-		#region XpathExists
+		#region xpath_exists
 
 		[Sql.Function(Name="pg_catalog.xpath_exists", ServerSideOnly=true)]
-		public static bool? XpathExists(string par7627, string par7628)
+		public static bool? xpath_exists(string par7627, string par7628)
 		{
 			throw new InvalidOperationException();
 		}

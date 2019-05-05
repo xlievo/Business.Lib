@@ -508,17 +508,17 @@ namespace Business.Data
         }
     }
 
-    public class DB<IConnection> : DataBase<IConnection>
-        where IConnection : class, Data.IConnection
-    {
-        readonly System.Func<IConnection> creat;
+    //public class DB<IConnection> : DataBase<IConnection>
+    //    where IConnection : class, Data.IConnection
+    //{
+    //    readonly System.Func<IConnection> creat;
 
-        public DB(System.Func<IConnection> creat) => this.creat = creat;
+    //    public DB(System.Func<IConnection> creat) => this.creat = creat;
 
-        public override IConnection GetConnection() => creat();
+    //    public override IConnection GetConnection() => creat();
 
-        public static DB<IConnection> Creat(System.Func<IConnection> creat) => new DB<IConnection>(creat);
-    }
+    //    public static DB<IConnection> Creat(System.Func<IConnection> creat) => new DB<IConnection>(creat);
+    //}
 
     //public abstract class EntitysBase : System.MarshalByRefObject, IEntity
     //{

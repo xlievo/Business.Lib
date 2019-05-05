@@ -14,6 +14,8 @@ using Business.Auth;
 using Business.Utils;
 using System.Collections.Generic;
 using System.Linq;
+using LinqToDB;
+using DataModel;
 
 public class Program
 {
@@ -30,13 +32,13 @@ public class Startup
 
     public Startup(IConfiguration configuration)
     {
-        System.Threading.ThreadPool.SetMinThreads(50, 50);
+        System.Threading.ThreadPool.SetMinThreads(2000, 50);
         //System.Threading.ThreadPool.SetMaxThreads(32767, 32767);
         System.Threading.ThreadPool.GetMinThreads(out int workerThreads, out int completionPortThreads);
         System.Threading.ThreadPool.GetMaxThreads(out int workerThreads2, out int completionPortThreads2);
 
-        System.Console.WriteLine($"Min {workerThreads}, {completionPortThreads}");
-        System.Console.WriteLine($"Max {workerThreads2}, {completionPortThreads2}");
+        //System.Console.WriteLine($"Min {workerThreads}, {completionPortThreads}");
+        //System.Console.WriteLine($"Max {workerThreads2}, {completionPortThreads2}");
 
         Configuration = configuration;
         appSettings = Configuration.GetSection("AppSettings");
@@ -44,14 +46,7 @@ public class Startup
         LinqToDB.Data.DataConnection.DefaultSettings = new LinqToDB.LinqToDBSection(Configuration.GetSection("AppSettings").GetSection("ConnectionStrings").GetChildren().Select(c => new LinqToDB.ConnectionStringSettings { Name = c.Key, ConnectionString = c.GetValue<string>("ConnectionString"), ProviderName = c.GetValue<string>("ProviderName") }));
     }
 
-    public static Business.Data.DB<DataConnection> DB = new Business.Data.DB<DataConnection>(() => new DataConnection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration));
-
-    public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>
-    {
-        static DataConnection() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
-        public DataConnection(string configuration) : base(configuration) { }
-        public override DataModels.Model Entity { get => new DataModels.Model(this.ConfigurationString); }
-    }
+    public static Context Context = new Context();
 
     public IConfiguration Configuration { get; }
 
@@ -109,9 +104,6 @@ public class Startup
                     c.Context.Response.Headers[HeaderNames.CacheControl] = "public, no-cache, no-store";
                     c.Context.Response.Headers[HeaderNames.Pragma] = "no-cache";
                     c.Context.Response.Headers[HeaderNames.Expires] = "-1";
-                    //c.Context.Response.Headers[HeaderNames.CacheControl] = Configuration["StaticFiles:Headers:Cache-Control"];
-                    //c.Context.Response.Headers[HeaderNames.Pragma] = Configuration["StaticFiles:Headers:Pragma"];
-                    //c.Context.Response.Headers[HeaderNames.Expires] = Configuration["StaticFiles:Headers:Expires"];
                 }
 
                 c.Context.Response.Headers[HeaderNames.AccessControlAllowOrigin] = "*";
@@ -138,6 +130,40 @@ public class Startup
 
         //==================The third step==================//
         Configer.UseDoc(System.IO.Path.Combine(wwwroot));
+    }
+}
+
+[Use]
+[Logger(canWrite: false)]
+public class Context
+{
+    readonly string traceMethod;
+
+    public Context(string traceMethod = null) => this.traceMethod = traceMethod;
+
+    public Microsoft.AspNetCore.Http.HttpContext HttpContext { get; }
+
+    public System.Net.WebSockets.WebSocket WebSocket { get; }
+
+    public DataBase DB { get => new DataBase(traceMethod); }
+
+    public class DataBase : Business.Data.DataBase<DataModel.Connection>
+    {
+        static DataBase()
+        {
+            LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+            LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
+            LinqToDB.Data.DataConnection.OnTrace = c =>
+            {
+                //var sql = c.SqlText;
+            };
+        }
+
+        readonly string traceMethod;
+
+        public DataBase(string traceMethod = null) => this.traceMethod = traceMethod;
+
+        public override Connection GetConnection() => new DataModel.Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = traceMethod };
     }
 }
 
@@ -202,7 +228,8 @@ public class BusinessController : Controller
                 Key = t,
                 Remote = string.Format("{0}:{1}", this.HttpContext.Connection.RemoteIpAddress.ToString(), this.HttpContext.Connection.RemotePort),
                 //Callback = b
-            }, "session") //[Use(true)]
+            }, "session"), //[Use(true)]
+            new UseEntry(new Context(c), "context") //context
             );
 
         if (null != result)

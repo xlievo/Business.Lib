@@ -33,11 +33,11 @@ namespace Business.Data
     public interface IConnection : System.IDisposable, ITransaction, IData2
     {
         System.Data.IDbCommand CreateCommand();
+    }
 
-        IEntity Entity
-        {
-            get;
-        }
+    public interface IEntitys
+    {
+        IEntity Entity { get; }
     }
 
     public interface IData2
