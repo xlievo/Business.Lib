@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LinqToDB;
 using DataModel;
+using System.Runtime.CompilerServices;
 
 public class Program
 {
@@ -137,33 +138,28 @@ public class Startup
 [Logger(canWrite: false)]
 public class Context
 {
-    readonly string traceMethod;
-
-    public Context(string traceMethod = null) => this.traceMethod = traceMethod;
-
     public Microsoft.AspNetCore.Http.HttpContext HttpContext { get; }
 
     public System.Net.WebSockets.WebSocket WebSocket { get; }
 
-    public DataBase DB { get => new DataBase(traceMethod); }
+    public DataBase DB { get => new DataBase(); }
 
     public class DataBase : Business.Data.DataBase<DataModel.Connection>
     {
+        public readonly static DataBase DB = new DataBase();
+
         static DataBase()
         {
             LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
             LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
             LinqToDB.Data.DataConnection.OnTrace = c =>
             {
+                
                 //var sql = c.SqlText;
             };
         }
 
-        readonly string traceMethod;
-
-        public DataBase(string traceMethod = null) => this.traceMethod = traceMethod;
-
-        public override Connection GetConnection() => new DataModel.Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = traceMethod };
+        public override DataModel.Connection GetConnection([CallerMemberName] string callMethod = null) => new Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = callMethod };
     }
 }
 
@@ -229,7 +225,7 @@ public class BusinessController : Controller
                 Remote = string.Format("{0}:{1}", this.HttpContext.Connection.RemoteIpAddress.ToString(), this.HttpContext.Connection.RemotePort),
                 //Callback = b
             }, "session"), //[Use(true)]
-            new UseEntry(new Context(c), "context") //context
+            new UseEntry(new Context(), "context") //context
             );
 
         if (null != result)

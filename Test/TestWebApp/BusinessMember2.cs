@@ -39,6 +39,11 @@ public class BusinessMember2 : BusinessBase
     {
         this.Logger = x =>
         {
+            using (var con = Context.DataBase.DB.GetConnection())
+            {
+                con.Save(new DataModel.dd { dd2 = "111", dd_Column = "222" });
+            }
+
             try
             {
                 System.Threading.SpinWait.SpinUntil(() => false, 3000);
@@ -56,25 +61,25 @@ public class BusinessMember2 : BusinessBase
         };
     }
 
-    public virtual async Task<dynamic> Test001(Business.Auth.Token token, Arg<Test001> arg, [Ignore(IgnoreMode.BusinessArg)][Test2]decimal mm = 0.0234m, Context context = default)
+    public virtual async Task<dynamic> Test001(Business.Auth.Token token, Arg<Test001> arg, [Ignore(IgnoreMode.BusinessArg)][Test2]decimal mm = 0.0234m)
     {
-        System.Threading.Tasks.Parallel.For(0, 5000, new ParallelOptions { MaxDegreeOfParallelism = 2000 }, x =>
+        Context.DataBase.DB.Save(new DataModel.dd { dd2 = "111", dd_Column = "222" });
+
+        using (var con = Context.DataBase.DB.GetConnection())
         {
-            using (var con = context.DB.GetConnection())
-            {
-                con.BeginTransaction();
+            con.BeginTransaction();
 
-                var data2 = con.Execute<DataModel.dd>("SELECT * FROM dd");
+            con.Save(new DataModel.dd { dd2 = "111", dd_Column = "222" });
+            var data2 = con.Execute<DataModel.dd>("SELECT * FROM dd");
 
-                var query = con.dd.Where(c => c.dd2 == "eee2");
-                var data = query.ToList();
+            var query = con.dd.Where(c => c.dd2 == "eee2");
+            var data = query.ToList();
 
-                var query2 = con.dd.Where(c => c.dd2 == "eee2").Set(c => c.dd2, "333");
-                query2.Update();
+            var query2 = con.dd.Where(c => c.dd2 == "eee2").Set(c => c.dd2, "333");
+            query2.Update();
 
-                con.Commit();
-            }
-        });
+            con.Commit();
+        }
 
 
         dynamic args = new System.Dynamic.ExpandoObject();
@@ -124,6 +129,11 @@ public class TestAttribute : ArgumentAttribute
 
     public override async ValueTask<IResult> Proces(dynamic value)
     {
+        using (var con = Context.DataBase.DB.GetConnection())
+        {
+            con.Save(new DataModel.dd { dd2 = "111", dd_Column = "222" });
+        }
+
         var exit = await RedisHelper.HExistsAsync("Role", "value2");
 
         switch (value)

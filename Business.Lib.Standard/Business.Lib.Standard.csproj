@@ -5,21 +5,22 @@
     <AssemblyName>Business.Lib</AssemblyName>
     <RootNamespace>Business.Lib</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <Version>1.2.2</Version>
+    <AssemblyVersion>1.2.2</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>https://github.com/xlievo/Business.Lib</Description>
     <Copyright>Copyright ©  2014~2019 Business Project - http://www.tmopen.com</Copyright>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xlievo/Business.Lib</PackageProjectUrl>
     <PackageIconUrl>https://secure.gravatar.com/userimage/107958241/f5a911b60f47bbf64630f824232c9a24?size=250</PackageIconUrl>
-    <FileVersion>1.2.0</FileVersion>
+    <FileVersion>1.2.2</FileVersion>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\Business.Lib.xml</DocumentationFile>
     <DefineConstants>TRACE;RELEASE;NETSTANDARD2_0;Standard</DefineConstants>
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -53,13 +54,13 @@
     <PackageReference Include="AutoMapper.Data" Version="3.0.0" />
     <PackageReference Include="Caching.CSRedis" Version="3.0.51" />
     <PackageReference Include="linq2db" Version="2.7.0" />
-    <PackageReference Include="MessagePack" Version="1.7.3.4" />
-    <PackageReference Include="NEST.JsonNetSerializer" Version="6.6.0" />
+    <PackageReference Include="MessagePack" Version="1.7.3.7" />
+    <PackageReference Include="NEST.JsonNetSerializer" Version="6.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NLog" Version="4.6.3" />
     <PackageReference Include="Npgsql" Version="4.0.6" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
   </ItemGroup>
 
 </Project>

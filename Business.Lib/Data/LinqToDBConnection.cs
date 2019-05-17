@@ -249,17 +249,13 @@ namespace LinqToDB
 
 namespace LinqToDB
 {
-
     //public class Data2<IConnection> : Business.Data.DataBase<Business.Data.IConnection>
     //    where IConnection : class, Business.Data.IConnection
     //{
-    //    readonly System.Func<Business.Data.IConnection> creat;
-
-    //    public Data2(System.Func<Business.Data.IConnection> creat) => this.creat = creat;
-
-    //    static Data2() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
-
-    //    public override Business.Data.IConnection GetConnection() => creat();
+    //    public override Business.Data.IConnection GetConnection([CallerMemberName] string callMethod = null)
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
     //}
 
     //public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>

@@ -17,6 +17,7 @@
 
 using Business.Utils;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Business.Data
 {
@@ -418,93 +419,93 @@ namespace Business.Data
     {
         static DataBase() => LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
 
-        public abstract IConnection GetConnection();
+        public abstract IConnection GetConnection([CallerMemberName] string callMethod = null);
 
-        Data.IConnection IData.GetConnection() => GetConnection();
+        Data.IConnection IData.GetConnection([CallerMemberName] string callMethod = null) => GetConnection(callMethod);
 
-        static Result UseConnection<Result>(System.Func<Data.IConnection> getConnection, System.Func<Data.IConnection, Result> func)
+        static Result UseConnection<Result>(System.Func<string, Data.IConnection> getConnection, System.Func<Data.IConnection, Result> func, string callMethod)
         {
-            using (var con = getConnection()) { return func(con); }
+            using (var con = getConnection(callMethod)) { return func(con); }
         }
 
-        public int Save<T>(System.Collections.Generic.IEnumerable<T> obj)
+        public int Save<T>(System.Collections.Generic.IEnumerable<T> obj, [CallerMemberName] string callMethod = null)
         {
             if (obj == null)
             {
                 throw new System.ArgumentNullException(nameof(obj));
             }
 
-            return UseConnection(GetConnection, con => con.Save(obj));
+            return UseConnection(GetConnection, con => con.Save(obj), callMethod);
         }
 
-        public int Save<T>(T obj)
+        public int Save<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.Save(obj));
+            return UseConnection(GetConnection, con => con.Save(obj), callMethod);
         }
 
-        public int SaveWithInt32Identity<T>(T obj)
+        public int SaveWithInt32Identity<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.SaveWithInt32Identity(obj));
+            return UseConnection(GetConnection, con => con.SaveWithInt32Identity(obj), callMethod);
         }
 
-        public long SaveWithInt64Identity<T>(T obj)
+        public long SaveWithInt64Identity<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.SaveWithInt64Identity(obj));
+            return UseConnection(GetConnection, con => con.SaveWithInt64Identity(obj), callMethod);
         }
 
-        public int SaveOrUpdate<T>(System.Collections.Generic.IEnumerable<T> obj)
-        {
-            if (obj == null)
-            {
-                throw new System.ArgumentNullException(nameof(obj));
-            }
-
-            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); });
-        }
-
-        public int SaveOrUpdate<T>(T obj)
-        {
-            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); });
-        }
-
-        public int Update<T>(System.Collections.Generic.IEnumerable<T> obj)
+        public int SaveOrUpdate<T>(System.Collections.Generic.IEnumerable<T> obj, [CallerMemberName] string callMethod = null)
         {
             if (obj == null)
             {
                 throw new System.ArgumentNullException(nameof(obj));
             }
 
-            return UseConnection(GetConnection, con => con.Update(obj));
+            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); }, callMethod);
         }
 
-        public int Update<T>(T obj)
+        public int SaveOrUpdate<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.Update(obj));
+            return UseConnection(GetConnection, con => { return con.SaveOrUpdate(obj); }, callMethod);
         }
 
-        public int Delete<T>(System.Collections.Generic.IEnumerable<T> obj)
+        public int Update<T>(System.Collections.Generic.IEnumerable<T> obj, [CallerMemberName] string callMethod = null)
         {
             if (obj == null)
             {
                 throw new System.ArgumentNullException(nameof(obj));
             }
 
-            return UseConnection(GetConnection, con => con.Delete(obj));
+            return UseConnection(GetConnection, con => con.Update(obj), callMethod);
         }
 
-        public int Delete<T>(T obj)
+        public int Update<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.Delete(obj));
+            return UseConnection(GetConnection, con => con.Update(obj), callMethod);
         }
 
-        public int ExecuteNonQuery(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public int Delete<T>(System.Collections.Generic.IEnumerable<T> obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.ExecuteNonQuery(commandText, commandType, parameter));
+            if (obj == null)
+            {
+                throw new System.ArgumentNullException(nameof(obj));
+            }
+
+            return UseConnection(GetConnection, con => con.Delete(obj), callMethod);
         }
 
-        public Result ExecuteScalar<Result>(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, params DataParameter[] parameter)
+        public int Delete<T>(T obj, [CallerMemberName] string callMethod = null)
         {
-            return UseConnection(GetConnection, con => con.ExecuteScalar<Result>(commandText, commandType, parameter));
+            return UseConnection(GetConnection, con => con.Delete(obj), callMethod);
+        }
+
+        public int ExecuteNonQuery(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, DataParameter[] parameter = null, [CallerMemberName] string callMethod = null)
+        {
+            return UseConnection(GetConnection, con => con.ExecuteNonQuery(commandText, commandType, parameter), callMethod);
+        }
+
+        public Result ExecuteScalar<Result>(string commandText, System.Data.CommandType commandType = System.Data.CommandType.Text, DataParameter[] parameter = null, [CallerMemberName] string callMethod = null)
+        {
+            return UseConnection(GetConnection, con => con.ExecuteScalar<Result>(commandText, commandType, parameter), callMethod);
         }
     }
 

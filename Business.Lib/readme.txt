@@ -27,6 +27,8 @@ Thanks for downloading this Business.Lib package.
 
 	public class DataBase : Business.Data.DataBase<DataModel.Connection>
     {
+		public static DataBase DB = new DataBase();
+
         static DataBase()
         {
             LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
@@ -34,10 +36,6 @@ Thanks for downloading this Business.Lib package.
             LinqToDB.Data.DataConnection.OnTrace = c => { };
         }
 
-        readonly string traceMethod;
-
-        public DataBase(string traceMethod = null) => this.traceMethod = traceMethod;
-
-        public override Connection GetConnection() => new DataModel.Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = traceMethod };
+        public override DataModel.Connection GetConnection([CallerMemberName] string callMethod = null) => new DataModel.Connection(LinqToDB.Data.DataConnection.DefaultSettings.DefaultConfiguration) { TraceMethod = callMethod };
     }
 	
