@@ -5,15 +5,15 @@
     <AssemblyName>Business.Lib</AssemblyName>
     <RootNamespace>Business.Lib</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.2.2</Version>
-    <AssemblyVersion>1.2.2</AssemblyVersion>
+    <Version>1.2.3</Version>
+    <AssemblyVersion>1.2.3</AssemblyVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>https://github.com/xlievo/Business.Lib</Description>
     <Copyright>Copyright ©  2014~2019 Business Project - http://www.tmopen.com</Copyright>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xlievo/Business.Lib</PackageProjectUrl>
     <PackageIconUrl>https://secure.gravatar.com/userimage/107958241/f5a911b60f47bbf64630f824232c9a24?size=250</PackageIconUrl>
-    <FileVersion>1.2.2</FileVersion>
+    <FileVersion>1.2.3</FileVersion>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 

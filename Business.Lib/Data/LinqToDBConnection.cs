@@ -29,38 +29,40 @@ namespace LinqToDB
     {
         static int ForEach<T>(System.Collections.Generic.IEnumerable<T> obj, System.Func<T, int> func)
         {
-            int count = 0, ex = 0;
+            int count = 0;//, ex = 0;
 
-            System.Threading.Tasks.Parallel.ForEach(obj, (item, loop) =>
-            {
-                var result = func(item);
-
-                if (-1 == result && result != ex)
-                {
-                    ex = result;
-                    if (!loop.IsStopped) { loop.Stop(); }
-                }
-                else
-                {
-                    count += result;
-                }
-            });
-            //foreach (var item in obj)
+            //System.Threading.Tasks.Parallel.ForEach(obj, (item, loop) =>
             //{
             //    var result = func(item);
 
-            //    if (-1 == result)
+            //    if (-1 == result && result != ex)
             //    {
-            //        count = result;
-            //        break;
+            //        ex = result;
+            //        if (!loop.IsStopped) { loop.Stop(); }
             //    }
             //    else
             //    {
             //        count += result;
             //    }
-            //}
+            //});
+            foreach (var item in obj)
+            {
+                var result = func(item);
 
-            return ex == 0 ? count : ex;
+                if (-1 == result)
+                {
+                    count = result;
+                    break;
+                }
+                else
+                {
+                    count += result;
+                }
+            }
+
+            return count;
+
+            //return ex == 0 ? count : ex;
         }
 
         public LinqToDBConnection() : base() { }
