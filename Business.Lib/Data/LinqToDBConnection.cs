@@ -81,25 +81,13 @@ namespace LinqToDB
 
         //Business.Data.IEntity IEntitys.Entity { get => Entity; }
 
-        public new void BeginTransaction()
-        {
-            base.BeginTransaction();
-        }
+        public new void BeginTransaction() => base.BeginTransaction();
 
-        public new void BeginTransaction(System.Data.IsolationLevel isolationLevel)
-        {
-            base.BeginTransaction(isolationLevel);
-        }
+        public new void BeginTransaction(System.Data.IsolationLevel isolationLevel) => base.BeginTransaction(isolationLevel);
 
-        public void Commit()
-        {
-            base.CommitTransaction();
-        }
+        public void Commit() => base.CommitTransaction();
 
-        public void Rollback()
-        {
-            base.RollbackTransaction();
-        }
+        public void Rollback() => base.RollbackTransaction();
 
         public int Save<T>(System.Collections.Generic.IEnumerable<T> obj) => this.ExecutePack(() => ForEach(obj, item => DataExtensions.Insert(this, item)));
 
@@ -249,20 +237,20 @@ namespace LinqToDB
     #endregion
 }
 
-namespace LinqToDB
-{
-    //public class Data2<IConnection> : Business.Data.DataBase<Business.Data.IConnection>
-    //    where IConnection : class, Business.Data.IConnection
-    //{
-    //    public override Business.Data.IConnection GetConnection([CallerMemberName] string callMethod = null)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-    //}
+//namespace LinqToDB
+//{
+//    //public class Data2<IConnection> : Business.Data.DataBase<Business.Data.IConnection>
+//    //    where IConnection : class, Business.Data.IConnection
+//    //{
+//    //    public override Business.Data.IConnection GetConnection([CallerMemberName] string callMethod = null)
+//    //    {
+//    //        throw new System.NotImplementedException();
+//    //    }
+//    //}
 
-    //public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>
-    //{
-    //    public DataConnection(string configuration) : base(configuration) { }
-    //    public override DataModels.Model Entity { get => new DataModels.Model(this.ConfigurationString); }
-    //}
-}
+//    //public class DataConnection : Business.Data.LinqToDBConnection<DataModels.Model>
+//    //{
+//    //    public DataConnection(string configuration) : base(configuration) { }
+//    //    public override DataModels.Model Entity { get => new DataModels.Model(this.ConfigurationString); }
+//    //}
+//}
