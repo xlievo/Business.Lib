@@ -31,20 +31,6 @@ namespace LinqToDB
         {
             int count = 0;//, ex = 0;
 
-            //System.Threading.Tasks.Parallel.ForEach(obj, (item, loop) =>
-            //{
-            //    var result = func(item);
-
-            //    if (-1 == result && result != ex)
-            //    {
-            //        ex = result;
-            //        if (!loop.IsStopped) { loop.Stop(); }
-            //    }
-            //    else
-            //    {
-            //        count += result;
-            //    }
-            //});
             foreach (var item in obj)
             {
                 var result = func(item);

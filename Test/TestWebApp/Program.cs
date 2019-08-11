@@ -154,7 +154,6 @@ public class Context
             LinqToDB.Data.DataConnection.TurnTraceSwitchOn();
             LinqToDB.Data.DataConnection.OnTrace = c =>
             {
-                
                 //var sql = c.SqlText;
             };
         }
